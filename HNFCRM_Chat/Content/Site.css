@@ -22,11 +22,16 @@ textarea {
     max-width: 280px;
 }
 /*Set properties for content background*/
+.master-content{
+    width:100vw;
+    height:100vh;
+    background-color:blue;
+}
 .mainscreen-content{
-    margin-top: 5%;
+    width: 85vw;
+    height:91vh;
+    background-color:red;
+    position:relative;
     margin-left:13.5%;
-    
-    height:88vh;
-    background-color:white;
-  
+    margin-top:3.5%;
 }
