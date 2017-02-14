@@ -1,0 +1,164 @@
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\ApplicationInsights.config
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\csc.exe
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\System.Collections.Immutable.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\System.Reflection.Metadata.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\vbc.exe
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\VBCSCompiler.exe
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\VBCSCompiler.exe.config
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\HNFCRM_Chat.dll.config
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\HNFCRM_Chat.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\HNFCRM_Chat.pdb
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Antlr3.Runtime.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.SqlServer.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.Agent.Intercept.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.DependencyCollector.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.Web.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.WindowsServer.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.ApplicationInsights.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Core.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Cookies.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Facebook.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Google.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.OAuth.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Twitter.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Web.Infrastructure.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Newtonsoft.Json.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Owin.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Helpers.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Mvc.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Optimization.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Razor.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Deployment.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Razor.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\WebGrease.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.DependencyCollector.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.Web.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.WindowsServer.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.ApplicationInsights.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Helpers.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Mvc.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Optimization.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Razor.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Deployment.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Razor.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Antlr3.Runtime.pdb
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Newtonsoft.Json.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.SqlServer.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Core.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Facebook.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Cookies.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.OAuth.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Google.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Twitter.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.csprojResolveAssemblyReference.cache
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.dll
+D:\C#\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.pdb
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\ApplicationInsights.config
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\csc.exe
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\System.Collections.Immutable.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\System.Reflection.Metadata.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\vbc.exe
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\VBCSCompiler.exe
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\roslyn\VBCSCompiler.exe.config
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\HNFCRM_Chat.dll.config
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\HNFCRM_Chat.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\HNFCRM_Chat.pdb
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Antlr3.Runtime.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.SqlServer.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.Agent.Intercept.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.DependencyCollector.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.Web.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.WindowsServer.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.ApplicationInsights.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Core.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Cookies.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Facebook.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Google.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.OAuth.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Twitter.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Web.Infrastructure.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Newtonsoft.Json.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Owin.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Helpers.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Mvc.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Optimization.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Razor.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Deployment.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Razor.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\WebGrease.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.DependencyCollector.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.Web.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AI.WindowsServer.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.ApplicationInsights.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Helpers.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Mvc.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Optimization.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.Razor.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Deployment.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\System.Web.WebPages.Razor.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Antlr3.Runtime.pdb
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Newtonsoft.Json.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\EntityFramework.SqlServer.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Core.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Facebook.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Cookies.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.OAuth.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Google.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.Twitter.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.csprojResolveAssemblyReference.cache
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.pdb
