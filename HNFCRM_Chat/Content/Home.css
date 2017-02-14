@@ -84,8 +84,8 @@ BOOTSTRAP http://getbootstrap.com/components/
 
 .sidebar-nav li
 {
- text-indent: 20px;
- line-height: 40px;
+ text-indent: 10px;
+ line-height: 50px;
 }
 
 .sidebar-nav li a
