@@ -1,75 +1,83 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/HNFStyle.css">
 </head>
 <body>
-    <div class="container master-content">
-        @* Navigation Bar *@
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("HnF COMPANY", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav"></ul>
-                    @Html.Partial("_LoginPartial")
-                </div>
-            </div>
-        </div>
-        @* Side Navigation Bar*@
-        <div id="sidebar-wrapper">
-            <div>
-                <ul class="sidebar-nav">
+    <!--===== TOPBAR =====-->
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Navbar</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+            <form class="form-inline my-2 my-xl-0 ">
+                <ul class="navbar-nav">
 
-                    <br />
-                    <li>
-                        <a href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;Trang Chủ</a>
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">Thông Báo</a>
                     </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Khách Hàng</a>
+                    <li class="nav-item">
+                        <a class="nav-link hnf-nav-link" href="#">Quản Trị Viên</a>
                     </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;Sản Xuất</a>
+                    <li class="nav-item">
+                        <a class="nav-link hnf-nav-link" href="#">Đăng Xuất</a>
                     </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-signal"></span>&nbsp;&nbsp;Thống Kê</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-comment"></span>&nbsp;&nbsp;Chat</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Nhân Viên</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-phone"></span>&nbsp;&nbsp;Chăm Sóc Khách Hàng</a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("About","Home")"><span class="glyphicon glyphicon-flash"></span>&nbsp;&nbsp;Nhóm Phát Triển</a>
-                    </li>
+                    <div class="dropdown-divider"></div>
+                    <div id="sidebar-top-menu">
+                        <ul class="navbar-nav">
+                            <h6 class="dropdown-header">ĐỊNH TUYẾN</h6>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Html.ActionLink("Index","Home")">Trang Chủ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Html.ActionLink("Customer","Customer")">Khách Hàng</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Sản Xuất</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Thống Kê</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Chat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nhân Viên</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Chăm Sóc Khách Hàng</a>
+                            </li>
+                        </ul>
+                    </div>
                 </ul>
-            </div>
-
-            <div style="position:absolute;bottom:1%;left:17%; color: white;font:bold">
-                <p>&copy; @DateTime.Now.Year - Secret Society - VLU</p>
-            </div>
+            </form>
         </div>
-       
-            <div class="mainscreen-content">
-                <p>CCiasudaoisjdnaSO:Ldn:LAOKSjfdnl;sIdjnfl </p>
-            </div>
-      
+    </nav>
+    <!--===== end of TOPBAR =====-->
+    <div id="wrapper">
+        <!--===== SIDEBAR =====-->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li><a href="@Url.Action("Index","Home")">TRANG CHỦ</a></li>
+                <li><a href="@Url.Action("Customer","Customer")">KHÁCH HÀNG</a></li>
+                <li><a href="#">SẢN XUẤT</a></li>
+                <li><a href="#">THỐNG KÊ</a></li>
+                <li><a href="#">CHAT</a></li>
+                <li><a href="#">NHÂN VIÊN</a></li>
+                <li><a href="#">CHĂM SÓC KHÁCH HÀNG</a></li>
+            </ul>
         </div>
+        <!--===== end of [SIDERBAR] =====-->
         @RenderBody()
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

@@ -80,6 +80,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -196,29 +198,110 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CHATINFO.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COLOR.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTRACT.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTRACTDETAIL.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CUSTOMER.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CUSTOMERCONSULTING.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HNFModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HNFModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HNFModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HNFModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HNFModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MENSIZE.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRODUCTLINE.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\REQUIREPRODUCT.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ROLE.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\STAFF.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WOMENSIZE.cs">
+      <DependentUpon>HNFModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AboutPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\HNFStyle.css" />
     <Content Include="Content\Home.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Images\16708609_1075509135925893_7918090143301469913_n.jpg" />
+    <Content Include="Models\HNFModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HNFModel.edmx</DependentUpon>
+      <LastGenOutput>HNFModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HNFModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HNFModel.edmx</DependentUpon>
+      <LastGenOutput>HNFModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\HNFModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HNFModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HNFModel.edmx.diagram">
+      <DependentUpon>HNFModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -232,7 +315,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -266,10 +351,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Customer\Customer.cshtml" />
+    <Content Include="Views\Customer\CustomerDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -278,6 +364,9 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

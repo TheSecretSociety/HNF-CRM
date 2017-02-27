@@ -1,5 +1,7 @@
 ﻿body {
-
+    padding-left:20%;
+    padding-right: 2%;
+    padding-top:3%
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,16 +24,8 @@ textarea {
     max-width: 280px;
 }
 /*Set properties for content background*/
-.master-content{
-    width:100vw;
-    height:100vh;
-    background-color:blue;
-}
-.mainscreen-content{
-    width: 85vw;
-    height:91vh;
-    background-color:red;
-    position:relative;
-    margin-left:13.5%;
-    margin-top:3.5%;
+.body-content{
+    margin-top: 2%;
+    background-color:white;
+    
 }
