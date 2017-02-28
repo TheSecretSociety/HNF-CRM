@@ -11,6 +11,8 @@ namespace HNFCRM_Chat.Controllers
     {
         // GET: Customer
         CP_CRMEntities entities = new CP_CRMEntities();
+
+        //Get All Customer
         public ActionResult Customer()
         {
             try
@@ -24,6 +26,7 @@ namespace HNFCRM_Chat.Controllers
             }
         }
 
+        //Get Customer By ID
         public ViewResult CustomerDetail(int id)
         {
             CUSTOMER customer = new CUSTOMER();
