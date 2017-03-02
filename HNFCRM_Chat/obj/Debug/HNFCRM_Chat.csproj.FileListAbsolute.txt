@@ -244,3 +244,7 @@ C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\Microsoft.Owin.Securi
 C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.csprojResolveAssemblyReference.cache
 C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.dll
 C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.pdb
+C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.dll
+C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.Mvc.dll
+C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.xml
+C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.Mvc.xml
