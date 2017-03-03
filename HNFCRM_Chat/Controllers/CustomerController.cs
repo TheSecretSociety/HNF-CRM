@@ -97,7 +97,21 @@ namespace HNFCRM_Chat.Controllers
             entities.SaveChanges();
             return RedirectToAction("Customer");
         }
-    }
 
+        [HttpPost]
+        //Search Customer 
+        public ActionResult SearchCustomer(string SearchName, string SearchPhone, string SearchEmail)
+        {
+            try
+            {
+                var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
+                return View(customer);
+            }
+            catch (Exception e)
+            {
+                return new EmptyResult();
+            }
+        }
+    }
 }
 
