@@ -11,43 +11,40 @@
                     <div id="divider"></div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
                     <div id="customer-function-bar">
                         <div class="btn-group btn-group-md" role="group" aria-label="...">
                             <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("AddCustomer","Customer")'">Thêm</button>
                             <button type="button" class="btn btn-warning">Sửa Nhanh</button>
+
                             <button type="button" class="btn btn-danger" @*onclick="location.href='@Url.Action("DeleteCustomer","Customer",new {id=})'*@ ">Xoá</button>
                         </div>
-                        @using (Html.BeginForm("SearchCustomer", "Customer", FormMethod.Post))
-                        {
-                            <div class="btn-group btn-group-md" role="group" aria-label="...">
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Tháng
-                                    </button>
-                                     @*<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Tháng 1</a>
-                                            <a class="dropdown-item" href="#">Tháng 2</a>
-                                            <a class="dropdown-item" href="#">Tháng 3</a>
-                                            <a class="dropdown-item" href="#">Tháng 4</a>
-                                            <a class="dropdown-item" href="#">Tháng 5</a>
-                                            <a class="dropdown-item" href="#">Tháng 6</a>
-                                            <a class="dropdown-item" href="#">Tháng 7</a>
-                                            <a class="dropdown-item" href="#">Tháng 8</a>
-                                            <a class="dropdown-item" href="#">Tháng 9</a>
-                                            <a class="dropdown-item" href="#">Tháng 10</a>
-                                            <a class="dropdown-item" href="#">Tháng 11</a>
-                                            <a class="dropdown-item" href="#">Tháng 12</a>
-                                        </div>*@
-                                    <input id="HNF-input" type="text" name="SearchName" placeholder="Tên">
-                                    <input id="HNF-input" type="text" name="SearchPhone" placeholder="Số Điện Thoại">
-                                    <input id="HNF-input" type="text" name="SearchEmail" placeholder="Email">
-                                    <button type="submit" class="btn btn-info" onclick="location.href='@Url.Action("SearchCustomer", "Customer")'">Tìm Kiếm</button>
+                        <div class="btn-group btn-group-md" role="group" aria-label="...">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Tháng
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Tháng 1</a>
+                                    <a class="dropdown-item" href="#">Tháng 2</a>
+                                    <a class="dropdown-item" href="#">Tháng 3</a>
+                                    <a class="dropdown-item" href="#">Tháng 4</a>
+                                    <a class="dropdown-item" href="#">Tháng 5</a>
+                                    <a class="dropdown-item" href="#">Tháng 6</a>
+                                    <a class="dropdown-item" href="#">Tháng 7</a>
+                                    <a class="dropdown-item" href="#">Tháng 8</a>
+                                    <a class="dropdown-item" href="#">Tháng 9</a>
+                                    <a class="dropdown-item" href="#">Tháng 10</a>
+                                    <a class="dropdown-item" href="#">Tháng 11</a>
+                                    <a class="dropdown-item" href="#">Tháng 12</a>
                                 </div>
+                                <input id="HNF-input" type="text" name="SearchName" placeholder="Tên">
+                                <input id="HNF-input" type="text" name="SearchPhone" placeholder="Số Điện Thoại">
+                                <input id="HNF-input" type="text" name="SearchEmail" placeholder="Email">
+                                <button type="submit" class="btn btn-info" @*onclick="location.href='@Url.Action("SearchCustomer","Customer")'*@ ">Tìm Kiếm</button>
                             </div>
-                        }
+                        </div>
                     </div>
                 </div>
             </div>
