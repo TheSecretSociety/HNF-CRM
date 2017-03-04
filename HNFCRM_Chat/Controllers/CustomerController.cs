@@ -89,7 +89,7 @@ namespace HNFCRM_Chat.Controllers
         }
 
         //Delete Customer By ID
-        [HttpPost]
+
         public ActionResult DeleteCustomer(int id)
         {
             CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
@@ -104,8 +104,41 @@ namespace HNFCRM_Chat.Controllers
         {
             try
             {
-                var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
-                return View(customer);
+                if (SearchName != "" && SearchPhone == "" && SearchEmail == "")
+                {
+                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName)).ToList();
+                    return View(customer);
+                }
+                else if (SearchName == "" && SearchPhone != "" && SearchEmail == "")
+                {
+                    var customer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone)).ToList();
+                    return View(customer);
+                }
+                else if (SearchName == "" && SearchPhone == "" && SearchEmail != "")
+                {
+                    var customer = entities.CUSTOMERs.Where(x => x.Email.Contains(SearchEmail)).ToList();
+                    return View(customer);
+                }
+                else if (SearchName != "" && SearchPhone != "" && SearchEmail == "")
+                {
+                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone)).ToList();
+                    return View(customer);
+                }
+                else if (SearchName != "" && SearchPhone == "" && SearchEmail != "")
+                {
+                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Email.Contains(SearchEmail)).ToList();
+                    return View(customer);
+                }
+                else if (SearchName == "" && SearchPhone != "" && SearchEmail != "")
+                {
+                    var customer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
+                    return View(customer);
+                }
+                else
+                {
+                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
+                    return View(customer);
+                }
             }
             catch (Exception e)
             {

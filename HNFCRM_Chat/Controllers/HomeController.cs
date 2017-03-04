@@ -28,5 +28,12 @@ namespace HNFCRM_Chat.Controllers
 
             return View();
         }
+        
+        //Get list of new customer
+        public ActionResult GetNewCustomer()
+        {
+            var customer = entities.CUSTOMERs.OrderByDescending(x => x.ID);
+            return View(customer);
+        }
     }
 }
