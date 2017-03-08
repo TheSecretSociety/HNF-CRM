@@ -32,12 +32,13 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult CustomerDetail(int id)
         {
             CUSTOMER customer = new CUSTOMER();
-            customer = entities.CUSTOMERs.SingleOrDefault(x => x.ID == id);
-            if (customer == null)
-            {
-                Response.StatusCode = 404;
-            }
-            return View(customer);
+            customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
+            REQUIREPRODUCT require = new REQUIREPRODUCT();
+            require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            CustomerModel model = new CustomerModel();
+            model.Customer = customer;
+            model.RequireProduct = require;
+            return View(model);
         }
 
         [HttpPost]
@@ -55,7 +56,18 @@ namespace HNFCRM_Chat.Controllers
             data.PreviousDesign = frm["previousdesign"];
             data.PreviousFabric = frm["previousfabric"];
             //data.PreviousPrice = int.Parse(frm["previousprice"]);
+
+            //Insert require of new customer
+            REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            require.ID_Customer = data.ID;
+            //require.PreviousDesign =frm["previousdesign"];
+            require.RequireFabric = frm["requirefabric"];
+            require.Purpose = frm["purpose"];
+            require.Price = int.Parse(frm["price"]);
+            require.PrintAndEmbroider = frm["printembroider"];
+            require.Quantity = int.Parse(frm["quantity"]);
             data.IsAvailable = true;
+
             entities.SaveChanges();
             return RedirectToAction("CustomerDetail");
         }
@@ -67,9 +79,10 @@ namespace HNFCRM_Chat.Controllers
         }
 
         [HttpPost]
-        //Insert new customer to database
+        //Insert new customer and require product to database
         public ActionResult AddCustomer(FormCollection frm)
         {
+            //Insert new customer
             CUSTOMER data = new CUSTOMER();
             data.Name = frm["name"];
             data.Phone = frm["phone"];
@@ -80,20 +93,35 @@ namespace HNFCRM_Chat.Controllers
             data.PreviousCompanyDesign = frm["previouscompany"];
             data.PreviousDesign = frm["previousdesign"];
             data.PreviousFabric = frm["previousfabric"];
-            //data.PreviousPrice = int.Parse(frm["previousprice"]);
+            data.PreviousPrice = int.Parse(frm["previousprice"]);
+            data.Note = frm["note"];
             data.IsAvailable = true;
+
+            //Insert require of new customer
+            REQUIREPRODUCT require = new REQUIREPRODUCT();
+            require.ID_Customer = data.ID;
+            //require.PreviousDesign =frm["previousdesign"];
+            require.RequireFabric = frm["requirefabric"];
+            require.Purpose = frm["purpose"];
+            require.Price = int.Parse(frm["price"]);
+            require.PrintAndEmbroider = frm["printembroider"];
+            require.Quantity = int.Parse(frm["quantity"]);
+            
+            //Data savechanges
             entities.CUSTOMERs.Add(data);
+            entities.REQUIREPRODUCTs.Add(require);
             entities.SaveChanges();
-            var _idcus = data.ID; // id cua customer vua dc add vao
+            //var _idcus = data.ID; // id cua customer vua dc add vao
             return RedirectToAction("Customer");
         }
 
-        //Delete Customer By ID
-
+        //Delete Customer By ID, delete Require Product following Customer ID
         public ActionResult DeleteCustomer(int id)
         {
             CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
+            REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             entities.CUSTOMERs.Remove(customer);
+            entities.REQUIREPRODUCTs.Remove(require);
             entities.SaveChanges();
             return RedirectToAction("Customer");
         }

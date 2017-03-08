@@ -1,79 +1,71 @@
 ﻿@model IEnumerable<HNFCRM_Chat.Models.CUSTOMER>
-
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
-            <!--===== DIVIDER =====-->
+            <br>
+            <!-- Thanh Chức Năng -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
-                    <div id="divider"></div>
+                <!-- Nút Chức Năng -->
+                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card form-input-margin">
+                        <div class="btn-group" role="group" aria-label="Function Button">
+                            <button type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Thêm</button>
+                            <button type="button" class="btn btn-warning w-100">Sửa Nhanh</button>
+                            <button type="button" class="btn btn-danger w-100">Xoá</button>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
-                    <div id="customer-function-bar">
+                <!-- Thanh Lọc -->
+                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="card form-input-margin">
                         @using (Html.BeginForm("SearchCustomer", "Customer", FormMethod.Post))
                         {
-                            <div class="btn-group btn-group-md" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Thêm</button>
-                                <button type="button" class="btn btn-warning">Sửa Nhanh</button>
-                                <button type="button" class="btn btn-danger" )'>Xoá</button>
-                            </div>
-
-                            <div class="btn-group btn-group-md" role="group" aria-label="...">
-                                <div class="dropdown">
-                                    @*<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Tháng
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Tháng 1</a>
-                                                <a class="dropdown-item" href="#">Tháng 2</a>
-                                                <a class="dropdown-item" href="#">Tháng 3</a>
-                                                <a class="dropdown-item" href="#">Tháng 4</a>
-                                                <a class="dropdown-item" href="#">Tháng 5</a>
-                                                <a class="dropdown-item" href="#">Tháng 6</a>
-                                                <a class="dropdown-item" href="#">Tháng 7</a>
-                                                <a class="dropdown-item" href="#">Tháng 8</a>
-                                                <a class="dropdown-item" href="#">Tháng 9</a>
-                                                <a class="dropdown-item" href="#">Tháng 10</a>
-                                                <a class="dropdown-item" href="#">Tháng 11</a>
-                                                <a class="dropdown-item" href="#">Tháng 12</a>
-                                            </div>*@
+                            <div class="row">
+                                <!-- Họ Tên -->
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
                                     <input id="HNF-input" type="text" name="SearchName" placeholder="Tên">
+                                </div>
+                                <!-- Số Điện Thoại -->
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
                                     <input id="HNF-input" type="text" name="SearchPhone" placeholder="Số Điện Thoại">
+                                </div>
+                                <!-- Email -->
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
                                     <input id="HNF-input" type="text" name="SearchEmail" placeholder="Email">
-                                    <button type="submit" class="btn btn-info" onclick="location.href='@Url.Action("SearchCustomer", "Customer")'">Tìm Kiếm</button>
+                                </div>
+                                <!-- Nút Tìm Kiếm -->
+                                <div class="col-xl-3 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                    <button type="submit" class="btn btn-block btn-info" onclick="location.href='@Url.Action("SearchCustomer", "Customer")'">Tìm Kiếm</button>
                                 </div>
                             </div>
                         }
                     </div>
                 </div>
             </div>
+            <br>
+            <!-- Thanh Nhân Viên -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
-                    <div id="divider"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center ">
+                        <ul class="pagination justify-content-center w-100">
                             <li class="page-item">
                                 <a class="page-link" href="#" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                     <span class="sr-only">Previous</span>
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">Lộc Ngô</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Hưng Nguyễn</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Minh Nguyễn</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Thuận Nguyễn</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Nguyễn Lê</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Huy Diệp</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Thạnh Lê</a></li>
-                            <li class="page-item">
+                            <li class="page-item "><a class="page-link" href="#">Tấn Lộc</a></li>
+                            <li class="page-item "><a class="page-link" href="#">Tấn Hưng</a></li>
+                            <li class="page-item "><a class="page-link" href="#">Anh Minh</a></li>
+                            <li class="page-item "><a class="page-link" href="#">Đức Thuận</a></li>
+                            <li class="page-item "><a class="page-link" href="#">Hoàng Nguyễn</a></li>
+                            <li class="page-item "><a class="page-link" href="#">Bảo Huy</a></li>
+                            <li class="page-item "><a class="page-link" href="#">Phú Thạnh</a></li>
+                            <li class="page-item ">
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                     <span class="sr-only">Next</span>
@@ -83,13 +75,15 @@
                     </nav>
                 </div>
             </div>
+            <br>
+            <!-- Bản Khách Hàng -->
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-12">
                     <table class="table table-sm table-hover">
                         <thead class="thead">
                             <tr>
                                 <th>
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
+                                    Xóa
                                 </th>
                                 <th>HỌ VÀ TÊN</th>
                                 <th>CÔNG TY</th>
@@ -104,9 +98,13 @@
                         <tbody>
                             @{ foreach (var item in Model)
                                 {
-                                    <tr class="table-success">
+                                    <tr class="">
                                         <th scope="row">
-                                            <input type="checkbox" aria-label="Checkbox for following text input" value="@item.ID">
+                                            <input type="button" aria-label="Checkbox for following text input" value="x" onclick="location.href='@Url.Action("DeleteCustomer", "Customer", new
+                                                                                                                                         {
+                                                                                                                                             id = item
+                                               .ID
+                                                                                                                                         })'">
                                         </th>
                                         <td>@item.Name</td>
                                         <td>@item.Company</td>
@@ -115,7 +113,7 @@
                                         <td>@item.Job</td>
                                         <td>mdo</td>
                                         <td>@item.ID_Consult</td>
-                                        <td><a href="@Url.Action("CustomerDetail","Customer",new { id=item.ID})"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
+                                        <td><a href="@Url.Action("CustomerDetail", "Customer", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
                                     </tr>
                                 }
                             }

@@ -12,10 +12,11 @@
                 </div>
             </div>
             <!--===== end of [DIVIDER] =====-->
-            <div class="row">
-                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-8">
-                    @using (Html.BeginForm("AddCustomer", "Customer", FormMethod.Post))
-                    {
+            @using (Html.BeginForm("AddCustomer", "Customer", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-8">
+
                         <div class="form-input-background">
 
                             <h3>THÔNG TIN KHÁCH HÀNG</h3>
@@ -91,16 +92,16 @@
                             </div>
 
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("AddCustomer","Customer")'">Lưu Thông Tin</button>
-                    }
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-4">
-                    <div class="form-input-background">
-                        <h3>THÔNG TIN SẢN PHẨM</h3>
-                        <form>
+
+
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-4">
+                        <div class="form-input-background">
+                            <h3>THÔNG TIN SẢN PHẨM</h3>
+
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Loại Áo</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="" name="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Loại Vải</label>
@@ -155,28 +156,12 @@
                                 <label for="exampleTextarea">Ghi Chú</label>
                                 <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
                             </div>
-                        </form>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Lưu Thông Tin</button>
 
-
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
-                    <div id="divider"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
-                    <div class="form-input-background">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-success">Thêm Giao Dịch</button>
-                            <button type="button" class="btn btn-danger">Xoá Giao Dịch</button>
-                            <button type="button" class="btn btn-warning">Sửa Nhanh</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>
