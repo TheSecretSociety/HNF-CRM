@@ -14,7 +14,12 @@ namespace HNFCRM_Chat.Controllers
         // GET: Contract by Customer ID
         public ActionResult Contract(int id)
         {
+            
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            if (contract.ID_Customer == null)
+            {
+                return View();
+            }
             return View(contract);
         }
 
