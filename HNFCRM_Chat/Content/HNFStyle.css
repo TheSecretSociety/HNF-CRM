@@ -85,6 +85,7 @@ a:link {
     font-size: 0.7em;
     text-decoration: none;
     align-items: center;
+
 }
 .sidebar-nav li a:hover {
     color: orange;
@@ -93,9 +94,10 @@ a:link {
 .sidebar-nav li.sidebar-active a {
     background-color: #ff922e;
     color: white;
+
 }
 .sidebar-nav ul.navbar-nav li a {
-    color: white;
+    color: black;
 }
 /* Topbar property*/
 .navbar-nav li a{
