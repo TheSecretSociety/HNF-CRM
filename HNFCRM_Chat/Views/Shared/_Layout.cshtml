@@ -80,11 +80,12 @@
                 <li><a href="#"><i class="material-icons md-18">child_care</i>CHĂM SÓC KHÁCH HÀNG</a></li>
             </ul>
         </div>
+
+        <!--===== end of [SIDERBAR] =====-->
+        @RenderBody()
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
     </div>
-    <!--===== end of [SIDERBAR] =====-->
-    @RenderBody()
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
