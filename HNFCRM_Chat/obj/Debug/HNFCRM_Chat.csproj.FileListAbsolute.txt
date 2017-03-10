@@ -248,3 +248,7 @@ C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.dll
 C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.Mvc.dll
 C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.xml
 C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\bin\PagedList.Mvc.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\PagedList.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\PagedList.Mvc.dll
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\PagedList.xml
+F:\Personal Stuff\Study\Capstone Project\HNFCRM_Chat\HNFCRM_Chat\HNFCRM_Chat\bin\PagedList.Mvc.xml
