@@ -9,7 +9,7 @@ namespace HNFCRM_Chat.Controllers
 {
     public class HomeController : Controller
     {
-        CP_CRMEntities entities = new CP_CRMEntities();
+        HNF_CRM entities = new HNF_CRM();
         public ActionResult Index()
         {
             return View();

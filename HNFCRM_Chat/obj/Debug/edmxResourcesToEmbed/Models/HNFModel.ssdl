@@ -42,6 +42,7 @@
     <Property Name="ID_Customer" Type="int" />
     <Property Name="ID_RequireProduct" Type="int" />
     <Property Name="ID_Staff" Type="int" />
+    <Property Name="CheckConfirm" Type="bit" />
   </EntityType>
   <EntityType Name="CONTRACTDETAIL">
     <Key>
@@ -68,6 +69,8 @@
     <Property Name="EmbroiderNote" Type="nvarchar(max)" />
     <Property Name="PrintMakingUnit" Type="nvarchar" MaxLength="30" />
     <Property Name="ID_Contract" Type="int" />
+    <Property Name="NotePrint" Type="nvarchar(max)" />
+    <Property Name="NoteSize" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="CUSTOMER">
     <Key>
@@ -87,6 +90,8 @@
     <Property Name="Note" Type="nvarchar(max)" />
     <Property Name="IsAvailable" Type="bit" />
     <Property Name="ID_Consult" Type="int" />
+    <Property Name="CareAboutProduct" Type="nvarchar(max)" />
+    <Property Name="Comment" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="CUSTOMERCONSULTING">
     <Key>
@@ -123,6 +128,7 @@
     <Property Name="UpdatedDate" Type="datetime" />
     <Property Name="IsAvailable" Type="bit" />
     <Property Name="ID_Contract" Type="int" Nullable="false" />
+    <Property Name="ID_Customer" Type="int" />
   </EntityType>
   <EntityType Name="REQUIREPRODUCT">
     <Key>
@@ -131,13 +137,14 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RequireFabric" Type="nvarchar" MaxLength="30" />
     <Property Name="Purpose" Type="nvarchar" MaxLength="55" />
-    <Property Name="PreviousDesign" Type="bit" />
     <Property Name="PrintAndEmbroider" Type="nvarchar" MaxLength="15" />
     <Property Name="Quantity" Type="int" />
     <Property Name="Price" Type="float" />
     <Property Name="Note" Type="nvarchar(max)" />
     <Property Name="ID_Customer" Type="int" />
     <Property Name="ID_Color" Type="int" />
+    <Property Name="AnyDesignYet" Type="bit" />
+    <Property Name="ShirtType" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ROLE">
     <Key>
@@ -156,6 +163,8 @@
     <Property Name="Email" Type="varchar" MaxLength="30" />
     <Property Name="Password" Type="nvarchar" MaxLength="30" />
     <Property Name="ID_Role" Type="int" />
+    <Property Name="Avartar" Type="image" />
+    <Property Name="ConfirmPassword" Type="varchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -191,7 +200,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CONTRACT_CUSTOMER1">
+  <Association Name="FK_CONTRACT_CUSTOMER">
     <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
     <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="*" />
     <ReferentialConstraint>
@@ -203,7 +212,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CONTRACT_REQUIREPRODUCT1">
+  <Association Name="FK_CONTRACT_REQUIREPRODUCT">
     <End Role="REQUIREPRODUCT" Type="Self.REQUIREPRODUCT" Multiplicity="0..1" />
     <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="*" />
     <ReferentialConstraint>
@@ -272,6 +281,18 @@
       </Principal>
       <Dependent Role="PRODUCTLINE">
         <PropertyRef Name="ID_Contract" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTLINE_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="PRODUCTLINE" Type="Self.PRODUCTLINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTLINE">
+        <PropertyRef Name="ID_Customer" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -372,11 +393,11 @@
       <End Role="STAFF" EntitySet="STAFF" />
       <End Role="CHATINFO" EntitySet="CHATINFO" />
     </AssociationSet>
-    <AssociationSet Name="FK_CONTRACT_CUSTOMER1" Association="Self.FK_CONTRACT_CUSTOMER1">
+    <AssociationSet Name="FK_CONTRACT_CUSTOMER" Association="Self.FK_CONTRACT_CUSTOMER">
       <End Role="CUSTOMER" EntitySet="CUSTOMER" />
       <End Role="CONTRACT" EntitySet="CONTRACT" />
     </AssociationSet>
-    <AssociationSet Name="FK_CONTRACT_REQUIREPRODUCT1" Association="Self.FK_CONTRACT_REQUIREPRODUCT1">
+    <AssociationSet Name="FK_CONTRACT_REQUIREPRODUCT" Association="Self.FK_CONTRACT_REQUIREPRODUCT">
       <End Role="REQUIREPRODUCT" EntitySet="REQUIREPRODUCT" />
       <End Role="CONTRACT" EntitySet="CONTRACT" />
     </AssociationSet>
@@ -398,6 +419,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_PRODUCTLINE_CONTRACT" Association="Self.FK_PRODUCTLINE_CONTRACT">
       <End Role="CONTRACT" EntitySet="CONTRACT" />
+      <End Role="PRODUCTLINE" EntitySet="PRODUCTLINE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTLINE_CUSTOMER" Association="Self.FK_PRODUCTLINE_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
       <End Role="PRODUCTLINE" EntitySet="PRODUCTLINE" />
     </AssociationSet>
     <AssociationSet Name="FK_REQUIREPRODUCT_COLOR" Association="Self.FK_REQUIREPRODUCT_COLOR">

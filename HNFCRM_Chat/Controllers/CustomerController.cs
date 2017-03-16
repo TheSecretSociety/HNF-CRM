@@ -12,7 +12,7 @@ namespace HNFCRM_Chat.Controllers
     public class CustomerController : Controller
     {
         // GET: Customer
-        CP_CRMEntities entities = new CP_CRMEntities();
+        HNF_CRM entities = new HNF_CRM();
 
         //Get All Customer
         public ActionResult Customer()
@@ -55,19 +55,49 @@ namespace HNFCRM_Chat.Controllers
             data.PreviousCompanyDesign = frm["previouscompany"];
             data.PreviousDesign = frm["previousdesign"];
             data.PreviousFabric = frm["previousfabric"];
-            //data.PreviousPrice = int.Parse(frm["previousprice"]);
+            if (frm["previousprice"] == "" || frm["previousprice"] == null)
+            {
+                data.PreviousPrice = 0;
+            }
+            else
+            {
+                data.PreviousPrice = int.Parse(frm["previousprice"]);
+            }
+            data.Note = frm["customernote"];
+            data.CareAboutProduct = frm["careaboutproduct"];
+            data.Comment = frm["previouscomment"];
 
-            //Insert require of new customer
+            //Update require of new customer
             REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
-            require.ID_Customer = data.ID;
-            //require.PreviousDesign =frm["previousdesign"];
+            if (frm["isanydesign"] == "Rồi")
+            {
+                require.AnyDesignYet = true;
+            }
+            else
+            {
+                require.AnyDesignYet = false;
+            }
+            require.ShirtType = frm["shirttype"];
             require.RequireFabric = frm["requirefabric"];
             require.Purpose = frm["purpose"];
-            require.Price = int.Parse(frm["price"]);
+            if (frm["price"] == "" || frm["price"] == null)
+            {
+                require.Price = 0;
+            }
+            else
+            {
+                require.Price = int.Parse(frm["price"]);
+            }
             require.PrintAndEmbroider = frm["printembroider"];
-            require.Quantity = int.Parse(frm["quantity"]);
-            data.IsAvailable = true;
-
+            if (frm["quantity"] == "" || frm["quantity"] == null)
+            {
+                require.Quantity = 0;
+            }
+            else
+            {
+                require.Quantity = int.Parse(frm["quantity"]);
+            }
+            require.Note = frm["requirenote"];
             entities.SaveChanges();
             return RedirectToAction("CustomerDetail");
         }
@@ -93,25 +123,56 @@ namespace HNFCRM_Chat.Controllers
             data.PreviousCompanyDesign = frm["previouscompany"];
             data.PreviousDesign = frm["previousdesign"];
             data.PreviousFabric = frm["previousfabric"];
-            data.PreviousPrice = int.Parse(frm["previousprice"]);
-            data.Note = frm["note"];
+            if (frm["previousprice"] == "" || frm["previousprice"] == null)
+            {
+                data.PreviousPrice = 0;
+            }
+            else
+            {
+                data.PreviousPrice = int.Parse(frm["previousprice"]);
+            }
+            data.Note = frm["customernote"];
+            data.CareAboutProduct = frm["careaboutproduct"];
+            data.Comment = frm["previouscomment"];
             data.IsAvailable = true;
 
             //Insert require of new customer
             REQUIREPRODUCT require = new REQUIREPRODUCT();
             require.ID_Customer = data.ID;
-            //require.PreviousDesign =frm["previousdesign"];
+            if (frm["isanydesign"] == "Rồi")
+            {
+                require.AnyDesignYet = true;
+            }
+            else
+            {
+                require.AnyDesignYet = false;
+            }
+            require.ShirtType = frm["shirttype"];
             require.RequireFabric = frm["requirefabric"];
             require.Purpose = frm["purpose"];
-            require.Price = int.Parse(frm["price"]);
+            if (frm["price"] == "" || frm["price"] == null)
+            {
+                require.Price = 0;
+            }
+            else
+            {
+                require.Price = int.Parse(frm["price"]);
+            }
             require.PrintAndEmbroider = frm["printembroider"];
-            require.Quantity = int.Parse(frm["quantity"]);
-            
+            if (frm["quantity"] == "" || frm["quantity"] == null)
+            {
+                require.Quantity = 0;
+            }
+            else
+            {
+                require.Quantity = int.Parse(frm["quantity"]);
+            }
+            require.Note = frm["requirenote"];
+
             //Data savechanges
             entities.CUSTOMERs.Add(data);
             entities.REQUIREPRODUCTs.Add(require);
             entities.SaveChanges();
-            //var _idcus = data.ID; // id cua customer vua dc add vao
             return RedirectToAction("Customer");
         }
 
@@ -120,8 +181,10 @@ namespace HNFCRM_Chat.Controllers
         {
             CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             entities.CUSTOMERs.Remove(customer);
             entities.REQUIREPRODUCTs.Remove(require);
+            entities.CONTRACTs.Remove(contract);
             entities.SaveChanges();
             return RedirectToAction("Customer");
         }
