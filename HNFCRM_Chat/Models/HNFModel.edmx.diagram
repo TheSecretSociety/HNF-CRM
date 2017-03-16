@@ -4,30 +4,31 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f5de8227cc724e44aef62b7b7c163528" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="CP_CRMModel.CHATINFO" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.COLOR" Width="1.5" PointX="6" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.CONTRACT" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.CONTRACTDETAIL" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.CUSTOMER" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.CUSTOMERCONSULTING" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.MENSIZE" Width="1.5" PointX="9.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.PRODUCTLINE" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.REQUIREPRODUCT" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.ROLE" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.STAFF" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.sysdiagram" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.WOMENSIZE" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
+      <Diagram DiagramId="d4eaeffb279e4358a299e8d97b1e3328" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="CP_CRMModel.CHATINFO" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.COLOR" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.CONTRACT" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.CONTRACTDETAIL" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.CUSTOMER" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.CUSTOMERCONSULTING" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.MENSIZE" Width="1.5" PointX="9.75" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.PRODUCTLINE" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.REQUIREPRODUCT" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.ROLE" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.STAFF" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.sysdiagram" Width="1.5" PointX="8.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.WOMENSIZE" Width="1.5" PointX="9.75" PointY="16.625" IsExpanded="true" />
         <AssociationConnector Association="CP_CRMModel.FK_CHATINFO_STAFF" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_REQUIREPRODUCT_COLOR" ManuallyRouted="false" />
-        <AssociationConnector Association="CP_CRMModel.FK_CONTRACT_CUSTOMER1" ManuallyRouted="false" />
-        <AssociationConnector Association="CP_CRMModel.FK_CONTRACT_REQUIREPRODUCT1" ManuallyRouted="false" />
+        <AssociationConnector Association="CP_CRMModel.FK_CONTRACT_CUSTOMER" ManuallyRouted="false" />
+        <AssociationConnector Association="CP_CRMModel.FK_CONTRACT_REQUIREPRODUCT" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_CONTRACT_STAFF" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_CONTRACTDETAIL_CONTRACT1" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_PRODUCTLINE_CONTRACT" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_MENSIZE_CONTRACTDETAIL1" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_WOMENSIZE_CONTRACTDETAIL1" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_CUSTOMER_CUSTOMERCONSULTING" ManuallyRouted="false" />
+        <AssociationConnector Association="CP_CRMModel.FK_PRODUCTLINE_CUSTOMER" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_REQUIREPRODUCT_CUSTOMER1" ManuallyRouted="false" />
         <AssociationConnector Association="CP_CRMModel.FK_STAFF_ROLE" ManuallyRouted="false" />
       </Diagram>

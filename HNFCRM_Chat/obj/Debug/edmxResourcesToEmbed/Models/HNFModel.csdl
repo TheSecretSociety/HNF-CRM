@@ -44,8 +44,9 @@
     <Property Name="ID_Customer" Type="Int32" />
     <Property Name="ID_RequireProduct" Type="Int32" />
     <Property Name="ID_Staff" Type="Int32" />
-    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_CONTRACT_CUSTOMER1" FromRole="CONTRACT" ToRole="CUSTOMER" />
-    <NavigationProperty Name="REQUIREPRODUCT" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT1" FromRole="CONTRACT" ToRole="REQUIREPRODUCT" />
+    <Property Name="CheckConfirm" Type="Boolean" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_CONTRACT_CUSTOMER" FromRole="CONTRACT" ToRole="CUSTOMER" />
+    <NavigationProperty Name="REQUIREPRODUCT" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT" FromRole="CONTRACT" ToRole="REQUIREPRODUCT" />
     <NavigationProperty Name="STAFF" Relationship="Self.FK_CONTRACT_STAFF" FromRole="CONTRACT" ToRole="STAFF" />
     <NavigationProperty Name="CONTRACTDETAILs" Relationship="Self.FK_CONTRACTDETAIL_CONTRACT1" FromRole="CONTRACT" ToRole="CONTRACTDETAIL" />
     <NavigationProperty Name="PRODUCTLINEs" Relationship="Self.FK_PRODUCTLINE_CONTRACT" FromRole="CONTRACT" ToRole="PRODUCTLINE" />
@@ -75,6 +76,8 @@
     <Property Name="EmbroiderNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PrintMakingUnit" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="ID_Contract" Type="Int32" />
+    <Property Name="NotePrint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoteSize" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="CONTRACT" Relationship="Self.FK_CONTRACTDETAIL_CONTRACT1" FromRole="CONTRACTDETAIL" ToRole="CONTRACT" />
     <NavigationProperty Name="MENSIZEs" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL1" FromRole="CONTRACTDETAIL" ToRole="MENSIZE" />
     <NavigationProperty Name="WOMENSIZEs" Relationship="Self.FK_WOMENSIZE_CONTRACTDETAIL1" FromRole="CONTRACTDETAIL" ToRole="WOMENSIZE" />
@@ -97,8 +100,11 @@
     <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="IsAvailable" Type="Boolean" />
     <Property Name="ID_Consult" Type="Int32" />
-    <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_CUSTOMER1" FromRole="CUSTOMER" ToRole="CONTRACT" />
+    <Property Name="CareAboutProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_CUSTOMER" FromRole="CUSTOMER" ToRole="CONTRACT" />
     <NavigationProperty Name="CUSTOMERCONSULTING" Relationship="Self.FK_CUSTOMER_CUSTOMERCONSULTING" FromRole="CUSTOMER" ToRole="CUSTOMERCONSULTING" />
+    <NavigationProperty Name="PRODUCTLINEs" Relationship="Self.FK_PRODUCTLINE_CUSTOMER" FromRole="CUSTOMER" ToRole="PRODUCTLINE" />
     <NavigationProperty Name="REQUIREPRODUCTs" Relationship="Self.FK_REQUIREPRODUCT_CUSTOMER1" FromRole="CUSTOMER" ToRole="REQUIREPRODUCT" />
   </EntityType>
   <EntityType Name="CUSTOMERCONSULTING">
@@ -138,7 +144,9 @@
     <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <Property Name="IsAvailable" Type="Boolean" />
     <Property Name="ID_Contract" Type="Int32" Nullable="false" />
+    <Property Name="ID_Customer" Type="Int32" />
     <NavigationProperty Name="CONTRACT" Relationship="Self.FK_PRODUCTLINE_CONTRACT" FromRole="PRODUCTLINE" ToRole="CONTRACT" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_PRODUCTLINE_CUSTOMER" FromRole="PRODUCTLINE" ToRole="CUSTOMER" />
   </EntityType>
   <EntityType Name="REQUIREPRODUCT">
     <Key>
@@ -147,15 +155,16 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="RequireFabric" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="Purpose" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-    <Property Name="PreviousDesign" Type="Boolean" />
     <Property Name="PrintAndEmbroider" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="Quantity" Type="Int32" />
     <Property Name="Price" Type="Double" />
     <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ID_Customer" Type="Int32" />
     <Property Name="ID_Color" Type="Int32" />
+    <Property Name="AnyDesignYet" Type="Boolean" />
+    <Property Name="ShirtType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="COLOR" Relationship="Self.FK_REQUIREPRODUCT_COLOR" FromRole="REQUIREPRODUCT" ToRole="COLOR" />
-    <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT1" FromRole="REQUIREPRODUCT" ToRole="CONTRACT" />
+    <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT" FromRole="REQUIREPRODUCT" ToRole="CONTRACT" />
     <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_REQUIREPRODUCT_CUSTOMER1" FromRole="REQUIREPRODUCT" ToRole="CUSTOMER" />
   </EntityType>
   <EntityType Name="ROLE">
@@ -176,6 +185,8 @@
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="ID_Role" Type="Int32" />
+    <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ConfirmPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CHATINFOes" Relationship="Self.FK_CHATINFO_STAFF" FromRole="STAFF" ToRole="CHATINFO" />
     <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_STAFF" FromRole="STAFF" ToRole="CONTRACT" />
     <NavigationProperty Name="ROLE" Relationship="Self.FK_STAFF_ROLE" FromRole="STAFF" ToRole="ROLE" />
@@ -227,7 +238,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CONTRACT_CUSTOMER1">
+  <Association Name="FK_CONTRACT_CUSTOMER">
     <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
     <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="*" />
     <ReferentialConstraint>
@@ -239,7 +250,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CONTRACT_REQUIREPRODUCT1">
+  <Association Name="FK_CONTRACT_REQUIREPRODUCT">
     <End Role="REQUIREPRODUCT" Type="Self.REQUIREPRODUCT" Multiplicity="0..1" />
     <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="*" />
     <ReferentialConstraint>
@@ -323,6 +334,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_PRODUCTLINE_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="PRODUCTLINE" Type="Self.PRODUCTLINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTLINE">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_REQUIREPRODUCT_CUSTOMER1">
     <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
     <End Role="REQUIREPRODUCT" Type="Self.REQUIREPRODUCT" Multiplicity="*" />
@@ -347,7 +370,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="CP_CRMEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="HNF_CRM" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CHATINFOes" EntityType="Self.CHATINFO" />
     <EntitySet Name="COLORs" EntityType="Self.COLOR" />
     <EntitySet Name="CONTRACTs" EntityType="Self.CONTRACT" />
@@ -369,11 +392,11 @@
       <End Role="COLOR" EntitySet="COLORs" />
       <End Role="REQUIREPRODUCT" EntitySet="REQUIREPRODUCTs" />
     </AssociationSet>
-    <AssociationSet Name="FK_CONTRACT_CUSTOMER1" Association="Self.FK_CONTRACT_CUSTOMER1">
+    <AssociationSet Name="FK_CONTRACT_CUSTOMER" Association="Self.FK_CONTRACT_CUSTOMER">
       <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
       <End Role="CONTRACT" EntitySet="CONTRACTs" />
     </AssociationSet>
-    <AssociationSet Name="FK_CONTRACT_REQUIREPRODUCT1" Association="Self.FK_CONTRACT_REQUIREPRODUCT1">
+    <AssociationSet Name="FK_CONTRACT_REQUIREPRODUCT" Association="Self.FK_CONTRACT_REQUIREPRODUCT">
       <End Role="REQUIREPRODUCT" EntitySet="REQUIREPRODUCTs" />
       <End Role="CONTRACT" EntitySet="CONTRACTs" />
     </AssociationSet>
@@ -400,6 +423,10 @@
     <AssociationSet Name="FK_CUSTOMER_CUSTOMERCONSULTING" Association="Self.FK_CUSTOMER_CUSTOMERCONSULTING">
       <End Role="CUSTOMERCONSULTING" EntitySet="CUSTOMERCONSULTINGs" />
       <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTLINE_CUSTOMER" Association="Self.FK_PRODUCTLINE_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="PRODUCTLINE" EntitySet="PRODUCTLINEs" />
     </AssociationSet>
     <AssociationSet Name="FK_REQUIREPRODUCT_CUSTOMER1" Association="Self.FK_REQUIREPRODUCT_CUSTOMER1">
       <End Role="CUSTOMER" EntitySet="CUSTOMERs" />

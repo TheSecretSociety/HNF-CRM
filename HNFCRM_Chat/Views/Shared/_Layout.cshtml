@@ -40,10 +40,10 @@
                         <ul class="navbar-nav">
                             <h6 class="dropdown-header">ĐỊNH TUYẾN</h6>
                             <li class="nav-item">
-                                <a class="nav-link" onclick="location.href='@Url.Action("Index","Home")'"><i class="material-icons md-18">dashboard</i>Trang Chủ</a>
+                                <a class="nav-link" href='@Url.Action("Index","Home")'><i class="material-icons md-18">dashboard</i>Trang Chủ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" onclick="location.href='@Url.Action("Customer","Customer")'"><i class="material-icons md-18">perm_contact_calendar</i>Khách Hàng</a>
+                                <a class="nav-link" href='@Url.Action("Customer","Customer")'><i class="material-icons md-18">perm_contact_calendar</i>Khách Hàng</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="./HNF-Production.html"><i class="material-icons md-18">settings_applications</i>Sản Xuất</a>
@@ -71,8 +71,8 @@
         <!-- Side Navigation -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a onclick="location.href='@Url.Action("Index","Home")'"><i class="material-icons md-18">dashboard</i>TRANG CHỦ</a></li>
-                <li class="sidebar-active"><a onclick="location.href='@Url.Action("Customer","Customer")'" "><i class="material-icons md-18">perm_contact_calendar</i>KHÁCH HÀNG</a></li>
+                <li><a href="@Url.Action("Index","Home")"><i class="material-icons md-18">dashboard</i>TRANG CHỦ</a></li>
+                <li><a href="@Url.Action("Customer","Customer") "><i class="material-icons md-18">perm_contact_calendar</i>KHÁCH HÀNG</a></li>
                 <li><a href="./HNF-Production.html"><i class="material-icons md-18">settings_applications</i>SẢN XUẤT</a></li>
                 <li><a href="#"><i class="material-icons md-18">pie_chart</i>THỐNG KÊ</a></li>
                 <li><a href="#"><i class="material-icons md-18">chat</i>CHAT</a></li>
@@ -81,6 +81,7 @@
             </ul>
         </div>
         <!--===== end of [SIDERBAR] =====-->
+
         @RenderBody()
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

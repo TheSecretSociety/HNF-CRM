@@ -40,6 +40,7 @@ namespace HNFCRM_Chat.Models
         public Nullable<int> ID_Customer { get; set; }
         public Nullable<int> ID_RequireProduct { get; set; }
         public Nullable<int> ID_Staff { get; set; }
+        public Nullable<bool> CheckConfirm { get; set; }
     
         public virtual CUSTOMER CUSTOMER { get; set; }
         public virtual REQUIREPRODUCT REQUIREPRODUCT { get; set; }

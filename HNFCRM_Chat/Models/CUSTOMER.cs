@@ -18,6 +18,7 @@ namespace HNFCRM_Chat.Models
         public CUSTOMER()
         {
             this.CONTRACTs = new HashSet<CONTRACT>();
+            this.PRODUCTLINEs = new HashSet<PRODUCTLINE>();
             this.REQUIREPRODUCTs = new HashSet<REQUIREPRODUCT>();
         }
     
@@ -35,10 +36,14 @@ namespace HNFCRM_Chat.Models
         public string Note { get; set; }
         public Nullable<bool> IsAvailable { get; set; }
         public Nullable<int> ID_Consult { get; set; }
+        public string CareAboutProduct { get; set; }
+        public string Comment { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTRACT> CONTRACTs { get; set; }
         public virtual CUSTOMERCONSULTING CUSTOMERCONSULTING { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PRODUCTLINE> PRODUCTLINEs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REQUIREPRODUCT> REQUIREPRODUCTs { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CP_CRMModelStoreContainer" CdmEntityContainer="CP_CRMEntities">
+  <EntityContainerMapping StorageEntityContainer="CP_CRMModelStoreContainer" CdmEntityContainer="HNF_CRM">
     <EntitySetMapping Name="CHATINFOes">
       <EntityTypeMapping TypeName="CP_CRMModel.CHATINFO">
         <MappingFragment StoreEntitySet="CHATINFO">
@@ -44,6 +44,7 @@
           <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
           <ScalarProperty Name="ID_RequireProduct" ColumnName="ID_RequireProduct" />
           <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+          <ScalarProperty Name="CheckConfirm" ColumnName="CheckConfirm" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -71,6 +72,8 @@
           <ScalarProperty Name="EmbroiderNote" ColumnName="EmbroiderNote" />
           <ScalarProperty Name="PrintMakingUnit" ColumnName="PrintMakingUnit" />
           <ScalarProperty Name="ID_Contract" ColumnName="ID_Contract" />
+          <ScalarProperty Name="NotePrint" ColumnName="NotePrint" />
+          <ScalarProperty Name="NoteSize" ColumnName="NoteSize" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -91,6 +94,8 @@
           <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
           <ScalarProperty Name="ID_Consult" ColumnName="ID_Consult" />
+          <ScalarProperty Name="CareAboutProduct" ColumnName="CareAboutProduct" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -130,6 +135,7 @@
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
           <ScalarProperty Name="ID_Contract" ColumnName="ID_Contract" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -139,13 +145,14 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="RequireFabric" ColumnName="RequireFabric" />
           <ScalarProperty Name="Purpose" ColumnName="Purpose" />
-          <ScalarProperty Name="PreviousDesign" ColumnName="PreviousDesign" />
           <ScalarProperty Name="PrintAndEmbroider" ColumnName="PrintAndEmbroider" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
           <ScalarProperty Name="ID_Color" ColumnName="ID_Color" />
+          <ScalarProperty Name="AnyDesignYet" ColumnName="AnyDesignYet" />
+          <ScalarProperty Name="ShirtType" ColumnName="ShirtType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -166,6 +173,8 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+          <ScalarProperty Name="Avartar" ColumnName="Avartar" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

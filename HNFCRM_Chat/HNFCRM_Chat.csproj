@@ -226,6 +226,7 @@
     <Compile Include="Models\CONTRACTDETAIL.cs">
       <DependentUpon>HNFModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContractModel.cs" />
     <Compile Include="Models\CUSTOMER.cs">
       <DependentUpon>HNFModel.tt</DependentUpon>
     </Compile>
@@ -367,6 +368,7 @@
     <Content Include="Views\Customer\SearchCustomer.cshtml" />
     <Content Include="Views\Contract\Contract.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
+    <Content Include="Views\Contract\ContractDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

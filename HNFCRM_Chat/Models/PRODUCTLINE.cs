@@ -25,7 +25,9 @@ namespace HNFCRM_Chat.Models
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<bool> IsAvailable { get; set; }
         public int ID_Contract { get; set; }
+        public Nullable<int> ID_Customer { get; set; }
     
         public virtual CONTRACT CONTRACT { get; set; }
+        public virtual CUSTOMER CUSTOMER { get; set; }
     }
 }

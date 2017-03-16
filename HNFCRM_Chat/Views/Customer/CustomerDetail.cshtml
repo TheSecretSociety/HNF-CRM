@@ -13,7 +13,7 @@
                 </div>
             </div>
             <!--===== end of [DIVIDER] =====-->
-            @using (Html.BeginForm("CustomerDetail", "Customer", FormMethod.Post,new { id=Model.Customer.ID}))
+            @using (Html.BeginForm("CustomerDetail", "Customer", FormMethod.Post, new { id = Model.Customer.ID }))
             {
                 <div class="row">
                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-8">
@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nhận Xét</label>
-                                        <input type="text" class="form-control" id="PreviousComment" aria-describedby="emailHelp" value="" name="previouscomment">
+                                        <input type="text" class="form-control" id="PreviousComment" aria-describedby="emailHelp" value="@Model.Customer.Comment" name="previouscomment">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Công Ty Đã Thực Hiện</label>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleTextarea">Ghi Chú</label>
-                                <textarea class="form-control" id="Note" rows="3" value="@Model.Customer.Note" name="note"></textarea>
+                                <textarea class="form-control" id="Note" rows="3" value="@Model.Customer.Note" name="customernote"></textarea>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                             <h3>THÔNG TIN SẢN PHẨM</h3>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Loại Áo</label>
-                                <input type="text" class="form-control" id="InputStyle" aria-describedby="emailHelp" value="">
+                                <input type="text" class="form-control" id="InputStyle" aria-describedby="emailHelp" value="@Model.RequireProduct.ShirtType" name="shirttype">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Loại Vải</label>
@@ -108,13 +108,31 @@
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
                                     <div class="form-group">
-                                        <label for="exampleSelect1">Đã Có Thiết Kế Chưa ?</label>
-                                        <select class="form-control" id="InputDesignYet">
-                                            <option>Rồi</option>
-                                            <option>Chưa</option>
+                                        <label for="exampleSelect1">Đã Có Thiết Kế ?</label>
+                                        <select class="form-control" id="InputDesignYet" name="isanydesign" )>
+                                            @{ if (Model.RequireProduct.AnyDesignYet == true)
+                                                {
+                                                    <option>Rồi</option>
+                                                }
+                                                else
+                                                {
+                                                    <option>Chưa</option>
+                                                }
+                                                if (Model.RequireProduct.AnyDesignYet == true)
+                                                {
+                                                    <option>Chưa</option>
+                                                }
+                                                else
+                                                {
+                                                    <option>Rồi</option>
+                                                }
+                                            }
                                         </select>
+
                                     </div>
+
                                 </div>
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
                                     <div class="form-group">
                                         <label for="exampleSelect1">Màu Sắc</label>
@@ -148,13 +166,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleTextarea">Ghi Chú</label>
-                                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                                <textarea class="form-control" id="InputRequireNote" rows="3" name="requirenote" value="@Model.RequireProduct.Note"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("CustomerDetail", "Customer")'">Lưu Thông Tin</button>
                         </div>
                     </div>
                 </div>
-            }
+                                                }
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
                     <div id="divider"></div>
@@ -164,7 +182,7 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
                     <div class="form-input-background">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Contract", "Contract", new { id = Model.Customer.ID })'">Giao Dịch</button>
+                            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Contract", "Contract", new { id =Model.Customer.ID })'">Giao Dịch</button>
                             <button type="button" class="btn btn-danger">Xoá Giao Dịch</button>
                             <button type="button" class="btn btn-warning">Sửa Nhanh</button>
                         </div>
