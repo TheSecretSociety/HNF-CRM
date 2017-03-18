@@ -210,73 +210,75 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CHATINFO.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COLOR.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CONTRACT.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CONTRACTDETAIL.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContractDetailModel.cs" />
     <Compile Include="Models\ContractModel.cs" />
     <Compile Include="Models\CUSTOMER.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CUSTOMERCONSULTING.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerModel.cs" />
-    <Compile Include="Models\HNFModel.Context.cs">
+    <Compile Include="Models\HNF_CRM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HNFModel.Context.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HNFModel.cs">
+    <Compile Include="Models\HNF_CRM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HNFModel.Designer.cs">
+    <Compile Include="Models\HNF_CRM.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HNFModel.edmx</DependentUpon>
+      <DependentUpon>HNF_CRM.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MENSIZE.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PRODUCTLINE.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\REQUIREPRODUCT.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ROLE.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\STAFF.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WOMENSIZE.cs">
-      <DependentUpon>HNFModel.tt</DependentUpon>
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -293,29 +295,30 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\16708609_1075509135925893_7918090143301469913_n.jpg" />
-    <Content Include="Models\HNFModel.Context.tt">
+    <Content Include="Models\HNF_CRM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HNFModel.edmx</DependentUpon>
-      <LastGenOutput>HNFModel.Context.cs</LastGenOutput>
+      <DependentUpon>HNF_CRM.edmx</DependentUpon>
+      <LastGenOutput>HNF_CRM.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\HNFModel.tt">
+    <Content Include="Models\HNF_CRM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HNFModel.edmx</DependentUpon>
-      <LastGenOutput>HNFModel.cs</LastGenOutput>
+      <DependentUpon>HNF_CRM.edmx</DependentUpon>
+      <LastGenOutput>HNF_CRM.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\HNFModel.edmx">
+    <EntityDeploy Include="Models\HNF_CRM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HNFModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>HNF_CRM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\HNFModel.edmx.diagram">
-      <DependentUpon>HNFModel.edmx</DependentUpon>
+    <Content Include="Models\HNF_CRM.edmx.diagram">
+      <DependentUpon>HNF_CRM.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\HNF-jquery.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -369,10 +372,13 @@
     <Content Include="Views\Contract\Contract.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
     <Content Include="Views\Contract\ContractDetail.cshtml" />
+    <Content Include="Views\ProductionLine\ProductionLine.cshtml" />
+    <Content Include="Views\Staff\Staff.cshtml" />
+    <Content Include="Views\Staff\StaffDetail.cshtml" />
+    <Content Include="Views\Staff\AddStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CustomerModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

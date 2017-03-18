@@ -76,6 +76,8 @@
           <Property Name="ID_Contract" Type="int" />
           <Property Name="NotePrint" Type="nvarchar(max)" />
           <Property Name="NoteSize" Type="nvarchar(max)" />
+          <Property Name="ShirtColor" Type="nvarchar" MaxLength="15" />
+          <Property Name="ArmpitBorder" Type="bit" />
         </EntityType>
         <EntityType Name="CUSTOMER">
           <Key>
@@ -108,15 +110,16 @@
         </EntityType>
         <EntityType Name="MENSIZE">
           <Key>
-            <PropertyRef Name="ID_MENSIZE" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_MENSIZE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="S" Type="int" />
           <Property Name="M" Type="int" />
           <Property Name="L" Type="int" />
           <Property Name="XL" Type="int" />
           <Property Name="XXL" Type="int" />
           <Property Name="ID_CONTRACTDETAIL" Type="int" />
+          <Property Name="XXXL" Type="int" />
         </EntityType>
         <EntityType Name="PRODUCTLINE">
           <Key>
@@ -166,10 +169,10 @@
           <Property Name="Name" Type="nvarchar" MaxLength="35" />
           <Property Name="Phone" Type="nvarchar" MaxLength="13" />
           <Property Name="Email" Type="varchar" MaxLength="30" />
-          <Property Name="Password" Type="nvarchar" MaxLength="30" />
           <Property Name="ID_Role" Type="int" />
           <Property Name="Avartar" Type="image" />
-          <Property Name="ConfirmPassword" Type="varchar" MaxLength="10" />
+          <Property Name="ConfirmPassword" Type="varchar" MaxLength="30" />
+          <Property Name="Pasword" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -183,15 +186,16 @@
         </EntityType>
         <EntityType Name="WOMENSIZE">
           <Key>
-            <PropertyRef Name="ID_WOMENSIZE" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_WOMENSIZE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="S" Type="int" />
           <Property Name="M" Type="int" />
           <Property Name="L" Type="int" />
           <Property Name="XL" Type="int" />
           <Property Name="XXL" Type="int" />
           <Property Name="ID_CONTRACTDETAIL" Type="int" />
+          <Property Name="XXXL" Type="int" />
         </EntityType>
         <Association Name="FK_CHATINFO_STAFF">
           <End Role="STAFF" Type="Self.STAFF" Multiplicity="0..1" />
@@ -265,7 +269,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MENSIZE_CONTRACTDETAIL1">
+        <Association Name="FK_MENSIZE_CONTRACTDETAIL">
           <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="0..1" />
           <End Role="MENSIZE" Type="Self.MENSIZE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -337,7 +341,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WOMENSIZE_CONTRACTDETAIL1">
+        <Association Name="FK_WOMENSIZE_CONTRACTDETAIL">
           <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="0..1" />
           <End Role="WOMENSIZE" Type="Self.WOMENSIZE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -418,7 +422,7 @@
             <End Role="CUSTOMERCONSULTING" EntitySet="CUSTOMERCONSULTING" />
             <End Role="CUSTOMER" EntitySet="CUSTOMER" />
           </AssociationSet>
-          <AssociationSet Name="FK_MENSIZE_CONTRACTDETAIL1" Association="Self.FK_MENSIZE_CONTRACTDETAIL1">
+          <AssociationSet Name="FK_MENSIZE_CONTRACTDETAIL" Association="Self.FK_MENSIZE_CONTRACTDETAIL">
             <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAIL" />
             <End Role="MENSIZE" EntitySet="MENSIZE" />
           </AssociationSet>
@@ -442,7 +446,7 @@
             <End Role="ROLE" EntitySet="ROLE" />
             <End Role="STAFF" EntitySet="STAFF" />
           </AssociationSet>
-          <AssociationSet Name="FK_WOMENSIZE_CONTRACTDETAIL1" Association="Self.FK_WOMENSIZE_CONTRACTDETAIL1">
+          <AssociationSet Name="FK_WOMENSIZE_CONTRACTDETAIL" Association="Self.FK_WOMENSIZE_CONTRACTDETAIL">
             <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAIL" />
             <End Role="WOMENSIZE" EntitySet="WOMENSIZE" />
           </AssociationSet>
@@ -530,9 +534,11 @@
           <Property Name="ID_Contract" Type="Int32" />
           <Property Name="NotePrint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NoteSize" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShirtColor" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ArmpitBorder" Type="Boolean" />
           <NavigationProperty Name="CONTRACT" Relationship="Self.FK_CONTRACTDETAIL_CONTRACT1" FromRole="CONTRACTDETAIL" ToRole="CONTRACT" />
-          <NavigationProperty Name="MENSIZEs" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL1" FromRole="CONTRACTDETAIL" ToRole="MENSIZE" />
-          <NavigationProperty Name="WOMENSIZEs" Relationship="Self.FK_WOMENSIZE_CONTRACTDETAIL1" FromRole="CONTRACTDETAIL" ToRole="WOMENSIZE" />
+          <NavigationProperty Name="MENSIZEs" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL" FromRole="CONTRACTDETAIL" ToRole="MENSIZE" />
+          <NavigationProperty Name="WOMENSIZEs" Relationship="Self.FK_WOMENSIZE_CONTRACTDETAIL" FromRole="CONTRACTDETAIL" ToRole="WOMENSIZE" />
         </EntityType>
         <EntityType Name="CUSTOMER">
           <Key>
@@ -570,16 +576,17 @@
         </EntityType>
         <EntityType Name="MENSIZE">
           <Key>
-            <PropertyRef Name="ID_MENSIZE" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_MENSIZE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="S" Type="Int32" />
           <Property Name="M" Type="Int32" />
           <Property Name="L" Type="Int32" />
           <Property Name="XL" Type="Int32" />
           <Property Name="XXL" Type="Int32" />
           <Property Name="ID_CONTRACTDETAIL" Type="Int32" />
-          <NavigationProperty Name="CONTRACTDETAIL" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL1" FromRole="MENSIZE" ToRole="CONTRACTDETAIL" />
+          <Property Name="XXXL" Type="Int32" />
+          <NavigationProperty Name="CONTRACTDETAIL" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL" FromRole="MENSIZE" ToRole="CONTRACTDETAIL" />
         </EntityType>
         <EntityType Name="PRODUCTLINE">
           <Key>
@@ -635,10 +642,10 @@
           <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="ID_Role" Type="Int32" />
           <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ConfirmPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Pasword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CHATINFOes" Relationship="Self.FK_CHATINFO_STAFF" FromRole="STAFF" ToRole="CHATINFO" />
           <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_STAFF" FromRole="STAFF" ToRole="CONTRACT" />
           <NavigationProperty Name="ROLE" Relationship="Self.FK_STAFF_ROLE" FromRole="STAFF" ToRole="ROLE" />
@@ -655,16 +662,17 @@
         </EntityType>
         <EntityType Name="WOMENSIZE">
           <Key>
-            <PropertyRef Name="ID_WOMENSIZE" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID_WOMENSIZE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="S" Type="Int32" />
           <Property Name="M" Type="Int32" />
           <Property Name="L" Type="Int32" />
           <Property Name="XL" Type="Int32" />
           <Property Name="XXL" Type="Int32" />
           <Property Name="ID_CONTRACTDETAIL" Type="Int32" />
-          <NavigationProperty Name="CONTRACTDETAIL" Relationship="Self.FK_WOMENSIZE_CONTRACTDETAIL1" FromRole="WOMENSIZE" ToRole="CONTRACTDETAIL" />
+          <Property Name="XXXL" Type="Int32" />
+          <NavigationProperty Name="CONTRACTDETAIL" Relationship="Self.FK_WOMENSIZE_CONTRACTDETAIL" FromRole="WOMENSIZE" ToRole="CONTRACTDETAIL" />
         </EntityType>
         <Association Name="FK_CHATINFO_STAFF">
           <End Role="STAFF" Type="Self.STAFF" Multiplicity="0..1" />
@@ -750,7 +758,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MENSIZE_CONTRACTDETAIL1">
+        <Association Name="FK_MENSIZE_CONTRACTDETAIL">
           <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="0..1" />
           <End Role="MENSIZE" Type="Self.MENSIZE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -762,7 +770,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WOMENSIZE_CONTRACTDETAIL1">
+        <Association Name="FK_WOMENSIZE_CONTRACTDETAIL">
           <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="0..1" />
           <End Role="WOMENSIZE" Type="Self.WOMENSIZE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -822,7 +830,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HNF_CRM" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CP_CRMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CHATINFOes" EntityType="Self.CHATINFO" />
           <EntitySet Name="COLORs" EntityType="Self.COLOR" />
           <EntitySet Name="CONTRACTs" EntityType="Self.CONTRACT" />
@@ -864,11 +872,11 @@
             <End Role="CONTRACT" EntitySet="CONTRACTs" />
             <End Role="PRODUCTLINE" EntitySet="PRODUCTLINEs" />
           </AssociationSet>
-          <AssociationSet Name="FK_MENSIZE_CONTRACTDETAIL1" Association="Self.FK_MENSIZE_CONTRACTDETAIL1">
+          <AssociationSet Name="FK_MENSIZE_CONTRACTDETAIL" Association="Self.FK_MENSIZE_CONTRACTDETAIL">
             <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAILs" />
             <End Role="MENSIZE" EntitySet="MENSIZEs" />
           </AssociationSet>
-          <AssociationSet Name="FK_WOMENSIZE_CONTRACTDETAIL1" Association="Self.FK_WOMENSIZE_CONTRACTDETAIL1">
+          <AssociationSet Name="FK_WOMENSIZE_CONTRACTDETAIL" Association="Self.FK_WOMENSIZE_CONTRACTDETAIL">
             <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAILs" />
             <End Role="WOMENSIZE" EntitySet="WOMENSIZEs" />
           </AssociationSet>
@@ -935,7 +943,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CP_CRMModelStoreContainer" CdmEntityContainer="HNF_CRM">
+        <EntityContainerMapping StorageEntityContainer="CP_CRMModelStoreContainer" CdmEntityContainer="CP_CRMEntities">
           <EntitySetMapping Name="CHATINFOes">
             <EntityTypeMapping TypeName="CP_CRMModel.CHATINFO">
               <MappingFragment StoreEntitySet="CHATINFO">
@@ -1009,6 +1017,8 @@
                 <ScalarProperty Name="ID_Contract" ColumnName="ID_Contract" />
                 <ScalarProperty Name="NotePrint" ColumnName="NotePrint" />
                 <ScalarProperty Name="NoteSize" ColumnName="NoteSize" />
+                <ScalarProperty Name="ShirtColor" ColumnName="ShirtColor" />
+                <ScalarProperty Name="ArmpitBorder" ColumnName="ArmpitBorder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1046,13 +1056,14 @@
           <EntitySetMapping Name="MENSIZEs">
             <EntityTypeMapping TypeName="CP_CRMModel.MENSIZE">
               <MappingFragment StoreEntitySet="MENSIZE">
-                <ScalarProperty Name="ID_MENSIZE" ColumnName="ID_MENSIZE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="S" ColumnName="S" />
                 <ScalarProperty Name="M" ColumnName="M" />
                 <ScalarProperty Name="L" ColumnName="L" />
                 <ScalarProperty Name="XL" ColumnName="XL" />
                 <ScalarProperty Name="XXL" ColumnName="XXL" />
                 <ScalarProperty Name="ID_CONTRACTDETAIL" ColumnName="ID_CONTRACTDETAIL" />
+                <ScalarProperty Name="XXXL" ColumnName="XXXL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1106,10 +1117,10 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
                 <ScalarProperty Name="Avartar" ColumnName="Avartar" />
                 <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="Pasword" ColumnName="Pasword" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1127,13 +1138,14 @@
           <EntitySetMapping Name="WOMENSIZEs">
             <EntityTypeMapping TypeName="CP_CRMModel.WOMENSIZE">
               <MappingFragment StoreEntitySet="WOMENSIZE">
-                <ScalarProperty Name="ID_WOMENSIZE" ColumnName="ID_WOMENSIZE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="S" ColumnName="S" />
                 <ScalarProperty Name="M" ColumnName="M" />
                 <ScalarProperty Name="L" ColumnName="L" />
                 <ScalarProperty Name="XL" ColumnName="XL" />
                 <ScalarProperty Name="XXL" ColumnName="XXL" />
                 <ScalarProperty Name="ID_CONTRACTDETAIL" ColumnName="ID_CONTRACTDETAIL" />
+                <ScalarProperty Name="XXXL" ColumnName="XXXL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

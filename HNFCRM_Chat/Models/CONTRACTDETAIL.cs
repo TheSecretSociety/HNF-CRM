@@ -44,6 +44,8 @@ namespace HNFCRM_Chat.Models
         public Nullable<int> ID_Contract { get; set; }
         public string NotePrint { get; set; }
         public string NoteSize { get; set; }
+        public string ShirtColor { get; set; }
+        public Nullable<bool> ArmpitBorder { get; set; }
     
         public virtual CONTRACT CONTRACT { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

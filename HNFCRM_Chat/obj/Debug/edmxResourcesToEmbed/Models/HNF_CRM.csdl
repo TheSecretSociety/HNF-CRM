@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CP_CRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHATINFO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_Staff" Type="Int32" />
+    <NavigationProperty Name="STAFF" Relationship="Self.FK_CHATINFO_STAFF" FromRole="CHATINFO" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="COLOR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Color1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="REQUIREPRODUCTs" Relationship="Self.FK_REQUIREPRODUCT_COLOR" FromRole="COLOR" ToRole="REQUIREPRODUCT" />
+  </EntityType>
+  <EntityType Name="CONTRACT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateConsult" Type="DateTime" Precision="3" />
+    <Property Name="Appointment" Type="DateTime" Precision="3" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SendMarket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="MarketConfirm" Type="Boolean" />
+    <Property Name="MarketPicture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Contract1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="MoneyTransfer" Type="Boolean" />
+    <Property Name="Remind" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsAvailable" Type="Boolean" />
+    <Property Name="ID_Customer" Type="Int32" />
+    <Property Name="ID_RequireProduct" Type="Int32" />
+    <Property Name="ID_Staff" Type="Int32" />
+    <Property Name="CheckConfirm" Type="Boolean" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_CONTRACT_CUSTOMER" FromRole="CONTRACT" ToRole="CUSTOMER" />
+    <NavigationProperty Name="REQUIREPRODUCT" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT" FromRole="CONTRACT" ToRole="REQUIREPRODUCT" />
+    <NavigationProperty Name="STAFF" Relationship="Self.FK_CONTRACT_STAFF" FromRole="CONTRACT" ToRole="STAFF" />
+    <NavigationProperty Name="CONTRACTDETAILs" Relationship="Self.FK_CONTRACTDETAIL_CONTRACT1" FromRole="CONTRACT" ToRole="CONTRACTDETAIL" />
+    <NavigationProperty Name="PRODUCTLINEs" Relationship="Self.FK_PRODUCTLINE_CONTRACT" FromRole="CONTRACT" ToRole="PRODUCTLINE" />
+  </EntityType>
+  <EntityType Name="CONTRACTDETAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="ProductDesign" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CollarArmAdjustment" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FabricateStyle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="SideCut" Type="Boolean" />
+    <Property Name="ArmBorder" Type="Boolean" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrintStartDate" Type="DateTime" Precision="0" />
+    <Property Name="PrintEndDate" Type="DateTime" Precision="0" />
+    <Property Name="PrintSpot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PrintSize" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PrintNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmbroiderStartDate" Type="DateTime" Precision="0" />
+    <Property Name="EmbroiderEndDate" Type="DateTime" Precision="0" />
+    <Property Name="EmbroiderMakingUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmbroiderSpot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="EmbroiderSize" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="EmbroiderNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrintMakingUnit" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Contract" Type="Int32" />
+    <Property Name="NotePrint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NoteSize" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShirtColor" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ArmpitBorder" Type="Boolean" />
+    <NavigationProperty Name="CONTRACT" Relationship="Self.FK_CONTRACTDETAIL_CONTRACT1" FromRole="CONTRACTDETAIL" ToRole="CONTRACT" />
+    <NavigationProperty Name="MENSIZEs" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL" FromRole="CONTRACTDETAIL" ToRole="MENSIZE" />
+    <NavigationProperty Name="WOMENSIZEs" Relationship="Self.FK_WOMENSIZE_CONTRACTDETAIL" FromRole="CONTRACTDETAIL" ToRole="WOMENSIZE" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Job" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <Property Name="Company" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousDesign" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousFabric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousCompanyDesign" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousPrice" Type="Double" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsAvailable" Type="Boolean" />
+    <Property Name="ID_Consult" Type="Int32" />
+    <Property Name="CareAboutProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_CUSTOMER" FromRole="CUSTOMER" ToRole="CONTRACT" />
+    <NavigationProperty Name="CUSTOMERCONSULTING" Relationship="Self.FK_CUSTOMER_CUSTOMERCONSULTING" FromRole="CUSTOMER" ToRole="CUSTOMERCONSULTING" />
+    <NavigationProperty Name="PRODUCTLINEs" Relationship="Self.FK_PRODUCTLINE_CUSTOMER" FromRole="CUSTOMER" ToRole="PRODUCTLINE" />
+    <NavigationProperty Name="REQUIREPRODUCTs" Relationship="Self.FK_REQUIREPRODUCT_CUSTOMER1" FromRole="CUSTOMER" ToRole="REQUIREPRODUCT" />
+  </EntityType>
+  <EntityType Name="CUSTOMERCONSULTING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeConsulting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsAvailable" Type="Boolean" />
+    <NavigationProperty Name="CUSTOMERs" Relationship="Self.FK_CUSTOMER_CUSTOMERCONSULTING" FromRole="CUSTOMERCONSULTING" ToRole="CUSTOMER" />
+  </EntityType>
+  <EntityType Name="MENSIZE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="S" Type="Int32" />
+    <Property Name="M" Type="Int32" />
+    <Property Name="L" Type="Int32" />
+    <Property Name="XL" Type="Int32" />
+    <Property Name="XXL" Type="Int32" />
+    <Property Name="ID_CONTRACTDETAIL" Type="Int32" />
+    <Property Name="XXXL" Type="Int32" />
+    <NavigationProperty Name="CONTRACTDETAIL" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL" FromRole="MENSIZE" ToRole="CONTRACTDETAIL" />
+  </EntityType>
+  <EntityType Name="PRODUCTLINE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cut" Type="Boolean" />
+    <Property Name="Embroider" Type="Boolean" />
+    <Property Name="Sew" Type="Boolean" />
+    <Property Name="Iron" Type="Boolean" />
+    <Property Name="Packaging" Type="Boolean" />
+    <Property Name="Delivery" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsAvailable" Type="Boolean" />
+    <Property Name="ID_Contract" Type="Int32" Nullable="false" />
+    <Property Name="ID_Customer" Type="Int32" />
+    <NavigationProperty Name="CONTRACT" Relationship="Self.FK_PRODUCTLINE_CONTRACT" FromRole="PRODUCTLINE" ToRole="CONTRACT" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_PRODUCTLINE_CUSTOMER" FromRole="PRODUCTLINE" ToRole="CUSTOMER" />
+  </EntityType>
+  <EntityType Name="REQUIREPRODUCT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequireFabric" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Purpose" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+    <Property Name="PrintAndEmbroider" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Customer" Type="Int32" />
+    <Property Name="ID_Color" Type="Int32" />
+    <Property Name="AnyDesignYet" Type="Boolean" />
+    <Property Name="ShirtType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="COLOR" Relationship="Self.FK_REQUIREPRODUCT_COLOR" FromRole="REQUIREPRODUCT" ToRole="COLOR" />
+    <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT" FromRole="REQUIREPRODUCT" ToRole="CONTRACT" />
+    <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_REQUIREPRODUCT_CUSTOMER1" FromRole="REQUIREPRODUCT" ToRole="CUSTOMER" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="STAFFs" Relationship="Self.FK_STAFF_ROLE" FromRole="ROLE" ToRole="STAFF" />
+  </EntityType>
+  <EntityType Name="STAFF">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ID_Role" Type="Int32" />
+    <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ConfirmPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Pasword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CHATINFOes" Relationship="Self.FK_CHATINFO_STAFF" FromRole="STAFF" ToRole="CHATINFO" />
+    <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_STAFF" FromRole="STAFF" ToRole="CONTRACT" />
+    <NavigationProperty Name="ROLE" Relationship="Self.FK_STAFF_ROLE" FromRole="STAFF" ToRole="ROLE" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WOMENSIZE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="S" Type="Int32" />
+    <Property Name="M" Type="Int32" />
+    <Property Name="L" Type="Int32" />
+    <Property Name="XL" Type="Int32" />
+    <Property Name="XXL" Type="Int32" />
+    <Property Name="ID_CONTRACTDETAIL" Type="Int32" />
+    <Property Name="XXXL" Type="Int32" />
+    <NavigationProperty Name="CONTRACTDETAIL" Relationship="Self.FK_WOMENSIZE_CONTRACTDETAIL" FromRole="WOMENSIZE" ToRole="CONTRACTDETAIL" />
+  </EntityType>
+  <Association Name="FK_CHATINFO_STAFF">
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="0..1" />
+    <End Role="CHATINFO" Type="Self.CHATINFO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CHATINFO">
+        <PropertyRef Name="ID_Staff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REQUIREPRODUCT_COLOR">
+    <End Role="COLOR" Type="Self.COLOR" Multiplicity="0..1" />
+    <End Role="REQUIREPRODUCT" Type="Self.REQUIREPRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COLOR">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REQUIREPRODUCT">
+        <PropertyRef Name="ID_Color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRACT_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONTRACT">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRACT_REQUIREPRODUCT">
+    <End Role="REQUIREPRODUCT" Type="Self.REQUIREPRODUCT" Multiplicity="0..1" />
+    <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REQUIREPRODUCT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONTRACT">
+        <PropertyRef Name="ID_RequireProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRACT_STAFF">
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="0..1" />
+    <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONTRACT">
+        <PropertyRef Name="ID_Staff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONTRACTDETAIL_CONTRACT1">
+    <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="0..1" />
+    <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRACT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CONTRACTDETAIL">
+        <PropertyRef Name="ID_Contract" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTLINE_CONTRACT">
+    <End Role="CONTRACT" Type="Self.CONTRACT" Multiplicity="1" />
+    <End Role="PRODUCTLINE" Type="Self.PRODUCTLINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRACT">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTLINE">
+        <PropertyRef Name="ID_Contract" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MENSIZE_CONTRACTDETAIL">
+    <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="0..1" />
+    <End Role="MENSIZE" Type="Self.MENSIZE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRACTDETAIL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MENSIZE">
+        <PropertyRef Name="ID_CONTRACTDETAIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WOMENSIZE_CONTRACTDETAIL">
+    <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="0..1" />
+    <End Role="WOMENSIZE" Type="Self.WOMENSIZE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CONTRACTDETAIL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WOMENSIZE">
+        <PropertyRef Name="ID_CONTRACTDETAIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUSTOMER_CUSTOMERCONSULTING">
+    <End Role="CUSTOMERCONSULTING" Type="Self.CUSTOMERCONSULTING" Multiplicity="0..1" />
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERCONSULTING">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMER">
+        <PropertyRef Name="ID_Consult" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PRODUCTLINE_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="PRODUCTLINE" Type="Self.PRODUCTLINE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PRODUCTLINE">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REQUIREPRODUCT_CUSTOMER1">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="REQUIREPRODUCT" Type="Self.REQUIREPRODUCT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="REQUIREPRODUCT">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STAFF_ROLE">
+    <End Role="ROLE" Type="Self.ROLE" Multiplicity="0..1" />
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="STAFF">
+        <PropertyRef Name="ID_Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CP_CRMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHATINFOes" EntityType="Self.CHATINFO" />
+    <EntitySet Name="COLORs" EntityType="Self.COLOR" />
+    <EntitySet Name="CONTRACTs" EntityType="Self.CONTRACT" />
+    <EntitySet Name="CONTRACTDETAILs" EntityType="Self.CONTRACTDETAIL" />
+    <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+    <EntitySet Name="CUSTOMERCONSULTINGs" EntityType="Self.CUSTOMERCONSULTING" />
+    <EntitySet Name="MENSIZEs" EntityType="Self.MENSIZE" />
+    <EntitySet Name="PRODUCTLINEs" EntityType="Self.PRODUCTLINE" />
+    <EntitySet Name="REQUIREPRODUCTs" EntityType="Self.REQUIREPRODUCT" />
+    <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
+    <EntitySet Name="STAFFs" EntityType="Self.STAFF" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="WOMENSIZEs" EntityType="Self.WOMENSIZE" />
+    <AssociationSet Name="FK_CHATINFO_STAFF" Association="Self.FK_CHATINFO_STAFF">
+      <End Role="STAFF" EntitySet="STAFFs" />
+      <End Role="CHATINFO" EntitySet="CHATINFOes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REQUIREPRODUCT_COLOR" Association="Self.FK_REQUIREPRODUCT_COLOR">
+      <End Role="COLOR" EntitySet="COLORs" />
+      <End Role="REQUIREPRODUCT" EntitySet="REQUIREPRODUCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRACT_CUSTOMER" Association="Self.FK_CONTRACT_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="CONTRACT" EntitySet="CONTRACTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRACT_REQUIREPRODUCT" Association="Self.FK_CONTRACT_REQUIREPRODUCT">
+      <End Role="REQUIREPRODUCT" EntitySet="REQUIREPRODUCTs" />
+      <End Role="CONTRACT" EntitySet="CONTRACTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRACT_STAFF" Association="Self.FK_CONTRACT_STAFF">
+      <End Role="STAFF" EntitySet="STAFFs" />
+      <End Role="CONTRACT" EntitySet="CONTRACTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONTRACTDETAIL_CONTRACT1" Association="Self.FK_CONTRACTDETAIL_CONTRACT1">
+      <End Role="CONTRACT" EntitySet="CONTRACTs" />
+      <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAILs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTLINE_CONTRACT" Association="Self.FK_PRODUCTLINE_CONTRACT">
+      <End Role="CONTRACT" EntitySet="CONTRACTs" />
+      <End Role="PRODUCTLINE" EntitySet="PRODUCTLINEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MENSIZE_CONTRACTDETAIL" Association="Self.FK_MENSIZE_CONTRACTDETAIL">
+      <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAILs" />
+      <End Role="MENSIZE" EntitySet="MENSIZEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WOMENSIZE_CONTRACTDETAIL" Association="Self.FK_WOMENSIZE_CONTRACTDETAIL">
+      <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAILs" />
+      <End Role="WOMENSIZE" EntitySet="WOMENSIZEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMER_CUSTOMERCONSULTING" Association="Self.FK_CUSTOMER_CUSTOMERCONSULTING">
+      <End Role="CUSTOMERCONSULTING" EntitySet="CUSTOMERCONSULTINGs" />
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PRODUCTLINE_CUSTOMER" Association="Self.FK_PRODUCTLINE_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="PRODUCTLINE" EntitySet="PRODUCTLINEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REQUIREPRODUCT_CUSTOMER1" Association="Self.FK_REQUIREPRODUCT_CUSTOMER1">
+      <End Role="CUSTOMER" EntitySet="CUSTOMERs" />
+      <End Role="REQUIREPRODUCT" EntitySet="REQUIREPRODUCTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STAFF_ROLE" Association="Self.FK_STAFF_ROLE">
+      <End Role="ROLE" EntitySet="ROLEs" />
+      <End Role="STAFF" EntitySet="STAFFs" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CP_CRMModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CP_CRMModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
