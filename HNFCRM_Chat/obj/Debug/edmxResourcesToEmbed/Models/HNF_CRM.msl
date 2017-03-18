@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CP_CRMModelStoreContainer" CdmEntityContainer="CP_CRMEntities">
+    <EntitySetMapping Name="CHATINFOes">
+      <EntityTypeMapping TypeName="CP_CRMModel.CHATINFO">
+        <MappingFragment StoreEntitySet="CHATINFO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COLORs">
+      <EntityTypeMapping TypeName="CP_CRMModel.COLOR">
+        <MappingFragment StoreEntitySet="COLOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Color1" ColumnName="Color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTRACTs">
+      <EntityTypeMapping TypeName="CP_CRMModel.CONTRACT">
+        <MappingFragment StoreEntitySet="CONTRACT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DateConsult" ColumnName="DateConsult" />
+          <ScalarProperty Name="Appointment" ColumnName="Appointment" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="SendMarket" ColumnName="SendMarket" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="MarketConfirm" ColumnName="MarketConfirm" />
+          <ScalarProperty Name="MarketPicture" ColumnName="MarketPicture" />
+          <ScalarProperty Name="Contract1" ColumnName="Contract" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="MoneyTransfer" ColumnName="MoneyTransfer" />
+          <ScalarProperty Name="Remind" ColumnName="Remind" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+          <ScalarProperty Name="ID_RequireProduct" ColumnName="ID_RequireProduct" />
+          <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+          <ScalarProperty Name="CheckConfirm" ColumnName="CheckConfirm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTRACTDETAILs">
+      <EntityTypeMapping TypeName="CP_CRMModel.CONTRACTDETAIL">
+        <MappingFragment StoreEntitySet="CONTRACTDETAIL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ProductDesign" ColumnName="ProductDesign" />
+          <ScalarProperty Name="CollarArmAdjustment" ColumnName="CollarArmAdjustment" />
+          <ScalarProperty Name="FabricateStyle" ColumnName="FabricateStyle" />
+          <ScalarProperty Name="SideCut" ColumnName="SideCut" />
+          <ScalarProperty Name="ArmBorder" ColumnName="ArmBorder" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="PrintStartDate" ColumnName="PrintStartDate" />
+          <ScalarProperty Name="PrintEndDate" ColumnName="PrintEndDate" />
+          <ScalarProperty Name="PrintSpot" ColumnName="PrintSpot" />
+          <ScalarProperty Name="PrintSize" ColumnName="PrintSize" />
+          <ScalarProperty Name="PrintNote" ColumnName="PrintNote" />
+          <ScalarProperty Name="EmbroiderStartDate" ColumnName="EmbroiderStartDate" />
+          <ScalarProperty Name="EmbroiderEndDate" ColumnName="EmbroiderEndDate" />
+          <ScalarProperty Name="EmbroiderMakingUnit" ColumnName="EmbroiderMakingUnit" />
+          <ScalarProperty Name="EmbroiderSpot" ColumnName="EmbroiderSpot" />
+          <ScalarProperty Name="EmbroiderSize" ColumnName="EmbroiderSize" />
+          <ScalarProperty Name="EmbroiderNote" ColumnName="EmbroiderNote" />
+          <ScalarProperty Name="PrintMakingUnit" ColumnName="PrintMakingUnit" />
+          <ScalarProperty Name="ID_Contract" ColumnName="ID_Contract" />
+          <ScalarProperty Name="NotePrint" ColumnName="NotePrint" />
+          <ScalarProperty Name="NoteSize" ColumnName="NoteSize" />
+          <ScalarProperty Name="ShirtColor" ColumnName="ShirtColor" />
+          <ScalarProperty Name="ArmpitBorder" ColumnName="ArmpitBorder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="CP_CRMModel.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Job" ColumnName="Job" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="PreviousDesign" ColumnName="PreviousDesign" />
+          <ScalarProperty Name="PreviousFabric" ColumnName="PreviousFabric" />
+          <ScalarProperty Name="PreviousCompanyDesign" ColumnName="PreviousCompanyDesign" />
+          <ScalarProperty Name="PreviousPrice" ColumnName="PreviousPrice" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="ID_Consult" ColumnName="ID_Consult" />
+          <ScalarProperty Name="CareAboutProduct" ColumnName="CareAboutProduct" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERCONSULTINGs">
+      <EntityTypeMapping TypeName="CP_CRMModel.CUSTOMERCONSULTING">
+        <MappingFragment StoreEntitySet="CUSTOMERCONSULTING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TypeConsulting" ColumnName="TypeConsulting" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MENSIZEs">
+      <EntityTypeMapping TypeName="CP_CRMModel.MENSIZE">
+        <MappingFragment StoreEntitySet="MENSIZE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="S" ColumnName="S" />
+          <ScalarProperty Name="M" ColumnName="M" />
+          <ScalarProperty Name="L" ColumnName="L" />
+          <ScalarProperty Name="XL" ColumnName="XL" />
+          <ScalarProperty Name="XXL" ColumnName="XXL" />
+          <ScalarProperty Name="ID_CONTRACTDETAIL" ColumnName="ID_CONTRACTDETAIL" />
+          <ScalarProperty Name="XXXL" ColumnName="XXXL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTLINEs">
+      <EntityTypeMapping TypeName="CP_CRMModel.PRODUCTLINE">
+        <MappingFragment StoreEntitySet="PRODUCTLINE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cut" ColumnName="Cut" />
+          <ScalarProperty Name="Embroider" ColumnName="Embroider" />
+          <ScalarProperty Name="Sew" ColumnName="Sew" />
+          <ScalarProperty Name="Iron" ColumnName="Iron" />
+          <ScalarProperty Name="Packaging" ColumnName="Packaging" />
+          <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="ID_Contract" ColumnName="ID_Contract" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REQUIREPRODUCTs">
+      <EntityTypeMapping TypeName="CP_CRMModel.REQUIREPRODUCT">
+        <MappingFragment StoreEntitySet="REQUIREPRODUCT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RequireFabric" ColumnName="RequireFabric" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="PrintAndEmbroider" ColumnName="PrintAndEmbroider" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+          <ScalarProperty Name="ID_Color" ColumnName="ID_Color" />
+          <ScalarProperty Name="AnyDesignYet" ColumnName="AnyDesignYet" />
+          <ScalarProperty Name="ShirtType" ColumnName="ShirtType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLEs">
+      <EntityTypeMapping TypeName="CP_CRMModel.ROLE">
+        <MappingFragment StoreEntitySet="ROLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Role1" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STAFFs">
+      <EntityTypeMapping TypeName="CP_CRMModel.STAFF">
+        <MappingFragment StoreEntitySet="STAFF">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+          <ScalarProperty Name="Avartar" ColumnName="Avartar" />
+          <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+          <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="CP_CRMModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WOMENSIZEs">
+      <EntityTypeMapping TypeName="CP_CRMModel.WOMENSIZE">
+        <MappingFragment StoreEntitySet="WOMENSIZE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="S" ColumnName="S" />
+          <ScalarProperty Name="M" ColumnName="M" />
+          <ScalarProperty Name="L" ColumnName="L" />
+          <ScalarProperty Name="XL" ColumnName="XL" />
+          <ScalarProperty Name="XXL" ColumnName="XXL" />
+          <ScalarProperty Name="ID_CONTRACTDETAIL" ColumnName="ID_CONTRACTDETAIL" />
+          <ScalarProperty Name="XXXL" ColumnName="XXXL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="CP_CRMModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="CP_CRMModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="CP_CRMModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="CP_CRMModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CP_CRMModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="CP_CRMModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CP_CRMModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="CP_CRMModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="CP_CRMModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

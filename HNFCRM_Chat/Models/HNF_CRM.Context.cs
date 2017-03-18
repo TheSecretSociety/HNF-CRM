@@ -15,10 +15,10 @@ namespace HNFCRM_Chat.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class HNF_CRM : DbContext
+    public partial class CP_CRMEntities : DbContext
     {
-        public HNF_CRM()
-            : base("name=HNF_CRM")
+        public CP_CRMEntities()
+            : base("name=CP_CRMEntities")
         {
         }
     
