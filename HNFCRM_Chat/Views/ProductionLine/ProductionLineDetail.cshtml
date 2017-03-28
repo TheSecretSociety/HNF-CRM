@@ -1,0 +1,553 @@
+﻿@using HNFCRM_Chat.Models
+@model ProductionLineModel
+
+<link rel="stylesheet" href="~/Content/HNFStyle.css">
+
+
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <br>
+        <div class="container-fluid">
+            <!-- Thanh Thông Tin Hợp Đồng -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card-group">
+                        <!-- download -->
+                        <div class="card">
+                            <div class="card-block text-center align-items-center d-flex">
+                                <a href="#" role="button" class="btn btn-block btn-warning">Tải Hợp Đồng</a>
+                            </div>
+                        </div>
+                        <!-- Mã Hợp Đồng -->
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-subtitle mb-1 text-muted">Mã Hợp Đồng</h6>
+                                <h4 class="card-title">@Model.Contract.ID</h4>
+                            </div>
+                        </div>
+                        <!-- Khách Hàng -->
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-subtitle mb-1 text-muted">Khách Hàng</h6>
+                                <h4 class="card-title">@Model.Customer.Name</h4>
+                            </div>
+                        </div>
+                        <!-- Ngày Duyệt Mẫu -->
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-subtitle mb-1 text-muted">Ngày Duyệt Mẫu</h6>
+                                <h4 class="card-title">30/11/2016</h4>
+                            </div>
+                        </div>
+                        <!-- Ngày Giao Hàng -->
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-subtitle mb-1 text-muted">Ngày Giao Hàng</h6>
+                                <h4 class="card-title">30/11/2016</h4>
+                            </div>
+                        </div>
+                        <!-- Nhân Viên Bán Hàng -->
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-subtitle mb-1 text-muted">Nhân Viên Bán Hàng</h6>
+                                <h4 class="card-title">Ngô Tấn Lộc</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+            <!-- Hình Market Đã đồng ý -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sx-12">
+                    <div class="card form-input-margin">
+                        <img src="./image/SSshirt.jpg" class="img-fluid" alt="Responsive image">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- tên khu vực -->
+            <div class="d-flex justify-content-center">
+                <h2>Chi Tiết Sản Xuất</h2>
+            </div>
+            <br>
+            <!-- Thong Tin Co Ban & Quy Cach May -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-title">Số Lượng</h6>
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" value="@Model.Contractdetail.Quantity" placeholder="" aria-describedby="basic-addon1" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-title">Màu Áo</h6>
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" placeholder="" value="@Model.Contractdetail.ShirtColor" aria-describedby="basic-addon1" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-title">Bo Tay, Bo Cổ</h6>
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" placeholder="" value="@Model.Contractdetail.CollarArmAdjustment" aria-describedby="basic-addon1" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-title">Phối</h6>
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" placeholder="" value="@Model.Contractdetail.ProductDesign" aria-describedby="basic-addon1" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h6 class="card-title">Loại Vải</h6>
+                                <div class="input-group input-group-lg">
+                                    <input type="text" class="form-control" placeholder="" value="@Model.Contractdetail.FabricateStyle" aria-describedby="basic-addon1" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-xs-12">
+                                <div class="card-block">
+                                    <h6 class="card-title">Quy Cách May</h6>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input " type="checkbox" value="@Model.Contractdetail.SideCut" @(Model.Contractdetail.SideCut.Value ? "checked=\"checked\"" : "") disabled>
+                                            Xẻ Tà
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="@Model.Contractdetail.ArmBorder" @(Model.Contractdetail.ArmBorder.Value ? "checked=\"checked\"" : "") disabled>
+                                            Viền Nách
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="@Model.Contractdetail.ArmpitBorder" @(Model.Contractdetail.ArmpitBorder.Value ? "checked=\"checked\"" : "") disabled>
+                                            Viền Tay
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 col-md-9 col-sm-12 col-xs-12">
+                                <div class="card-block">
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Ghi Chú"  disabled>@Model.Contractdetail.Note</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!-- Size Áo -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row">
+                                <!-- bảng size áo -->
+                                <div class="col-xl-9 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>S</th>
+                                                <th>M</th>
+                                                <th>L</th>
+                                                <th>XL</th>
+                                                <th>XXL</th>
+                                                <th>XXXL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Nam</th>
+                                                <td>
+                                                    <h4></h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.S</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.M</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.L</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.XL</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.XXL</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.XXXL</h4>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Nữ</th>
+                                                <td>
+                                                    <h4></h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.S</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.M</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.L</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.XL</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.XXL</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.XXXL</h4>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- ghi chú -->
+                                <div class="col-xl-3 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                                    <textarea class="form-control" id="exampleTextarea" rows="8" placeholder="Ghi Chú size áo" disabled>@Model.Contractdetail.NoteSize</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            <!-- In & Thêu -->
+            <div class="row">
+                <!-- In -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <h3 class="card-title">In</h3>
+                            <div class="row">
+                                <!-- cột bên trái -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="sr-only" for="inlineFormInputGroup">date</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Thực Hiện (dd/mm/yyyy)" value="20/01/2016" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Đơn vị thực hiện" value="@Model.Contractdetail.PrintMakingUnit" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Vị Trí" value="@Model.Contractdetail.PrintSpot" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thức chi tiết" value="@Model.Contractdetail.PrintSize" disabled>
+                                    </div>
+                                    <br>
+                                </div>
+                                <!-- cột bên phải -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="sr-only" for="inlineFormInputGroup">date</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Hoàn Thành (dd/mm/yyyy)" value="20/01/2016" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="exampleTextarea" rows="7" placeholder="Ghi Chú" disabled>@Model.Contractdetail.PrintNote</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Theu -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="card">
+                        <div class="card-block">
+                            <h3 class="card-title">Thêu</h3>
+                            <div class="row">
+                                <!-- cot trái -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="sr-only" for="inlineFormInputGroup">date</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Thực Hiện (dd/mm/yyyy)" value="31/01/2017" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Đơn vị thực hiện" value="@Model.Contractdetail.EmbroiderMakingUnit" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Vị Trí" value="@Model.Contractdetail.EmbroiderSpot" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thức chi tiết" value="@Model.Contractdetail.EmbroiderSize" disabled>
+                                    </div>
+                                    <br>
+                                </div>
+                                <!-- cot phải -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="sr-only" for="inlineFormInputGroup">date</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Hoàn Thành (dd/mm/yyyy)" value="31/01/2017" disabled>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="exampleTextarea" rows="7" placeholder="Ghi Chú" disabled>@Model.Contractdetail.EmbroiderNote</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <form method="post" action="@Url.Action("ProductionLineDetail", "ProductionLine")">
+                <!-- tên khu vực -->
+                <div class="d-flex justify-content-center">
+                    <h2>Tiến Độ Sản Xuất</h2>
+                </div>
+                <br>
+                <!-- Production Line -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card card-warning text-center">
+                            <div class="card-block">
+                                <div class="row">
+                                    <!-- Quy Trình Cắt Vải -->
+                                    <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                        <div class="progress hnf-progress-bg">
+                                            <div class="progress-bar progress-bar-striped hnf-bg-production-bar" id="progress1" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <!-- <label class="form-check-label form-control-lg">
+                                              <input type="checkbox" class="form-check-input">
+                                            </label> -->
+                                            <br>
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="check1" class="custom-control-input" name="cut" value="@Model.Productline.Cut" @(Model.Productline.Cut.Value ? "checked=\"checked\"" : "")>
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                            <h6>Quy Trình Cắt Vải</h6>
+                                        </div>
+                                    </div>
+                                    <!-- Quy Trình In/Thêu -->
+                                    <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                        <div class="progress hnf-progress-bg">
+                                            <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" id="progress2" style="width: 00%" aria-valuenow="00" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-check">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="check2" class="custom-control-input" name="embroider" value="@Model.Productline.Embroider" @(Model.Productline.Embroider.Value ? "checked=\"checked\"" : "")>
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                            <h6>Quy Trình In/Thêu</h6>
+                                        </div>
+                                    </div>
+                                    <!-- Quy Trình May -->
+                                    <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                        <div class="progress hnf-progress-bg">
+                                            <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" id="progress3" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-check">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="check3" class="custom-control-input" name="sew" value="@Model.Productline.Sew" @(Model.Productline.Sew.Value ? "checked=\"checked\"" : "")>
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                            <h6>Quy Trình May</h6>
+                                        </div>
+                                    </div>
+                                    <!-- Quy Trình Ủi -->
+                                    <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                        <div class="progress hnf-progress-bg">
+                                            <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" id="progress4" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-check">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="check4" class="custom-control-input" name="iron" value="@Model.Productline.Iron" @(Model.Productline.Iron.Value ? "checked=\"checked\"" : "")>
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                            <h6>Quy Trình Ủi</h6>
+                                        </div>
+                                    </div>
+                                    <!-- Quy Trình Đóng Gói -->
+                                    <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                        <div class="progress hnf-progress-bg">
+                                            <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" id="progress5" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-check">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="check5" class="custom-control-input" name="packaging" value="@Model.Productline.Packaging" @(Model.Productline.Packaging.Value ? "checked=\"checked\"" : "")>
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                            <h6>Quy Trình Đóng Gói</h6>
+                                        </div>
+                                    </div>
+                                    <!-- Quy Trình Giao Hàng -->
+                                    <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                        <div class="progress hnf-progress-bg">
+                                            <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" id="progress6" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-check">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="check6" class="custom-control-input" name="delivery" value="@Model.Productline.Delivery" @(Model.Productline.Delivery.Value ? "checked=\"checked\"" : "")>
+                                                <span class="custom-control-indicator"></span>
+                                            </label>
+                                            <h6>Quy Trình Giao Hàng</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <!-- Buttons -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+                        <button class="btn btn-success btn-block" role="button" type="submit" href="@Url.Action("ProductionLineDetail","ProductionLine")">Lưu Thông Tin</button>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
+                        <a class="btn btn-danger btn-block" role="button" href="#">Huỷ Thông Tin</a>
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- script for Production line Bar -->
+<script type="text/javascript">
+    $('#check1').change(function () {
+        // this will contain a reference to the checkbox
+        if (this.checked) {
+            // the checkbox1 is now checked
+            $('#check1').attr('checked');
+            $('#progress1').css('width', '100%').css('transition', '0.5s')
+            $('#progress2').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $("#check2").prop("disabled", false);
+        } else {
+            // the checkbox1 is now no longer checked
+            $('#progress1').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $('#progress2').css('width', '0%').css('transition', '0.5s')
+            $("#check2").prop("disabled", true);
+        }
+    }));
+    $('#check2').change(function () {
+        // this will contain a reference to the checkbox
+        if (this.checked) {
+            // the checkbox2 is now checked
+            $('#progress2').css('width', '100%').css('transition', '0.5s')
+            $('#progress3').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $("#check1").prop("disabled", true);
+            $("#check3").prop("disabled", false);
+        } else {
+            // the checkbox2 is now no longer checked
+            $('#progress2').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $('#progress3').css('width', '0%').css('transition', '0.5s')
+            $("#check1").prop("disabled", false);
+            $("#check3").prop("disabled", true);
+        }
+    });
+    $('#check3').change(function () {
+        // this will contain a reference to the checkbox
+        if (this.checked) {
+            // the checkbox3 is now checked
+            $('#progress3').css('width', '100%').css('transition', '0.5s')
+            $('#progress4').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $("#check2").prop("disabled", true);
+            $("#check4").prop("disabled", false);
+
+        } else {
+            // the checkbox3 is now no longer checked
+            $('#progress3').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $('#progress4').css('width', '0%').css('transition', '0.5s')
+            $("#check2").prop("disabled", false);
+            $("#check4").prop("disabled", true);
+
+        }
+    });
+    $('#check4').change(function () {
+        // this will contain a reference to the checkbox
+        if (this.checked) {
+            // the checkbox4 is now checked
+            $('#progress4').css('width', '100%').css('transition', '0.5s')
+            $('#progress5').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $("#check3").prop("disabled", true);
+            $("#check5").prop("disabled", false);
+        } else {
+            // the checkbox4 is now no longer checked
+            $('#progress4').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $('#progress5').css('width', '0%').css('transition', '0.5s')
+            $("#check3").prop("disabled", false);
+            $("#check5").prop("disabled", true);
+        }
+    });
+    $('#check5').change(function () {
+        // this will contain a reference to the checkbox
+        if (this.checked) {
+            // the checkbox5 is now checked
+            $('#progress5').css('width', '100%').css('transition', '0.5s')
+            $('#progress6').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $("#check4").prop("disabled", true);
+            $("#check6").prop("disabled", false);
+        } else {
+            // the checkbox5 is now no longer checked
+            $('#progress5').css('width', '50%').css('transition', '0.5s').css('transition-delay', '0.1s')
+            $('#progress6').css('width', '0%').css('transition', '0.5s')
+            $("#check4").prop("disabled", false);
+            $("#check6").prop("disabled", true);
+        }
+    });
+    $('#check6').change(function () {
+        // this will contain a reference to the checkbox
+        if (this.checked) {
+            // the checkbox6 is now checked
+            $('#progress6').css('width', '100%').css('transition', '0.5s')
+            $("#check5").prop("disabled", true);
+
+        } else {
+            // the checkbox6 is now no longer checked
+            $('#progress6').css('width', '50%').css('transition', '0.5s')
+            $("#check5").prop("disabled", false);
+
+
+        }
+    });
+</script>

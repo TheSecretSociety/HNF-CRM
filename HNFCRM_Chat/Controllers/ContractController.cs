@@ -11,18 +11,42 @@ namespace HNFCRM_Chat.Controllers
     {
         CP_CRMEntities entities = new CP_CRMEntities();
 
+        //DateTime Culture
+        IFormatProvider culture = new System.Globalization.CultureInfo("fr-FR", true);
+
         // GET: Contract by Customer ID
         public ActionResult Contract(int id)
         {
             try
             {
                 CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
-                //Insert new contract of new customer if it didn't exists
+                //Insert new contract and contract detail of new customer if it has not exists
                 if (contract == null)
                 {
+                    //Insert New Contract
                     CONTRACT newcontract = new CONTRACT();
                     newcontract.ID_Customer = id;
+                    newcontract.CreatedDate = DateTime.Now;
                     entities.CONTRACTs.Add(newcontract);
+
+                    //Insert New Contract Detail
+                    CONTRACTDETAIL newcontractdetail = new CONTRACTDETAIL();
+                    newcontractdetail.ID_Contract = id;
+                    newcontractdetail.SideCut = false;
+                    newcontractdetail.ArmBorder = false;
+                    newcontractdetail.ArmpitBorder = false;
+                    newcontractdetail.EmbroiderStartDate = DateTime.Now;
+                    newcontractdetail.EmbroiderEndDate = DateTime.Now;
+                    newcontractdetail.PrintStartDate = DateTime.Now;
+                    newcontractdetail.PrintEndDate = DateTime.Now;
+                    entities.CONTRACTDETAILs.Add(newcontractdetail);
+                    MENSIZE mensize = new MENSIZE();
+                    mensize.ID_CONTRACTDETAIL = newcontract.ID;
+                    entities.MENSIZEs.Add(mensize);
+                    WOMENSIZE womensize = new WOMENSIZE();
+                    womensize.ID_CONTRACTDETAIL = newcontract.ID;
+                    entities.WOMENSIZEs.Add(womensize);
+
                     entities.SaveChanges();
                     return RedirectToAction("Contract");
                 }
@@ -50,6 +74,132 @@ namespace HNFCRM_Chat.Controllers
         {
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
 
+            //Appointment and Consult Date
+            if (frm["consultdate"] == "" || frm["consultdate"] == null)
+            {
+                contract.DateConsult = DateTime.Now;
+            }
+            else
+            {
+                DateTime consultdate = DateTime.Parse(frm["consultdate"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contract.DateConsult = consultdate;
+            }
+            if (frm["appointment"] == "" || frm["appointment"] == null)
+            {
+                contract.Appointment = DateTime.Now;
+            }
+            else
+            {
+                DateTime appointment = DateTime.Parse(frm["appointment"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contract.Appointment = appointment;
+            }
+            if (frm["appointment2"] == "" || frm["appointment2"] == null)
+            {
+                contract.AppointmentMarket = DateTime.Now;
+            }
+            else
+            {
+                DateTime appointment2 = DateTime.Parse(frm["appointment2"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contract.AppointmentMarket = appointment2;
+            }
+
+            //Confirm
+            if (frm["confirm"] == "" || frm["confirm"] == null)
+            {
+                contract.CheckConfirm = false;
+            }
+            else
+            {
+                contract.CheckConfirm = true;
+            }
+
+            contract.Note = frm["note"];
+
+            //Production Line Date
+            if (frm["start"] == "" || frm["start"] == null)
+            {
+                contract.StartDate = DateTime.Now;
+            }
+            else
+            {
+                DateTime startdate = DateTime.Parse(frm["start"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contract.StartDate = startdate;
+            }
+            if (frm["end"] == "" || frm["end"] == null)
+            {
+                contract.EndDate = DateTime.Now;
+            }
+            else
+            {
+                DateTime enddate = DateTime.Parse(frm["end"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contract.EndDate = enddate;
+            }
+
+            //Transfer Money
+            //if (frm["tranfer-money-radio"] == "0")
+            //{
+            //    contract.Remind = "0";
+            //}
+            //else if (frm["tranfer-money-radio"] == "1")
+            //{
+            //    contract.Remind = "1";
+            //}
+            //else if (frm["tranfer-money-radio"] == "2")
+            //{
+            //    contract.Remind = "2";
+            //}
+            //else
+            //{
+            //    contract.Remind = "3";
+            //}
+
+            //Customer Call Remind
+            //value = 3 has not call yet
+            if (frm["customer-call-radio"] == "0")
+            {
+                contract.Remind = "0";
+            }
+            else if (frm["customer-call-radio"] == "1")
+            {
+                contract.Remind = "1";
+            }
+            else if (frm["customer-call-radio"] == "2")
+            {
+                contract.Remind = "2";
+            }
+            else
+            {
+                contract.Remind = "3";
+            }
+
+            //Contract Status
+            string status = frm["options"];
+            if (frm["options"] == "0")
+            {
+                contract.StatusContract = "0";
+                PRODUCTLINE newproductline = new PRODUCTLINE();
+                newproductline.ID_Customer = id;
+                newproductline.CreatedDate = DateTime.Now;
+                newproductline.Cut = false;
+                newproductline.Sew = false;
+                newproductline.Delivery = false;
+                newproductline.Embroider = false;
+                newproductline.Iron = false;
+                newproductline.Packaging = false;
+                newproductline.ID_Contract = contract.ID;
+                entities.PRODUCTLINEs.Add(newproductline);
+            }
+            else if (frm["options"] == "1")
+            {
+                contract.StatusContract = "1";
+            }
+            else
+            {
+                contract.StatusContract = "2";
+            }
+
+            contract.UpdatedDate = DateTime.Now;
+            entities.SaveChanges();
             return RedirectToAction("Contract");
         }
 
@@ -57,31 +207,14 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult ContractDetail(int id)
         {
             CONTRACTDETAIL contractdetail = entities.CONTRACTDETAILs.Where(x => x.ID_Contract == id).SingleOrDefault();
-            if (contractdetail == null)
-            {
-                CONTRACTDETAIL newcontract = new CONTRACTDETAIL();
-                newcontract.ID_Contract = id;
-                entities.CONTRACTDETAILs.Add(newcontract);
-                MENSIZE mensize = new MENSIZE();
-                mensize.ID_CONTRACTDETAIL = newcontract.ID;
-                entities.MENSIZEs.Add(mensize);
-                WOMENSIZE womensize = new WOMENSIZE();
-                womensize.ID_CONTRACTDETAIL = newcontract.ID;
-                entities.WOMENSIZEs.Add(womensize);
-                entities.SaveChanges();
-                return RedirectToAction("ContractDetail");
-            }
-            else
-            {
-                int contractdetailID = contractdetail.ID;
-                MENSIZE mensize = entities.MENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailID).SingleOrDefault();
-                WOMENSIZE womensize = entities.WOMENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailID).SingleOrDefault();
-                ContractDetailModel model = new ContractDetailModel();
-                model.contractdetail = contractdetail;
-                model.mensize = mensize;
-                model.womensize = womensize;
-                return View(model);
-            }
+            int contractdetailID = contractdetail.ID;
+            MENSIZE mensize = entities.MENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailID).SingleOrDefault();
+            WOMENSIZE womensize = entities.WOMENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailID).SingleOrDefault();
+            ContractDetailModel model = new ContractDetailModel();
+            model.ContractDetail = contractdetail;
+            model.Mensize = mensize;
+            model.Womensize = womensize;
+            return View(model);
         }
 
         [HttpPost]
@@ -103,12 +236,40 @@ namespace HNFCRM_Chat.Controllers
             contractdetail.CollarArmAdjustment = frm["collaramr"];
             contractdetail.ProductDesign = frm["productdesign"];
             contractdetail.FabricateStyle = frm["fabric"];
+            string note = frm["note"];
+            contractdetail.Note = note;
+
+            //Checkbox
+            if (frm["sidecut"] != null)
+            {
+                contractdetail.SideCut = true;
+            }
+            else
+            {
+                contractdetail.SideCut = false;
+            }
+            if (frm["armborder"] != null)
+            {
+                contractdetail.ArmBorder = true;
+            }
+            else
+            {
+                contractdetail.ArmBorder = false;
+            }
+            if (frm["armpitborder"] != null)
+            {
+                contractdetail.ArmpitBorder = true;
+            }
+            else
+            {
+                contractdetail.ArmpitBorder = false;
+            }
             contractdetail.Note = frm["note"];
 
             //Update Size Men
             int contractdetailid = contractdetail.ID;
             MENSIZE mensize = entities.MENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailid).SingleOrDefault();
-            if (frm["mens"] == ""|| frm["mens"] == null)
+            if (frm["mens"] == "" || frm["mens"] == null)
             {
                 mensize.S = 0;
             }
@@ -210,12 +371,50 @@ namespace HNFCRM_Chat.Controllers
             contractdetail.NoteSize = frm["notesize"];
 
             //Update Embroider Information
+            if (frm["embroiderstart"] == "" || frm["embroiderstart"] == null)
+            {
+                contractdetail.EmbroiderStartDate = DateTime.Now;
+            }
+            else
+            {
+                DateTime dateembroiderstart = DateTime.Parse(frm["embroiderstart"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contractdetail.EmbroiderStartDate = dateembroiderstart;
+
+            }
+            if (frm["embroiderend"] == "" || frm["embroiderend"] == null)
+            {
+                contractdetail.EmbroiderEndDate = DateTime.Now;
+            }
+            else
+            {
+                DateTime dateembroiderend = DateTime.Parse(frm["embroiderend"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contractdetail.EmbroiderEndDate = dateembroiderend;
+            }
             contractdetail.EmbroiderMakingUnit = frm["embroiderunit"];
             contractdetail.EmbroiderSpot = frm["embroiderspot"];
             contractdetail.EmbroiderSize = frm["embroidersize"];
-            contractdetail.EmbroiderSize = frm["embroidernote"];
+            contractdetail.EmbroiderNote = frm["embroidernote"];
+
             //Update Print Information
-            contractdetail.PrintMakingUnit = frm["printunit"];
+            if (frm["printstart"] == "" || frm["printstart"] == null)
+            {
+                contractdetail.PrintStartDate = DateTime.Now;
+            }
+            else
+            {
+                DateTime datestart = DateTime.Parse(frm["printstart"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contractdetail.PrintStartDate = datestart;
+
+            }
+            if (frm["printend"] == "" || frm["printend"] == null)
+            {
+                contractdetail.PrintEndDate = DateTime.Now;
+            }
+            else
+            {
+                DateTime dateend = DateTime.Parse(frm["printend"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                contractdetail.PrintEndDate = dateend;
+            }
             contractdetail.PrintSpot = frm["printspot"];
             contractdetail.PrintSize = frm["printsize"];
             contractdetail.PrintNote = frm["printnote"];

@@ -8,7 +8,7 @@
     <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-    <Property Name="DateTime" Type="DateTime" Precision="3" />
+    <Property Name="DateTime" Type="DateTime" Precision="0" />
     <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ID_Staff" Type="Int32" />
     <NavigationProperty Name="STAFF" Relationship="Self.FK_CHATINFO_STAFF" FromRole="CHATINFO" ToRole="STAFF" />
@@ -26,25 +26,27 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="DateConsult" Type="DateTime" Precision="3" />
-    <Property Name="Appointment" Type="DateTime" Precision="3" />
+    <Property Name="DateConsult" Type="DateTime" Precision="0" />
+    <Property Name="Appointment" Type="DateTime" Precision="0" />
     <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="SendMarket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Price" Type="Double" />
     <Property Name="MarketConfirm" Type="Boolean" />
     <Property Name="MarketPicture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Contract1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="StartDate" Type="DateTime" Precision="3" />
-    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
     <Property Name="MoneyTransfer" Type="Boolean" />
     <Property Name="Remind" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
-    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
     <Property Name="IsAvailable" Type="Boolean" />
     <Property Name="ID_Customer" Type="Int32" />
     <Property Name="ID_RequireProduct" Type="Int32" />
     <Property Name="ID_Staff" Type="Int32" />
     <Property Name="CheckConfirm" Type="Boolean" />
+    <Property Name="AppointmentMarket" Type="DateTime" Precision="0" />
+    <Property Name="StatusContract" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_CONTRACT_CUSTOMER" FromRole="CONTRACT" ToRole="CUSTOMER" />
     <NavigationProperty Name="REQUIREPRODUCT" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT" FromRole="CONTRACT" ToRole="REQUIREPRODUCT" />
     <NavigationProperty Name="STAFF" Relationship="Self.FK_CONTRACT_STAFF" FromRole="CONTRACT" ToRole="STAFF" />
@@ -143,8 +145,8 @@
     <Property Name="Iron" Type="Boolean" />
     <Property Name="Packaging" Type="Boolean" />
     <Property Name="Delivery" Type="Boolean" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
     <Property Name="IsAvailable" Type="Boolean" />
     <Property Name="ID_Contract" Type="Int32" Nullable="false" />
     <Property Name="ID_Customer" Type="Int32" />
@@ -188,8 +190,7 @@
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="ID_Role" Type="Int32" />
     <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="ConfirmPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="Pasword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CHATINFOes" Relationship="Self.FK_CHATINFO_STAFF" FromRole="STAFF" ToRole="CHATINFO" />
     <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_STAFF" FromRole="STAFF" ToRole="CONTRACT" />
     <NavigationProperty Name="ROLE" Relationship="Self.FK_STAFF_ROLE" FromRole="STAFF" ToRole="ROLE" />

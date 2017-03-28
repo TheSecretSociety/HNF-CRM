@@ -7,8 +7,8 @@ namespace HNFCRM_Chat.Models
 {
     public class ContractDetailModel
     {
-        public MENSIZE mensize;
-        public WOMENSIZE womensize;
-        public CONTRACTDETAIL contractdetail;
+        public MENSIZE Mensize;
+        public WOMENSIZE Womensize;
+        public CONTRACTDETAIL ContractDetail;
     }
 }

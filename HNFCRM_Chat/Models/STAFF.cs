@@ -27,8 +27,7 @@ namespace HNFCRM_Chat.Models
         public string Email { get; set; }
         public Nullable<int> ID_Role { get; set; }
         public byte[] Avartar { get; set; }
-        public string ConfirmPassword { get; set; }
-        public string Pasword { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHATINFO> CHATINFOes { get; set; }
