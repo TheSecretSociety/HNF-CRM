@@ -60,7 +60,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
                                     <div class="form-group">
                                         <label for="exampleTextarea">Quan tâm về Dịch Vụ / Sản Phẩm gì?</label>
-                                        <textarea class="form-control" id="InterestedIn" rows="5"></textarea>
+                                        <textarea class="form-control" id="InterestedIn" name="InterestedIn" rows="5">@Model.Customer.CareAboutProduct</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Loại Áo Đã Làm</label>
@@ -86,7 +86,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleTextarea">Ghi Chú</label>
-                                <textarea class="form-control" id="Note" rows="3" value="@Model.Customer.Note" name="customernote"></textarea>
+                                <textarea class="form-control" id="Note" rows="3" value="@Model.Customer.Note" name="customernote">@Model.Customer.Note</textarea>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleTextarea">Ghi Chú</label>
-                                <textarea class="form-control" id="InputRequireNote" rows="3" name="requirenote" value="@Model.RequireProduct.Note"></textarea>
+                                <textarea class="form-control" id="InputRequireNote" rows="3" name="requirenote" value="@Model.RequireProduct.Note">@Model.RequireProduct.Note</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("CustomerDetail", "Customer")'">Lưu Thông Tin</button>
                         </div>

@@ -53,7 +53,7 @@
                                 <a class="nav-link" href='@Url.Action("Customer","Customer")'><i class="material-icons md-18">perm_contact_calendar</i>Khách Hàng</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./HNF-Production.html"><i class="material-icons md-18">settings_applications</i>Sản Xuất</a>
+                                <a class="nav-link" href="@Url.Action("ProductionLine", "ProductionLine")"><i class="material-icons md-18">settings_applications</i>Sản Xuất</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="material-icons md-18">pie_chart</i>Thống Kê</a>
@@ -80,7 +80,7 @@
             <ul class="sidebar-nav">
                 <li><a href="@Url.Action("Index","Home")"><i class="material-icons md-18">dashboard</i>TRANG CHỦ</a></li>
                 <li><a href="@Url.Action("Customer","Customer") "><i class="material-icons md-18">perm_contact_calendar</i>KHÁCH HÀNG</a></li>
-                <li><a href="./HNF-Production.html"><i class="material-icons md-18">settings_applications</i>SẢN XUẤT</a></li>
+                <li><a href="@Url.Action("ProductionLine", "ProductionLine")"><i class="material-icons md-18">settings_applications</i>SẢN XUẤT</a></li>
                 <li><a href="#"><i class="material-icons md-18">pie_chart</i>THỐNG KÊ</a></li>
                 <li><a href="#"><i class="material-icons md-18">chat</i>CHAT</a></li>
                 <li><a href="#"><i class="material-icons md-18">supervisor_account</i>NHÂN VIÊN</a></li>
@@ -92,6 +92,7 @@
         @RenderBody()
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/HNF-jquery")
         @RenderSection("scripts", required: false)
     </div>
 </body>

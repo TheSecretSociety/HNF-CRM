@@ -8,7 +8,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="35" />
     <Property Name="Email" Type="varchar" MaxLength="30" />
     <Property Name="Phone" Type="varchar" MaxLength="13" />
-    <Property Name="DateTime" Type="datetime" />
+    <Property Name="DateTime" Type="date" />
     <Property Name="IP" Type="varchar" MaxLength="50" />
     <Property Name="ID_Staff" Type="int" />
   </EntityType>
@@ -24,25 +24,27 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DateConsult" Type="datetime" />
-    <Property Name="Appointment" Type="datetime" />
+    <Property Name="DateConsult" Type="date" />
+    <Property Name="Appointment" Type="date" />
     <Property Name="Note" Type="nvarchar(max)" />
     <Property Name="SendMarket" Type="varchar" MaxLength="100" />
     <Property Name="Price" Type="float" />
     <Property Name="MarketConfirm" Type="bit" />
     <Property Name="MarketPicture" Type="varchar" MaxLength="100" />
     <Property Name="Contract" Type="varchar" MaxLength="100" />
-    <Property Name="StartDate" Type="datetime" />
-    <Property Name="EndDate" Type="datetime" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
     <Property Name="MoneyTransfer" Type="bit" />
     <Property Name="Remind" Type="char" MaxLength="3" />
-    <Property Name="UpdatedDate" Type="datetime" />
-    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="date" />
+    <Property Name="CreatedDate" Type="date" />
     <Property Name="IsAvailable" Type="bit" />
     <Property Name="ID_Customer" Type="int" />
     <Property Name="ID_RequireProduct" Type="int" />
     <Property Name="ID_Staff" Type="int" />
     <Property Name="CheckConfirm" Type="bit" />
+    <Property Name="AppointmentMarket" Type="date" />
+    <Property Name="StatusContract" Type="char" MaxLength="3" />
   </EntityType>
   <EntityType Name="CONTRACTDETAIL">
     <Key>
@@ -127,8 +129,8 @@
     <Property Name="Iron" Type="bit" />
     <Property Name="Packaging" Type="bit" />
     <Property Name="Delivery" Type="bit" />
-    <Property Name="CreatedDate" Type="datetime" />
-    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="UpdatedDate" Type="date" />
     <Property Name="IsAvailable" Type="bit" />
     <Property Name="ID_Contract" Type="int" Nullable="false" />
     <Property Name="ID_Customer" Type="int" />
@@ -166,8 +168,7 @@
     <Property Name="Email" Type="varchar" MaxLength="30" />
     <Property Name="ID_Role" Type="int" />
     <Property Name="Avartar" Type="image" />
-    <Property Name="ConfirmPassword" Type="varchar" MaxLength="30" />
-    <Property Name="Pasword" Type="varchar" MaxLength="30" />
+    <Property Name="Password" Type="varchar" MaxLength="30" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

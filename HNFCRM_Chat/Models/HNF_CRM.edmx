@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CP_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CP_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHATINFO">
           <Key>
             <PropertyRef Name="ID" />
@@ -13,7 +13,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="35" />
           <Property Name="Email" Type="varchar" MaxLength="30" />
           <Property Name="Phone" Type="varchar" MaxLength="13" />
-          <Property Name="DateTime" Type="datetime" />
+          <Property Name="DateTime" Type="date" />
           <Property Name="IP" Type="varchar" MaxLength="50" />
           <Property Name="ID_Staff" Type="int" />
         </EntityType>
@@ -29,25 +29,27 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DateConsult" Type="datetime" />
-          <Property Name="Appointment" Type="datetime" />
+          <Property Name="DateConsult" Type="date" />
+          <Property Name="Appointment" Type="date" />
           <Property Name="Note" Type="nvarchar(max)" />
           <Property Name="SendMarket" Type="varchar" MaxLength="100" />
           <Property Name="Price" Type="float" />
           <Property Name="MarketConfirm" Type="bit" />
           <Property Name="MarketPicture" Type="varchar" MaxLength="100" />
           <Property Name="Contract" Type="varchar" MaxLength="100" />
-          <Property Name="StartDate" Type="datetime" />
-          <Property Name="EndDate" Type="datetime" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
           <Property Name="MoneyTransfer" Type="bit" />
           <Property Name="Remind" Type="char" MaxLength="3" />
-          <Property Name="UpdatedDate" Type="datetime" />
-          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="CreatedDate" Type="date" />
           <Property Name="IsAvailable" Type="bit" />
           <Property Name="ID_Customer" Type="int" />
           <Property Name="ID_RequireProduct" Type="int" />
           <Property Name="ID_Staff" Type="int" />
           <Property Name="CheckConfirm" Type="bit" />
+          <Property Name="AppointmentMarket" Type="date" />
+          <Property Name="StatusContract" Type="char" MaxLength="3" />
         </EntityType>
         <EntityType Name="CONTRACTDETAIL">
           <Key>
@@ -132,8 +134,8 @@
           <Property Name="Iron" Type="bit" />
           <Property Name="Packaging" Type="bit" />
           <Property Name="Delivery" Type="bit" />
-          <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdatedDate" Type="date" />
           <Property Name="IsAvailable" Type="bit" />
           <Property Name="ID_Contract" Type="int" Nullable="false" />
           <Property Name="ID_Customer" Type="int" />
@@ -171,8 +173,7 @@
           <Property Name="Email" Type="varchar" MaxLength="30" />
           <Property Name="ID_Role" Type="int" />
           <Property Name="Avartar" Type="image" />
-          <Property Name="ConfirmPassword" Type="varchar" MaxLength="30" />
-          <Property Name="Pasword" Type="varchar" MaxLength="30" />
+          <Property Name="Password" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -451,8 +452,7 @@
             <End Role="WOMENSIZE" EntitySet="WOMENSIZE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CP_CRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -464,7 +464,7 @@
           <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="DateTime" Type="DateTime" Precision="3" />
+          <Property Name="DateTime" Type="DateTime" Precision="0" />
           <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ID_Staff" Type="Int32" />
           <NavigationProperty Name="STAFF" Relationship="Self.FK_CHATINFO_STAFF" FromRole="CHATINFO" ToRole="STAFF" />
@@ -482,25 +482,27 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DateConsult" Type="DateTime" Precision="3" />
-          <Property Name="Appointment" Type="DateTime" Precision="3" />
+          <Property Name="DateConsult" Type="DateTime" Precision="0" />
+          <Property Name="Appointment" Type="DateTime" Precision="0" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SendMarket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Double" />
           <Property Name="MarketConfirm" Type="Boolean" />
           <Property Name="MarketPicture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Contract1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="StartDate" Type="DateTime" Precision="3" />
-          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="MoneyTransfer" Type="Boolean" />
           <Property Name="Remind" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsAvailable" Type="Boolean" />
           <Property Name="ID_Customer" Type="Int32" />
           <Property Name="ID_RequireProduct" Type="Int32" />
           <Property Name="ID_Staff" Type="Int32" />
           <Property Name="CheckConfirm" Type="Boolean" />
+          <Property Name="AppointmentMarket" Type="DateTime" Precision="0" />
+          <Property Name="StatusContract" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="CUSTOMER" Relationship="Self.FK_CONTRACT_CUSTOMER" FromRole="CONTRACT" ToRole="CUSTOMER" />
           <NavigationProperty Name="REQUIREPRODUCT" Relationship="Self.FK_CONTRACT_REQUIREPRODUCT" FromRole="CONTRACT" ToRole="REQUIREPRODUCT" />
           <NavigationProperty Name="STAFF" Relationship="Self.FK_CONTRACT_STAFF" FromRole="CONTRACT" ToRole="STAFF" />
@@ -599,8 +601,8 @@
           <Property Name="Iron" Type="Boolean" />
           <Property Name="Packaging" Type="Boolean" />
           <Property Name="Delivery" Type="Boolean" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsAvailable" Type="Boolean" />
           <Property Name="ID_Contract" Type="Int32" Nullable="false" />
           <Property Name="ID_Customer" Type="Int32" />
@@ -644,8 +646,7 @@
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ID_Role" Type="Int32" />
           <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ConfirmPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Pasword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CHATINFOes" Relationship="Self.FK_CHATINFO_STAFF" FromRole="STAFF" ToRole="CHATINFO" />
           <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_STAFF" FromRole="STAFF" ToRole="CONTRACT" />
           <NavigationProperty Name="ROLE" Relationship="Self.FK_STAFF_ROLE" FromRole="STAFF" ToRole="ROLE" />
@@ -988,6 +989,8 @@
                 <ScalarProperty Name="ID_RequireProduct" ColumnName="ID_RequireProduct" />
                 <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
                 <ScalarProperty Name="CheckConfirm" ColumnName="CheckConfirm" />
+                <ScalarProperty Name="AppointmentMarket" ColumnName="AppointmentMarket" />
+                <ScalarProperty Name="StatusContract" ColumnName="StatusContract" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1119,8 +1122,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
                 <ScalarProperty Name="Avartar" ColumnName="Avartar" />
-                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
-                <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -107,12 +107,22 @@
       });
   });
   // script for datepicker
-  $(document).ready(function(){
-    $('#sandbox-container .input-group.date').datepicker({
-    weekStart: 1,
-    orientation: "bottom auto",
-    autoclose: true,
-    format: "dd/mm/yyyy",
-    language: "vi"
-});
+  $(document).ready(function DatetimePicker() {
+      $('#sandbox-container .input-group.date').datepicker({
+          weekStart: 1,
+          orientation: "bottom auto",
+          autoclose: true,
+          todayHighlight: true,
+          format: "dd/mm/yyyy",
+          language: "vi"
+      });
+      $('#sandbox-container .input-daterange').datepicker({
+          format: "dd/mm/yyyy",
+          weekStart: 1,
+          language: "vi",
+          orientation: "bottom auto",
+          keyboardNavigation: false,
+          autoclose: true,
+          todayHighlight: true
+      });
   });

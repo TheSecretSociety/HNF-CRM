@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
+
 namespace HNFCRM_Chat.Controllers
 {
     public class StaffController : Controller
@@ -50,7 +51,7 @@ namespace HNFCRM_Chat.Controllers
             }
             if (frm["password"] == frm["confirmpassword"])
             {
-                staff.Pasword = frm["password"];
+                staff.Password = frm["password"];
             }
 
             entities.SaveChanges();
@@ -83,7 +84,7 @@ namespace HNFCRM_Chat.Controllers
             }
             if (frm["password"] == frm["confirmpassword"])
             {
-                staff.Pasword = frm["password"];
+                staff.Password = frm["password"];
                 entities.STAFFs.Add(staff);
                 entities.SaveChanges();
                 return RedirectToAction("Staff");

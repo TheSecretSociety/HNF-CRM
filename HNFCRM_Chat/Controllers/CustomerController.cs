@@ -64,7 +64,7 @@ namespace HNFCRM_Chat.Controllers
                 data.PreviousPrice = int.Parse(frm["previousprice"]);
             }
             data.Note = frm["customernote"];
-            data.CareAboutProduct = frm["careaboutproduct"];
+            data.CareAboutProduct = frm["InterestedIn"];
             data.Comment = frm["previouscomment"];
 
             //Update require of new customer
@@ -132,7 +132,7 @@ namespace HNFCRM_Chat.Controllers
                 data.PreviousPrice = int.Parse(frm["previousprice"]);
             }
             data.Note = frm["customernote"];
-            data.CareAboutProduct = frm["careaboutproduct"];
+            data.CareAboutProduct = frm["InterestedIn"];
             data.Comment = frm["previouscomment"];
             data.IsAvailable = true;
 
@@ -182,9 +182,28 @@ namespace HNFCRM_Chat.Controllers
             CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            CONTRACTDETAIL contractdetail = entities.CONTRACTDETAILs.Where(x => x.ID_Contract == contract.ID).SingleOrDefault();
+            PRODUCTLINE productline = entities.PRODUCTLINEs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            //Check the relative table has exist or not
             entities.CUSTOMERs.Remove(customer);
             entities.REQUIREPRODUCTs.Remove(require);
-            entities.CONTRACTs.Remove(contract);
+            if (contract != null)
+            {
+                entities.CONTRACTs.Remove(contract);
+
+            }
+            if (contractdetail != null)
+            {
+                entities.CONTRACTDETAILs.Remove(contractdetail);
+                MENSIZE mensize = entities.MENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetail.ID).SingleOrDefault();
+                WOMENSIZE womensize = entities.WOMENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetail.ID).SingleOrDefault();
+                entities.WOMENSIZEs.Remove(womensize);
+                entities.MENSIZEs.Remove(mensize);
+            }
+            if (productline != null)
+            {
+                entities.PRODUCTLINEs.Remove(productline);
+            }
             entities.SaveChanges();
             return RedirectToAction("Customer");
         }

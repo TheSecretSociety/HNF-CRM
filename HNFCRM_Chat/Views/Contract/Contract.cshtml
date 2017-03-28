@@ -1,12 +1,13 @@
 ﻿@using HNFCRM_Chat.Models;
 @model ContractModel
+
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
-<div id="page-content-wrapper">
-    <div class="page-content">
-        <div class="container-fluid">
-            <br>
-            <form method="post" action="@Url.Action("Contract","Contract")">
+<form method="post" action="@Url.Action("Contract", "Contract")">
+    <div id="page-content-wrapper">
+        <div class="page-content">
+            <div class="container-fluid">
+                <br>
                 <!-- 1 Panels -->
                 <div class="row">
                     <!-- Panel 1 -->
@@ -32,7 +33,7 @@
                         <div class="card">
                             <div class="card-block">
                                 <h6 class="card-subtitle mb-1 text-muted">Ngày Tạo Hợp Đồng</h6>
-                                <h4 class="card-title">2/11/2016</h4>
+                                <h4 class="card-title">@Model.Contract.CreatedDate.Value.ToString("dd/MM/yyyy hh:mm:ss tt")</h4>
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card">
                             <div class="card-block">
-                                <h6 class="card-subtitle mb-1 text-muted">Ngày Tạo Hợp Đồng</h6>
+                                <h6 class="card-subtitle mb-1 text-muted">Người Tạo Hợp Đồng</h6>
                                 <h4 class="card-title">Ngô Tấn Lộc</h4>
                             </div>
                         </div>
@@ -53,9 +54,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
+
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Thời Gian" readonly>
                             </div>
                         </div>
@@ -64,32 +63,22 @@
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <!-- Ngày Tư Vấn  -->
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <!-- Ngày Tư Vấn & Ngày Hẹn Gặp 2 cái này daterange mặc định ngày hẹn gặp không thể trước ngày tư vấn, 2 ngày có thể trùng nhau  -->
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xm-12 mb-2 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <!-- datetime picker -->
                                     <div id="sandbox-container">
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control" placeholder="Ngày Tư Vấn (dd-mm-yyyy)"></span>
-                                            <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Ngày Hẹn Gặp -->
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <!-- datetime picker -->
-                                    <div id="sandbox-container">
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control" placeholder="Ngày Hẹn Gặp (dd-mm-yyyy)"></span>
-                                            <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" placeholder="Ngày Tư Vấn" name="consultdate" value="@Model.Contract.DateConsult.Value.ToString("dd/MM/yyyy")" />
+                                            <span class="input-group-addon">|</span>
+                                            <input type="text" class="input-sm form-control" placeholder="Ngày Hẹn Gặp" name="appointment" value="@Model.Contract.Appointment.Value.ToString("dd/MM/yyyy")" />
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Ghi Chú -->
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <label class="sr-only" for="inlineFormInputGroup">date</label>
-                                    <div class="input-group mb-1 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-0 mb-xm-0">
-                                        <div class="input-group-addon">Ghi Chú</div>
-                                        <input type="text" class="form-control" id="inlineFormInputGroup">
+                                    <div class="form-group">
+
+                                        <textarea class="form-control" id="exampleTextarea" rows="1" placeholder="Ghi Chú" value="@Model.Contract.Note" name="note">@Model.Contract.Note</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -103,9 +92,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Thiết kế và gởi Market" readonly>
                             </div>
                         </div>
@@ -143,9 +129,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Báo Giá Sản Phẩm" placeholder="Báo Giá" readonly>
                             </div>
                         </div>
@@ -179,9 +162,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Hẹn Gặp" readonly>
                             </div>
                         </div>
@@ -193,7 +173,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div id="sandbox-container">
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" placeholder="Ngày Hẹn Gặp (dd-mm-yyyy)"></span>
+                                            <input type="text" class="form-control" placeholder="Ngày Hẹn Gặp (dd-mm-yyyy)" name="appointment2" value="@Model.Contract.AppointmentMarket.Value.ToString("dd/MM/yyyy")"></span>
                                             <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
                                         </div>
                                     </div>
@@ -201,10 +181,12 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            <input type="checkbox" aria-label="Checkbox for following text input">
+                                            <input type="checkbox" aria-label="Checkbox for following text input" name="confirm" value="@Model.Contract.CheckConfirm" @(Model.Contract.CheckConfirm.Value ? "checked=\"checked\"" : "")>
                                         </span>
                                         <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Khách Hàng Đồng Ý Mẫu Thiết Kế" readonly>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -217,9 +199,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Áo Mẫu Đã Duyệt" readonly>
                             </div>
                         </div>
@@ -254,9 +233,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Hợp Đồng" readonly>
                             </div>
                         </div>
@@ -291,9 +267,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Sản Xuất" readonly>
                             </div>
                         </div>
@@ -302,24 +275,18 @@
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <!-- Ngày Bắt Đầu -->
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <!-- Ngày Bắt Đầu & Ngày kết Thúc 2 cái này daterange mặc định Ngày kết Thúc không thể trước Ngày Bắt Đầu, 2 ngày có trùng nhau-->
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div id="sandbox-container">
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control" placeholder="Ngày Bắt Đầu (dd-mm-yyyy)"></span>
-                                            <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input type="text" class="input-sm form-control" placeholder="Ngày Tư Vấn" name="start" value="@Model.Contract.StartDate.Value.ToString("dd/MM/yyyy")" />
+                                            <span class="input-group-addon">|</span>
+                                            <input type="text" class="input-sm form-control" placeholder="Ngày Hẹn Gặp" name="end" value="@Model.Contract.EndDate.Value.ToString("dd/MM/yyyy")" />
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Ngày Kết Thúc -->
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <div id="sandbox-container">
-                                        <div class="input-group date">
-                                            <input type="text" class="form-control" placeholder="Ngày Kết Thúc (dd-mm-yyyy)"></span>
-                                            <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -331,32 +298,35 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Chuyển Tiền" readonly>
                             </div>
                         </div>
                     </div>
                     <!-- Cột Phải -->
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xm-12">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xm-12">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <label class="custom-control custom-radio">
-                                        <input id="customer-money-tranfer50" name="tranfer-money-radio" type="radio" class="custom-control-input">
+                                        <input id="customer-money-tranfer0" name="tranfer-money-radio" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Chưa Chuyển</span>
+                                    </label>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                    <label class="custom-control custom-radio">
+                                        <input id="customer-money-tranfer50" name="tranfer-money-radio" type="radio" class="custom-control-input" checked="checked">
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">50% Số Tiền</span>
                                     </label>
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xm-12 ">
-                                    <div class="form-check form-check-inline">
-                                        <label class="custom-control custom-radio">
-                                            <input id="customer-money-tranfer100" name="tranfer-money-radio" type="radio" class="custom-control-input">
-                                            <span class="custom-control-indicator"></span>
-                                            <span class="custom-control-description">100% Số Tiền</span>
-                                        </label>
-                                    </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+
+                                    <label class="custom-control custom-radio">
+                                        <input id="customer-money-tranfer100" name="tranfer-money-radio" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">100% Số Tiền</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -369,39 +339,44 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Gọi Nhắc" readonly>
                             </div>
                         </div>
                     </div>
                     <!-- Cột Phải -->
-                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xm-12">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12">
                                     <div class="row">
-                                        <!-- Gọi Nhắc lần 1 -->
-                                        <div class="col-xl-4">
+                                        <!-- Chưa Gọi -->
+                                        <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call1-radio" name="customer-call-radio" type="radio" class="custom-control-input">
+                                                <input id="customer-call0-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="3" @(int.Parse(Model.Contract.Remind) == 3 ? "checked" : "")>
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Chưa Gọi</span>
+                                            </label>
+                                        </div>
+                                        <!-- Gọi Nhắc lần 1 -->
+                                        <div class="col-xl-3">
+                                            <label class="custom-control custom-radio">
+                                                <input id="customer-call1-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="0" @(int.Parse(Model.Contract.Remind) == 0 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Gọi Nhắc lần 1</span>
                                             </label>
                                         </div>
                                         <!-- Gọi Nhắc lần 2 -->
-                                        <div class="col-xl-4">
+                                        <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call2-radio" name="customer-call-radio" type="radio" class="custom-control-input">
+                                                <input id="customer-call2-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="1" @(int.Parse(Model.Contract.Remind) == 1 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Gọi Nhắc lần 2</span>
                                             </label>
                                         </div>
                                         <!-- Gọi Nhắc lần 3 -->
-                                        <div class="col-xl-4">
+                                        <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call2-radio" name="customer-call-radio" type="radio" class="custom-control-input">
+                                                <input id="customer-call3-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="2" @(int.Parse(Model.Contract.Remind) == 2 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Gọi Nhắc lần 3</span>
                                             </label>
@@ -419,9 +394,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xm-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox" aria-label="Checkbox for following text input">
-                                </span>
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Trạng Thái" readonly>
                             </div>
                         </div>
@@ -432,14 +404,14 @@
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="btn-group w-100" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary w-100 ">
-                                            <input type="radio" name="options" id="option1" autocomplete="off" checked> Đã Kí
+                                        <label class="btn btn-outline-primary w-100 @(int.Parse(Model.Contract.StatusContract)==0 ? "active":"") ">
+                                            <input type="radio" name="options" id="option1" autocomplete="off" value="0" )> Đã Kí
                                         </label>
-                                        <label class="btn btn-outline-warning w-100 ">
-                                            <input type="radio" name="options" id="option2" autocomplete="off"> Đang Chờ Phản Hồi
+                                        <label class="btn btn-outline-warning w-100 @(int.Parse(Model.Contract.StatusContract)==1 ? "active":"")">
+                                            <input type="radio" name="options" id="option2" autocomplete="off" value="1" )> Đang Chờ Phản Hồi
                                         </label>
-                                        <label class="btn btn-outline-danger w-100 ">
-                                            <input type="radio" name="options" id="option3" autocomplete="off"> Thất Bại
+                                        <label class="btn btn-outline-danger w-100 @(int.Parse(Model.Contract.StatusContract)==2 ? "active":"")">
+                                            <input type="radio" name="options" id="option3" autocomplete="off" value="2" )> Thất Bại
                                         </label>
                                     </div>
                                 </div>
@@ -453,16 +425,15 @@
                 <div class="row">
                     <!-- Cột Trái -->
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
-                        <button type="submit" class="btn btn-success btn-block" role="button" href="@Url.Action("Contract","Contract")">Lưu Thông Tin</button>
+                        <button type="submit" role="button" class="btn btn-success btn-block" href="@Url.Action("Contract","Contract")">Lưu Thông Tin</button>
                     </div>
                     <!-- Cột Phải -->
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
-                        <a class="btn btn-danger btn-block" role="button" href="#">Huỷ Thông Tin</a>
+                        <button class="btn btn-danger btn-block" role="button" onclick="history.go(-1); return false">Huỷ Thông Tin</button>
                     </div>
                 </div>
                 <br>
-
-            </form>
+            </div>
         </div>
     </div>
-</div>
+</form>

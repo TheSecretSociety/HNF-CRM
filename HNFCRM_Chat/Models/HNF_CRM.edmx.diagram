@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8533019f6c094e69bb0da3d7e2d6b9a3" Name="Diagram1">
+      <Diagram DiagramId="1b98e57b9c444f2faa2b5a51acd5e00c" Name="Diagram1">
         <EntityTypeShape EntityType="CP_CRMModel.CHATINFO" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CP_CRMModel.COLOR" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CP_CRMModel.CONTRACT" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CP_CRMModel.CONTRACT" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CP_CRMModel.CONTRACTDETAIL" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="CP_CRMModel.CUSTOMER" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CP_CRMModel.CUSTOMERCONSULTING" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
