@@ -10,89 +10,188 @@ namespace HNFCRM_Chat.Controllers
     public class StaffController : Controller
     {
         CP_CRMEntities entities = new CP_CRMEntities();
-
-        // GET: Staff
-        public ActionResult Staff()
+        // GET: AddStaff
+        public ActionResult AddStaff()
         {
-            var p = entities.STAFFs.ToList();
-            return View(p);
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            //Get the value from database and then set it to ViewBag to pass it View
+            IEnumerable<SelectListItem> items = entities.ROLEs.Select(c => new SelectListItem
+            {
+                Value = c.Role1,
+                Text = c.Role1
+            });
+            ViewBag.AddStaff = items;
+            return View();
         }
 
-        //Get Detail Staff By ID
-        public ActionResult StaffDetail(int id)
+        //Insert new Staff
+        [HttpPost]
+        public ActionResult AddStaff(FormCollection frm)
         {
+            STAFF data = new STAFF();
+            string email = frm["email"];
+            var check = entities.STAFFs.Where(x => x.Email == email).ToList();
+            if (check.Count == 1)
+            {
+                TempData["AddStaff"] = "Email đã tồn tại!";
+                return RedirectToAction("AddStaff", "Staff");
+            }
+            data.Name = frm["name"];
+            data.Phone = frm["phone"];
+            data.Email = frm["email"];
+            data.Password = frm["password"];
+            if (frm["role"] == "Quản Trị Viên")
+            {
+                data.ID_Role = 1;
+            }
+            else if (frm["role"] == "Nhân Viên Bán Hàng")
+            {
+                data.ID_Role = 2;
+            }
+            else if (frm["role"] == "Nhân Viên Chăm Sóc Khách Hàng")
+            {
+                data.ID_Role = 3;
+            }
+            else if (frm["role"] == "Nhân Viên Quản Lí Sản Xuất")
+            {
+                data.ID_Role = 4;
+            }
+            entities.STAFFs.Add(data);
+            entities.SaveChanges();
+            return RedirectToAction("Staff", "Staff");
+        }
+        // GET: EditStaff
+        public ActionResult EditStaff(int id)
+        {
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            //Get the value from database and then set it to ViewBag to pass it View
+            IEnumerable<SelectListItem> items = entities.ROLEs.Select(c => new SelectListItem
+            {
+                Value = c.Role1,
+                Text = c.Role1
+            });
+            ViewBag.JobTitle = items;
+            //Get staff in database
             STAFF staff = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
             return View(staff);
         }
 
-        [HttpPost]
         //Update Staff Information
-        public ActionResult StaffDetail(int id, FormCollection frm)
+        [HttpPost]
+        public ActionResult EditStaff(int id, FormCollection frm)
         {
-            STAFF staff = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
-            staff.Name = frm["name"];
-            staff.Phone = frm["phone"];
-            staff.Email = frm["email"];
+            STAFF data = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
+            string email = frm["email"];
+            var check = entities.STAFFs.Where(x => x.Email == email).ToList();
+            if (check.Count == 1)
+            {
+                if (email != data.Email)
+                {
+                    TempData["EditStaff"] = "Email đã tồn tại!";
+                    return RedirectToAction("EditStaff", "Staff");
+                }
+            }
+            data.Name = frm["name"];
+            data.Phone = frm["phone"];
+            data.Email = frm["email"];
+            data.Password = frm["password"];
             if (frm["role"] == "Quản Trị Viên")
             {
-                staff.ID_Role = 1;
+                data.ID_Role = 1;
             }
             else if (frm["role"] == "Nhân Viên Bán Hàng")
             {
-                staff.ID_Role = 2;
+                data.ID_Role = 2;
             }
             else if (frm["role"] == "Nhân Viên Chăm Sóc Khách Hàng")
             {
-                staff.ID_Role = 3;
+                data.ID_Role = 3;
             }
-            else if (frm["role"] == "Quản lý Sản Xuất")
+            else if (frm["role"] == "Nhân Viên Quản Lí Sản Xuất")
             {
-                staff.ID_Role = 4;
+                data.ID_Role = 4;
             }
-            if (frm["password"] == frm["confirmpassword"])
-            {
-                staff.Password = frm["password"];
-            }
-
             entities.SaveChanges();
-            return RedirectToAction("StaffDetail");
+            return RedirectToAction("Staff", "Staff");
         }
 
-        [HttpPost]
-        //Add New Staff
-        public ActionResult AddStaff(FormCollection frm)
+        // GET: Staff
+        public ActionResult Staff()
         {
-            STAFF staff = new STAFF();
-            staff.Name = frm["name"];
-            staff.Phone = frm["phone"];
-            staff.Email = frm["email"];
-            if (frm["role"] == "Quản Trị Viên")
+            if (Session["author"] == null)
             {
-                staff.ID_Role = 1;
+                return RedirectToAction("Login", "Login");
             }
-            else if (frm["role"] == "Nhân Viên Bán Hàng")
+            var staff = entities.STAFFs.ToList();
+            return View(staff);
+        }
+
+        // GET: DeleteStaff
+        public ActionResult DeleteStaff(int id)
+        {
+            STAFF s = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
+            entities.STAFFs.Remove(s);
+            entities.SaveChanges();
+            return RedirectToAction("Staff", "Staff");
+        }
+
+        //Search staff
+        [HttpPost]
+        public ActionResult SearchStaff(string Search)
+        {
+            try
             {
-                staff.ID_Role = 2;
+                var s = entities.STAFFs.Where(x => x.Name.Contains(Search) || x.Email.Contains(Search) || x.Phone.Contains(Search)).ToList();
+                return View(s);
             }
-            else if (frm["role"] == "Nhân Viên Chăm Sóc Khách Hàng")
+            catch (Exception e)
             {
-                staff.ID_Role = 3;
+                return new EmptyResult();
             }
-            else if (frm["role"] == "Quản lý Sản Xuất")
+        }
+
+        //Information
+        public ActionResult Information()
+        {
+            //Get the value from database and then set it to ViewBag to pass it View
+            IEnumerable<SelectListItem> items = entities.ROLEs.Select(c => new SelectListItem
             {
-                staff.ID_Role = 4;
-            }
-            if (frm["password"] == frm["confirmpassword"])
-            {
-                staff.Password = frm["password"];
-                entities.STAFFs.Add(staff);
-                entities.SaveChanges();
-                return RedirectToAction("Staff");
-            }
-            else
-            {
-                return View();
-            }
+                Value = c.Role1,
+                Text = c.Role1
+            });
+            ViewBag.Information = items;
+            //Get staff in database
+            var s = Session["ID"] as STAFF;
+            STAFF staff = entities.STAFFs.Where(x => x.ID == s.ID).SingleOrDefault();
+            return View(staff);
+        }
+
+        //Filter Role
+        public ActionResult FilterAdmin()
+        {
+                    var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
+                    return View(s);
+        }
+        public ActionResult FilterSale()
+        {
+            var s = entities.STAFFs.Where(x => x.ID_Role == 2).ToList();
+            return View(s);
+        }
+        public ActionResult FilterCustomerCare()
+        {
+            var s = entities.STAFFs.Where(x => x.ID_Role == 3).ToList();
+            return View(s);
+        }
+        public ActionResult FilterProductline()
+        {
+            var s = entities.STAFFs.Where(x => x.ID_Role == 4).ToList();
+            return View(s);
         }
     }
 }
