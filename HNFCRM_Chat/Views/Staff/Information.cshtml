@@ -1,16 +1,18 @@
 ﻿<link rel="stylesheet" href="~/Content/HNFStyle.css">
 @using HNFCRM_Chat.Models
 @model STAFF
+
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
             <br>
-            @using (Html.BeginForm("AddStaff", "Staff", FormMethod.Post))
+            @using (Html.BeginForm("EditStaff", "Staff", FormMethod.Post))
             {
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="card form-input-margin">
                             <div class="row">
+
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sx-4">
                                     <h5>Thông Tin Nhân Viên</h5>
                                     <br>
@@ -32,24 +34,23 @@
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
-                                                <label for="InputName">Họ Tên </label>
-                                                <input type="text" name="name" class="form-control" id="InputName" aria-describedby="emailHelp">
+                                                <label for="InputName">Họ Tên</label>
+                                                <input type="text" name="name" class="form-control" id="InputName" aria-describedby="emailHelp" value="@Model.Name">
                                             </div>
                                             <div class="form-group">
                                                 <label for="InputPhone">Số Điện Thoại</label>
-                                                <input type="text" name="phone" class="form-control" id="InputPhone" aria-describedby="emailHelp">
+                                                <input type="text" name="phone" class="form-control" id="InputPhone" aria-describedby="emailHelp" value="@Model.Phone">
                                             </div>
-                                            @if (TempData["AddStaff"] != null)
-                { <p style="color:red">@TempData["AddStaff"]</p>
+                                            @if (TempData["EditStaff"] != null)
+                { <p style="color:red">@TempData["EditStaff"]</p>
                                             }
                                             <div class="form-group">
                                                 <label for="InputEmail">Email</label>
-                                                <input type="text" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
+                                                <input name="email" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" value="@Model.Email">
                                             </div>
                                             <div class="form-group">
                                                 <label for="InputAuthorize">Phân Quyền</label>
-                                                <select class="form-control" id="InputAuthorize" name="role" @Html.DropDownList("AddStaff")>
-                                                </select>
+                                                <select class="form-control" id="InputAuthorize" name="role" @Html.DropDownList("Information", @Model.ROLE.Role1)></select>
                                             </div>
                                         </div>
                                         <div class="col-xl-6">
@@ -59,7 +60,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="InputPassword">Mật Khẩu</label>
-                                                <input type="password" name="password" class="form-control" id="InputPassword" aria-describedby="emailHelp" placeholder="">
+                                                <input type="password" name="password" class="form-control" id="InputPassword" aria-describedby="emailHelp" value="@Model.Password">
                                             </div>
                                             <div class="form-group">
                                                 <label for="InputPasswordConfirm">Nhập Lại Mật Khẩu</label>
@@ -68,7 +69,7 @@
                                             <div class="form-group">
                                                 <br>
                                                 <div class="btn-group w-100" role="group">
-                                                    <button type="submit" href='@Url.Action("AddStaff", "Staff")' class="btn btn-success w-100">Lưu</button>
+                                                    <button type="submit" href='@Url.Action("EditStaff", "Staff")' class="btn btn-success w-100">Lưu</button>
                                                     <a href='@Url.Action("Staff", "Staff")' class="btn btn-danger w-100">Huỷ</a>
                                                 </div>
                                             </div>
