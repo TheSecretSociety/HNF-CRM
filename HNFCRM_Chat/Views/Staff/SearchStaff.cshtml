@@ -1,0 +1,127 @@
+﻿@model IEnumerable<HNFCRM_Chat.Models.STAFF>
+<link rel="stylesheet" href="~/Content/HNFStyle.css">
+
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <div class="container-fluid">
+            <br>
+            @using (Html.BeginForm("SearchStaff", "Staff", FormMethod.Post))
+            {
+            <!-- Thanh Chức Năng -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sx-12 mb-0">
+                        <div class="card form-input-margin">
+                            <div class="row">
+                                <!-- Nút Chức Năng -->
+                                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <!-- Nhóm nút chức năng -->
+                                    <div class="btn-group w-100" role="group" aria-label="Function Button">
+                                        <!-- Nút Thêm (dùng dưới lệnh <a> để bấm liên kết hoặc có thể đổi sang <button>) -->
+                                        <a href='@Url.Action("AddStaff", "Staff")' class="btn btn-success w-100" role="button">Thêm</a>
+                                        <!-- Nút Xoá -->
+                                        <button type="button" class="btn btn-danger w-100">Xoá</button>
+                                    </div>
+                                </div>
+                                <!-- Thanh Lọc -->
+                                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <!-- Phân Quyền (Dropdown) -->
+                                        @using (Html.BeginForm("FilterStaff", "Staff", FormMethod.Post))
+                                        {
+                                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <select class="form-control" id="InputAuthorize">
+                                                        <option selected="">Phân Quyền</option>
+                                                        <option>Nhân Viên Bán Hàng</option>
+                                                        <option>Tư Vấn Khách Hàng</option>
+                                                        <option>Quản Lí Sản Xuất</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        <!-- trường tìm Kiếm và nút tìm kiếm -->
+                                            <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                                <div class="row">
+                                                    <!-- Search Bar -->
+                                                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" placeholder="Tìm Kiếm..." name="Search">
+                                                        </div>
+                                                    </div>
+                                                    <!-- Search Button -->
+                                                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <button type="submit" class="btn btn-block btn-warning search-button" href='@Url.Action("SearchStaff", "Staff")'>Tìm Kiếm<i class="material-icons md-18">search</i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            <!-- Bản Khách Hàng -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Bản Khách Hàng -->
+                        <table class="table table-sm table-hover">
+                            <thead class="thead">
+                                <tr id="employee-table-row">
+                                    <th>
+                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                    </th>
+                                    <th>HỌ VÀ TÊN</th>
+                                    <th>ĐIỆN THOẠI</th>
+                                    <th>EMAIL</th>
+                                    <th>PHÂN QUYỀN</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ foreach (var item in Model)
+                                    {
+                                        <tr class="table-success">
+                                            <th scope="row">
+                                                <input type="button" aria-label="Checkbox for following text input" value="x" onclick="location.href='@Url.Action("DeleteStaff", "Staff", new
+                                                                                                                                             {
+                                                                                                                                                 id = item
+.ID
+                                                                                                                                             })'">
+                                            </th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.ROLE.Role1</td>
+                                            <td><a href="@Url.Action("EditStaff", "Staff", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                        <!-- Phần nút chuyển  -->
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                                    }
+        </div>
+    </div>
+</div>
