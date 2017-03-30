@@ -88,7 +88,10 @@ namespace HNFCRM_Chat.Controllers
         {
             STAFF data = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
             string email = frm["email"];
+            string oldpass = frm["oldpassword"];
             var check = entities.STAFFs.Where(x => x.Email == email).ToList();
+            var checkpass = entities.STAFFs.Where(x => x.Password == oldpass).ToList();
+
             if (check.Count == 1)
             {
                 if (email != data.Email)
@@ -96,6 +99,11 @@ namespace HNFCRM_Chat.Controllers
                     TempData["EditStaff"] = "Email đã tồn tại!";
                     return RedirectToAction("EditStaff", "Staff");
                 }
+            }
+            if (checkpass.Count == 0)
+            {
+                TempData["OldPass"] = "Mật khẩu nhập không đúng!";
+                return RedirectToAction("EditStaff", "Staff");
             }
             data.Name = frm["name"];
             data.Phone = frm["phone"];
@@ -175,8 +183,8 @@ namespace HNFCRM_Chat.Controllers
         //Filter Role
         public ActionResult FilterAdmin()
         {
-                    var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
-                    return View(s);
+            var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
+            return View(s);
         }
         public ActionResult FilterSale()
         {

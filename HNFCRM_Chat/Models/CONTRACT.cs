@@ -32,7 +32,7 @@ namespace HNFCRM_Chat.Models
         public string Contract1 { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
-        public Nullable<bool> MoneyTransfer { get; set; }
+        public string MoneyTransfer { get; set; }
         public string Remind { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

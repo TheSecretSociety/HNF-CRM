@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
+using System.IO;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -70,7 +71,7 @@ namespace HNFCRM_Chat.Controllers
 
         //Update Contract
         [HttpPost]
-        public ActionResult Contract(int id, FormCollection frm)
+        public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase file)
         {
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
 
@@ -197,6 +198,17 @@ namespace HNFCRM_Chat.Controllers
             {
                 contract.StatusContract = "2";
             }
+            //upload file
+            string _FileName = Path.GetFileName(file.FileName);
+            string _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //}
+            contract.SendMarket = _path;
+            file.SaveAs(_path);
+            //contract.SendMarket = path;
+            //file.SaveAs(path);
 
             contract.UpdatedDate = DateTime.Now;
             entities.SaveChanges();
