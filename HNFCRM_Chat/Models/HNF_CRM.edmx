@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CP_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CP_CRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CHATINFO">
           <Key>
             <PropertyRef Name="ID" />
@@ -39,7 +39,7 @@
           <Property Name="Contract" Type="varchar" MaxLength="100" />
           <Property Name="StartDate" Type="date" />
           <Property Name="EndDate" Type="date" />
-          <Property Name="MoneyTransfer" Type="bit" />
+          <Property Name="MoneyTransfer" Type="char" MaxLength="3" />
           <Property Name="Remind" Type="char" MaxLength="3" />
           <Property Name="UpdatedDate" Type="date" />
           <Property Name="CreatedDate" Type="date" />
@@ -170,7 +170,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="35" />
           <Property Name="Phone" Type="nvarchar" MaxLength="13" />
-          <Property Name="Email" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
           <Property Name="ID_Role" Type="int" />
           <Property Name="Avartar" Type="image" />
           <Property Name="Password" Type="varchar" MaxLength="30" />
@@ -452,7 +452,8 @@
             <End Role="WOMENSIZE" EntitySet="WOMENSIZE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CP_CRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -492,7 +493,7 @@
           <Property Name="Contract1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <Property Name="MoneyTransfer" Type="Boolean" />
+          <Property Name="MoneyTransfer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="Remind" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
@@ -643,7 +644,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ID_Role" Type="Int32" />
           <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />

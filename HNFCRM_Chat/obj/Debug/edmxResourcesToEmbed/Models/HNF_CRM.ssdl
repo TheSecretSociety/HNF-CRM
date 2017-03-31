@@ -34,7 +34,7 @@
     <Property Name="Contract" Type="varchar" MaxLength="100" />
     <Property Name="StartDate" Type="date" />
     <Property Name="EndDate" Type="date" />
-    <Property Name="MoneyTransfer" Type="bit" />
+    <Property Name="MoneyTransfer" Type="char" MaxLength="3" />
     <Property Name="Remind" Type="char" MaxLength="3" />
     <Property Name="UpdatedDate" Type="date" />
     <Property Name="CreatedDate" Type="date" />
@@ -165,7 +165,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="35" />
     <Property Name="Phone" Type="nvarchar" MaxLength="13" />
-    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
     <Property Name="ID_Role" Type="int" />
     <Property Name="Avartar" Type="image" />
     <Property Name="Password" Type="varchar" MaxLength="30" />

@@ -20,9 +20,9 @@
                                     <div class="btn-group w-100" role="group" aria-label="Function Button">
                                         <!-- Nút Thêm (dùng dưới lệnh <a> để bấm liên kết hoặc có thể đổi sang <button>) -->
                                         @{
-                                            var a = Session["author"] as STAFF;
+                                            var a = Session["Role"] as STAFF;
                                         }
-                                        @if (a.Name == "Quản Trị Viên")
+                                        @if (a.ID_Role == 1)
                                         {
                                             <a href='@Url.Action("AddStaff", "Staff")' class="btn btn-success w-100" role="button">Thêm</a>
                                         }
@@ -93,11 +93,11 @@
                                                                 {
                                                                     <tr class="table-success">
                                                                         <th scope="row">
-                                                                            <input type="button" aria-label="Checkbox for following text input" value="x" onclick="location.href='@Url.Action("DeleteStaff", "Staff", new
+                                                                            <a type="button" aria-label="Checkbox for following text input" value="x" onclick="return confirm('Chắc chắn xóa?')" href="@Url.Action("DeleteStaff", "Staff", new
                                                                                                                                              {
                                                                                                                                                  id = item
 .ID
-                                                                                                                                             })'">
+                                                                                                                                             })">x</a>
                                                                         </th>
                                                                         <td>@item.Name</td>
                                                                         <td>@item.Phone</td>

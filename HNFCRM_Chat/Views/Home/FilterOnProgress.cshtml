@@ -116,18 +116,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{ foreach (var item in Model)
+                                    @{ if (Model != null)
                                         {
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>@item.Name</td>
-                                                <td>@item.Company</td>
-                                                <td>@item.Email</td>
-                                                <td>@item.Phone</td>
-                                                <td>mdo</td>
-                                                <td>mdo</td>
-                                                <td>mdo</td>
-                                            </tr>
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Company</td>
+                                                    <td>@item.Email</td>
+                                                    <td>@item.Phone</td>
+                                                    <td>mdo</td>
+                                                    <td>mdo</td>
+                                                    <td>mdo</td>
+                                                </tr>
+                                            }
                                         }
                                     }
                                 </tbody>
