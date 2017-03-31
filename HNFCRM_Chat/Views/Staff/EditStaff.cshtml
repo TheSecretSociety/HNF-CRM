@@ -42,8 +42,7 @@
                                                 <input type="text" name="phone" class="form-control" id="InputPhone" aria-describedby="emailHelp" value="@Model.Phone">
                                             </div>
                                             @if (TempData["EditStaff"] != null)
-                { <p style="color:red">@TempData["EditStaff"]</p>
-                                            }
+                                            { <p style="color:red">@TempData["EditStaff"]</p>}
                                             <div class="form-group">
                                                 <label for="InputEmail">Email</label>
                                                 <input name="email" type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" value="@Model.Email">

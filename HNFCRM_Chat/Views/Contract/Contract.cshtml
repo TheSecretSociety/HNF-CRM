@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
-<form method="post" action="@Url.Action("Contract", "Contract")">
+<form method="post" action="@Url.Action("Contract", "Contract")" enctype="multipart/form-data">
     <div id="page-content-wrapper">
         <div class="page-content">
             <div class="container-fluid">
@@ -42,7 +42,7 @@
                         <div class="card">
                             <div class="card-block">
                                 <h6 class="card-subtitle mb-1 text-muted">Người Tạo Hợp Đồng</h6>
-                                <h4 class="card-title">Ngô Tấn Lộc</h4>
+                                <h4 class="card-title">@Model.Staff.Name</h4>
                             </div>
                         </div>
                     </div>
@@ -244,7 +244,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="mb-2 mb-sm-0">
                                         <label class="custom-file w-100">
-                                            <input type="file" id="file" class="custom-file-input hnf-custom-file-input">
+                                            <input type="file" id="file" name="file" class="custom-file-input hnf-custom-file-input">
                                             <span class="custom-file-control"></span>
                                         </label>
                                     </div>
@@ -308,14 +308,14 @@
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <label class="custom-control custom-radio">
-                                        <input id="customer-money-tranfer0" name="tranfer-money-radio" type="radio" class="custom-control-input">
+                                        <input id="customer-money-tranfer0" name="tranfer-money-radio" type="radio" class="custom-control-input" value="2" @(int.Parse(Model.Contract.MoneyTransfer) == 2 ? "checked" : "")>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Chưa Chuyển</span>
                                     </label>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                     <label class="custom-control custom-radio">
-                                        <input id="customer-money-tranfer50" name="tranfer-money-radio" type="radio" class="custom-control-input" checked="checked">
+                                        <input id="customer-money-tranfer50" name="tranfer-money-radio" type="radio" class="custom-control-input" value="1" @(int.Parse(Model.Contract.MoneyTransfer) == 1 ? "checked" : "")>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">50% Số Tiền</span>
                                     </label>
@@ -323,7 +323,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
 
                                     <label class="custom-control custom-radio">
-                                        <input id="customer-money-tranfer100" name="tranfer-money-radio" type="radio" class="custom-control-input">
+                                        <input id="customer-money-tranfer100" name="tranfer-money-radio" type="radio" class="custom-control-input" value="0" @(int.Parse(Model.Contract.MoneyTransfer) == 0 ? "checked" : "")>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">100% Số Tiền</span>
                                     </label>

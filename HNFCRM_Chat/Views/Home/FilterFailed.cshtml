@@ -89,10 +89,10 @@
                             <a class="nav-link hnf-navtab-font active" data-toggle="tab" onclick="location.href='@Url.Action("Index", "Home")'" role="tab">KHÁCH HÀNG MỚI</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterSuccess", "Home")'" role="tab">ĐƠN HÀNG ĐANG SẢN XUẤT</a>
+                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterOnProgress", "Home")'" role="tab">ĐƠN HÀNG ĐANG SẢN XUẤT</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterSuccess", "Home")'" role="tab">ĐƠN HÀNG ĐÃ THỰC HIỆN</a>
+                            <a class="nav-link hnf-navtab-font " data-toggle="tab" onclick="location.href='@Url.Action("FilterSuccess", "Home")'" role="tab">ĐƠN HÀNG ĐÃ THỰC HIỆN</a>
                         </li>
                         <li class="nav-item w-100">
                             <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterFailed", "Home")'" role="tab">ĐƠN HÀNG THẤT BẠI</a>
@@ -116,18 +116,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{ foreach (var item in Model)
+                                    @{ if (Model != null)
                                         {
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>@item.Name</td>
-                                                <td>@item.Company</td>
-                                                <td>@item.Email</td>
-                                                <td>@item.Phone</td>
-                                                <td>mdo</td>
-                                                <td>mdo</td>
-                                                <td>mdo</td>
-                                            </tr>
+                                            foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Company</td>
+                                                    <td>@item.Email</td>
+                                                    <td>@item.Phone</td>
+                                                    <td>mdo</td>
+                                                    <td>mdo</td>
+                                                    <td>mdo</td>
+                                                </tr>
+                                            }
                                         }
                                     }
                                 </tbody>

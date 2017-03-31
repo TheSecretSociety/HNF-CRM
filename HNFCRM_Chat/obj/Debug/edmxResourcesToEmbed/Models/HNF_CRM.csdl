@@ -36,7 +36,7 @@
     <Property Name="Contract1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="StartDate" Type="DateTime" Precision="0" />
     <Property Name="EndDate" Type="DateTime" Precision="0" />
-    <Property Name="MoneyTransfer" Type="Boolean" />
+    <Property Name="MoneyTransfer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
     <Property Name="Remind" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
@@ -187,7 +187,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
     <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="ID_Role" Type="Int32" />
     <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />

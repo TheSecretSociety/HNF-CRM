@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
+using System.IO;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -17,62 +18,80 @@ namespace HNFCRM_Chat.Controllers
         // GET: Contract by Customer ID
         public ActionResult Contract(int id)
         {
-            try
+
+            CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            var a = Session["ID"] as STAFF;
+            int idstaff = a.ID;
+            //Insert new contract and contract detail of new customer if it has not exists
+            if (contract == null)
             {
-                CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
-                //Insert new contract and contract detail of new customer if it has not exists
-                if (contract == null)
-                {
-                    //Insert New Contract
-                    CONTRACT newcontract = new CONTRACT();
-                    newcontract.ID_Customer = id;
-                    newcontract.CreatedDate = DateTime.Now;
-                    entities.CONTRACTs.Add(newcontract);
+                //Insert New Contract
+                CONTRACT newcontract = new CONTRACT();
+                newcontract.ID_Customer = id;
+                //DateTime set now is default value
+                newcontract.CreatedDate = DateTime.Now;
+                newcontract.UpdatedDate = DateTime.Now;
+                newcontract.DateConsult = DateTime.Now;
+                newcontract.Appointment = DateTime.Now;
+                newcontract.AppointmentMarket = DateTime.Now;
+                newcontract.EndDate = DateTime.Now;
+                newcontract.StartDate = DateTime.Now;
+                //Remind set "Chưa gọi" is default value
+                newcontract.Remind = "3";
+                //Contract Status set "Đang chờ" is default value
+                newcontract.StatusContract = "1";
+                newcontract.ID_Staff = idstaff;
+                entities.CONTRACTs.Add(newcontract);
 
-                    //Insert New Contract Detail
-                    CONTRACTDETAIL newcontractdetail = new CONTRACTDETAIL();
-                    newcontractdetail.ID_Contract = id;
-                    newcontractdetail.SideCut = false;
-                    newcontractdetail.ArmBorder = false;
-                    newcontractdetail.ArmpitBorder = false;
-                    newcontractdetail.EmbroiderStartDate = DateTime.Now;
-                    newcontractdetail.EmbroiderEndDate = DateTime.Now;
-                    newcontractdetail.PrintStartDate = DateTime.Now;
-                    newcontractdetail.PrintEndDate = DateTime.Now;
-                    entities.CONTRACTDETAILs.Add(newcontractdetail);
-                    MENSIZE mensize = new MENSIZE();
-                    mensize.ID_CONTRACTDETAIL = newcontract.ID;
-                    entities.MENSIZEs.Add(mensize);
-                    WOMENSIZE womensize = new WOMENSIZE();
-                    womensize.ID_CONTRACTDETAIL = newcontract.ID;
-                    entities.WOMENSIZEs.Add(womensize);
-
-                    entities.SaveChanges();
-                    return RedirectToAction("Contract");
-                }
-                else
-                {
-                    CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
-                    int? staffid = contract.ID_Staff;
-                    STAFF staff = entities.STAFFs.Where(x => x.ID == staffid).SingleOrDefault();
-                    ContractModel model = new ContractModel();
-                    model.Contract = contract;
-                    model.Customer = customer;
-                    model.Staff = staff;
-                    return View(model);
-                }
+                //Insert New Contract Detail
+                CONTRACTDETAIL newcontractdetail = new CONTRACTDETAIL();
+                newcontractdetail.ID_Contract = newcontract.ID;
+                //Checkbox set false is default value
+                newcontractdetail.SideCut = false;
+                newcontractdetail.ArmBorder = false;
+                newcontractdetail.ArmpitBorder = false;
+                //All datetime set now is default value
+                newcontractdetail.EmbroiderStartDate = DateTime.Now;
+                newcontractdetail.EmbroiderEndDate = DateTime.Now;
+                newcontractdetail.PrintStartDate = DateTime.Now;
+                newcontractdetail.PrintEndDate = DateTime.Now;
+                entities.CONTRACTDETAILs.Add(newcontractdetail);
+                //Because of foreign key constraint, all relative table will be automatically created 
+                MENSIZE mensize = new MENSIZE();
+                mensize.ID_CONTRACTDETAIL = newcontract.ID;
+                entities.MENSIZEs.Add(mensize);
+                WOMENSIZE womensize = new WOMENSIZE();
+                womensize.ID_CONTRACTDETAIL = newcontract.ID;
+                entities.WOMENSIZEs.Add(womensize);
+                //Save Changes
+                entities.SaveChanges();
+                return RedirectToAction("Contract");
             }
-            catch (Exception e)
+            else
             {
-                return new EmptyResult();
+                CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
+                int? staffid = contract.ID_Staff;
+                STAFF staff = entities.STAFFs.Where(x => x.ID == staffid).SingleOrDefault();
+                ContractModel model = new ContractModel();
+                model.Contract = contract;
+                model.Customer = customer;
+                model.Staff = staff;
+                return View(model);
             }
         }
 
         //Update Contract
         [HttpPost]
-        public ActionResult Contract(int id, FormCollection frm)
+        public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase file)
         {
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            //Upload file
+            string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            file.SaveAs(path);
 
             //Appointment and Consult Date
             if (frm["consultdate"] == "" || frm["consultdate"] == null)
@@ -136,22 +155,19 @@ namespace HNFCRM_Chat.Controllers
             }
 
             //Transfer Money
-            //if (frm["tranfer-money-radio"] == "0")
-            //{
-            //    contract.Remind = "0";
-            //}
-            //else if (frm["tranfer-money-radio"] == "1")
-            //{
-            //    contract.Remind = "1";
-            //}
-            //else if (frm["tranfer-money-radio"] == "2")
-            //{
-            //    contract.Remind = "2";
-            //}
-            //else
-            //{
-            //    contract.Remind = "3";
-            //}
+            string status = frm["tranfer-money-radio"];
+            if (frm["tranfer-money-radio"] == "0")
+            {
+                contract.MoneyTransfer = "0";
+            }
+            else if (frm["tranfer-money-radio"] == "1")
+            {
+                contract.MoneyTransfer = "1";
+            }
+            else
+            {
+                contract.MoneyTransfer = "2";
+            }
 
             //Customer Call Remind
             //value = 3 has not call yet
@@ -173,7 +189,6 @@ namespace HNFCRM_Chat.Controllers
             }
 
             //Contract Status
-            string status = frm["options"];
             if (frm["options"] == "0")
             {
                 contract.StatusContract = "0";
