@@ -2,7 +2,23 @@
 @using HNFCRM_Chat.Models;
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        var activePage = url;
+        $('.sidebar-nav a').each(function () {
+            var linkPage = this.href;
 
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("sidebar-active");
+            }
+        });
+    });
+</script>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HNF-Staff</title>
+</head>
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -22,12 +38,12 @@
                                         @{
                                             var a = Session["Role"] as STAFF;
                                         }
-                                        @if (a.ID_Role == 1)
+                                        @if (a.ID_Role == 4)
                                         {
                                             <a href='@Url.Action("AddStaff", "Staff")' class="btn btn-success w-100" role="button">Thêm</a>
                                         }
                                         <!-- Nút Xoá -->
-                                        <button type="button" class="btn btn-danger w-100">Xoá</button>
+                                        <button type="button" id="EmployeeDeleteBtn" class="btn btn-danger w-100">Xoá</button>
                                     </div>
                                 </div>
                                 <!-- Thanh Lọc -->
@@ -44,8 +60,8 @@
                                                 <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" name="filter">
                                                     <a class="dropdown-item" href="@Url.Action("FilterAdmin", "Staff")">Quản Trị Viên</a>
                                                     <a class="dropdown-item" href="@Url.Action("FilterSale", "Staff")">Nhân Viên Bán Hàng</a>
-                                                    <a class="dropdown-item"href="@Url.Action("FilterCustomerCare", "Staff")">Chăm Sóc Khách Hàng</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterProduction", "Staff")">Quản Lí Sản Xuất</a>
+                                                    <a class="dropdown-item" href="@Url.Action("FilterCustomerCare", "Staff")">Chăm Sóc Khách Hàng</a>
+                                                    <a class="dropdown-item" href="@Url.Action("FilterProductline", "Staff")">Quản Lí Sản Xuất</a>
                                                 </div>
                                             </div>
                                         </div>

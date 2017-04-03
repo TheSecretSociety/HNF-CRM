@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>HNF-Contract Detail</title>
+    @*<title>HNF-Contract Detail</title>*@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,8 +20,8 @@
     <!-- Google Icon CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- custom CSS & Jquery modify URL -->
-    <link rel="stylesheet" href="css/HNFStyle.css">
-    <script src="css/HNF-jquery.js"></script>
+    <link rel="stylesheet" href="~/Content/HNFStyle.css">
+    <script src="~/Scripts/HNF-jquery.js"></script>
 </head>
 
 <body>
@@ -52,27 +52,51 @@
                     <div id="sidebar-top-menu">
                         <ul class="navbar-nav">
                             <h6 class="dropdown-header">ĐỊNH TUYẾN</h6>
-                            <li class="nav-item">
-                                <a class="nav-link" href='@Url.Action("Index","Home")'><i class="material-icons md-18">dashboard</i>Trang Chủ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href='@Url.Action("Customer","Customer")'><i class="material-icons md-18">perm_contact_calendar</i>Khách Hàng</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("ProductionLine", "ProductionLine")"><i class="material-icons md-18">settings_applications</i>Sản Xuất</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="material-icons md-18">pie_chart</i>Thống Kê</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="material-icons md-18">chat</i>Chat</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="@Url.Action("Staff", "Staff")"><i class="material-icons md-18">supervisor_account</i>Nhân Viên</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="material-icons md-18">child_care</i>Chăm Sóc Khách Hàng</a>
-                            </li>
+                            @{
+                                var a = Session["Role"] as STAFF;
+                            }
+                            @if (a.ID_Role == 1 || a.ID_Role == 2 || a.ID_Role == 3)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href='@Url.Action("Index", "Home")'><i class="material-icons md-18">dashboard</i>Trang Chủ</a>
+                                </li>
+                            }
+                            @if (a.ID_Role == 1 || a.ID_Role == 2 || a.ID_Role == 3)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href='@Url.Action("Customer", "Customer")'><i class="material-icons md-18">perm_contact_calendar</i>Khách Hàng</a>
+                                </li>
+                            }
+                            @if (a.ID_Role == 1 || a.ID_Role == 4)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("ProductionLine", "ProductionLine")"><i class="material-icons md-18">settings_applications</i>Sản Xuất</a>
+                                </li>
+                            }
+                            @if (a.ID_Role == 1)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="material-icons md-18">pie_chart</i>Thống Kê</a>
+                                </li>
+                            }
+                            @if (a.ID_Role == 1 || a.ID_Role == 3)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="material-icons md-18">chat</i>Chat</a>
+                                </li>
+                            }
+                            @if (a.ID_Role == 1)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action("Staff", "Staff")"><i class="material-icons md-18">supervisor_account</i>Nhân Viên</a>
+                                </li>
+                            }
+                            @if (a.ID_Role == 1 || a.ID_Role == 3)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="material-icons md-18">child_care</i>Chăm Sóc Khách Hàng</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </ul>
@@ -84,13 +108,34 @@
         <!-- Side Navigation -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="@Url.Action("Index","Home")"><i class="material-icons md-18">dashboard</i>TRANG CHỦ</a></li>
-                <li><a href="@Url.Action("Customer","Customer") "><i class="material-icons md-18">perm_contact_calendar</i>KHÁCH HÀNG</a></li>
-                <li><a href="@Url.Action("ProductionLine", "ProductionLine")"><i class="material-icons md-18">settings_applications</i>SẢN XUẤT</a></li>
-                <li><a href="#"><i class="material-icons md-18">pie_chart</i>THỐNG KÊ</a></li>
-                <li><a href="#"><i class="material-icons md-18">chat</i>CHAT</a></li>
-                <li><a href="@Url.Action("Staff", "Staff")"><i class="material-icons md-18">supervisor_account</i>NHÂN VIÊN</a></li>
-                <li><a href="#"><i class="material-icons md-18">child_care</i>CHĂM SÓC KHÁCH HÀNG</a></li>
+                @if (a.ID_Role == 1 || a.ID_Role == 2 || a.ID_Role == 3)
+                {
+                    <li><a href="@Url.Action("Index", "Home")"><i class="material-icons md-18">dashboard</i>TRANG CHỦ</a></li>
+                }
+                @if (a.ID_Role == 1 || a.ID_Role == 2 || a.ID_Role == 3)
+                {
+                    <li><a href="@Url.Action("Customer", "Customer") "><i class="material-icons md-18">perm_contact_calendar</i>KHÁCH HÀNG</a></li>
+                }
+                @if (a.ID_Role == 1 || a.ID_Role == 4)
+                {
+                    <li><a href="@Url.Action("ProductionLine", "ProductionLine")"><i class="material-icons md-18">settings_applications</i>SẢN XUẤT</a></li>
+                }
+                @if (a.ID_Role == 1)
+                {
+                    <li><a href="#"><i class="material-icons md-18">pie_chart</i>THỐNG KÊ</a></li>
+                }
+                @if (a.ID_Role == 1 || a.ID_Role == 3)
+                {
+                    <li><a href="#"><i class="material-icons md-18">chat</i>CHAT</a></li>
+                }
+                @if (a.ID_Role == 1)
+                {
+                    <li><a href="@Url.Action("Staff", "Staff")"><i class="material-icons md-18">supervisor_account</i>NHÂN VIÊN</a></li>
+                }
+                @if (a.ID_Role == 1 || a.ID_Role == 3)
+                {
+                    <li><a href="#"><i class="material-icons md-18">child_care</i>CHĂM SÓC KHÁCH HÀNG</a></li>
+                }
             </ul>
         </div>
         <!--===== end of [SIDERBAR] =====-->

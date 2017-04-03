@@ -2,7 +2,10 @@
 @using HNFCRM_Chat.Models;
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
-
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HNF-FilterCustomerCare</title>
+</head>
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -20,14 +23,14 @@
                                     <div class="btn-group w-100" role="group" aria-label="Function Button">
                                         <!-- Nút Thêm (dùng dưới lệnh <a> để bấm liên kết hoặc có thể đổi sang <button>) -->
                                         @{
-                                            var a = Session["author"] as STAFF;
+                                            var a = Session["Role"] as STAFF;
                                         }
-                                        @if (a.Name == "Quản Trị Viên")
+                                        @if (a.ID_Role == 1)
                                         {
                                             <a href='@Url.Action("AddStaff", "Staff")' class="btn btn-success w-100" role="button">Thêm</a>
                                         }
                                         <!-- Nút Xoá -->
-                                        <button type="button" class="btn btn-danger w-100">Xoá</button>
+                                        <button type="button" id="EmployeeDeleteBtn" class="btn btn-danger w-100">Xoá</button>
                                     </div>
                                 </div>
                                 <!-- Thanh Lọc -->
@@ -45,7 +48,7 @@
                                                     <a class="dropdown-item" href="@Url.Action("FilterAdmin", "Staff")">Quản Trị Viên</a>
                                                     <a class="dropdown-item" href="@Url.Action("FilterSale", "Staff")">Nhân Viên Bán Hàng</a>
                                                     <a class="dropdown-item" href="@Url.Action("FilterCustomerCare", "Staff")">Chăm Sóc Khách Hàng</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterProduction", "Staff")">Quản Lí Sản Xuất</a>
+                                                    <a class="dropdown-item" href="@Url.Action("FilterProductline", "Staff")">Quản Lí Sản Xuất</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,11 +96,11 @@
                                                                 {
                                                                     <tr class="table-success">
                                                                         <th scope="row">
-                                                                            <input type="button" aria-label="Checkbox for following text input" value="x" onclick="location.href='@Url.Action("DeleteStaff", "Staff", new
+                                                                            <a type="button" aria-label="Checkbox for following text input" value="x" onclick="return confirm('Chắc chắn xóa?')" href="@Url.Action("DeleteStaff", "Staff", new
                                                                                                                                              {
                                                                                                                                                  id = item
 .ID
-                                                                                                                                             })'">
+                                                                                                                                             })">x</a>
                                                                         </th>
                                                                         <td>@item.Name</td>
                                                                         <td>@item.Phone</td>

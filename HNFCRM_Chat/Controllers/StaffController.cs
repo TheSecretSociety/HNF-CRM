@@ -88,12 +88,23 @@ namespace HNFCRM_Chat.Controllers
         {
             STAFF data = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
             string email = frm["email"];
+            string oldpass = frm["oldpassword"];
             var check = entities.STAFFs.Where(x => x.Email == email).ToList();
+            var checkpass = entities.STAFFs.Where(x => x.Password == oldpass).ToList();
+
             if (check.Count == 1)
             {
                 if (email != data.Email)
                 {
                     TempData["EditStaff"] = "Email đã tồn tại!";
+                    return RedirectToAction("EditStaff", "Staff");
+                }
+            }
+            if(frm["oldpassword"] != null/* && frm["password"] != null && frm["confirm"] != null*/)
+            {
+                if (checkpass.Count == 0)
+                {
+                    TempData["OldPass"] = "Mật khẩu nhập không đúng!";
                     return RedirectToAction("EditStaff", "Staff");
                 }
             }
@@ -145,21 +156,22 @@ namespace HNFCRM_Chat.Controllers
         [HttpPost]
         public ActionResult SearchStaff(string Search)
         {
-            try
+            if (Session["author"] == null)
             {
-                var s = entities.STAFFs.Where(x => x.Name.Contains(Search) || x.Email.Contains(Search) || x.Phone.Contains(Search)).ToList();
-                return View(s);
+                return RedirectToAction("Login", "Login");
             }
-            catch (Exception e)
-            {
-                return new EmptyResult();
-            }
+            var s = entities.STAFFs.Where(x => x.Name.Contains(Search) || x.Email.Contains(Search) || x.Phone.Contains(Search)).ToList();
+            return View(s);
         }
 
         //Information
         public ActionResult Information()
         {
             //Get the value from database and then set it to ViewBag to pass it View
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             IEnumerable<SelectListItem> items = entities.ROLEs.Select(c => new SelectListItem
             {
                 Value = c.Role1,
@@ -175,21 +187,37 @@ namespace HNFCRM_Chat.Controllers
         //Filter Role
         public ActionResult FilterAdmin()
         {
-                    var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
-                    return View(s);
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
+            return View(s);
         }
         public ActionResult FilterSale()
         {
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var s = entities.STAFFs.Where(x => x.ID_Role == 2).ToList();
             return View(s);
         }
         public ActionResult FilterCustomerCare()
         {
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var s = entities.STAFFs.Where(x => x.ID_Role == 3).ToList();
             return View(s);
         }
         public ActionResult FilterProductline()
         {
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             var s = entities.STAFFs.Where(x => x.ID_Role == 4).ToList();
             return View(s);
         }

@@ -516,19 +516,19 @@
     <Content Include="Views\ProductionLine\FilterDelivery.cshtml" />
     <Content Include="Views\ProductionLine\FilterPackaging.cshtml" />
     <Content Include="Views\ProductionLine\FilterEmbroider.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Staff\EditStaff.cshtml" />
     <Content Include="Views\Staff\FilterAdmin.cshtml" />
     <Content Include="Views\Staff\FilterCustomerCare.cshtml" />
     <Content Include="Views\Staff\FilterProductline.cshtml" />
     <Content Include="Views\Staff\FilterSale.cshtml" />
     <Content Include="Views\Staff\SearchStaff.cshtml" />
-    <Content Include="Views\Staff\AddStaff.cshtml" />
-    <Content Include="Views\Staff\Staff.cshtml" />
     <Content Include="Views\Staff\Information.cshtml" />
     <Content Include="Views\Home\FilterSuccess.cshtml" />
     <Content Include="Views\Home\FilterFailed.cshtml" />
     <Content Include="Views\Home\FilterOnProgress.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Staff\Staff.cshtml" />
+    <Content Include="Views\Staff\AddStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,10 @@
 ﻿<link rel="stylesheet" href="~/Content/HNFStyle.css">
 @using HNFCRM_Chat.Models
 @model STAFF
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HNF-AddStaff</title>
+</head>
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -11,72 +15,58 @@
                     <div class="col-xl-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-sx-4">
+                                <!-- Thông tin nhân  -->
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sx-12">
                                     <h5>Thông Tin Nhân Viên</h5>
-                                    <br>
-                                    <div class="col-xl-12">
-                                        <div class="avatarwrapper">
-                                            <div class="avatar">
-                                                <img src="./image/avatar2.jpg" alt="..." class="img-fluid rounded-circle center-cropped mx-auto d-block ">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="col-xl-12">
-                                        <div class="avatarbutton">
-                                            <button type="button" name="button" class="btn btn-primary">Đổi Ảnh Đại Diện</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-sx-8">
                                     <div class="row">
+
                                         <div class="col-xl-6">
+                                            <!-- Họ Tên -->
                                             <div class="form-group">
-                                                <label for="InputName">Họ Tên </label>
-                                                <input type="text" name="name" class="form-control" id="InputName" aria-describedby="emailHelp">
+                                                <label for="InputName">Họ Tên <span class="Notice">*</span></label>
+                                                <input type="text" name="name" class="form-control" id="InputName" aria-describedby="InputName" placeholder="">
                                             </div>
+                                            <!-- Số Điện Thoại -->
                                             <div class="form-group">
-                                                <label for="InputPhone">Số Điện Thoại</label>
-                                                <input type="text" name="phone" class="form-control" id="InputPhone" aria-describedby="emailHelp">
+                                                <label for="InputPhone">Số Điện Thoại <span class="Notice">*</span></label>
+                                                <input type="text" name="phone" class="form-control" id="InputPhone" aria-describedby="InputPhone" placeholder="">
                                             </div>
+                                            <!-- Phân Quyền -->
+                                            <div class="form-group">
+                                                <label for="InputAuthorize">Phân Quyền <span class="Notice">*</span></label>
+                                                <select class="form-control" id="InputAuthorize" name="role" @Html.DropDownList("AddStaff")></select>
+                                            </div>
+                                            <br>
+                                            <button type="submit" href='@Url.Action("AddStaff", "Staff")' id="Employee-Save-Button" class="btn btn-success w-100">Lưu</button>
+                                        </div>
+                                        <div class="col-xl-6">
                                             @if (TempData["AddStaff"] != null)
                 { <p style="color:red">@TempData["AddStaff"]</p>
                                             }
+                                            <!-- Email -->
                                             <div class="form-group">
-                                                <label for="InputEmail">Email</label>
-                                                <input type="text" name="email" class="form-control" id="InputEmail" aria-describedby="emailHelp">
+                                                <label for="InputEmail">Email <span class="Notice">*</span></label>
+                                                <input type="text" name="email" class="form-control" id="InputEmail" aria-describedby="InputEmail" placeholder="">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="InputAuthorize">Phân Quyền</label>
-                                                <select class="form-control" id="InputAuthorize" name="role" @Html.DropDownList("AddStaff")>
-                                                </select>
+                                            <!-- Mật Khẩu -->
+                                            <div class="form-group" id="AddEmployeePassword">
+                                                <label for="InputPassword">Mật Khẩu <span class="Notice">*</span></label>
+                                                <input type="password" name="password" class="form-control" id="txt-input-password" aria-describedby="emailHelp" placeholder="">
                                             </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="form-group">
-                                                <label for="InputID">Tài Khoản</label>
-                                                <input type="text" class="form-control" id="InputID" aria-describedby="emailHelp" placeholder="">
+                                            <!-- Nhập Lại Mật Khẩu -->
+                                            <div class="form-group" id="AddEmployeeConfirmPassword">
+                                                <label for="InputPasswordConfirm">Nhập Lại Mật Khẩu <span class="Notice">*</span></label>
+                                                <input type="password" class="form-control" id="txt-input-password-confirm" aria-describedby="emailHelp" placeholder="">
                                             </div>
-                                            <div class="form-group">
-                                                <label for="InputPassword">Mật Khẩu</label>
-                                                <input type="password" name="password" class="form-control" id="InputPassword" aria-describedby="emailHelp" placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="InputPasswordConfirm">Nhập Lại Mật Khẩu</label>
-                                                <input type="password" class="form-control" id="InputPasswordConfirm" aria-describedby="emailHelp" placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <br>
-                                                <div class="btn-group w-100" role="group">
-                                                    <button type="submit" href='@Url.Action("AddStaff", "Staff")' class="btn btn-success w-100">Lưu</button>
-                                                    <a href='@Url.Action("Staff", "Staff")' class="btn btn-danger w-100">Huỷ</a>
-                                                </div>
-                                            </div>
+                                            <!-- Các Nút chức năng -->
+                                            <br>
+                                            <a href='@Url.Action("Staff", "Staff")' id="Cancle-Button" class="btn btn-danger w-100">Huỷ</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <span class="Notice"> <small class="font-italic">* : Trường Bắt Buộc</small></span>
                     </div>
                 </div>
             }
