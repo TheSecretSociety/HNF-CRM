@@ -83,19 +83,60 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @if (Model != null)
                             {
-                                <tr>
-                                    <td>@item.CUSTOMER.Name</td>
-                                    <td>@item.CUSTOMER.Company</td>
-                                    <td>@item.CUSTOMER.Phone</td>
-                                    <td>2/1/2017</td>
-                                    <td>2/3/2017</td>
-                                    <td>50%</td>
-                                    <td class="bg-warning">Đang In/Thêu</td>
-                                    <td><a href="@Url.Action("ProductionLineDetail","ProductionLine",new {id=item.ID })" role="button" class="btn btn-sm btn-info">i</a></td>
-                                </tr>
-                            }
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.CUSTOMER.Name</td>
+                                        <td>@item.CUSTOMER.Company</td>
+                                        <td>@item.CUSTOMER.Phone</td>
+                                        <td>@item.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
+                                        <td>@item.CONTRACT.EndDate</td>
+                                        @{if (int.Parse(item.CONTRACT.MoneyTransfer) == 0)
+                                            {
+                                                <td>50%</td>}
+                                            else if (int.Parse(item.CONTRACT.MoneyTransfer) == 1)
+                                            {
+                                                <td>100%</td>}
+                                            else
+                                            {
+                                                <td>Chưa Chuyển</td>}
+                                        }
+                                        @{if (item.Delivery == true)
+                                            {
+                                                <td class="bg-warning">Đang Giao Hàng</td>
+                                            }
+                                            else if (item.Packaging == true && item.Delivery == false)
+                                            {
+                                                <td class="bg-warning">Đang Đóng Gói</td>
+                                            }
+                                            else if (item.Iron == true && item.Packaging == false && item.Delivery == false)
+                                            {
+                                                <td class="bg-warning">Đang Ủi</td>
+                                            }
+                                            else if (item.Sew == true && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                            {
+                                                <td class="bg-warning">Đang May</td>
+                                            }
+                                            else if (item.Embroider == true && item.Sew == false && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                            {
+                                                <td class="bg-warning">Đang In/Thêu</td>
+                                            }
+                                            else if (item.Cut == true && item.Embroider == false && item.Sew == false && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                            {
+                                                <td class="bg-warning">Đang Cắt</td>
+                                            }
+                                            else
+                                            {
+                                                <td class="bg-warning">Chưa tiến hành</td>
+                                            }
+                                        }
+
+                                        <td><a href="@Url.Action("ProductionLineDetail", "ProductionLine", new { id = item.ID })" role="button" class="btn btn-sm btn-info">i</a></td>
+                                    </tr>
+                                                }
+                                            }
                         </tbody>
                     </table>
                 </div>
@@ -123,3 +164,16 @@
     </div>
 </div>
 <!--===== end of [DIVIDER] =====-->
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        var activePage = url;
+        $('.sidebar-nav a').each(function () {
+            var linkPage = this.href;
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("sidebar-active");
+            }
+        });
+    });
+</script>

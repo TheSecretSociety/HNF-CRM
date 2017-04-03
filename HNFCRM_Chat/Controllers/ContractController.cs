@@ -82,16 +82,16 @@ namespace HNFCRM_Chat.Controllers
 
         //Update Contract
         [HttpPost]
-        public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase file)
+        public ActionResult Contract(int id, FormCollection frm)
         {
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
-            //Upload file
-            string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            file.SaveAs(path);
+            ////Upload file
+            //string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //}
+            //file.SaveAs(path);
 
             //Appointment and Consult Date
             if (frm["consultdate"] == "" || frm["consultdate"] == null)
@@ -192,17 +192,22 @@ namespace HNFCRM_Chat.Controllers
             if (frm["options"] == "0")
             {
                 contract.StatusContract = "0";
-                PRODUCTLINE newproductline = new PRODUCTLINE();
-                newproductline.ID_Customer = id;
-                newproductline.CreatedDate = DateTime.Now;
-                newproductline.Cut = false;
-                newproductline.Sew = false;
-                newproductline.Delivery = false;
-                newproductline.Embroider = false;
-                newproductline.Iron = false;
-                newproductline.Packaging = false;
-                newproductline.ID_Contract = contract.ID;
-                entities.PRODUCTLINEs.Add(newproductline);
+                //Add new productionline if this contract has not existed
+                PRODUCTLINE productline = entities.PRODUCTLINEs.Where(x => x.ID_Customer == id).SingleOrDefault();
+                if (productline == null)
+                {
+                    PRODUCTLINE newproductline = new PRODUCTLINE();
+                    newproductline.ID_Customer = id;
+                    newproductline.CreatedDate = DateTime.Now;
+                    newproductline.Cut = false;
+                    newproductline.Sew = false;
+                    newproductline.Delivery = false;
+                    newproductline.Embroider = false;
+                    newproductline.Iron = false;
+                    newproductline.Packaging = false;
+                    newproductline.ID_Contract = contract.ID;
+                    entities.PRODUCTLINEs.Add(newproductline);
+                }
             }
             else if (frm["options"] == "1")
             {

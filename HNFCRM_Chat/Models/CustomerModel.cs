@@ -9,6 +9,8 @@ namespace HNFCRM_Chat.Models
     {
         public CUSTOMER Customer;
         public REQUIREPRODUCT RequireProduct;
-        public STAFF Staff;
+        public List<STAFF> staff;
+        public List<CONTRACT> contract;
+        public List<CUSTOMER> customer;
     }
 }

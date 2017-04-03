@@ -178,17 +178,23 @@
                     <div id="divider"></div>
                 </div>
             </div>
+            <!-- Nút chức năng -->
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-input-background">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Contract", "Contract", new { id =Model.Customer.ID })'">Giao Dịch</button>
-                            <button type="button" class="btn btn-danger">Xoá Giao Dịch</button>
-                            <button type="button" class="btn btn-warning">Sửa Nhanh</button>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0 mb-lg-0">
+                                <a class="btn btn-success w-100" href="@Url.Action("Contract", "Contract", new { id =Model.Customer.ID })" role="button">Tạo Hợp Đồng</a>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 mb-xl-0 mb-lg-0">
+                                <a class="btn btn-warning w-100" href="#" role="button">Cập Nhập Hợp Đồng</a>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                <a class="btn btn-danger w-100" href="#" id="CustomerDetailDeleteBtn" role="button">Xoá Hợp Đồng</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -55,6 +55,7 @@ namespace HNFCRM_Chat.Controllers
             }
             if (frm["embroider"] != null)
             {
+                product.Cut = true;
                 product.Embroider = true;
             }
             else
@@ -63,6 +64,8 @@ namespace HNFCRM_Chat.Controllers
             }
             if (frm["sew"] != null)
             {
+                product.Cut = true;
+                product.Embroider = true;
                 product.Sew = true;
             }
             else
@@ -71,6 +74,9 @@ namespace HNFCRM_Chat.Controllers
             }
             if (frm["iron"] != null)
             {
+                product.Cut = true;
+                product.Embroider = true;
+                product.Sew = true;
                 product.Iron = true;
             }
             else
@@ -79,7 +85,10 @@ namespace HNFCRM_Chat.Controllers
             }
             if (frm["packaging"] != null)
             {
-
+                product.Cut = true;
+                product.Embroider = true;
+                product.Sew = true;
+                product.Iron = true;
                 product.Packaging = true;
             }
             else
@@ -88,6 +97,10 @@ namespace HNFCRM_Chat.Controllers
             }
             if (frm["delivery"] != null)
             {
+                product.Cut = true;
+                product.Embroider = true;
+                product.Sew = true;
+                product.Iron = true;
                 product.Packaging = true;
             }
             else
