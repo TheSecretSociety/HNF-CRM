@@ -515,7 +515,6 @@
     <Content Include="Views\ProductionLine\FilterDelivery.cshtml" />
     <Content Include="Views\ProductionLine\FilterPackaging.cshtml" />
     <Content Include="Views\ProductionLine\FilterEmbroider.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Staff\EditStaff.cshtml" />
     <Content Include="Views\Staff\FilterAdmin.cshtml" />
     <Content Include="Views\Staff\FilterCustomerCare.cshtml" />
@@ -529,6 +528,7 @@
     <Content Include="Views\Home\FilterFailed.cshtml" />
     <Content Include="Views\Home\FilterOnProgress.cshtml" />
     <Content Include="Views\Contract\Contract.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
