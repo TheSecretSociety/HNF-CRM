@@ -94,25 +94,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @{ foreach (var item in Model)
+                            @{if (Model != null)
                                 {
-                                    <tr class="">
-                                        <th scope="row">
-                                            <a type="button" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
-                                                                                                                                                             {
-                                                                                                                                                                 id = item
-                                               .ID
-                                                                                                                                                             })'>x</a>
-                                        </th>
-                                        <td>@item.Name</td>
-                                        <td>@item.Company</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.Phone</td>
-                                        <td>@item.Job</td>
-                                        <td>mdo</td>
-                                        <td>@item.ID_Consult</td>
-                                        <td><a href="@Url.Action("CustomerDetail", "Customer", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
-                                    </tr>
+                                    foreach (var item in Model)
+                                    {
+                                        <tr class="">
+                                            <th scope="row">
+                                                <a type="button" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
+                                                                                                                                                        {
+                                                                                                                                                            id = item
+.ID
+                                                                                                                                                        })'>x</a>
+                                            </th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Company</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Phone</td>
+                                            <td>@item.Job</td>
+                                            <td>mdo</td>
+                                            <td>@item.ID_Consult</td>
+                                            <td><a href="@Url.Action("CustomerDetail", "Customer", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
+                                        </tr>
+                                    }
                                 }
                             }
                         </tbody>
@@ -123,6 +126,17 @@
         </div>
     </div>
 </div>
-            </div>
-        </div>
-    </div>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        var activePage = url;
+        $('.sidebar-nav a').each(function () {
+            var linkPage = this.href;
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("sidebar-active");
+            }
+        });
+    });
+</script>

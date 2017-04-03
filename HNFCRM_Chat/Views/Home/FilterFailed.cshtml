@@ -1,5 +1,6 @@
 ﻿<link rel="stylesheet" href="~/Content/HNFStyle.css">
-@model IEnumerable<HNFCRM_Chat.Models.CUSTOMER>
+
+@model HNFCRM_Chat.Models.CustomerModel
 
 <script type="text/javascript">
     $(document).ready(function ($) {
@@ -116,23 +117,42 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{ if (Model != null)
-                                        {
-                                            foreach (var item in Model)
-                                            {
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>@item.Name</td>
-                                                    <td>@item.Company</td>
-                                                    <td>@item.Email</td>
-                                                    <td>@item.Phone</td>
-                                                    <td>mdo</td>
-                                                    <td>mdo</td>
-                                                    <td>mdo</td>
-                                                </tr>
-                                            }
-                                        }
-                                    }
+                                   @{if (Model != null)
+                                       {
+                                           foreach (var item in Model.customer)
+                                           {
+
+                                            <tr>
+                                                <th scope="row">@item.ID</th>
+                                                <td>@item.Name</td>
+                                                <td>@item.Company</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.Phone</td>
+                                                <td>mdo</td>
+                                                @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
+                                                @{if (int.Parse(contract.Remind) == 0)
+                                                    {
+                                                        <td>Lần 1</td>
+                                                    }
+                                                    else if (int.Parse(contract.Remind) == 1)
+                                                    {
+                                                        <td>Lần 2</td>
+                                                    }
+                                                    else if (int.Parse(contract.Remind) == 2)
+                                                    {
+                                                        <td>Lần 3</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Chưa Gọi</td>
+                                                    }
+                                                }
+                                                @{var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}
+                                                <td>@staff.Name</td>
+                                            </tr>
+                                                        }
+                                                    }
+                                }
                                 </tbody>
                             </table>
                         </div>

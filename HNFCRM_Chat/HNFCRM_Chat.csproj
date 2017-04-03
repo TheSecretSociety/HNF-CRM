@@ -504,7 +504,6 @@
     <Content Include="Views\Customer\CustomerDetail.cshtml" />
     <Content Include="Views\Customer\AddCustomer.cshtml" />
     <Content Include="Views\Customer\SearchCustomer.cshtml" />
-    <Content Include="Views\Contract\Contract.cshtml" />
     <Content Include="Views\Customer\Customer.cshtml" />
     <Content Include="Views\Contract\ContractDetail.cshtml" />
     <Content Include="Views\ProductionLine\ProductionLine.cshtml" />
@@ -526,9 +525,13 @@
     <Content Include="Views\Home\FilterSuccess.cshtml" />
     <Content Include="Views\Home\FilterFailed.cshtml" />
     <Content Include="Views\Home\FilterOnProgress.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Staff\Staff.cshtml" />
     <Content Include="Views\Staff\AddStaff.cshtml" />
+=======
+    <Content Include="Views\Contract\Contract.cshtml" />
+>>>>>>> refs/remotes/origin/Minh-official-branch
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
