@@ -3,6 +3,10 @@
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Staff</title>
+</head>
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -44,7 +48,7 @@
                                                 <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" name="filter">
                                                     <a class="dropdown-item" href="@Url.Action("FilterAdmin", "Staff")">Quản Trị Viên</a>
                                                     <a class="dropdown-item" href="@Url.Action("FilterSale", "Staff")">Nhân Viên Bán Hàng</a>
-                                                    <a class="dropdown-item"href="@Url.Action("FilterCustomerCare", "Staff")">Chăm Sóc Khách Hàng</a>
+                                                    <a class="dropdown-item" href="@Url.Action("FilterCustomerCare", "Staff")">Chăm Sóc Khách Hàng</a>
                                                     <a class="dropdown-item" href="@Url.Action("FilterProduction", "Staff")">Quản Lí Sản Xuất</a>
                                                 </div>
                                             </div>
@@ -135,3 +139,17 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        var activePage = url;
+        $('.sidebar-nav a').each(function () {
+            var linkPage = this.href;
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("sidebar-active");
+            }
+        });
+    });
+</script>
