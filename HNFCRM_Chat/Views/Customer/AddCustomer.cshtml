@@ -1,6 +1,10 @@
 ﻿@model HNFCRM_Chat.Models.CUSTOMER
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Customer</title>
+</head>
 <!--===== PAGE CONTENT =====-->
 <div id="page-content-wrapper">
     <div class="page-content">
@@ -159,3 +163,17 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        var activePage = url;
+        $('.sidebar-nav a').each(function () {
+            var linkPage = this.href;
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("sidebar-active");
+            }
+        });
+    });
+</script>
