@@ -50,7 +50,7 @@
                         <div class="card">
                             <div class="card-block">
                                 <h6 class="card-subtitle mb-1 text-muted">Nhân Viên Bán Hàng</h6>
-                                <h4 class="card-title">Ngô Tấn Lộc</h4>
+                                <h4 class="card-title">@Model.Contract.STAFF.Name</h4>
                             </div>
                         </div>
                     </div>
@@ -365,7 +365,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check2" class="custom-control-input" name="embroider" value="@Model.Productline.Embroider" @(Model.Productline.Embroider.Value ? "checked=\"checked\"" : "")>
+                                                <input type="checkbox" id="check2" class="custom-control-input" name="embroider" value="@Model.Productline.Embroider" @(Model.Productline.Embroider.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình In/Thêu</h6>
@@ -380,7 +380,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check3" class="custom-control-input" name="sew" value="@Model.Productline.Sew" @(Model.Productline.Sew.Value ? "checked=\"checked\"" : "")>
+                                                <input type="checkbox" id="check3" class="custom-control-input" name="sew" value="@Model.Productline.Sew" @(Model.Productline.Sew.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình May</h6>
@@ -395,7 +395,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check4" class="custom-control-input" name="iron" value="@Model.Productline.Iron" @(Model.Productline.Iron.Value ? "checked=\"checked\"" : "")>
+                                                <input type="checkbox" id="check4" class="custom-control-input" name="iron" value="@Model.Productline.Iron" @(Model.Productline.Iron.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình Ủi</h6>
@@ -410,7 +410,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check5" class="custom-control-input" name="packaging" value="@Model.Productline.Packaging" @(Model.Productline.Packaging.Value ? "checked=\"checked\"" : "")>
+                                                <input type="checkbox" id="check5" class="custom-control-input" name="packaging" value="@Model.Productline.Packaging" @(Model.Productline.Packaging.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình Đóng Gói</h6>
@@ -425,7 +425,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check6" class="custom-control-input" name="delivery" value="@Model.Productline.Delivery" @(Model.Productline.Delivery.Value ? "checked=\"checked\"" : "")>
+                                                <input type="checkbox" id="check6" class="custom-control-input" name="delivery" value="@Model.Productline.Delivery" @(Model.Productline.Delivery.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình Giao Hàng</h6>
