@@ -82,7 +82,7 @@ namespace HNFCRM_Chat.Controllers
 
         //Update Contract
         [HttpPost]
-        public ActionResult Contract(int id, FormCollection frm)
+        public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase file)
         {
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             ////Upload file
@@ -92,6 +92,14 @@ namespace HNFCRM_Chat.Controllers
             //    Directory.CreateDirectory(path);
             //}
             //file.SaveAs(path);
+            string _FileName = Path.GetFileName(file.FileName);
+            string _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //}
+            contract.SendMarket = _path;
+            file.SaveAs(_path);
 
             //Appointment and Consult Date
             if (frm["consultdate"] == "" || frm["consultdate"] == null)
