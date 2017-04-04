@@ -4,13 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
+using System.IO;
 
 namespace HNFCRM_Chat.Controllers
 {
     public class ProductionLineController : Controller
     {
         CP_CRMEntities entities = new CP_CRMEntities();
-
+        // Dowload Contract
+        public ActionResult DownLoad()
+        {
+            PRODUCTLINE product = entities.PRODUCTLINEs.Where(x => x.ID == 2).SingleOrDefault();
+            CONTRACT contract = entities.CONTRACTs.Where(x => x.ID == product.ID_Contract).SingleOrDefault();
+            return File(contract.SendMarket, "application/msword", Path.GetFileName(contract.SendMarket));
+        }
         //Get All Production Line
         public ActionResult ProductionLine()
         {

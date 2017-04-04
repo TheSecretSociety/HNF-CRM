@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
 <!--===== PAGE CONTENT =====-->
-<form method="post" action="@Url.Action("Contract", "Contract")">
+<form method="post" action="@Url.Action("Contract", "Contract")" enctype="multipart/form-data">
     <div id="page-content-wrapper">
         <div class="page-content">
             <div class="container-fluid">
@@ -244,7 +244,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="mb-2 mb-sm-0">
                                         <label class="custom-file w-100">
-                                            <input type="file" id="file" class="custom-file-input hnf-custom-file-input">
+                                            <input type="file" name="file" id="file" class="custom-file-input hnf-custom-file-input">
                                             <span class="custom-file-control"></span>
                                         </label>
                                     </div>
