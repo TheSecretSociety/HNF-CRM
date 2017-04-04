@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
-using PagedList;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -123,16 +122,14 @@ namespace HNFCRM_Chat.Controllers
         }
 
         // GET: Staff
-        public ActionResult Staff(int? page)
+        public ActionResult Staff()
         {
             if (Session["author"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
             var staff = entities.STAFFs.ToList();
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(staff.ToPagedList(pageNumber, pageSize));
+            return View(staff);
         }
 
         // GET: DeleteStaff
