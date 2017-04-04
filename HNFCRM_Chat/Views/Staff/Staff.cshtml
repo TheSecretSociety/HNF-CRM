@@ -1,5 +1,8 @@
-﻿@model IEnumerable<HNFCRM_Chat.Models.STAFF>
+﻿@*@model IEnumerable<HNFCRM_Chat.Models.STAFF>*@
 @using HNFCRM_Chat.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<HNFCRM_Chat.Models.STAFF>
+
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
@@ -113,6 +116,10 @@
                                                             }
                                                         </tbody>
                                                     </table>
+                                                    <br/>
+                                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                                    @Html.PagedListPager(Model, page => Url.Action("Staff",
+    new { page}))
                                                     <!-- Phần nút chuyển  -->
                                                     <nav aria-label="Page navigation example">
                                                         <ul class="pagination justify-content-center">
