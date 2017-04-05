@@ -269,12 +269,6 @@
     <Compile Include="Models\ROLE.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>HNF_CRM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>HNF_CRM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\STAFF.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>

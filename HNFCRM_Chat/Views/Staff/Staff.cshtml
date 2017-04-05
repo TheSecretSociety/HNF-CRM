@@ -1,6 +1,8 @@
-﻿@model IEnumerable<HNFCRM_Chat.Models.STAFF>
+﻿@*@model IEnumerable<HNFCRM_Chat.Models.STAFF>*@
 @using HNFCRM_Chat.Models;
-
+@model PagedList.IPagedList<HNFCRM_Chat.Models.STAFF>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
 <head>
@@ -113,26 +115,29 @@
                                                             }
                                                         </tbody>
                                                     </table>
+                                                    <br />
+                                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                                    @Html.PagedListPager(Model, page => Url.Action("Staff", new { page }))
                                                     <!-- Phần nút chuyển  -->
-                                                    <nav aria-label="Page navigation example">
-                                                        <ul class="pagination justify-content-center">
-                                                            <li class="page-item">
-                                                                <a class="page-link" href="#" aria-label="Previous">
-                                                                    <span aria-hidden="true">&laquo;</span>
-                                                                    <span class="sr-only">Previous</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                            <li class="page-item">
-                                                                <a class="page-link" href="#" aria-label="Next">
-                                                                    <span aria-hidden="true">&raquo;</span>
-                                                                    <span class="sr-only">Next</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </nav>
+                                                    @*<nav aria-label="Page navigation example">
+                                                            <ul class="pagination justify-content-center">
+                                                                <li class="page-item">
+                                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                                        <span aria-hidden="true">&laquo;</span>
+                                                                        <span class="sr-only">Previous</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                                <li class="page-item">
+                                                                    <a class="page-link" href="#" aria-label="Next">
+                                                                        <span aria-hidden="true">&raquo;</span>
+                                                                        <span class="sr-only">Next</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>*@
                                                 </div>
                                             </div>
                                                                 }
