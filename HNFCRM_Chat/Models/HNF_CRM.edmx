@@ -32,11 +32,11 @@
           <Property Name="DateConsult" Type="date" />
           <Property Name="Appointment" Type="date" />
           <Property Name="Note" Type="nvarchar(max)" />
-          <Property Name="SendMarket" Type="varchar" MaxLength="100" />
-          <Property Name="Price" Type="float" />
+          <Property Name="SendMarket" Type="varchar" MaxLength="300" />
+          <Property Name="Price" Type="varchar" MaxLength="300" />
           <Property Name="MarketConfirm" Type="bit" />
-          <Property Name="MarketPicture" Type="varchar" MaxLength="100" />
-          <Property Name="Contract" Type="varchar" MaxLength="100" />
+          <Property Name="MarketPicture" Type="varchar" MaxLength="300" />
+          <Property Name="Contract" Type="varchar" MaxLength="300" />
           <Property Name="StartDate" Type="date" />
           <Property Name="EndDate" Type="date" />
           <Property Name="MoneyTransfer" Type="char" MaxLength="3" />
@@ -486,11 +486,11 @@
           <Property Name="DateConsult" Type="DateTime" Precision="0" />
           <Property Name="Appointment" Type="DateTime" Precision="0" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SendMarket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Price" Type="Double" />
+          <Property Name="SendMarket" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="MarketConfirm" Type="Boolean" />
-          <Property Name="MarketPicture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Contract1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MarketPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Contract1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="MoneyTransfer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />

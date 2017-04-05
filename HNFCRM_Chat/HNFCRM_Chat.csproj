@@ -340,7 +340,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Images\16708609_1075509135925893_7918090143301469913_n.jpg" />
     <Content Include="Models\HNF_CRM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>HNF_CRM.edmx</DependentUpon>
@@ -532,6 +531,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

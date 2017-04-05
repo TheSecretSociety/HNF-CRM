@@ -65,7 +65,9 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sx-12">
                     <div class="card form-input-margin">
-                        <img src="./image/SSshirt.jpg" class="img-fluid" alt="Responsive image">
+                        @{ string image = Model.Contract.MarketPicture.Substring(Model.Contract.MarketPicture.LastIndexOf("\\") + 1);
+                        }
+                        <img src="~/Images/@image" class="img-fluid" alt="Responsive image" />
                     </div>
                 </div>
             </div>
@@ -151,7 +153,7 @@
                             <div class="col-xl-10 col-lg-10 col-md-9 col-sm-12 col-xs-12">
                                 <div class="card-block">
                                     <div class="form-group">
-                                        <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Ghi Chú"  disabled>@Model.Contractdetail.Note</textarea>
+                                        <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Ghi Chú" disabled>@Model.Contractdetail.Note</textarea>
                                     </div>
                                 </div>
                             </div>

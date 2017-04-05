@@ -2,7 +2,10 @@
 @model ContractModel
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
-
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add New Contract</title>
+</head>
 <!--===== PAGE CONTENT =====-->
 <form method="post" action="@Url.Action("Contract", "Contract")" enctype="multipart/form-data">
     <div id="page-content-wrapper">
@@ -209,7 +212,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="mb-2 mb-sm-0">
                                         <label class="custom-file w-100">
-                                            <input type="file" id="file" class="custom-file-input hnf-custom-file-input">
+                                            <input type="file" name="uploadimages" id="file" class="custom-file-input hnf-custom-file-input" >
                                             <span class="custom-file-control"></span>
                                         </label>
                                     </div>
@@ -217,7 +220,7 @@
                                 <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
 
                                     <div class="input-group mb-2 mb-sm-0">
-                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" readonly>
+                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="@Model.Contract.MarketPicture.Substring(@Model.Contract.MarketPicture.LastIndexOf("\\")+1)" readonly>
                                     </div>
 
                                 </div>
@@ -244,7 +247,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="mb-2 mb-sm-0">
                                         <label class="custom-file w-100">
-                                            <input type="file" name="file" id="file" class="custom-file-input hnf-custom-file-input">
+                                            <input type="file" name="uploadcontract" id="file" class="custom-file-input hnf-custom-file-input" >
                                             <span class="custom-file-control"></span>
                                         </label>
                                     </div>
@@ -252,7 +255,7 @@
                                 <div class="col-xl-8 col-lg-8 col-md-4 col-sm-4 col-xs-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
 
                                     <div class="input-group mb-2 mb-sm-0">
-                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Hợp Đồng" readonly>
+                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Hợp Đồng" value="@Model.Contract.Contract1.Substring(@Model.Contract.Contract1.LastIndexOf("\\")+1)" readonly>
                                     </div>
 
                                 </div>
@@ -438,3 +441,6 @@
         </div>
     </div>
 </form>
+<script>
+
+</script>

@@ -26,7 +26,7 @@ namespace HNFCRM_Chat.Models
         public Nullable<System.DateTime> Appointment { get; set; }
         public string Note { get; set; }
         public string SendMarket { get; set; }
-        public Nullable<double> Price { get; set; }
+        public string Price { get; set; }
         public Nullable<bool> MarketConfirm { get; set; }
         public string MarketPicture { get; set; }
         public string Contract1 { get; set; }

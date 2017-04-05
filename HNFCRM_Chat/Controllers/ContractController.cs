@@ -18,7 +18,6 @@ namespace HNFCRM_Chat.Controllers
         // GET: Contract by Customer ID
         public ActionResult Contract(int id)
         {
-
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             var a = Session["ID"] as STAFF;
             int idstaff = a.ID;
@@ -38,6 +37,7 @@ namespace HNFCRM_Chat.Controllers
                 newcontract.StartDate = DateTime.Now;
                 //Remind set "Chưa gọi" is default value
                 newcontract.Remind = "3";
+                newcontract.CheckConfirm = false;
                 //Contract Status set "Đang chờ" is default value
                 newcontract.StatusContract = "1";
                 newcontract.ID_Staff = idstaff;
@@ -82,24 +82,45 @@ namespace HNFCRM_Chat.Controllers
 
         //Update Contract
         [HttpPost]
-        public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase file)
+        public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase uploadcontract, HttpPostedFileBase uploadimages, HttpPostedFileBase uploadprice, HttpPostedFileBase uploadmarket)
         {
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
-            ////Upload file
-            //string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
-            //if (!Directory.Exists(path))
-            //{
-            //    Directory.CreateDirectory(path);
-            //}
-            //file.SaveAs(path);
-            string _FileName = Path.GetFileName(file.FileName);
-            string _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
-            //if (!Directory.Exists(path))
-            //{
-            //    Directory.CreateDirectory(path);
-            //}
-            contract.SendMarket = _path;
-            file.SaveAs(_path);
+
+            //Upload file
+            if (uploadcontract != null)
+            {
+                string _FileName = Path.GetFileName(uploadcontract.FileName);
+                string _path = Path.Combine(Server.MapPath("~/Uploads/Contracts"), _FileName);
+                contract.Contract1 = _path;
+                uploadcontract.SaveAs(_path);
+            }
+
+            //Upload image
+            if (uploadimages != null)
+            {
+                string _FileName = Path.GetFileName(uploadimages.FileName);
+                string _path = Path.Combine(Server.MapPath("~/Images"), _FileName);
+                contract.MarketPicture = _path;
+                uploadimages.SaveAs(_path);
+            }
+
+            //Upload Price Quotation
+            if (uploadprice != null)
+            {
+                string _FileName = Path.GetFileName(uploadprice.FileName);
+                string _path = Path.Combine(Server.MapPath("~/Uploads/PriceQuotation"), _FileName);
+                contract.Price = _path;
+                uploadprice.SaveAs(_path);
+            }
+
+            //Upload Market Picture
+            if (uploadmarket != null)
+            {
+                string _FileName = Path.GetFileName(uploadmarket.FileName);
+                string _path = Path.Combine(Server.MapPath("~/Uploads/MarketFile"), _FileName);
+                contract.SendMarket = _path;
+                uploadmarket.SaveAs(_path);
+            }
 
             //Appointment and Consult Date
             if (frm["consultdate"] == "" || frm["consultdate"] == null)
