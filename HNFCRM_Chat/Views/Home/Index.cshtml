@@ -118,7 +118,23 @@
                                                     <td>@item.Company</td>
                                                     <td>@item.Email</td>
                                                     <td>@item.Phone</td>
-                                                    <td>mdo</td>
+                                                    @{ if (item.ID_Consult.Value == 1)
+                                                        {
+                                                            <td>Gọi Điện Thoại</td>
+                                                        }
+                                                        else if (item.ID_Consult.Value == 2)
+                                                        {
+                                                            <td>Gửi Email</td>
+                                                        }
+                                                        else if (item.ID_Consult.Value == 3)
+                                                        {
+                                                            <td>Gặp Mặt</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>Gửi Mẫu</td>
+                                                        }
+                                                    }
                                                     @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
                                                     @{if (int.Parse(contract.Remind) == 0)
                                                         {

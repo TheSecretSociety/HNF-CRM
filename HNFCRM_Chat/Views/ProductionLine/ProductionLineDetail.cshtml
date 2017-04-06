@@ -18,7 +18,7 @@
                         <!-- download -->
                         <div class="card">
                             <div class="card-block text-center align-items-center d-flex">
-                                <a href="@Url.Action("DownLoad","ProductionLine")" role="button" class="btn btn-block btn-warning">Tải Hợp Đồng</a>
+                                <a href="@Url.Action("DownLoad","ProductionLine",new { id = Model.Productline.ID })" role="button" class="btn btn-block btn-warning">Tải Hợp Đồng</a>
                             </div>
                         </div>
                         <!-- Mã Hợp Đồng -->

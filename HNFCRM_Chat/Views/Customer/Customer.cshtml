@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HNFCRM_Chat.Models.CUSTOMER>
+﻿@model HNFCRM_Chat.Models.CustomerModel
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
 <head>
@@ -15,9 +15,7 @@
                 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card form-input-margin">
                         <div class="btn-group" role="group" aria-label="Function Button">
-                            <button type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer","Customer")'">Thêm</button>
-                            <button type="button" class="btn btn-warning w-100">Sửa Nhanh</button>
-                            <button type="button" class="btn btn-danger w-100">Xoá</button>
+                            <button type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer","Customer")'">Thêm Khách Hàng</button>
                         </div>
                     </div>
                 </div>
@@ -41,7 +39,7 @@
                                 </div>
                                 <!-- Nút Tìm Kiếm -->
                                 <div class="col-xl-3 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
-                                    <button type="submit" class="btn btn-block btn-info" onclick="location.href='@Url.Action("SearchCustomer", "Customer")'">Tìm Kiếm</button>
+                                    <button type="submit" class="btn btn-block btn-warning search-button" onclick="location.href='@Url.Action("SearchCustomer", "Customer")'">Tìm Kiếm</button>
                                 </div>
                             </div>
                         }
@@ -98,29 +96,79 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @{if (Model != null)
+                            @{if (Model.customer != null)
                                 {
-                                    foreach (var item in Model)
+                                    foreach (var item in Model.customer)
                                     {
                                         <tr class="">
                                             <th scope="row">
                                                 <a type="button" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
-                                                                                                                                                        {
-                                                                                                                                                            id = item
+                                                                                                                                                            {
+                                                                                                                                                                id = item
 .ID
-                                                                                                                                                        })'>x</a>
+                                                                                                                                                            })'>x</a>
                                             </th>
                                             <td>@item.Name</td>
                                             <td>@item.Company</td>
                                             <td>@item.Email</td>
                                             <td>@item.Phone</td>
-                                            <td>@item.Job</td>
-                                            <td>mdo</td>
-                                            <td>@item.ID_Consult</td>
+                                            @{ if (item.ID_Consult.Value == 1)
+                                                {
+                                                    <td>Gọi Điện Thoại</td>
+                                                }
+                                                else if (item.ID_Consult.Value == 2)
+                                                {
+                                                    <td>Gửi Email</td>
+                                                }
+                                                else if (item.ID_Consult.Value == 3)
+                                                {
+                                                    <td>Gặp Mặt</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Gửi Mẫu</td>
+                                                }
+                                            }
+
+                                            @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
+                                            @{if (contract != null)
+                                                {
+                                                    if (int.Parse(contract.Remind) == 0)
+                                                    {
+                                                        <td>Lần 1</td>
+                                                    }
+                                                    else if (int.Parse(contract.Remind) == 1)
+                                                    {
+                                                        <td>Lần 2</td>
+                                                    }
+                                                    else if (int.Parse(contract.Remind) == 2)
+                                                    {
+                                                        <td>Lần 3</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Chưa Gọi</td>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa có thông tin</td>
+                                                }
+                                            }
+                                            @{var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault(); }
+                                            @{ if (staff != null)
+                                                {
+                                                    <td>@staff.Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa có thông tin</td>
+                                                }
+                                            }
                                             <td><a href="@Url.Action("CustomerDetail", "Customer", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
                                         </tr>
-                                    }
-                                }
+                                                    }
+                                                }
                             }
                         </tbody>
                     </table>

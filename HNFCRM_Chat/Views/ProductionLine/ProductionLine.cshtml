@@ -96,7 +96,7 @@
                                         <td>@item.CUSTOMER.Company</td>
                                         <td>@item.CUSTOMER.Phone</td>
                                         <td>@item.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
-                                        <td>@item.CONTRACT.EndDate</td>
+                                        <td>@item.CONTRACT.EndDate.Value.ToString("dd/MM/yyyy")</td>
                                         @{if (int.Parse(item.CONTRACT.MoneyTransfer) == 0)
                                             {
                                                 <td>50%</td>}

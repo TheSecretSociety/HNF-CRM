@@ -29,11 +29,11 @@
     <Property Name="DateConsult" Type="DateTime" Precision="0" />
     <Property Name="Appointment" Type="DateTime" Precision="0" />
     <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="SendMarket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Price" Type="Double" />
+    <Property Name="SendMarket" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="MarketConfirm" Type="Boolean" />
-    <Property Name="MarketPicture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Contract1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MarketPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Contract1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
     <Property Name="StartDate" Type="DateTime" Precision="0" />
     <Property Name="EndDate" Type="DateTime" Precision="0" />
     <Property Name="MoneyTransfer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />

@@ -9,156 +9,182 @@
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
-            <!--===== DIVIDER =====-->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12">
-                    <div id="divider"></div>
-                </div>
-            </div>
-            <!--===== end of [DIVIDER] =====-->
+            <br>
             @using (Html.BeginForm("AddCustomer", "Customer", FormMethod.Post))
             {
+                 <!-- Thông Tin Khách Hàng & Thông Tin Sản Phẩm -->
                 <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-8">
-                        <div class="form-input-background">
+                    <!-- Thông Tin Khách Hàng -->
+                    <div class="alertArea">
+
+                    </div>
+                    <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card form-input-margin">
                             <h3>THÔNG TIN KHÁCH HÀNG</h3>
                             <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Họ Tên</label>
-                                        <input type="text" class="form-control" id="InputName" aria-describedby="emailHelp" placeholder="" name="name" />
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <!-- Họ Tên -->
+                                    <div class="form-group ">
+                                        <label>Họ Tên <span class="Notice">*</span></label>
+                                        <input type="text" class="form-control" name="name" aria-describedby="Customer Name" placeholder="" required id="txt-CName">
                                     </div>
+                                    <!-- Số Điện Thoại -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Số Điện Thoại</label>
-                                        <input type="text" class="form-control" id="InputPhone" aria-describedby="emailHelp" placeholder="" name="phone" />
+                                        <label>Số Điện Thoại <span class="Notice">*</span></label>
+                                        <input type="tel" class="form-control " name="phone" aria-describedby="Phone Number" placeholder="" required id="txt-CPhone">
                                     </div>
+                                    <!-- Email -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="" name="email" />
+                                        <label>Email <span class="Notice">*</span></label>
+                                        <input type="email" class="form-control" name="email" aria-describedby="Email" placeholder="" required
+                                               id="txt-CEmail">
                                     </div>
+                                    <!-- Thông Tin Công Ty -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Thông Tin Công Ty</label>
-                                        <input type="text" class="form-control" id="InputCompany" aria-describedby="emailHelp" placeholder="" name="company" />
+                                        <label>Thông Tin Công Ty</label>
+                                        <input type="text" class="form-control" name="company" aria-describedby="Company" placeholder="">
                                     </div>
+                                    <!-- Ngành Nghề -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Ngành Nghề</label>
-                                        <input type="text" class="form-control" id="InputJob" aria-describedby="emailHelp" placeholder="" name="job" />
+                                        <label>Ngành Nghề</label>
+                                        <input type="text" class="form-control" name="job" aria-describedby="Customer Job" placeholder="">
                                     </div>
+                                    <!-- Địa Chỉ -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Địa Chỉ</label>
-                                        <input type="text" class="form-control" id="InputAddress" aria-describedby="emailHelp" placeholder="" name="address" />
+                                        <label>Địa Chỉ <span class="Notice">*</span></label>
+                                        <input type="text" class="form-control txtCustomerDetail" name="address" aria-describedby="Customer Address" placeholder="" required>
                                     </div>
+                                    <!-- Tình Trạng Tư Vấn -->
                                     <div class="form-group">
-                                        <label for="exampleSelect1">Tình Trạng Tư Vấn</label>
-                                        <select class="form-control" id="exampleSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <label>Tình Trạng Tư Vấn</label>
+                                        <select class="form-control" name="consult" required>
+                                            <option value="1">Gọi Điện Thoại</option>
+                                            <option value="2">GỬi Email</option>
+                                            <option value="3">Gặp Mặt</option>
+                                            <option value="4">Gửi Mẫu</option>
                                         </select>
                                     </div>
-
                                 </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <!-- Quan tâm về Dịch Vụ / Sản Phẩm gì -->
                                     <div class="form-group">
                                         <label for="exampleTextarea">Quan tâm về Dịch Vụ / Sản Phẩm gì?</label>
-                                        <textarea class="form-control" id="InterestedIn" rows="5" name="careaboutproduct"></textarea>
+                                        <textarea class="form-control" name="careaboutproduct" rows="5"></textarea>
                                     </div>
+                                    <!-- Loại Áo Đã Làm -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Loại Áo Đã Làm</label>
-                                        <input type="text" class="form-control" id="PreviousDesign" aria-describedby="emailHelp" placeholder="" name="previousdesign">
+                                        <label>Loại Áo Đã Làm</label>
+                                        <input type="text" class="form-control" name="previousdesign" aria-describedby="Shirt That Customer had done before" placeholder="">
                                     </div>
+                                    <!-- Loại Vải -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Loại Vải</label>
-                                        <input type="text" class="form-control" id="PreviousFabric" aria-describedby="emailHelp" placeholder="" name="previousfabric">
+                                        <label>Loại Vải</label>
+                                        <input type="text" class="form-control" name="previousfabric" aria-describedby="Shirt material" placeholder="">
                                     </div>
+                                    <!-- Giá Thành -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Giá Thành</label>
-                                        <input type="text" class="form-control" id="PreviousPrice" aria-describedby="emailHelp" placeholder="" name="previousprice">
+                                        <label>Giá Thành</label>
+                                        <input type="number" class="form-control" id="txt-CPrice" name="previousprice" aria-describedby="shirt price range" placeholder="">
                                     </div>
+                                    <!-- Nhận Xét -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Nhận Xét</label>
-                                        <input type="text" class="form-control" id="PreviousComment" aria-describedby="emailHelp" placeholder="" name="previouscomment">
+                                        <label>Nhận Xét</label>
+                                        <input type="text" class="form-control" name="previouscomment" aria-describedby="comment" placeholder="">
                                     </div>
+                                    <!-- Công Ty Đã Thực Hiện -->
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Công Ty Đã Thực Hiện</label>
-                                        <input type="text" class="form-control" id="PreviousCompany" aria-describedby="emailHelp" placeholder="" name="previouscompany">
+                                        <label>Công Ty Đã Thực Hiện</label>
+                                        <input type="text" class="form-control" name="previouscompany" aria-describedby="Company that produce Customer's shirt" placeholder="">
                                     </div>
-
                                 </div>
                             </div>
+                            <!-- Ghi Chú -->
                             <div class="form-group">
-                                <label for="exampleTextarea">Ghi Chú</label>
-                                <textarea class="form-control" id="Note" rows="3" name="customernote"></textarea>
+                                <label>Ghi Chú</label>
+                                <textarea class="form-control" name="customernote" rows="3"></textarea>
                             </div>
+                            <span class="Notice"> <small class="font-italic">* : Trường Bắt Buộc</small></span>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-4">
-                        <div class="form-input-background">
+                    <!-- Thông Tin Sản Phẩm -->
+                    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card form-input-margin">
                             <h3>THÔNG TIN SẢN PHẨM</h3>
+                            <form>
+                                <!-- Loại Áo -->
+                                <div class="form-group">
+                                    <label>Loại Áo</label>
+                                    <input type="text" class="form-control" name="shirttype" aria-describedby="emailHelp" placeholder="">
+                                </div>
+                                <!-- Loại Vải -->
+                                <div class="form-group">
+                                    <label>Loại Vải</label>
+                                    <input type="text" class="form-control" name="requirefabric" aria-describedby="emailHelp" placeholder="">
+                                </div>
+                                <!-- Mục Đích Sử Dụng -->
+                                <div class="form-group">
+                                    <label>Mục Đích Sử Dụng</label>
+                                    <input type="text" class="form-control" name="purpose" aria-describedby="emailHelp" placeholder=>
+                                </div>
+                                <!-- Đã Có Thiết Kế Chưa ? -->
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label for="exampleSelect1">Đã Có Thiết Kế Chưa ?</label>
+                                            <select class="form-control" name="isanydesign">
+                                                <option>Rồi</option>
+                                                <option>Chưa</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label for="exampleSelect1">Màu Sắc</label>
+                                            <select class="form-control" Name="Color">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- In / Thêu ? -->
+                                <div class="form-group">
+                                    <label>In / Thêu ?</label>
+                                    <input type="text" class="form-control" name="embroiderprint" aria-describedby="emailHelp" placeholder="">
+                                </div>
+                                <!-- Số Lượng & Tầm Giá-->
+                                <div class="row">
+                                    <!-- Số Lượng -->
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Số Lượng</label>
+                                            <input type="number" class="form-control" name="quantity" aria-describedby="emailHelp" placeholder="" id="txt-CQuantity">
+                                        </div>
+                                    </div>
+                                    <!-- Tầm Giá -->
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="form-group">
+                                            <label>Tầm Giá</label>
+                                            <input type="number" class="form-control" name="price" aria-describedby="emailHelp" placeholder="" id="txt-CPriceRange">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Ghi Chú -->
+                                <div class="form-group">
+                                    <label for="exampleTextarea">Ghi Chú</label>
+                                    <textarea class="form-control" name="requirenote" rows="3"></textarea>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Loại Áo</label>
-                                <input type="text" class="form-control" id="InputShirtType" aria-describedby="emailHelp" placeholder="" name="shirttype">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Loại Vải</label>
-                                <input type="text" class="form-control" id="InputRequireFabric" aria-describedby="emailHelp" placeholder="" name="requirefabric">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mục Đích Sử Dụng</label>
-                                <input type="text" class="form-control" id="InputPurpose" aria-describedby="emailHelp" placeholder="" name="purpose">
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
-                                    <div class="form-group">
-                                        <label for="exampleSelect1">Đã Có Thiết Kế Chưa ?</label>
-                                        <select class="form-control" id="SelectDesignYet" name="isanydesign">
-                                            <option>Rồi</option>
-                                            <option>Chưa</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
-                                    <div class="form-group">
-                                        <label for="exampleSelect1">Màu Sắc</label>
-                                        <select class="form-control" id="exampleSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">In / Thêu ?</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Số Lượng</label>
-                                        <input type="text" class="form-control" id="InputEmbroiderPrint" aria-describedby="emailHelp" placeholder="" name="embroiderprint">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-6">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tầm Giá</label>
-                                        <input type="text" class="form-control" id="InputPrice" aria-describedby="emailHelp" placeholder="" name="price">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleTextarea">Ghi Chú</label>
-                                <textarea class="form-control" id="InputNote" rows="3" name="requirenote"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Lưu Thông Tin</button>
+                                <!-- Nút lưu thông tin -->
+                                <button type="submit" id="CustomerInfoSaveBtn" class="btn btn-primary btn-lg btn-block mt-4" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Lưu Thông Tin</button>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <br>
             }
         </div>
     </div>

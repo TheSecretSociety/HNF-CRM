@@ -27,11 +27,11 @@
     <Property Name="DateConsult" Type="date" />
     <Property Name="Appointment" Type="date" />
     <Property Name="Note" Type="nvarchar(max)" />
-    <Property Name="SendMarket" Type="varchar" MaxLength="100" />
-    <Property Name="Price" Type="float" />
+    <Property Name="SendMarket" Type="varchar" MaxLength="300" />
+    <Property Name="Price" Type="varchar" MaxLength="300" />
     <Property Name="MarketConfirm" Type="bit" />
-    <Property Name="MarketPicture" Type="varchar" MaxLength="100" />
-    <Property Name="Contract" Type="varchar" MaxLength="100" />
+    <Property Name="MarketPicture" Type="varchar" MaxLength="300" />
+    <Property Name="Contract" Type="varchar" MaxLength="300" />
     <Property Name="StartDate" Type="date" />
     <Property Name="EndDate" Type="date" />
     <Property Name="MoneyTransfer" Type="char" MaxLength="3" />
