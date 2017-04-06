@@ -45,7 +45,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="card-block">
-                                <h6 class="card-subtitle mb-1 text-muted">Ngày Tạo Hợp Đồng</h6>
+                                <h6 class="card-subtitle mb-1 text-muted">Người Tạo Hợp Đồng</h6>
                                 <h4 class="card-title">@Model.Staff.Name</h4>
                             </div>
                         </div>
@@ -79,9 +79,7 @@
                                 </div>
                                 <!-- Ghi Chú -->
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-lg-0 mb-xl-0">
-
                                     <textarea class="form-control" id="exampleTextarea" rows="1" placeholder="Ghi Chú" value="@Model.Contract.Note" name="note">@Model.Contract.Note</textarea>
-
                                 </div>
                             </div>
                         </div>
@@ -102,20 +100,46 @@
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <!-- Upload -->
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="mb-2 mb-sm-0">
-                                        <label class="custom-file w-100 mb-sm-2 mb-lg-0">
-                                            <input type="file" id="file" class="custom-file-input hnf-custom-file-input" placeholder="Tải file lên">
-                                            <span class="custom-file-control"></span>
-                                        </label>
+                                        <div class="input-group">
+                                            <input type="file" id="file1" name="uploadmarket" onchange="$('#txtMarketName').val($(this).val());" hidden>
+                                            <label for="file1" class="btn btn-info btn-block">
+                                                <i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_upload</i>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <!-- Download -->
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                    <div class="input-group">
+                                        @{if (Model.Contract.SendMarket == "123456")
+                                            {
+                                                <button type="button" name="button" class="btn btn-success btn-block" disabled><i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_download</i></button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" name="button" onclick="location.href='@Url.Action("DownloadMarket","Contract",new {id=Model.Customer.ID })'" class="btn btn-success btn-block"><i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_download</i></button>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <!-- File Name -->
+                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="input-group mb-2 mb-sm-0">
-                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Market" readonly>
+                                        @{if (Model.Contract.SendMarket == "123456")
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="Chưa có mẫu áo" readonly>
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="@Model.Contract.SendMarket.Substring(@Model.Contract.SendMarket.LastIndexOf("\\")+1)" readonly>
+                                            }
+                                        }
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="input-group mb-0 mr-sm-2 mb-sm-0">
                                         <a href="@Url.Action("ContractDetail", "Contract", new { id = Model.Contract.ID })" role="button" class="btn btn-primary btn-block">Chi Tiết Thiết Kế</a>
                                     </div>
@@ -131,7 +155,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-
                                 <input type="text" class="form-control" aria-label="Báo Giá Sản Phẩm" placeholder="Báo Giá" readonly>
                             </div>
                         </div>
@@ -140,19 +163,42 @@
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <div class="mb-2 mb-sm-0">
-                                        <label class="custom-file w-100">
-                                            <input type="file" id="file" class="custom-file-input hnf-custom-file-input">
-                                            <span class="custom-file-control"></span>
+                                <!-- Upload -->
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0 mb-0 pb-0">
+                                    <div class="input-group">
+                                        <input type="file" id="file2" name="uploadprice" onchange="$('#txtQuotation').val($(this).val());" hidden>
+                                        <label for="file2" class="btn btn-info btn-block">
+                                            <i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_upload</i>
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <div class="input-group mb-2 mb-sm-0">
-                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Báo Giá" readonly>
+                                <!-- Download -->
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0 mb-0">
+                                    <div class="input-group">
+                                        @{if (Model.Contract.Price == "123456")
+                                            {
+                                                <button type="button" name="button" class="btn btn-success btn-block" disabled><i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_download</i></button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" name="button" onclick="location.href='@Url.Action("DownloadPrice","Contract",new {id=Model.Customer.ID })'" class="btn btn-success btn-block"><i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_download</i></button>
+                                            }
+                                        }
                                     </div>
-
+                                </div>
+                                <!-- file name -->
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                    <div class="input-group">
+                                        @{if (Model.Contract.Price == "123456")
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="Chưa có bảng báo giá" readonly>
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="@Model.Contract.Price.Substring(@Model.Contract.Price.LastIndexOf("\\") + 1)" readonly>
+                                            }
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +222,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div id="sandbox-container">
                                         <div class="input-group date">
-                                            <input type="text" class="form-control" placeholder="Ngày Hẹn Gặp " name="appointment2" value="@Model.Contract.AppointmentMarket.Value.ToString("dd/MM/yyyy")"></span>
+                                            <input type="text" class="form-control" placeholder="Ngày Hẹn Gặp" name="appointment2" value="@Model.Contract.AppointmentMarket.Value.ToString("dd/MM/yyyy")"></span>
                                             <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
                                         </div>
                                     </div>
@@ -210,19 +256,25 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <div class="mb-2 mb-sm-0">
-                                        <label class="custom-file w-100">
-                                            <input type="file" name="uploadimages" id="file" class="custom-file-input hnf-custom-file-input" >
-                                            <span class="custom-file-control"></span>
+                                    <div class="input-group">
+                                        <input type="file" id="file3" name="uploadimages" onchange="$('#txtConShirt').val($(this).val());" hidden>
+                                        <label for="file3" class="btn btn-info btn-block">
+                                            <i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_upload</i>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-
-                                    <div class="input-group mb-2 mb-sm-0">
-                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="@Model.Contract.MarketPicture.Substring(@Model.Contract.MarketPicture.LastIndexOf("\\")+1)" readonly>
+                                    <div class="input-group ">
+                                        @{if (Model.Contract.MarketPicture == "123456")
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="Chưa có áo mẫu đã duyệt" readonly>
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Áo Mẫu Đã Duyệt" value="@Model.Contract.MarketPicture.Substring(@Model.Contract.MarketPicture.LastIndexOf("\\") + 1)" readonly>
+                                            }
+                                        }
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -235,7 +287,6 @@
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Hợp Đồng" readonly>
                             </div>
                         </div>
@@ -245,19 +296,25 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <div class="mb-2 mb-sm-0">
-                                        <label class="custom-file w-100">
-                                            <input type="file" name="uploadcontract" id="file" class="custom-file-input hnf-custom-file-input" >
-                                            <span class="custom-file-control"></span>
+                                    <div class="input-group">
+                                        <input type="file" id="file4" name="uploadcontract" onchange="$('#txtContract').val($(this).val());" hidden>
+                                        <label for="file4" class="btn btn-info btn-block">
+                                            <i class="material-icons md-18 search-button" style="margin:0;padding:0;">cloud_upload</i>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-xl-8 col-lg-8 col-md-4 col-sm-4 col-xs-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-
                                     <div class="input-group mb-2 mb-sm-0">
-                                        <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Tên File Hợp Đồng" value="@Model.Contract.Contract1.Substring(@Model.Contract.Contract1.LastIndexOf("\\")+1)" readonly>
+                                        @{if (Model.Contract.Contract1 == "123456")
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Hợp Đồng" value="Chưa có hợp đồng" readonly>
+                                            }
+                                            else
+                                            {
+                                                <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Hợp Đồng" value="@Model.Contract.Contract1.Substring(@Model.Contract.Contract1.LastIndexOf("\\") + 1)" readonly>
+                                            }
+                                        }
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -364,7 +421,7 @@
                                         <!-- Gọi Nhắc lần 1 -->
                                         <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call1-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="0" @(int.Parse(Model.Contract.Remind) == 0 ? "checked" : "")>
+                                                <input id="customer-call1-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="0" @(int.Parse(Model.Contract.Remind) == 1 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Gọi Nhắc lần 1</span>
                                             </label>
@@ -372,7 +429,7 @@
                                         <!-- Gọi Nhắc lần 2 -->
                                         <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call2-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="1" @(int.Parse(Model.Contract.Remind) == 1 ? "checked" : "")>
+                                                <input id="customer-call2-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="1" @(int.Parse(Model.Contract.Remind) == 0 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Gọi Nhắc lần 2</span>
                                             </label>
@@ -408,18 +465,17 @@
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="btn-group w-100" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary w-100 @(int.Parse(Model.Contract.StatusContract)==0 ? "active":"")">
+                                        <label class="btn btn-outline-primary w-100 @(int.Parse(Model.Contract.StatusContract) == 0 ? "active" : "")">
                                             <input type="radio" name="options" id="option1" autocomplete="off" value="0"> Đã Kí
                                         </label>
-                                        <label class="btn btn-outline-warning w-100 @(int.Parse(Model.Contract.StatusContract)==1 ? "active":"")">
+                                        <label class="btn btn-outline-warning w-100 @(int.Parse(Model.Contract.StatusContract) == 1 ? "active" : "")">
                                             <input type="radio" name="options" id="option2" autocomplete="off" value="1"> Đang Chờ Phản Hồi
                                         </label>
-                                        <label class="btn btn-outline-danger w-100 @(int.Parse(Model.Contract.StatusContract)==2 ? "active":"")">
+                                        <label class="btn btn-outline-danger w-100 @(int.Parse(Model.Contract.StatusContract) == 2 ? "active" : "")">
                                             <input type="radio" name="options" id="option3" autocomplete="off" value="2"> Thất Bại
                                         </label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -441,6 +497,5 @@
         </div>
     </div>
 </form>
-<script>
 
-</script>
+

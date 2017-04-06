@@ -12,11 +12,11 @@ namespace HNFCRM_Chat.Controllers
     {
         CP_CRMEntities entities = new CP_CRMEntities();
         // Dowload Contract
-        public ActionResult DownLoad()
+        public ActionResult DownLoad(int id)
         {
-            PRODUCTLINE product = entities.PRODUCTLINEs.Where(x => x.ID == 2).SingleOrDefault();
+            PRODUCTLINE product = entities.PRODUCTLINEs.Where(x => x.ID == id).SingleOrDefault();
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID == product.ID_Contract).SingleOrDefault();
-            return File(contract.SendMarket, "application/msword", Path.GetFileName(contract.SendMarket));
+            return File(contract.Contract1, "application/msword", Path.GetFileName(contract.Contract1));
         }
         //Get All Production Line
         public ActionResult ProductionLine()

@@ -34,9 +34,9 @@ namespace HNFCRM_Chat.Controllers
             var customer = entities.CUSTOMERs.OrderByDescending(x => x.ID).ToList();
             foreach (var item in customer)
             {
-                CONTRACT temp = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).Single();
+                var temp = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).Single();
                 contract.Add(temp);
-                STAFF tempstaff = entities.STAFFs.Where(x => x.ID == temp.ID_Staff).Single();
+                var tempstaff = entities.STAFFs.Where(x => x.ID == temp.ID_Staff).Single();
                 staff.Add(tempstaff);
             }
 

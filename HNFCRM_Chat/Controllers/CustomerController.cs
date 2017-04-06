@@ -19,8 +19,21 @@ namespace HNFCRM_Chat.Controllers
         {
             try
             {
-                var p = entities.CUSTOMERs.Where(x => x.IsAvailable == true).ToList();
-                return View(p);
+                List<CONTRACT> contract = new List<CONTRACT>();
+                List<STAFF> staff = new List<STAFF>();
+                var customer = entities.CUSTOMERs.Where(x => x.IsAvailable == true).ToList();
+                foreach (var item in customer)
+                {
+                    var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                    contract.Add(findcontract);
+                    var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                    staff.Add(findstaff);
+                }
+                CustomerModel model = new CustomerModel();
+                model.customer = customer;
+                model.contract = contract;
+                model.staff = staff;
+                return View(model);
             }
             catch (Exception e)
             {
@@ -66,6 +79,22 @@ namespace HNFCRM_Chat.Controllers
             data.Note = frm["customernote"];
             data.CareAboutProduct = frm["InterestedIn"];
             data.Comment = frm["previouscomment"];
+            if (int.Parse(frm["consult"]) == 1)
+            {
+                data.ID_Consult = 1;
+            }
+            else if (int.Parse(frm["consult"]) == 2)
+            {
+                data.ID_Consult = 2;
+            }
+            else if (int.Parse(frm["consult"]) == 3)
+            {
+                data.ID_Consult = 3;
+            }
+            else
+            {
+                data.ID_Consult = 4;
+            }
 
             //Update require of new customer
             REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
@@ -134,6 +163,22 @@ namespace HNFCRM_Chat.Controllers
             data.Note = frm["customernote"];
             data.CareAboutProduct = frm["InterestedIn"];
             data.Comment = frm["previouscomment"];
+            if (int.Parse(frm["consult"]) == 4)
+            {
+                data.ID_Consult = 4;
+            }
+            else if (int.Parse(frm["consult"]) == 2)
+            {
+                data.ID_Consult = 2;
+            }
+            else if (int.Parse(frm["consult"]) == 3)
+            {
+                data.ID_Consult = 3;
+            }
+            else
+            {
+                data.ID_Consult = 1;
+            }
             data.IsAvailable = true;
 
             //Insert require of new customer
@@ -169,7 +214,58 @@ namespace HNFCRM_Chat.Controllers
             }
             require.Note = frm["requirenote"];
 
+            //Insert New Contract of New Customer
+            var a = Session["ID"] as STAFF;
+            int idstaff = a.ID;
+            CONTRACT newcontract = new CONTRACT();
+            newcontract.ID_Customer = data.ID;
+            //DateTime set now is default value
+            newcontract.CreatedDate = DateTime.Now;
+            newcontract.UpdatedDate = DateTime.Now;
+            newcontract.DateConsult = DateTime.Now;
+            newcontract.Appointment = DateTime.Now;
+            newcontract.AppointmentMarket = DateTime.Now;
+            newcontract.EndDate = DateTime.Now;
+            newcontract.StartDate = DateTime.Now;
+            newcontract.MoneyTransfer = "2";
+            newcontract.ID_RequireProduct = require.ID;
+            //Remind set "Chưa gọi" is default value
+            newcontract.Remind = "3";
+            newcontract.CheckConfirm = false;
+            newcontract.SendMarket = "123456";
+            newcontract.MarketPicture = "123456";
+            newcontract.Contract1 = "123456";
+            newcontract.Price = "123456";
+            //Contract Status set "Đang chờ" is default value
+            newcontract.StatusContract = "1";
+            newcontract.ID_Staff = idstaff;
+            entities.CONTRACTs.Add(newcontract);
+
+            //Insert New Contract Detail
+            CONTRACTDETAIL newcontractdetail = new CONTRACTDETAIL();
+            newcontractdetail.ID_Contract = newcontract.ID;
+            //Checkbox set false is default value
+            newcontractdetail.SideCut = false;
+            newcontractdetail.ArmBorder = false;
+            newcontractdetail.ArmpitBorder = false;
+            //All datetime set now is default value
+            newcontractdetail.EmbroiderStartDate = DateTime.Now;
+            newcontractdetail.EmbroiderEndDate = DateTime.Now;
+            newcontractdetail.PrintStartDate = DateTime.Now;
+            newcontractdetail.PrintEndDate = DateTime.Now;
+            entities.CONTRACTDETAILs.Add(newcontractdetail);
+
+            //Because of foreign key constraint, all relative table will be automatically created 
+            MENSIZE mensize = new MENSIZE();
+            mensize.ID_CONTRACTDETAIL = newcontract.ID;
+            entities.MENSIZEs.Add(mensize);
+            WOMENSIZE womensize = new WOMENSIZE();
+            womensize.ID_CONTRACTDETAIL = newcontract.ID;
+            entities.WOMENSIZEs.Add(womensize);
+
             //Data savechanges
+            entities.CONTRACTs.Add(newcontract);
+            entities.CONTRACTDETAILs.Add(newcontractdetail);
             entities.CUSTOMERs.Add(data);
             entities.REQUIREPRODUCTs.Add(require);
             entities.SaveChanges();
