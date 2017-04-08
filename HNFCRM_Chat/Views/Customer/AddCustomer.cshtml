@@ -1,5 +1,6 @@
 ﻿@model HNFCRM_Chat.Models.CUSTOMER
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
+<script src="~/Scripts/HNF-jquery.js"></script>
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,13 +11,13 @@
     <div class="page-content">
         <div class="container-fluid">
             <br>
-            @using (Html.BeginForm("AddCustomer", "Customer", FormMethod.Post))
-            {
-                 <!-- Thông Tin Khách Hàng & Thông Tin Sản Phẩm -->
+            <form action="@Url.Action("AddCustomer","Customer")" method="post">
+
+
+                <!-- Thông Tin Khách Hàng & Thông Tin Sản Phẩm -->
                 <div class="row">
                     <!-- Thông Tin Khách Hàng -->
                     <div class="alertArea">
-
                     </div>
                     <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
@@ -124,7 +125,7 @@
                                 <!-- Mục Đích Sử Dụng -->
                                 <div class="form-group">
                                     <label>Mục Đích Sử Dụng</label>
-                                    <input type="text" class="form-control" name="purpose" aria-describedby="emailHelp" placeholder=>
+                                    <input type="text" class="form-control" name="purpose" aria-describedby="emailHelp" placeholder="">
                                 </div>
                                 <!-- Đã Có Thiết Kế Chưa ? -->
                                 <div class="row">
@@ -179,13 +180,13 @@
                                 </div>
 
                                 <!-- Nút lưu thông tin -->
-                                <button type="submit" id="CustomerInfoSaveBtn" class="btn btn-primary btn-lg btn-block mt-4" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Lưu Thông Tin</button>
+                                <button type="submit" id="CustomerInfoSaveBtn" class="btn btn-primary btn-lg btn-block mt-4" href='@Url.Action("AddCustomer", "Customer")'>Lưu Thông Tin</button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <br>
-            }
+            </form>
         </div>
     </div>
 </div>
@@ -203,3 +204,4 @@
         });
     });
 </script>
+

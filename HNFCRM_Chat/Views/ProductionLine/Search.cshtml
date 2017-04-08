@@ -58,8 +58,8 @@
                                                 Chuyển Tiền
                                             </button>
                                             <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">50% Số Tiền</a>
-                                                <a class="dropdown-item" href="#">100% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter50","ProductionLine")">50% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter100","ProductionLine")">100% Số Tiền</a>
                                             </div>
                                         </div>
                                     </div>
@@ -93,13 +93,50 @@
                                     <td>@item.CUSTOMER.Name</td>
                                     <td>@item.CUSTOMER.Company</td>
                                     <td>@item.CUSTOMER.Phone</td>
-                                    <td>2/1/2017</td>
-                                    <td>2/3/2017</td>
-                                    <td>50%</td>
-                                    <td class="bg-warning">Đang In/Thuê</td>
+                                    <td>@item.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
+                                    <td>@item.CONTRACT.EndDate.Value.ToString("dd/MM/yyyy")</td>
+                                    @{if (int.Parse(item.CONTRACT.MoneyTransfer) == 1)
+                                        {
+                                            <td>50%</td>}
+                                        else if (int.Parse(item.CONTRACT.MoneyTransfer) == 0)
+                                        {
+                                            <td>100%</td>}
+                                        else
+                                        {
+                                            <td>Chưa Chuyển</td>}
+                                    }
+                                    @{if (item.Delivery == true)
+                                        {
+                                            <td class="bg-warning">Đang Giao Hàng</td>
+                                        }
+                                        else if (item.Packaging == true && item.Delivery == false)
+                                        {
+                                            <td class="bg-warning">Đang Đóng Gói</td>
+                                        }
+                                        else if (item.Iron == true && item.Packaging == false && item.Delivery == false)
+                                        {
+                                            <td class="bg-warning">Đang Ủi</td>
+                                        }
+                                        else if (item.Sew == true && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                        {
+                                            <td class="bg-warning">Đang May</td>
+                                        }
+                                        else if (item.Embroider == true && item.Sew == false && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                        {
+                                            <td class="bg-warning">Đang In/Thêu</td>
+                                        }
+                                        else if (item.Cut == true && item.Embroider == false && item.Sew == false && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                        {
+                                            <td class="bg-warning">Đang Cắt</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="bg-warning">Chưa tiến hành</td>
+                                        }
+                                    }
                                     <td><a href="@Url.Action("ProductionLineDetail","ProductionLine",new {id=item.ID })" role="button" class="btn btn-sm btn-info">i</a></td>
                                 </tr>
-                            }
+                                        }
                         </tbody>
                     </table>
                 </div>

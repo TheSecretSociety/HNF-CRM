@@ -138,6 +138,7 @@ namespace HNFCRM_Chat.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         //Insert new customer and require product to database
         public ActionResult AddCustomer(FormCollection frm)
         {

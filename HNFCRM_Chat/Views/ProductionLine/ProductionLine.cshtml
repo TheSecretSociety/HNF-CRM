@@ -58,8 +58,8 @@
                                                 Chuyển Tiền
                                             </button>
                                             <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">50% Số Tiền</a>
-                                                <a class="dropdown-item" href="#">100% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter50","ProductionLine")">50% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter100","ProductionLine")">100% Số Tiền</a>
                                             </div>
                                         </div>
                                     </div>
@@ -97,10 +97,10 @@
                                         <td>@item.CUSTOMER.Phone</td>
                                         <td>@item.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
                                         <td>@item.CONTRACT.EndDate.Value.ToString("dd/MM/yyyy")</td>
-                                        @{if (int.Parse(item.CONTRACT.MoneyTransfer) == 0)
+                                        @{if (int.Parse(item.CONTRACT.MoneyTransfer) == 1)
                                             {
                                                 <td>50%</td>}
-                                            else if (int.Parse(item.CONTRACT.MoneyTransfer) == 1)
+                                            else if (int.Parse(item.CONTRACT.MoneyTransfer) == 0)
                                             {
                                                 <td>100%</td>}
                                             else

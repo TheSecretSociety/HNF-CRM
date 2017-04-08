@@ -528,6 +528,8 @@
     <Content Include="Views\Home\FilterOnProgress.cshtml" />
     <Content Include="Views\Contract\Contract.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\ProductionLine\Filter50.cshtml" />
+    <Content Include="Views\ProductionLine\Filter100.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,6 +2,7 @@
 @model CustomerModel
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
+<script src="~/Scripts/HNF-jquery.js"></script>
 <!--===== PAGE CONTENT =====-->
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -11,8 +12,11 @@
     <div class="page-content">
         <div class="container-fluid">
             <br>
-            @using (Html.BeginForm("CustomerDetail", "Customer", FormMethod.Post, new { id = Model.Customer.ID }))
-            {
+            <form action="@Url.Action("CustomerDetail","Customer")" method="post" id="@Model.Customer.ID">
+
+
+                @*@using (Html.BeginForm("CustomerDetail", "Customer", FormMethod.Post, new { id = Model.Customer.ID }))
+                    {*@
                 <!-- Thông Tin Khách Hàng & Thông Tin Sản Phẩm -->
                 <div class="row">
                     <!-- Thông Tin Khách Hàng -->
@@ -218,11 +222,11 @@
                             </div>
 
                             <!-- Nút lưu thông tin -->
-                            <button type="submit" id="CustomerInfoSaveBtn" class="btn btn-primary btn-lg btn-block mt-4">Lưu Thông Tin</button>
+                            <button type="submit" id="CustomerInfoSaveBtn" class="btn btn-primary btn-lg btn-block mt-4" href="@Url.Action("CustomerDetail","Customer")">Lưu Thông Tin</button>
                         </div>
                     </div>
                 </div>
-                                                }
+            </form>
             <br />
             <!-- Nút chức năng -->
             <div class="row">
@@ -232,12 +236,6 @@
                             <div class="offset-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0 mb-lg-0">
                                 <a class="btn btn-success w-100" href="@Url.Action("Contract", "Contract", new { id =Model.Customer.ID })" role="button">Hợp Đồng</a>
                             </div>
-                            <!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2 mb-xl-0 mb-lg-0">
-                              <a class="btn btn-warning w-100" href="#" role="button">Cập Nhập Hợp Đồng</a>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
-                              <a class="btn btn-danger w-100" href="#" id="CustomerDetailDeleteBtn" role="button">Xoá Hợp Đồng</a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -245,4 +243,3 @@
         </div>
     </div>
 </div>
-

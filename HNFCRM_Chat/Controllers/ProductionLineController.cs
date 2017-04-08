@@ -145,7 +145,7 @@ namespace HNFCRM_Chat.Controllers
         //Filter Cut Status
         public ActionResult FilterCut()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Cut == true).ToList();
+            var productline = entities.PRODUCTLINEs.Where(x => x.Cut == true && x.Embroider == false).ToList();
             return View(productline);
         }
 
@@ -159,28 +159,55 @@ namespace HNFCRM_Chat.Controllers
         //Filter Embroider Status
         public ActionResult FilterEmbroider()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Embroider == true).ToList();
+            var productline = entities.PRODUCTLINEs.Where(x => x.Embroider == true && x.Sew==false).ToList();
             return View(productline);
         }
 
         //Filter Iron Status
         public ActionResult FilterIron()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Iron == true).ToList();
+            var productline = entities.PRODUCTLINEs.Where(x => x.Iron == true && x.Packaging==false).ToList();
             return View(productline);
         }
 
         //Filter Sew Status
         public ActionResult FilterSew()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Sew == true).ToList();
+            var productline = entities.PRODUCTLINEs.Where(x => x.Sew == true && x.Iron==false).ToList();
             return View(productline);
         }
 
         //Filter Packaging Status
         public ActionResult FilterPackaging()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Packaging == true).ToList();
+            var productline = entities.PRODUCTLINEs.Where(x => x.Packaging == true && x.Delivery==false).ToList();
+            return View(productline);
+        }
+
+        //Filter Transfer Money
+        //50% Total
+        public ActionResult Filter50()
+        {
+            List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
+            var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "1").ToList();
+            foreach (var item in contract)
+            {
+                var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
+                productline.Add(findproductline);
+            }
+            return View(productline);
+        }
+
+        //100% Total
+        public ActionResult Filter100()
+        {
+            List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
+            var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "0").ToList();
+            foreach (var item in contract)
+            {
+                var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
+                productline.Add(findproductline);
+            }
             return View(productline);
         }
     }

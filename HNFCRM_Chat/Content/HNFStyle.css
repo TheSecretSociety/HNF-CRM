@@ -161,7 +161,7 @@ a:link {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     background-image: url("image/avatar.jpg") cover;
     width: 500px;
-    height: 300px;
+    height: 350px;
     border-radius: 15px;
     padding: 50px;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.09);
@@ -256,6 +256,7 @@ a:link {
 .hnf-navtab-font{
   text-align: center;
   font-size: 0.9rem;
+  color: black;
 }
 .hnf-bg-production-bar {
     background-color: rgb(255, 255, 255);
