@@ -21,6 +21,12 @@ namespace HNFCRM_Chat.Controllers
         //Get All Production Line
         public ActionResult ProductionLine()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             var productionline = entities.PRODUCTLINEs.ToList();
             return View(productionline);
         }
@@ -28,6 +34,12 @@ namespace HNFCRM_Chat.Controllers
         //Get Production Line Detail By ID
         public ActionResult ProductionLineDetail(int id)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             PRODUCTLINE product = entities.PRODUCTLINEs.Where(x => x.ID == id).SingleOrDefault();
             CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == product.ID_Customer).SingleOrDefault();
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID == product.ID_Contract).SingleOrDefault();
@@ -50,6 +62,12 @@ namespace HNFCRM_Chat.Controllers
         //Update Production Line Detail By ID
         public ActionResult ProductionLineDetail(int id, FormCollection frm)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             PRODUCTLINE product = entities.PRODUCTLINEs.Where(x => x.ID == id).SingleOrDefault();
 
             if (frm["cut"] != null)
@@ -124,27 +142,25 @@ namespace HNFCRM_Chat.Controllers
         //Search Production Line
         public ActionResult Search(string search)
         {
-            var name = entities.PRODUCTLINEs.Where(x => x.CUSTOMER.Name.Contains(search)).ToList();
-            var phone = entities.PRODUCTLINEs.Where(x => x.CUSTOMER.Phone.Contains(search)).ToList();
-            var company = entities.PRODUCTLINEs.Where(x => x.CUSTOMER.Company.Contains(search)).ToList();
-            if (name == null && company == null)
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
             {
-                return View(phone);
+                return RedirectToAction("Login", "Login");
             }
-            else if (name == null && phone == null)
-            {
-                return View(company);
-            }
-            else if (company == null && phone == null)
-            {
-                return View(name);
-            }
-            return View(name);
+
+            var result = entities.PRODUCTLINEs.Where(x => x.CUSTOMER.Name.Contains(search) || x.CUSTOMER.Phone.Contains(search) || x.CUSTOMER.Company.Contains(search)).ToList();
+            return View(result);
         }
 
         //Filter Cut Status
         public ActionResult FilterCut()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             var productline = entities.PRODUCTLINEs.Where(x => x.Cut == true && x.Embroider == false).ToList();
             return View(productline);
         }
@@ -152,6 +168,12 @@ namespace HNFCRM_Chat.Controllers
         //Filter Delivery Status
         public ActionResult FilterDelivery()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             var productline = entities.PRODUCTLINEs.Where(x => x.Delivery == true).ToList();
             return View(productline);
         }
@@ -159,28 +181,52 @@ namespace HNFCRM_Chat.Controllers
         //Filter Embroider Status
         public ActionResult FilterEmbroider()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Embroider == true && x.Sew==false).ToList();
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var productline = entities.PRODUCTLINEs.Where(x => x.Embroider == true && x.Sew == false).ToList();
             return View(productline);
         }
 
         //Filter Iron Status
         public ActionResult FilterIron()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Iron == true && x.Packaging==false).ToList();
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var productline = entities.PRODUCTLINEs.Where(x => x.Iron == true && x.Packaging == false).ToList();
             return View(productline);
         }
 
         //Filter Sew Status
         public ActionResult FilterSew()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Sew == true && x.Iron==false).ToList();
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var productline = entities.PRODUCTLINEs.Where(x => x.Sew == true && x.Iron == false).ToList();
             return View(productline);
         }
 
         //Filter Packaging Status
         public ActionResult FilterPackaging()
         {
-            var productline = entities.PRODUCTLINEs.Where(x => x.Packaging == true && x.Delivery==false).ToList();
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var productline = entities.PRODUCTLINEs.Where(x => x.Packaging == true && x.Delivery == false).ToList();
             return View(productline);
         }
 
@@ -188,6 +234,12 @@ namespace HNFCRM_Chat.Controllers
         //50% Total
         public ActionResult Filter50()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
             var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "1").ToList();
             foreach (var item in contract)
@@ -201,6 +253,12 @@ namespace HNFCRM_Chat.Controllers
         //100% Total
         public ActionResult Filter100()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
             var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "0").ToList();
             foreach (var item in contract)

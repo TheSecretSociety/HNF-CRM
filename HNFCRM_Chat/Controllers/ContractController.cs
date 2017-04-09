@@ -18,6 +18,11 @@ namespace HNFCRM_Chat.Controllers
         // GET: Contract by Customer ID
         public ActionResult Contract(int id)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             int? staffid = contract.ID_Staff;
@@ -33,6 +38,12 @@ namespace HNFCRM_Chat.Controllers
         [HttpPost]
         public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase uploadcontract, HttpPostedFileBase uploadimages, HttpPostedFileBase uploadprice, HttpPostedFileBase uploadmarket)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
 
             //Upload file
@@ -204,6 +215,12 @@ namespace HNFCRM_Chat.Controllers
         //Contract Detail By ID
         public ActionResult ContractDetail(int id)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             CONTRACTDETAIL contractdetail = entities.CONTRACTDETAILs.Where(x => x.ID_Contract == id).SingleOrDefault();
             int contractdetailID = contractdetail.ID;
             MENSIZE mensize = entities.MENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailID).SingleOrDefault();
@@ -219,6 +236,12 @@ namespace HNFCRM_Chat.Controllers
         //Update Contract Detail
         public ActionResult ContractDetail(int id, FormCollection frm)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             CONTRACTDETAIL contractdetail = entities.CONTRACTDETAILs.Where(x => x.ID_Contract == id).SingleOrDefault();
 
             //Update sew specification
