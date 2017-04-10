@@ -175,8 +175,8 @@ namespace HNFCRM_Chat.Controllers
         //Filter Role
         public ActionResult FilterAdmin()
         {
-            var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
-            return View(s);
+                    var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
+                    return View(s);
         }
         public ActionResult FilterSale()
         {

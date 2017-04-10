@@ -19,12 +19,6 @@ namespace HNFCRM_Chat.Controllers
         {
             try
             {
-                //Redirect to login if User has not login yet
-                if (Session["author"] == null)
-                {
-                    return RedirectToAction("Login", "Login");
-                }
-
                 List<CONTRACT> contract = new List<CONTRACT>();
                 List<STAFF> staff = new List<STAFF>();
                 var customer = entities.CUSTOMERs.Where(x => x.IsAvailable == true).ToList();
@@ -50,12 +44,6 @@ namespace HNFCRM_Chat.Controllers
         //Get Customer By ID
         public ActionResult CustomerDetail(int id)
         {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
             CUSTOMER customer = new CUSTOMER();
             customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             REQUIREPRODUCT require = new REQUIREPRODUCT();
@@ -70,12 +58,6 @@ namespace HNFCRM_Chat.Controllers
         //Update Customer Information
         public ActionResult CustomerDetail(int id, FormCollection frm)
         {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
             CUSTOMER data = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             data.Name = frm["name"];
             data.Phone = frm["phone"];
@@ -152,25 +134,14 @@ namespace HNFCRM_Chat.Controllers
         //Navigate to Add new Customer page
         public ActionResult AddCustomer()
         {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         //Insert new customer and require product to database
         public ActionResult AddCustomer(FormCollection frm)
         {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
-            {
-                return RedirectToAction("Login", "Login");
-            }
-
             //Insert new customer
             CUSTOMER data = new CUSTOMER();
             data.Name = frm["name"];
@@ -340,12 +311,6 @@ namespace HNFCRM_Chat.Controllers
         {
             try
             {
-                //Redirect to login if User has not login yet
-                if (Session["author"] == null)
-                {
-                    return RedirectToAction("Login", "Login");
-                }
-
                 if (SearchName != "" && SearchPhone == "" && SearchEmail == "")
                 {
                     var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName)).ToList();
