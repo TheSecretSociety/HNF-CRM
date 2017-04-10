@@ -21,7 +21,10 @@ namespace HNFCRM_Chat
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/HNF-jquery.js",
+                      "~/Scripts/bootstrap-datetimepicker.js"
+                     ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -30,6 +33,14 @@ namespace HNFCRM_Chat
                       "~/Content/AboutPage.css",
                       "~/Content/HNFStyle.css"
                       ));
+
+            //Create bundel for jQueryUI  
+            //js  
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                       "~/Scripts/jquery-ui-{version}.js"));
+            //css  
+            bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
+                   "~/Content/jquery-ui.css"));
         }
     }
 }

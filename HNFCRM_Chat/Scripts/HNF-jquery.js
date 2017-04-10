@@ -1,4 +1,4 @@
-﻿// ***************************************************** //
+// ***************************************************** //
 // *                ACTIVE ALL FUNCTION                * //
 // ***************************************************** //
 // $(document).ready() only one so all function will be calling here
@@ -42,12 +42,12 @@ function DeleteButtonWarning() {
         DeleteWarning();
     });
     function DeleteWarning() {
-        var DeleteState = confirm("Bạn có chắc chắn muốn xóa?");
+        var DeleteState = confirm("Bạn Có Chắc Chắn Muốn Xoá ?");
         if (DeleteState == true) {
-            alert("Xóa Thành Công!");
+            alert("Xoá Thành Công!");
             return true;
         } else {
-            alert("Đã Hủy Lệnh Xóa!");
+            alert("Đã Huỷ Lệnh Xoá");
             return false;
         }
     }
@@ -203,7 +203,7 @@ function LoginValidation() {
             $('.IDError').empty();
             if (LoginUsernameValidate(UsernameValue)) {
                 $('.IDError').empty();
-                // náº¿u Ä‘Ãºng controller sáº½ thá»±c hiá»‡n
+                // nếu đúng controller sẽ thực hiện
                 return true;
             } else {
                 $('.IDError').append('<small style="color:white;">Vui lòng nhập lại Email!</small>');
@@ -215,10 +215,10 @@ function LoginValidation() {
             $('.PasswordError').empty();
             if (LoginPasswordValidate(PasswordValue)) {
                 $('.PasswordError').empty();
-                // náº¿u Ä‘Ãºng controller sáº½ thá»±c hiá»‡n
+                // nếu đúng controller sẽ thực hiện
                 return true;
             } else {
-                $('.PasswordError').append('<small style="color:white;">Password không thể có khoảng trắng!');
+                $('.PasswordError').append('<small style="color:white;">Password không được có khoản trắng!');
                 return false;
             }
         });
@@ -398,30 +398,45 @@ function EmployeeAddValidation() {
 function CustomerDetailValidation() {
     Validate();
     function Validate() {
+
+        var ValidateError = false;
+
+
         $('#txt-CName').change(function () {
             var CustomerName = $('#txt-CName').val();
             $('#txt-CName').removeClass('bg-warning');
             if (CName_Format_Validate(CustomerName)) {
+                $('#CustomerInfoSaveBtn').prop("disabled", false).removeClass('btn-secondary').addClass('btn-primary');
             } else {
+                $('#CustomerInfoSaveBtn').prop("disabled", true).removeClass('btn-primary').addClass('btn-secondary');
+
                 $('#txt-CName').addClass('bg-warning');
+                return ValidateError = true;
             }
         })
         $('#txt-CPhone').change(function () {
             var CustomerPhone = $('#txt-CPhone').val();
             $('#txt-CPhone').removeClass('bg-warning');
             if (CPhone_Format_Validate(CustomerPhone)) {
+                $('#CustomerInfoSaveBtn').prop("disabled", false).removeClass('btn-secondary').addClass('btn-primary');
             } else {
+                $('#CustomerInfoSaveBtn').prop("disabled", true).removeClass('btn-primary').addClass('btn-secondary');
                 $('#txt-CPhone').addClass('bg-warning');
+                return ValidateError = true;
             }
         })
         $('#txt-CEmail').change(function () {
             var CustomerEmail = $('#txt-CEmail').val();
             $('#txt-CEmail').removeClass('bg-warning');
             if (CEmail_Format_Validate(CustomerEmail)) {
+                $('#CustomerInfoSaveBtn').prop("disabled", false).removeClass('btn-secondary').addClass('btn-primary');
             } else {
+                $('#CustomerInfoSaveBtn').prop("disabled", true).removeClass('btn-primary').addClass('btn-secondary');
                 $('#txt-CEmail').addClass('bg-warning');
+                return ValidateError = true;
             }
         })
+
         $('#txt-CPrice').change(function () {
             var numcheck = $('#txt-CPrice').val();
             console.log("Price : " + numcheck);
@@ -641,7 +656,7 @@ function DemoChart() {
             datasets:
               [
                 {
-                    label: "Doanh Sá»‘ BÃ¡n HÃ ng",
+                    label: "Doanh Số Bán Hàng",
                     fill: true,
                     lineTension: 0.1,
                     backgroundColor: "rgba(75,192,192,0.4)",

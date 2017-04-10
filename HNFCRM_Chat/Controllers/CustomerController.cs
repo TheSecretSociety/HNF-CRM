@@ -19,8 +19,15 @@ namespace HNFCRM_Chat.Controllers
         {
             try
             {
+                //Redirect to login if User has not login yet
+                if (Session["author"] == null)
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+
                 List<CONTRACT> contract = new List<CONTRACT>();
                 List<STAFF> staff = new List<STAFF>();
+                var stafflist = entities.STAFFs.ToList();
                 var customer = entities.CUSTOMERs.Where(x => x.IsAvailable == true).ToList();
                 foreach (var item in customer)
                 {
@@ -33,6 +40,7 @@ namespace HNFCRM_Chat.Controllers
                 model.customer = customer;
                 model.contract = contract;
                 model.staff = staff;
+                model.liststaff = stafflist;
                 return View(model);
             }
             catch (Exception e)
@@ -44,6 +52,12 @@ namespace HNFCRM_Chat.Controllers
         //Get Customer By ID
         public ActionResult CustomerDetail(int id)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             CUSTOMER customer = new CUSTOMER();
             customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             REQUIREPRODUCT require = new REQUIREPRODUCT();
@@ -58,6 +72,12 @@ namespace HNFCRM_Chat.Controllers
         //Update Customer Information
         public ActionResult CustomerDetail(int id, FormCollection frm)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             CUSTOMER data = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             data.Name = frm["name"];
             data.Phone = frm["phone"];
@@ -134,14 +154,25 @@ namespace HNFCRM_Chat.Controllers
         //Navigate to Add new Customer page
         public ActionResult AddCustomer()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         //Insert new customer and require product to database
         public ActionResult AddCustomer(FormCollection frm)
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             //Insert new customer
             CUSTOMER data = new CUSTOMER();
             data.Name = frm["name"];
@@ -311,46 +342,195 @@ namespace HNFCRM_Chat.Controllers
         {
             try
             {
+                //Redirect to login if User has not login yet
+                if (Session["author"] == null)
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+
                 if (SearchName != "" && SearchPhone == "" && SearchEmail == "")
                 {
-                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName)).ToList();
-                    return View(customer);
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    var liststaff = entities.STAFFs.ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName)).ToList();
+                    foreach (var item in findcustomer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        customer.Add(item);
+                        staff.Add(findstaff);
+                        contract.Add(findcontract);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.contract = contract;
+                    model.customer = customer;
+                    model.staff = staff;
+                    model.liststaff = liststaff;
+                    return View(model);
                 }
                 else if (SearchName == "" && SearchPhone != "" && SearchEmail == "")
                 {
-                    var customer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone)).ToList();
-                    return View(customer);
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    var liststaff = entities.STAFFs.ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone)).ToList();
+                    foreach (var item in findcustomer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        customer.Add(item);
+                        staff.Add(findstaff);
+                        contract.Add(findcontract);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.contract = contract;
+                    model.customer = customer;
+                    model.staff = staff;
+                    model.liststaff = liststaff;
+                    return View(model);
                 }
                 else if (SearchName == "" && SearchPhone == "" && SearchEmail != "")
                 {
-                    var customer = entities.CUSTOMERs.Where(x => x.Email.Contains(SearchEmail)).ToList();
-                    return View(customer);
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    var liststaff = entities.STAFFs.ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Email.Contains(SearchEmail)).ToList();
+                    foreach (var item in findcustomer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        customer.Add(item);
+                        staff.Add(findstaff);
+                        contract.Add(findcontract);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.contract = contract;
+                    model.customer = customer;
+                    model.staff = staff;
+                    model.liststaff = liststaff;
+                    return View(model);
                 }
                 else if (SearchName != "" && SearchPhone != "" && SearchEmail == "")
                 {
-                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone)).ToList();
-                    return View(customer);
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    var liststaff = entities.STAFFs.ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone)).ToList();
+                    foreach (var item in findcustomer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        customer.Add(item);
+                        staff.Add(findstaff);
+                        contract.Add(findcontract);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.contract = contract;
+                    model.customer = customer;
+                    model.staff = staff;
+                    model.liststaff = liststaff;
+                    return View(model);
                 }
                 else if (SearchName != "" && SearchPhone == "" && SearchEmail != "")
                 {
-                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Email.Contains(SearchEmail)).ToList();
-                    return View(customer);
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    var liststaff = entities.STAFFs.ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Email.Contains(SearchEmail)).ToList();
+                    foreach (var item in findcustomer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        customer.Add(item);
+                        staff.Add(findstaff);
+                        contract.Add(findcontract);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.contract = contract;
+                    model.customer = customer;
+                    model.staff = staff;
+                    model.liststaff = liststaff;
+                    return View(model);
                 }
                 else if (SearchName == "" && SearchPhone != "" && SearchEmail != "")
                 {
-                    var customer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
-                    return View(customer);
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    var liststaff = entities.STAFFs.ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
+                    foreach (var item in findcustomer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        customer.Add(item);
+                        staff.Add(findstaff);
+                        contract.Add(findcontract);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.contract = contract;
+                    model.customer = customer;
+                    model.staff = staff;
+                    model.liststaff = liststaff;
+                    return View(model);
                 }
                 else
                 {
-                    var customer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
-                    return View(customer);
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    var liststaff = entities.STAFFs.ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
+                    foreach (var item in findcustomer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        customer.Add(item);
+                        staff.Add(findstaff);
+                        contract.Add(findcontract);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.contract = contract;
+                    model.customer = customer;
+                    model.staff = staff;
+                    model.liststaff = liststaff;
+                    return View(model);
                 }
             }
             catch (Exception e)
             {
                 return new EmptyResult();
             }
+        }
+
+        //Search Customer By Staff
+        public ActionResult SearchCustomerByStaff(int id)
+        {
+            List<CUSTOMER> customer = new List<CUSTOMER>();
+            List<CONTRACT> contract = new List<CONTRACT>();
+            List<STAFF> staff = new List<STAFF>();
+            var liststaff = entities.STAFFs.ToList();
+            var findcontract = entities.CONTRACTs.Where(x => x.ID_Staff == id).ToList();
+            foreach (var item in findcontract)
+            {
+                var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).SingleOrDefault();
+                var findstaff = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
+                customer.Add(findcustomer);
+                staff.Add(findstaff);
+                contract.Add(item);
+            }
+            CustomerModel model = new CustomerModel();
+            model.contract = contract;
+            model.customer = customer;
+            model.staff = staff;
+            model.liststaff = liststaff;
+            return View(model);
         }
     }
 }

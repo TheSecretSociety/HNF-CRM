@@ -76,7 +76,7 @@
                             @if (a.ID_Role == 1)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="material-icons md-18">pie_chart</i>Thống Kê</a>
+                                    <a class="nav-link" href="@Url.Action("Statistic","Statistic")"><i class="material-icons md-18">pie_chart</i>Thống Kê</a>
                                 </li>
                             }
                             @if (a.ID_Role == 1 || a.ID_Role == 3)
@@ -122,7 +122,7 @@
                 }
                 @if (a.ID_Role == 1)
                 {
-                    <li><a href="#"><i class="material-icons md-18">pie_chart</i>THỐNG KÊ</a></li>
+                    <li><a href="@Url.Action("Statistic","Statistic")"><i class="material-icons md-18">pie_chart</i>THỐNG KÊ</a></li>
                 }
                 @if (a.ID_Role == 1 || a.ID_Role == 3)
                 {
@@ -143,7 +143,7 @@
         @RenderBody()
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/HNF-jquery")
+        @Scripts.Render("~/bundles/HNF-jquery.js")
         @RenderSection("scripts", required: false)
     </div>
 </body>

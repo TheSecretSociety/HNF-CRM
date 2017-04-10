@@ -14,6 +14,14 @@ namespace HNFCRM_Chat.Controllers
         //Display Dashboard and Get New customer List
         public ActionResult Index()
         {
+            //Pagination
+            
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             List<CONTRACT> contract = new List<CONTRACT>();
             List<STAFF> staff = new List<STAFF>();
 
@@ -50,6 +58,12 @@ namespace HNFCRM_Chat.Controllers
         //Display Dashboard and Get Success Contract List
         public ActionResult FilterSuccess()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             List<STAFF> staff = new List<STAFF>();
             List<CUSTOMER> customer = new List<CUSTOMER>();
 
@@ -86,6 +100,12 @@ namespace HNFCRM_Chat.Controllers
         //Display Dashboard and get Fail Contract List
         public ActionResult FilterFailed()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             List<STAFF> staff = new List<STAFF>();
             List<CUSTOMER> customer = new List<CUSTOMER>();
 
@@ -122,6 +142,12 @@ namespace HNFCRM_Chat.Controllers
         //Display Dashboard and Get Waiting Contract
         public ActionResult FilterOnProgress()
         {
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
             List<CUSTOMER> customer = new List<CUSTOMER>();
             List<STAFF> staff = new List<STAFF>();
             List<CONTRACT> contract = new List<CONTRACT>();

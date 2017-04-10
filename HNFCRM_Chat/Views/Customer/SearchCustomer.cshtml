@@ -1,10 +1,29 @@
-﻿@model IEnumerable<HNFCRM_Chat.Models.CUSTOMER>
-<link rel="stylesheet" href="~/Content/HNFStyle.css">
+﻿@model HNFCRM_Chat.Models.CustomerModel
 
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Customer</title>
+    <title>HNF-Customer</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- Datetime Picker CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.vi.min.js" integrity="sha256-TnMvef6AxT9fg6mNrTsZCgPDkU4g5EyB+tu66oLAI4U=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
+    <!-- Google Icon CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    <!-- custom CSS & Jquery modify URL -->
+    <link rel="stylesheet" href="~/Content/HNFStyle.css">
+    <script src="~/Scripts/HNF-jquery.js"></script>
 </head>
+
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -16,8 +35,6 @@
                     <div class="card form-input-margin">
                         <div class="btn-group" role="group" aria-label="Function Button">
                             <button type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Thêm</button>
-                            <button type="button" class="btn btn-warning w-100">Sửa Nhanh</button>
-                            <button type="button" class="btn btn-danger w-100">Xoá</button>
                         </div>
                     </div>
 
@@ -62,13 +79,12 @@
                                     <span class="sr-only">Previous</span>
                                 </a>
                             </li>
-                            <li class="page-item "><a class="page-link" href="#">Tấn Lộc</a></li>
-                            <li class="page-item "><a class="page-link" href="#">Tấn Hưng</a></li>
-                            <li class="page-item "><a class="page-link" href="#">Anh Minh</a></li>
-                            <li class="page-item "><a class="page-link" href="#">Đức Thuận</a></li>
-                            <li class="page-item "><a class="page-link" href="#">Hoàng Nguyễn</a></li>
-                            <li class="page-item "><a class="page-link" href="#">Bảo Huy</a></li>
-                            <li class="page-item "><a class="page-link" href="#">Phú Thạnh</a></li>
+                            @{foreach (var item in Model.liststaff)
+                                {
+                                    <li class="page-item "><a class="page-link" href="@Url.Action("SearchCustomerByStaff","Customer", new { id=item.ID})">@item.Name</a></li>
+
+                                }
+                            }
                             <li class="page-item ">
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
@@ -100,26 +116,79 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @{ foreach (var item in Model)
+                            @{if (Model.customer != null)
                                 {
-                                    <tr class="">
-                                        <th scope="row">
-                                            <input type="button" aria-label="Checkbox for following text input" value="x" onclick="location.href='@Url.Action("DeleteCustomer", "Customer", new
-                                                                                                                                         {
-                                                                                                                                             id = item
-                                               .ID
-                                                                                                                                         })'">
-                                        </th>
-                                        <td>@item.Name</td>
-                                        <td>@item.Company</td>
-                                        <td>@item.Email</td>
-                                        <td>@item.Phone</td>
-                                        <td>@item.Job</td>
-                                        <td>mdo</td>
-                                        <td>@item.ID_Consult</td>
-                                        <td><a href="@Url.Action("CustomerDetail", "Customer", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
-                                    </tr>
-                                }
+                                    foreach (var item in Model.customer)
+                                    {
+                                        <tr class="">
+                                            <th scope="row">
+                                                <a type="button" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
+                                                                                                                                                            {
+                                                                                                                                                                id = item
+.ID
+                                                                                                                                                            })'>x</a>
+                                            </th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Company</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Phone</td>
+                                            @{ if (item.ID_Consult.Value == 1)
+                                                {
+                                                    <td>Gọi Điện Thoại</td>
+                                                }
+                                                else if (item.ID_Consult.Value == 2)
+                                                {
+                                                    <td>Gửi Email</td>
+                                                }
+                                                else if (item.ID_Consult.Value == 3)
+                                                {
+                                                    <td>Gặp Mặt</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Gửi Mẫu</td>
+                                                }
+                                            }
+
+                                            @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
+                                            @{if (contract != null)
+                                                {
+                                                    if (int.Parse(contract.Remind) == 0)
+                                                    {
+                                                        <td>Lần 1</td>
+                                                    }
+                                                    else if (int.Parse(contract.Remind) == 1)
+                                                    {
+                                                        <td>Lần 2</td>
+                                                    }
+                                                    else if (int.Parse(contract.Remind) == 2)
+                                                    {
+                                                        <td>Lần 3</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Chưa Gọi</td>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa có thông tin</td>
+                                                }
+                                            }
+                                            @{var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault(); }
+                                            @{ if (staff != null)
+                                                {
+                                                    <td>@staff.Name</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa có thông tin</td>
+                                                }
+                                            }
+                                            <td><a href="@Url.Action("CustomerDetail", "Customer", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
+                                        </tr>
+                                                    }
+                                                }
                             }
                         </tbody>
                     </table>
