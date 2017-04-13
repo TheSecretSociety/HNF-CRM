@@ -7,10 +7,6 @@
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<!-- Datetime Picker CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.vi.min.js" integrity="sha256-TnMvef6AxT9fg6mNrTsZCgPDkU4g5EyB+tu66oLAI4U=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
 <!-- Google Icon CDN -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- custom CSS & Jquery modify URL -->
@@ -48,28 +44,38 @@
                 {
                     <p style="color:red">@TempData["notice"]</p>
                 }
-                <div class="container">
-                    <!-- Email -->
-                    <div class="row">
-                        <div class="input-group">
-                            <input class="input-control" type="email" id="TxtLoginID" name="Email" placeholder="email" autocomplete="off">
-                            <span class="input-group-addon hnf-input-group-addon" id="basic-addon2"><i class="material-icons md-light md-18">mail_outline</i></span>
+                <form class="" action="" method="post">
+                    <div class="container">
+                        <!-- Email -->
+                        <div class="row">
+                            <div class="input-group">
+                                <input class="input-control" type="email" id="TxtLoginID" name="Email" placeholder="email" autocomplete="off" required>
+                                <span class="input-group-addon hnf-input-group-addon" id="basic-addon2"><i class="material-icons md-light md-18">mail_outline</i></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="IDError">
+                            </div>
+                        </div>
+                        <!-- Password -->
+                        <div class="row">
+                            <div class="input-group">
+                                <input class="input-control" type="password" id="TxtLoginPassword" name="Password" placeholder="password" autocomplete="off" required="">
+                                <span class="input-group-addon hnf-input-group-addon" id="basic-addon2"><i class="material-icons md-light md-18">lock_outline</i></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="PasswordError">
+                            </div>
+                        </div>
+                        <!-- Nút Login -->
+                        <div class="row">
+                            <button name="LoginButton" type="submit" id="LoginButton" class="btn hnf-button-control" href='@Url.Action("Login", "Login")'>Login</button>
                         </div>
                     </div>
-                    <!-- Password -->
-                    <div class="row">
-                        <div class="input-group">
-                            <input class="input-control" type="password" id="TxtLoginPassword" name="Password" placeholder="password" autocomplete="off">
-                            <span class="input-group-addon hnf-input-group-addon" id="basic-addon2"><i class="material-icons md-light md-18">lock_outline</i></span>
-                        </div>
-                    </div>
-                    <!-- Nút Login -->
-                    <div class="row">
-                        <button name="LoginButton" id="LoginButton" class="btn hnf-button-control" onclick="location.href='@Url.Action("Login", "Login")'">Login</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     }
-    </body>
+</body>
 </html>
