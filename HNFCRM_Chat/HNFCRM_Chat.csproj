@@ -207,10 +207,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContractController.cs" />
+    <Compile Include="Controllers\CustomerCareController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ProductionLineController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Models\CUSTOMER.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerCareModel.cs" />
     <Compile Include="Models\CUSTOMERCONSULTING.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
@@ -287,6 +290,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Validate\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AboutPage.css" />
@@ -541,6 +545,10 @@
     <Content Include="Views\ProductionLine\Filter100.cshtml" />
     <Content Include="Views\Statistic\Statistic.cshtml" />
     <Content Include="Views\Customer\SearchCustomerByStaff.cshtml" />
+    <Content Include="Views\CustomerCare\CustomerCare.cshtml" />
+    <Content Include="Views\CustomerCare\CustomerCareDetail.cshtml" />
+    <Content Include="Views\CustomerCare\Search.cshtml" />
+    <Content Include="Views\Notification\Notification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

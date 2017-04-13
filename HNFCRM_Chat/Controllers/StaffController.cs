@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
+using PagedList;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -88,7 +89,9 @@ namespace HNFCRM_Chat.Controllers
         {
             STAFF data = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
             string email = frm["email"];
+            string op = frm["oldpassword"];
             var check = entities.STAFFs.Where(x => x.Email == email).ToList();
+            var checkpw = check.Where(x => x.Password == op).ToList();
             if (check.Count == 1)
             {
                 if (email != data.Email)
@@ -117,19 +120,32 @@ namespace HNFCRM_Chat.Controllers
             {
                 data.ID_Role = 4;
             }
+            if (op != "")
+            {
+                if (checkpw.Count == 1)
+                {
+                    data.Password = frm["password"];
+                }
+                else
+                {
+                    TempData["CheckPass"] = "Mật khẩu cũ không đúng!";
+                    return RedirectToAction("EditStaff", "Staff");
+                }
+            }
             entities.SaveChanges();
             return RedirectToAction("Staff", "Staff");
         }
-
         // GET: Staff
-        public ActionResult Staff()
+        public ActionResult Staff(int? page)
         {
             if (Session["author"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             var staff = entities.STAFFs.ToList();
-            return View(staff);
+            return View(staff.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: DeleteStaff
@@ -143,22 +159,25 @@ namespace HNFCRM_Chat.Controllers
 
         //Search staff
         [HttpPost]
-        public ActionResult SearchStaff(string Search)
+        public ActionResult SearchStaff(string Search, int? page)
         {
-            try
+            if (Session["author"] == null)
             {
-                var s = entities.STAFFs.Where(x => x.Name.Contains(Search) || x.Email.Contains(Search) || x.Phone.Contains(Search)).ToList();
-                return View(s);
+                return RedirectToAction("Login", "Login");
             }
-            catch (Exception e)
-            {
-                return new EmptyResult();
-            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            var s = entities.STAFFs.Where(x => x.Name.Contains(Search) || x.Email.Contains(Search) || x.Phone.Contains(Search)).ToList();
+            return View(s.ToPagedList(pageNumber, pageSize));
         }
 
         //Information
         public ActionResult Information()
         {
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
             //Get the value from database and then set it to ViewBag to pass it View
             IEnumerable<SelectListItem> items = entities.ROLEs.Select(c => new SelectListItem
             {
@@ -173,25 +192,33 @@ namespace HNFCRM_Chat.Controllers
         }
 
         //Filter Role
-        public ActionResult FilterAdmin()
+        public ActionResult FilterAdmin(int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             var s = entities.STAFFs.Where(x => x.ID_Role == 1).ToList();
-            return View(s);
+            return View(s.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult FilterSale()
+        public ActionResult FilterSale(int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             var s = entities.STAFFs.Where(x => x.ID_Role == 2).ToList();
-            return View(s);
+            return View(s.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult FilterCustomerCare()
+        public ActionResult FilterCustomerCare(int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             var s = entities.STAFFs.Where(x => x.ID_Role == 3).ToList();
-            return View(s);
+            return View(s.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult FilterProductline()
+        public ActionResult FilterProductline(int? page)
         {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
             var s = entities.STAFFs.Where(x => x.ID_Role == 4).ToList();
-            return View(s);
+            return View(s.ToPagedList(pageNumber, pageSize));
         }
     }
 }

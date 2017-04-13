@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
 using System.IO;
+using HNFCRM_Chat.Validate;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -83,35 +84,39 @@ namespace HNFCRM_Chat.Controllers
             }
 
             //Appointment and Consult Date
-            if (frm["consultdate"] == "" || frm["consultdate"] == null)
-            {
-                contract.DateConsult = DateTime.Now;
-            }
-            else
-            {
-                DateTime consultdate = DateTime.Parse(frm["consultdate"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contract.DateConsult = consultdate;
-            }
-            if (frm["appointment"] == "" || frm["appointment"] == null)
+            Validation validate = new Validation();
+            int check = validate.Check(frm["consultdate"], frm["appointment"]);
+
+            if (check == 0)
             {
                 contract.Appointment = DateTime.Now;
+                contract.DateConsult = DateTime.Now;
+                TempData["message"] = "Sai định dạng ngày !!";
+            }
+            else if (check == 2)
+            {
+                contract.Appointment = DateTime.Now;
+                contract.DateConsult = DateTime.Now;
+                TempData["message"] = "Ngày bắt đầu phải trước ngày kết thúc !!";
             }
             else
             {
-                DateTime appointment = DateTime.Parse(frm["appointment"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contract.Appointment = appointment;
-            }
-            if (frm["appointment2"] == "" || frm["appointment2"] == null)
-            {
-                contract.AppointmentMarket = DateTime.Now;
-            }
-            else
-            {
-                DateTime appointment2 = DateTime.Parse(frm["appointment2"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contract.AppointmentMarket = appointment2;
+                contract.DateConsult = validate.ConvertDate(frm["consultdate"]);
+                contract.Appointment = validate.ConvertDate(frm["appointment"]);
             }
 
-            //Confirm
+            //Appointment to check market
+            if (validate.CheckDate(frm["appointment2"]) != 1)
+            {
+                contract.AppointmentMarket = DateTime.Now;
+                TempData["message2"] = "Sai định dạng ngày !!";
+            }
+            else
+            {
+                contract.AppointmentMarket = validate.ConvertDate(frm["appointment2"]);
+            }
+
+            //Confirm Market
             if (frm["confirm"] == "" || frm["confirm"] == null)
             {
                 contract.CheckConfirm = false;
@@ -124,23 +129,23 @@ namespace HNFCRM_Chat.Controllers
             contract.Note = frm["note"];
 
             //Production Line Date
-            if (frm["start"] == "" || frm["start"] == null)
+            int checkproction = validate.Check(frm["start"], frm["end"]);
+            if (checkproction == 0)
             {
                 contract.StartDate = DateTime.Now;
-            }
-            else
-            {
-                DateTime startdate = DateTime.Parse(frm["start"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contract.StartDate = startdate;
-            }
-            if (frm["end"] == "" || frm["end"] == null)
-            {
                 contract.EndDate = DateTime.Now;
+                TempData["message1"] = "Sai định dạng ngày !!";
+            }
+            else if (checkproction == 2)
+            {
+                contract.StartDate = DateTime.Now;
+                contract.EndDate = DateTime.Now;
+                TempData["message1"] = "Ngày bắt đầu phải trước ngày kết thúc !!";
             }
             else
             {
-                DateTime enddate = DateTime.Parse(frm["end"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contract.EndDate = enddate;
+                contract.StartDate = validate.ConvertDate(frm["start"]);
+                contract.EndDate = validate.ConvertDate(frm["end"]);
             }
 
             //Transfer Money
@@ -225,10 +230,12 @@ namespace HNFCRM_Chat.Controllers
             int contractdetailID = contractdetail.ID;
             MENSIZE mensize = entities.MENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailID).SingleOrDefault();
             WOMENSIZE womensize = entities.WOMENSIZEs.Where(x => x.ID_CONTRACTDETAIL == contractdetailID).SingleOrDefault();
+            PRODUCTLINE productline = entities.PRODUCTLINEs.Where(x => x.CONTRACT.ID == id).SingleOrDefault();
             ContractDetailModel model = new ContractDetailModel();
             model.ContractDetail = contractdetail;
             model.Mensize = mensize;
             model.Womensize = womensize;
+            model.Productline = productline;
             return View(model);
         }
 
@@ -254,7 +261,7 @@ namespace HNFCRM_Chat.Controllers
                 contractdetail.Quantity = int.Parse(frm["quantity"]);
             }
             contractdetail.ShirtColor = frm["color"];
-            contractdetail.CollarArmAdjustment = frm["collaramr"];
+            contractdetail.CollarArmAdjustment = frm["collararm"];
             contractdetail.ProductDesign = frm["productdesign"];
             contractdetail.FabricateStyle = frm["fabric"];
             string note = frm["note"];
@@ -392,24 +399,24 @@ namespace HNFCRM_Chat.Controllers
             contractdetail.NoteSize = frm["notesize"];
 
             //Update Embroider Information
-            if (frm["embroiderstart"] == "" || frm["embroiderstart"] == null)
+            Validation validate = new Validation();
+            int checkembroider = validate.Check(frm["embroiderstart"], frm["embroiderend"]);
+            if (checkembroider == 0)
             {
                 contractdetail.EmbroiderStartDate = DateTime.Now;
-            }
-            else
-            {
-                DateTime dateembroiderstart = DateTime.Parse(frm["embroiderstart"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contractdetail.EmbroiderStartDate = dateembroiderstart;
-
-            }
-            if (frm["embroiderend"] == "" || frm["embroiderend"] == null)
-            {
                 contractdetail.EmbroiderEndDate = DateTime.Now;
+                TempData["message"] = "Sai định dạng ngày !!";
+            }
+            else if (checkembroider == 2)
+            {
+                contractdetail.EmbroiderStartDate = DateTime.Now;
+                contractdetail.EmbroiderEndDate = DateTime.Now;
+                TempData["message"] = "Ngày bắt đầu phải trước ngày kết thúc !!";
             }
             else
             {
-                DateTime dateembroiderend = DateTime.Parse(frm["embroiderend"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contractdetail.EmbroiderEndDate = dateembroiderend;
+                contractdetail.EmbroiderStartDate = validate.ConvertDate(frm["embroiderstart"]);
+                contractdetail.EmbroiderEndDate = validate.ConvertDate(frm["embroiderend"]);
             }
             contractdetail.EmbroiderMakingUnit = frm["embroiderunit"];
             contractdetail.EmbroiderSpot = frm["embroiderspot"];
@@ -417,24 +424,23 @@ namespace HNFCRM_Chat.Controllers
             contractdetail.EmbroiderNote = frm["embroidernote"];
 
             //Update Print Information
-            if (frm["printstart"] == "" || frm["printstart"] == null)
+            int checkprint = validate.Check(frm["printstart"], frm["printend"]);
+            if (checkprint == 0)
             {
                 contractdetail.PrintStartDate = DateTime.Now;
-            }
-            else
-            {
-                DateTime datestart = DateTime.Parse(frm["printstart"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contractdetail.PrintStartDate = datestart;
-
-            }
-            if (frm["printend"] == "" || frm["printend"] == null)
-            {
                 contractdetail.PrintEndDate = DateTime.Now;
+                TempData["message1"] = "Sai định dạng ngày !!";
+            }
+            else if (checkprint == 2)
+            {
+                contractdetail.PrintStartDate = DateTime.Now;
+                contractdetail.PrintEndDate = DateTime.Now;
+                TempData["message1"] = "Ngày bắt đầu phải trước ngày kết thúc !!";
             }
             else
             {
-                DateTime dateend = DateTime.Parse(frm["printend"], culture, System.Globalization.DateTimeStyles.AssumeLocal);
-                contractdetail.PrintEndDate = dateend;
+                contractdetail.PrintStartDate = validate.ConvertDate(frm["printstart"]);
+                contractdetail.PrintEndDate = validate.ConvertDate(frm["printend"]);
             }
             contractdetail.PrintSpot = frm["printspot"];
             contractdetail.PrintSize = frm["printsize"];

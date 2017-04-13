@@ -26,6 +26,10 @@ namespace HNFCRM_Chat
                       "~/Scripts/bootstrap-datetimepicker.js"
                      ));
 
+            bundles.Add(new ScriptBundle("~/Scripts/").Include(
+                "~/Scripts/HNF-jquery.js"
+                              ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",

@@ -10,5 +10,6 @@ namespace HNFCRM_Chat.Models
         public MENSIZE Mensize;
         public WOMENSIZE Womensize;
         public CONTRACTDETAIL ContractDetail;
+        public PRODUCTLINE Productline;
     }
 }

@@ -1,0 +1,108 @@
+﻿@model HNFCRM_Chat.Models.CustomerCareModel
+
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <div class="container-fluid">
+            <br>
+            <!-- Thanh chức năng -->
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card form-input-margin">
+                        <form action="@Url.Action("Search","CustomerCare")" method="post">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                    <div class="row">
+                                        <!-- Search Bar -->
+
+                                        <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="search" placeholder="Tìm Kiếm...">
+                                            </div>
+                                        </div>
+                                        <!-- Search Button -->
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="input-group">
+                                                <button type="submit" class="btn btn-block btn-warning search-button" href="@Url.Action("Search","CustomerCare")">
+                                                    Tìm Kiếm<i class="material-icons md-18">search</i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- Thanh tìm kiếm -->
+
+                    </div>
+
+
+                </div>
+            </div>
+            <br>
+            <!-- Bảng Khách Hàng (thông tin được lấy từ trang khách hàng, trên này chỉ thể hiện lại) -->
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-sm table-hover">
+                        <thead class="thead">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" aria-label="Checkbox for following text input">
+                                </th>
+                                <th>HỌ VÀ TÊN</th>
+                                <th>CÔNG TY</th>
+                                <th>EMAIL</th>
+                                <th>ĐIỆN THOẠI</th>
+                                <th>MÃ HỢP ĐỒNG</th>
+                                <th>TÊN SALE</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{if (Model.customer != null)
+                                {
+                                    foreach (var item in Model.customer)
+                                    {
+                                        <tr>
+                                            <th scope="row">
+                                                <input type="checkbox" aria-label="Checkbox for following text input">
+                                            </th>
+                                            <td>@item.Name</td>
+                                            <td>@item.Company</td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Phone</td>
+                                            @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).SingleOrDefault(); }
+                                            <td>@contract.ID</td>
+                                            @{ var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}
+                                            <td>@staff.Name</td>
+                                            <td><a href="./HNF-CustomerCare-Detail.html"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
+                                        </tr>
+                                                    }
+                                                }
+                            }
+                        </tbody>
+                    </table>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
