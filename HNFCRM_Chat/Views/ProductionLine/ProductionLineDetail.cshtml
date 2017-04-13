@@ -206,9 +206,6 @@
                                             <tr>
                                                 <th scope="row">Nam</th>
                                                 <td>
-                                                    <h4></h4>
-                                                </td>
-                                                <td>
                                                     <h4>@Model.Mensize.S</h4>
                                                 </td>
                                                 <td>
@@ -226,26 +223,29 @@
                                                 <td>
                                                     <h4>@Model.Mensize.XXXL</h4>
                                                 </td>
+                                                <td>
+                                                    <h4>@Model.Mensize.XXXL</h4>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Nữ</th>
                                                 <td>
-                                                    <h4></h4>
+                                                    <h4>@Model.Womensize.S</h4>
                                                 </td>
                                                 <td>
-                                                    <h4>@Model.Mensize.S</h4>
+                                                    <h4>@Model.Womensize.M</h4>
                                                 </td>
                                                 <td>
-                                                    <h4>@Model.Mensize.M</h4>
+                                                    <h4>@Model.Womensize.L</h4>
                                                 </td>
                                                 <td>
-                                                    <h4>@Model.Mensize.L</h4>
+                                                    <h4>@Model.Womensize.XL</h4>
                                                 </td>
                                                 <td>
-                                                    <h4>@Model.Mensize.XL</h4>
+                                                    <h4>@Model.Womensize.XXL</h4>
                                                 </td>
                                                 <td>
-                                                    <h4>@Model.Mensize.XXL</h4>
+                                                    <h4>@Model.Womensize.XXXL</h4>
                                                 </td>
                                                 <td>
                                                     <h4>@Model.Mensize.XXXL</h4>
@@ -375,7 +375,7 @@
                                             </label> -->
                                             <br>
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check1" class="custom-control-input" name="cut" value="@Model.Productline.Cut" @(Model.Productline.Cut.Value ? "checked=\"checked\"" : "")>
+                                                <input type="checkbox" id="check1" class="custom-control-input" name="cut" autocomplete="off" value="@Model.Productline.Cut" @(Model.Productline.Cut.Value ? "checked=\"checked\"" : "")>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình Cắt Vải</h6>
@@ -390,7 +390,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check2" class="custom-control-input" name="embroider" value="@Model.Productline.Embroider" @(Model.Productline.Embroider.Value ? "checked=\"checked\"" : "") @(Model.Productline.Cut.Value ? "" : "disabled")>
+                                                <input type="checkbox" id="check2" class="custom-control-input" name="embroider" autocomplete="off" value="@Model.Productline.Embroider" @(Model.Productline.Embroider.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình In/Thêu</h6>
@@ -405,7 +405,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check3" class="custom-control-input" name="sew" value="@Model.Productline.Sew" @(Model.Productline.Sew.Value ? "checked=\"checked\"" : "") @(Model.Productline.Embroider.Value ? "" : "disabled")>
+                                                <input type="checkbox" id="check3" class="custom-control-input" name="sew" autocomplete="off" value="@Model.Productline.Sew" @(Model.Productline.Sew.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình May</h6>
@@ -420,7 +420,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check4" class="custom-control-input" name="iron" value="@Model.Productline.Iron" @(Model.Productline.Iron.Value ? "checked=\"checked\"" : "") @(Model.Productline.Sew.Value ? "" : "disabled")>
+                                                <input type="checkbox" id="check4" class="custom-control-input" name="iron" autocomplete="off" value="@Model.Productline.Iron" @(Model.Productline.Iron.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình Ủi</h6>
@@ -435,7 +435,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check5" class="custom-control-input" name="packaging" value="@Model.Productline.Packaging" @(Model.Productline.Packaging.Value ? "checked=\"checked\"" : "") @(Model.Productline.Iron.Value ? "" : "disabled")>
+                                                <input type="checkbox" id="check5" class="custom-control-input" name="packaging" autocomplete="off" value="@Model.Productline.Packaging" @(Model.Productline.Packaging.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình Đóng Gói</h6>
@@ -450,7 +450,7 @@
                                         <br>
                                         <div class="form-check">
                                             <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="check6" class="custom-control-input" name="delivery" value="@Model.Productline.Delivery" @(Model.Productline.Delivery.Value ? "checked=\"checked\"" : "") @(Model.Productline.Packaging.Value ? "" : "disabled")>
+                                                <input type="checkbox" id="check6" class="custom-control-input" name="delivery" autocomplete="off" value="@Model.Productline.Delivery" @(Model.Productline.Delivery.Value ? "checked=\"checked\"" : "") disabled>
                                                 <span class="custom-control-indicator"></span>
                                             </label>
                                             <h6>Quy Trình Giao Hàng</h6>

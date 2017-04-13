@@ -24,24 +24,48 @@ namespace HNFCRM_Chat.Controllers
                 {
                     return RedirectToAction("Login", "Login");
                 }
-
-                List<CONTRACT> contract = new List<CONTRACT>();
-                List<STAFF> staff = new List<STAFF>();
-                var stafflist = entities.STAFFs.ToList();
-                var customer = entities.CUSTOMERs.Where(x => x.IsAvailable == true).ToList();
-                foreach (var item in customer)
+                var role = Session["Role"] as STAFF;
+                if (role.ID_Role == 1 || role.ID_Role == 3)
                 {
-                    var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
-                    contract.Add(findcontract);
-                    var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                    staff.Add(findstaff);
+                    List<CONTRACT> contract = new List<CONTRACT>();
+                    List<STAFF> staff = new List<STAFF>();
+                    var stafflist = entities.STAFFs.ToList();
+                    var customer = entities.CUSTOMERs.Where(x => x.IsAvailable == true).ToList();
+                    foreach (var item in customer)
+                    {
+                        var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                        contract.Add(findcontract);
+                        var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                        staff.Add(findstaff);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.customer = customer;
+                    model.contract = contract;
+                    model.staff = staff;
+                    model.liststaff = stafflist;
+                    return View(model);
                 }
-                CustomerModel model = new CustomerModel();
-                model.customer = customer;
-                model.contract = contract;
-                model.staff = staff;
-                model.liststaff = stafflist;
-                return View(model);
+                else
+                {
+                    List<CUSTOMER> customer = new List<CUSTOMER>();
+                    List<STAFF> staff = new List<STAFF>();
+                    var stafflist = entities.STAFFs.ToList();
+                    var contract = entities.CONTRACTs.Where(x => x.ID_Staff == role.ID).ToList();
+                    foreach (var item in contract)
+                    {
+                        var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).SingleOrDefault();
+                        customer.Add(findcustomer);
+                        var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).SingleOrDefault();
+                        staff.Add(findstaff);
+                    }
+                    CustomerModel model = new CustomerModel();
+                    model.customer = customer;
+                    model.contract = contract;
+                    model.staff = staff;
+                    model.liststaff = stafflist;
+                    ViewBag.Role = 2;
+                    return View(model);
+                }
             }
             catch (Exception e)
             {

@@ -1,6 +1,62 @@
 ﻿@using HNFCRM_Chat.Models;
 @model ContractDetailModel
 
+@{int cut = 0, embroider = 0, sew = 0, iron = 0, packaging = 0, delivery = 0;
+    if (Model.Productline.Cut == true)
+    {
+        cut = 100;
+        embroider = 50;
+    }
+    else
+    {
+        cut = 0;
+        embroider = 0;
+        sew = 0;
+        iron = 0;
+        packaging = 0;
+        delivery = 0;
+    }
+    if (Model.Productline.Embroider == true)
+    {
+        cut = 100;
+        embroider = 100;
+        sew = 50;
+    }
+    if (Model.Productline.Sew == true)
+    {
+        cut = 100;
+        embroider = 100;
+        sew = 100;
+        iron = 50;
+    }
+    if (Model.Productline.Iron == true)
+    {
+        cut = 100;
+        embroider = 100;
+        sew = 100;
+        iron = 100;
+        delivery = 50;
+    }
+    if (Model.Productline.Packaging == true)
+    {
+        cut = 100;
+        embroider = 100;
+        sew = 100;
+        iron = 100;
+        packaging = 100;
+        delivery = 50;
+    }
+    if (Model.Productline.Packaging == true)
+    {
+        cut = 100;
+        embroider = 100;
+        sew = 100;
+        iron = 100;
+        packaging = 100;
+        delivery = 100;
+    }
+}
+
 <head>
     <title>HNF-Contract Detail</title>
     <meta charset="utf-8">
@@ -29,14 +85,7 @@
 <div class="container-fluid">
     <!-- Back Button -->
     <form method="post" action="@Url.Action("ContractDetail", "Contract")">
-        <div class="row">
-            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <a class="btn btn-secondary btn-block" role="button" onclick="history.go(-1); return false">Trở Về</a>
-            </div>
-        </div>
-        <br>
         <!-- Thong Tin Co Ban & Quy Cach May -->
-
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card-group">
@@ -45,7 +94,7 @@
                         <div class="card-block">
                             <h6 class="card-title">Số Lượng</h6>
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="quantity" value="@Model.ContractDetail.Quantity">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="quantity" value="@Model.ContractDetail.Quantity" id="txt_DD_Quantity" required>
                             </div>
                         </div>
                     </div>
@@ -54,7 +103,7 @@
                         <div class="card-block">
                             <h6 class="card-title">Màu Áo</h6>
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="color" value="@Model.ContractDetail.ShirtColor">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="color" value="@Model.ContractDetail.ShirtColor" id="txt_DD_Color" required>
                             </div>
                         </div>
                     </div>
@@ -64,7 +113,7 @@
                         <div class="card-block">
                             <h6 class="card-title">Bo Tay, Bo Cổ</h6>
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="collararm" value="@Model.ContractDetail.CollarArmAdjustment">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="collararm" value="@Model.ContractDetail.CollarArmAdjustment" id="txt_DD_ArmNeck" required>
                             </div>
                         </div>
                     </div>
@@ -73,7 +122,7 @@
                         <div class="card-block">
                             <h6 class="card-title">Phối</h6>
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="productdesign" value="@Model.ContractDetail.ProductDesign">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="productdesign" value="@Model.ContractDetail.ProductDesign" id="txt_DD_Fabricate" required>
                             </div>
                         </div>
                     </div>
@@ -82,7 +131,7 @@
                         <div class="card-block">
                             <h6 class="card-title">Loại Vải</h6>
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="fabric" value="@Model.ContractDetail.FabricateStyle">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="fabric" value="@Model.ContractDetail.FabricateStyle" id="txt_DD_fabric" required>
                             </div>
                         </div>
                     </div>
@@ -97,19 +146,19 @@
                                 <h6 class="card-title">Quy Cách May</h6>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" name="sidecut" type="checkbox" value="@Model.ContractDetail.SideCut." @(Model.ContractDetail.SideCut.Value ? "checked=\"checked\"" : "") >   
+                                        <input class="form-check-input" name="sidecut" type="checkbox" value="@Model.ContractDetail.SideCut." @(Model.ContractDetail.SideCut.Value ? "checked=\"checked\"" : "")>
                                         Xẻ Tà
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" name="armpitborder" type="checkbox"  value="@Model.ContractDetail.ArmpitBorder" @(Model.ContractDetail.ArmpitBorder.Value ? "checked=\"checked\"" : "") >
+                                        <input class="form-check-input" name="armpitborder" type="checkbox" value="@Model.ContractDetail.ArmpitBorder" @(Model.ContractDetail.ArmpitBorder.Value ? "checked=\"checked\"" : "")>
                                         Viền Nách
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" name="armborder" type="checkbox"  value="@Model.ContractDetail.ArmBorder" @(Model.ContractDetail.ArmBorder.Value ? "checked=\"checked\"" : "")>
+                                        <input class="form-check-input" name="armborder" type="checkbox" value="@Model.ContractDetail.ArmBorder" @(Model.ContractDetail.ArmBorder.Value ? "checked=\"checked\"" : "")>
                                         Viền Tay
                                     </label>
                                 </div>
@@ -151,32 +200,32 @@
                                             <th scope="row">Nam</th>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="mens" value="@Model.Mensize.S">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="mens" value="@Model.Mensize.S" id="txtMSmall" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menm" value="@Model.Mensize.M">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menm" value="@Model.Mensize.M" id="txtMMedium" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menl" value="@Model.Mensize.L">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menl" value="@Model.Mensize.L" id="txtMLarge" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxl" value="@Model.Mensize.XL">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxl" value="@Model.Mensize.XL" id="txtMXLarge" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxxl" value="@Model.Mensize.XXL">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxxl" value="@Model.Mensize.XXL" id="txtMXXLarge" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxxxl" value="@Model.Mensize.XXXL">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxxxl" value="@Model.Mensize.XXXL" id="txtMXXXLarge" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -184,32 +233,32 @@
                                             <th scope="row">Nữ</th>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womens" value="@Model.Womensize.S">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womens" value="@Model.Womensize.S" id="txtFSmall" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenm" value="@Model.Womensize.M">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenm" value="@Model.Womensize.M" id="txtFMedium" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenl" value="@Model.Womensize.L">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenl" value="@Model.Womensize.L" id="txtFLarge" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxl" value="@Model.Womensize.XL">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxl" value="@Model.Womensize.XL" id="txtFXLarge" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxxl" value="@Model.Womensize.XXL">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxxl" value="@Model.Womensize.XXL" id="txtFXXLarge" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxxxl" value="@Model.Womensize.XXXL">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxxxl" value="@Model.Womensize.XXXL" id="txtFXXXLarge" required>
                                                 </div>
                                             </td>
                                         </tr>
@@ -232,41 +281,46 @@
                 <div class="card">
                     <div class="card-block">
                         <h3 class="card-title">In</h3>
+                        <!-- thời gian -->
                         <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <!-- datetime -->
+                            <div class="col-xl-12">
                                 <div id="sandbox-container">
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control" placeholder="Ngày Thực Hiện(dd-mm-yyyy)" name="printstart" value="@Model.ContractDetail.PrintStartDate.Value.ToString("dd/MM/yyyy")">
-                                        <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Thực Hiện" name="printstart" value="@Model.ContractDetail.PrintStartDate.Value.ToString("dd/MM/yyyy")" />
+                                        <span class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></span>
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Hoàn Thành" name="printend" value="@Model.ContractDetail.PrintEndDate.Value.ToString("dd/MM/yyyy")" />
                                     </div>
+                                    @{if (TempData["message1"] != null)
+                                        {
+                                    <p style="color: red">@TempData["message1"]</p>
+                                        }
+                                    }
                                 </div>
-                                <br>
-                                <!--  -->
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <!-- Cột Trái -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <!-- Đơn Vị Thực Hiện -->
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Đơn vị thực hiện" name="printunit" value="@Model.ContractDetail.PrintMakingUnit">
                                 </div>
                                 <br>
-                                <!--  -->
+                                <!-- Vị Trí -->
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Vị Trí" name="printspot" value="@Model.ContractDetail.PrintSpot">
                                 </div>
                                 <br>
-                                <!--  -->
+                                <!-- Kích Thức Chi Tiết -->
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thước chi tiết" name="printsize" value="@Model.ContractDetail.PrintSpot">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thức chi tiết" name="printsize" value="@Model.ContractDetail.PrintSpot">
                                 </div>
                                 <br>
                             </div>
+                            <!-- Cột Phải -->
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <!-- Datetime -->
-                                <div id="sandbox-container">
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control" placeholder="Ngày Hoàn Thành (dd-mm-yyyy)" name="printend" value="@Model.ContractDetail.PrintEndDate.Value.ToString("dd/MM/yyyy")">
-                                        <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
-                                    </div>
-                                </div>
-                                <br>
                                 <div class="form-group">
                                     <textarea class="form-control" id="exampleTextarea" rows="7" placeholder="Ghi Chú" name="printnote" value="@Model.ContractDetail.PrintNote">@Model.ContractDetail.PrintNote</textarea>
                                 </div>
@@ -281,16 +335,26 @@
                     <div class="card-block">
                         <h3 class="card-title">Thêu</h3>
                         <div class="row">
+                            <div class="col-xl-12">
+                                <div id="sandbox-container">
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Thực Hiện" name="embroiderstart" value="@Model.ContractDetail.EmbroiderStartDate.Value.ToString("dd/MM/yyyy")" />
+                                        <span class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></span>
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Hoàn Thành" name="embroiderend" value="@Model.ContractDetail.EmbroiderEndDate.Value.ToString("dd/MM/yyyy")" />
+                                    </div>
+                                    @{if (TempData["message"] != null)
+                                        {
+                                    <p style="color: red">@TempData["message"]</p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
                             <!-- cot trái -->
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <!-- datetime -->
-                                <div id="sandbox-container">
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control" placeholder="Ngày Thực Hiện(dd-mm-yyyy)" name="embroiderstart" value="@Model.ContractDetail.EmbroiderStartDate.Value.ToString("dd/MM/yyyy")">
-                                        <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
-                                    </div>
-                                </div>
-                                <br>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Đơn vị thực hiện" name="embroiderunit" value="@Model.ContractDetail.EmbroiderMakingUnit">
                                 </div>
@@ -300,20 +364,13 @@
                                 </div>
                                 <br>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thước chi tiết" name="embroidersize" value="@Model.ContractDetail.EmbroiderSize">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thức chi tiết" name="embroidersize" value="@Model.ContractDetail.EmbroiderSize">
                                 </div>
                                 <br>
                             </div>
                             <!-- cot phải -->
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <!-- datetime -->
-                                <div id="sandbox-container">
-                                    <div class="input-group date">
-                                        <input type="text" class="form-control" placeholder="Ngày Hoàn Thành(dd-mm-yyyy)" name="embroiderend"  value="@Model.ContractDetail.EmbroiderEndDate.Value.ToString("dd/MM/yyyy")">
-                                        <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
-                                    </div>
-                                </div>
-                                <br>
                                 <div class="form-group">
                                     <textarea class="form-control" id="exampleTextarea" rows="7" placeholder="Ghi Chú" name="embroidernote" value="@Model.ContractDetail.EmbroiderNote">@Model.ContractDetail.EmbroiderNote</textarea>
                                 </div>
@@ -333,7 +390,7 @@
                             <!-- Quy Trình Cắt Vải -->
                             <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
                                 <div class="progress hnf-progress-bg">
-                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @cut%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <br>
@@ -342,7 +399,8 @@
                             <!-- Quy Trình In/Thêu -->
                             <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
                                 <div class="progress hnf-progress-bg">
-                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @embroider%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <br>
@@ -352,7 +410,7 @@
                             <!-- Quy Trình May -->
                             <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
                                 <div class="progress hnf-progress-bg">
-                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @sew%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <br>
@@ -361,7 +419,7 @@
                             <!-- Quy Trình Ủi -->
                             <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
                                 <div class="progress hnf-progress-bg">
-                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @iron%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <br>
@@ -371,7 +429,7 @@
                             <!-- Quy Trình Đóng Gói -->
                             <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
                                 <div class="progress hnf-progress-bg">
-                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @packaging%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <br>
@@ -381,7 +439,7 @@
                             <!-- Quy Trình Giao Hàng -->
                             <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
                                 <div class="progress hnf-progress-bg">
-                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @delivery%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                     </div>
                                 </div>
                                 <br>
@@ -391,19 +449,20 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                <!-- functionButtons -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+                        <button type="submit" class="btn btn-success btn-block" id="DetailDesign-Add-Button" role="button" href="@Url.Action("ContractDetail","Contract")">Lưu Thông Tin</button>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
+                        <button class="btn btn-danger btn-block" id="Cancle-Button" role="button" onclick="history.go(-1); return false">Huỷ Thông Tin</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <br>
-        <!-- functionButtons -->
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
-                <button type="submit" class="btn btn-success btn-block" id="DetailDesign-Add-Button" role="button" href="@Url.Action("ContractDetail","Contract")">Lưu Thông Tin</button>
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
-                <button class="btn btn-danger btn-block" id="Cancle-Button" role="button" onclick="history.go(-1); return false">Huỷ Thông Tin</button>
-            </div>
-        </div>
-        <br>
     </form>
+    <br>
 </div>
+
 
