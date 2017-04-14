@@ -2,59 +2,73 @@
 @model ContractDetailModel
 
 @{int cut = 0, embroider = 0, sew = 0, iron = 0, packaging = 0, delivery = 0;
-    if (Model.Productline.Cut == true)
+
+    if (Model.Productline != null)
     {
-        cut = 100;
-        embroider = 50;
+        if (Model.Productline.Cut == true)
+        {
+            cut = 100;
+            embroider = 50;
+        }
+        else
+        {
+            cut = 50;
+            embroider = 0;
+            sew = 0;
+            iron = 0;
+            packaging = 0;
+            delivery = 0;
+        }
+        if (Model.Productline.Embroider == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 50;
+        }
+        if (Model.Productline.Sew == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 50;
+        }
+        if (Model.Productline.Iron == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 100;
+            packaging = 50;
+        }
+        if (Model.Productline.Packaging == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 100;
+            packaging = 100;
+            delivery = 50;
+        }
+        if (Model.Productline.Delivery == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 100;
+            packaging = 100;
+            delivery = 100;
+        }
+        else
+        {
+            cut = 0;
+            embroider = 0;
+            sew = 0;
+            iron = 0;
+            packaging = 0;
+            delivery = 0;
+        }
     }
-    else
-    {
-        cut = 0;
-        embroider = 0;
-        sew = 0;
-        iron = 0;
-        packaging = 0;
-        delivery = 0;
-    }
-    if (Model.Productline.Embroider == true)
-    {
-        cut = 100;
-        embroider = 100;
-        sew = 50;
-    }
-    if (Model.Productline.Sew == true)
-    {
-        cut = 100;
-        embroider = 100;
-        sew = 100;
-        iron = 50;
-    }
-    if (Model.Productline.Iron == true)
-    {
-        cut = 100;
-        embroider = 100;
-        sew = 100;
-        iron = 100;
-        packaging = 50;
-    }
-    if (Model.Productline.Packaging == true)
-    {
-        cut = 100;
-        embroider = 100;
-        sew = 100;
-        iron = 100;
-        packaging = 100;
-        delivery = 50;
-    }
-    if (Model.Productline.Delivery == true)
-    {
-        cut = 100;
-        embroider = 100;
-        sew = 100;
-        iron = 100;
-        packaging = 100;
-        delivery = 100;
-    }
+
 }
 
 <head>
