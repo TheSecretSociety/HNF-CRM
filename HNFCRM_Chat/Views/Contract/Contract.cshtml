@@ -247,7 +247,7 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div id="sandbox-container">
                                         <div class="input-group date">
-                                            <input type="date" class="form-control" placeholder="Ngày Hẹn Gặp" name="appointment2" value="@Model.Contract.AppointmentMarket.Value.ToString("dd/MM/yyyy")"></span>
+                                            <input type="text" class="form-control" placeholder="Ngày Hẹn Gặp" name="appointment2" value="@Model.Contract.AppointmentMarket.Value.ToString("dd/MM/yyyy")"></span>
                                             <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
                                             @{if (TempData["message2"] != null)
                                                 {
@@ -370,9 +370,9 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div id="sandbox-container">
                                         <div class="input-daterange input-group" id="datepicker">
-                                            <input type="date" class="input-sm form-control" placeholder="Ngày Bắt Đầu" name="start" value="@Model.Contract.StartDate.Value.ToString("dd/MM/yyyy")" />
+                                            <input type="text" class="input-sm form-control" placeholder="Ngày Bắt Đầu" name="start" value="@Model.Contract.StartDate.Value.ToString("dd/MM/yyyy")" />
                                             <span class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></span>
-                                            <input type="date" class="input-sm form-control" placeholder="Ngày Kết Thúc" name="end" value="@Model.Contract.EndDate.Value.ToString("dd/MM/yyyy")" />
+                                            <input type="text" class="input-sm form-control" placeholder="Ngày Kết Thúc" name="end" value="@Model.Contract.EndDate.Value.ToString("dd/MM/yyyy")" />
                                         </div>
                                         @{if (TempData["message1"] != null)
                                             {
