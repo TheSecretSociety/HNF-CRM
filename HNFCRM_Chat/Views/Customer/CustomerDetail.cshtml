@@ -64,17 +64,17 @@
                                     <!-- Thông Tin Công Ty -->
                                     <div class="form-group">
                                         <label>Thông Tin Công Ty</label>
-                                        <input type="text" class="form-control" name="company" value="@Model.Customer.Company" aria-describedby="Company" placeholder="">
+                                        <input type="text" id="txt-CCompany" class="form-control" name="company" value="@Model.Customer.Company" aria-describedby="Company" placeholder="">
                                     </div>
                                     <!-- Ngành Nghề -->
                                     <div class="form-group">
                                         <label>Ngành Nghề</label>
-                                        <input type="text" class="form-control" name="job" value="@Model.Customer.Job" aria-describedby="Customer Job" placeholder="">
+                                        <input type="text" id="txt-CJob" class="form-control" name="job" value="@Model.Customer.Job" aria-describedby="Customer Job" placeholder="">
                                     </div>
                                     <!-- Địa Chỉ -->
                                     <div class="form-group">
                                         <label>Địa Chỉ <span class="Notice">*</span></label>
-                                        <input type="text" class="form-control txtCustomerDetail" name="address" value="@Model.Customer.Address" aria-describedby="Customer Address" placeholder="" required>
+                                        <input type="text" id="txt-CAddress" class="form-control txtCustomerDetail" name="address" value="@Model.Customer.Address" aria-describedby="Customer Address" placeholder="" required>
                                     </div>
                                     <!-- Tình Trạng Tư Vấn -->
                                     <div class="form-group">
@@ -121,12 +121,12 @@
                                     <!-- Loại Áo Đã Làm -->
                                     <div class="form-group">
                                         <label>Loại Áo Đã Làm</label>
-                                        <input type="text" class="form-control" value="@Model.Customer.PreviousDesign" name="previousdesign" aria-describedby="Shirt That Customer had done before" placeholder="">
+                                        <input type="text" id="txt-CShirtBefore" class="form-control" value="@Model.Customer.PreviousDesign" name="previousdesign" aria-describedby="Shirt That Customer had done before" placeholder="">
                                     </div>
                                     <!-- Loại Vải -->
                                     <div class="form-group">
                                         <label>Loại Vải</label>
-                                        <input type="text" class="form-control" value="@Model.Customer.PreviousFabric" name="previousfabric" aria-describedby="Shirt material" placeholder="">
+                                        <input type="text" id="txt-CFabricBefore" class="form-control" value="@Model.Customer.PreviousFabric" name="previousfabric" aria-describedby="Shirt material" placeholder="">
                                     </div>
                                     <!-- Giá Thành -->
                                     <div class="form-group">
@@ -136,12 +136,12 @@
                                     <!-- Nhận Xét -->
                                     <div class="form-group">
                                         <label>Nhận Xét</label>
-                                        <input type="text" class="form-control" value="@Model.Customer.Comment" name="previouscomment" aria-describedby="comment" placeholder="">
+                                        <input type="text" id="txt-CReview" class="form-control" value="@Model.Customer.Comment" name="previouscomment" aria-describedby="comment" placeholder="">
                                     </div>
                                     <!-- Công Ty Đã Thực Hiện -->
                                     <div class="form-group">
                                         <label>Công Ty Đã Thực Hiện</label>
-                                        <input type="text" class="form-control" value="@Model.Customer.PreviousCompanyDesign" name="previouscompany" aria-describedby="Company that produce Customer's shirt" placeholder="">
+                                        <input type="text" id="txt-CCompanyBefore" class="form-control" value="@Model.Customer.PreviousCompanyDesign" name="previouscompany" aria-describedby="Company that produce Customer's shirt" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -160,17 +160,17 @@
                             <!-- Loại Áo -->
                             <div class="form-group">
                                 <label>Loại Áo</label>
-                                <input type="text" class="form-control" value="@Model.RequireProduct.ShirtType" name="shirttype" aria-describedby="emailHelp" placeholder="">
+                                <input type="text" class="form-control" value="@Model.RequireProduct.ShirtType" name="shirttype" aria-describedby="emailHelp" placeholder="" id="txt-CShirtType">
                             </div>
                             <!-- Loại Vải -->
                             <div class="form-group">
                                 <label>Loại Vải</label>
-                                <input type="text" class="form-control" value="@Model.RequireProduct.RequireFabric" name="requirefabric" aria-describedby="emailHelp" placeholder="">
+                                <input type="text" class="form-control" value="@Model.RequireProduct.RequireFabric" name="requirefabric" aria-describedby="emailHelp" placeholder="" id="txt-CFabricType">
                             </div>
                             <!-- Mục Đích Sử Dụng -->
                             <div class="form-group">
                                 <label>Mục Đích Sử Dụng</label>
-                                <input type="text" class="form-control" value="@Model.RequireProduct.Purpose" name="purpose" aria-describedby="emailHelp" placeholder="">
+                                <input type="text" class="form-control" value="@Model.RequireProduct.Purpose" name="purpose" aria-describedby="emailHelp" placeholder="" id="txt-CGoal">
                             </div>
                             <!-- Đã Có Thiết Kế Chưa ? -->
                             <div class="row">
@@ -214,7 +214,7 @@
                             <!-- In / Thêu ? -->
                             <div class="form-group">
                                 <label>In / Thêu ?</label>
-                                <input type="text" class="form-control" value="@Model.RequireProduct.PrintAndEmbroider" name="printembroider" aria-describedby="emailHelp" placeholder="">
+                                <input type="text" class="form-control" value="@Model.RequireProduct.PrintAndEmbroider" name="printembroider" aria-describedby="emailHelp" placeholder=""  id="txt-CPrint">
                             </div>
                             <!-- Số Lượng & Tầm Giá-->
                             <div class="row">
