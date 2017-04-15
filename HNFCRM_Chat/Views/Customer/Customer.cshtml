@@ -1,4 +1,4 @@
-﻿@model HNFCRM_Chat.Models.CustomerModel
+﻿@model HNFCRM_Chat.Models.CustomerModels
 
 <head>
     <title>HNF-Customer</title>
@@ -54,7 +54,7 @@
                                 </div>
                                 <!-- Email -->
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
-                                    <input id="HNF-input" type="text" name="SearchEmail" placeholder="Email">
+                                    <input id="HNF-input" type="text" name="SearchCompany" placeholder="Công Ty">
                                 </div>
                                 <!-- Nút Tìm Kiếm -->
                                 <div class="col-xl-3 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
@@ -124,7 +124,7 @@
                                     {
                                         <tr class="">
                                             <th scope="row">
-                                                <a type="button" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
+                                                <a type="button" style="color:black" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
                                                                                                                                                             {
                                                                                                                                                                 id = item
 .ID

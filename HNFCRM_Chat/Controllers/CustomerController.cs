@@ -362,7 +362,7 @@ namespace HNFCRM_Chat.Controllers
 
         [HttpPost]
         //Search Customer 
-        public ActionResult SearchCustomer(string SearchName, string SearchPhone, string SearchEmail)
+        public ActionResult SearchCustomer(string SearchName, string SearchPhone, string SearchCompany)
         {
             try
             {
@@ -372,7 +372,7 @@ namespace HNFCRM_Chat.Controllers
                     return RedirectToAction("Login", "Login");
                 }
 
-                if (SearchName != "" && SearchPhone == "" && SearchEmail == "")
+                if (SearchName != "" && SearchPhone == "" && SearchCompany == "")
                 {
                     List<CUSTOMER> customer = new List<CUSTOMER>();
                     List<STAFF> staff = new List<STAFF>();
@@ -394,7 +394,7 @@ namespace HNFCRM_Chat.Controllers
                     model.liststaff = liststaff;
                     return View(model);
                 }
-                else if (SearchName == "" && SearchPhone != "" && SearchEmail == "")
+                else if (SearchName == "" && SearchPhone != "" && SearchCompany == "")
                 {
                     List<CUSTOMER> customer = new List<CUSTOMER>();
                     List<STAFF> staff = new List<STAFF>();
@@ -416,13 +416,13 @@ namespace HNFCRM_Chat.Controllers
                     model.liststaff = liststaff;
                     return View(model);
                 }
-                else if (SearchName == "" && SearchPhone == "" && SearchEmail != "")
+                else if (SearchName == "" && SearchPhone == "" && SearchCompany != "")
                 {
                     List<CUSTOMER> customer = new List<CUSTOMER>();
                     List<STAFF> staff = new List<STAFF>();
                     List<CONTRACT> contract = new List<CONTRACT>();
                     var liststaff = entities.STAFFs.ToList();
-                    var findcustomer = entities.CUSTOMERs.Where(x => x.Email.Contains(SearchEmail)).ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Company.Contains(SearchCompany)).ToList();
                     foreach (var item in findcustomer)
                     {
                         var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
@@ -438,7 +438,7 @@ namespace HNFCRM_Chat.Controllers
                     model.liststaff = liststaff;
                     return View(model);
                 }
-                else if (SearchName != "" && SearchPhone != "" && SearchEmail == "")
+                else if (SearchName != "" && SearchPhone != "" && SearchCompany == "")
                 {
                     List<CUSTOMER> customer = new List<CUSTOMER>();
                     List<STAFF> staff = new List<STAFF>();
@@ -460,13 +460,13 @@ namespace HNFCRM_Chat.Controllers
                     model.liststaff = liststaff;
                     return View(model);
                 }
-                else if (SearchName != "" && SearchPhone == "" && SearchEmail != "")
+                else if (SearchName != "" && SearchPhone == "" && SearchCompany != "")
                 {
                     List<CUSTOMER> customer = new List<CUSTOMER>();
                     List<STAFF> staff = new List<STAFF>();
                     List<CONTRACT> contract = new List<CONTRACT>();
                     var liststaff = entities.STAFFs.ToList();
-                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Email.Contains(SearchEmail)).ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Company.Contains(SearchCompany)).ToList();
                     foreach (var item in findcustomer)
                     {
                         var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
@@ -482,13 +482,13 @@ namespace HNFCRM_Chat.Controllers
                     model.liststaff = liststaff;
                     return View(model);
                 }
-                else if (SearchName == "" && SearchPhone != "" && SearchEmail != "")
+                else if (SearchName == "" && SearchPhone != "" && SearchCompany != "")
                 {
                     List<CUSTOMER> customer = new List<CUSTOMER>();
                     List<STAFF> staff = new List<STAFF>();
                     List<CONTRACT> contract = new List<CONTRACT>();
                     var liststaff = entities.STAFFs.ToList();
-                    var findcustomer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Phone.Contains(SearchPhone) || x.Company.Contains(SearchCompany)).ToList();
                     foreach (var item in findcustomer)
                     {
                         var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
@@ -510,7 +510,7 @@ namespace HNFCRM_Chat.Controllers
                     List<STAFF> staff = new List<STAFF>();
                     List<CONTRACT> contract = new List<CONTRACT>();
                     var liststaff = entities.STAFFs.ToList();
-                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone) || x.Email.Contains(SearchEmail)).ToList();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.Name.Contains(SearchName) || x.Phone.Contains(SearchPhone) || x.Company.Contains(SearchCompany)).ToList();
                     foreach (var item in findcustomer)
                     {
                         var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
