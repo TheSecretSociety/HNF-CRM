@@ -1,0 +1,482 @@
+﻿@using HNFCRM_Chat.Models;
+@model ContractDetailModel
+
+@{int cut = 0, embroider = 0, sew = 0, iron = 0, packaging = 0, delivery = 0;
+
+    if (Model.Productline != null)
+    {
+        if (Model.Productline.Cut == true)
+        {
+            cut = 100;
+            embroider = 50;
+        }
+        else
+        {
+            cut = 50;
+            embroider = 0;
+            sew = 0;
+            iron = 0;
+            packaging = 0;
+            delivery = 0;
+        }
+        if (Model.Productline.Embroider == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 50;
+        }
+        if (Model.Productline.Sew == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 50;
+        }
+        if (Model.Productline.Iron == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 100;
+            packaging = 50;
+        }
+        if (Model.Productline.Packaging == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 100;
+            packaging = 100;
+            delivery = 50;
+        }
+        if (Model.Productline.Delivery == true)
+        {
+            cut = 100;
+            embroider = 100;
+            sew = 100;
+            iron = 100;
+            packaging = 100;
+            delivery = 100;
+        }
+        else
+        {
+            cut = 0;
+            embroider = 0;
+            sew = 0;
+            iron = 0;
+            packaging = 0;
+            delivery = 0;
+        }
+    }
+
+}
+
+<head>
+    <title>HNF-Contract Detail</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- Datetime Picker CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.vi.min.js" integrity="sha256-TnMvef6AxT9fg6mNrTsZCgPDkU4g5EyB+tu66oLAI4U=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
+    <!-- Google Icon CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    <!-- custom CSS & Jquery modify URL -->
+    <link rel="stylesheet" href="~/Content/HNFStyle.css">
+    <script src="~/Scripts/HNF-jquery.js"></script>
+</head>
+
+<br>
+<div class="container-fluid">
+    <!-- Back Button -->
+    <form method="post" action="@Url.Action("ContractDetail", "Contract")">
+        <!-- Thong Tin Co Ban & Quy Cach May -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card-group">
+                    <!-- Số Lượng -->
+                    <div class="card">
+                        <div class="card-block">
+                            <h6 class="card-title">Số Lượng</h6>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="quantity" value="@Model.ContractDetail.Quantity" id="txt_DD_Quantity" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Màu Áo -->
+                    <div class="card">
+                        <div class="card-block">
+                            <h6 class="card-title">Màu Áo</h6>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="color" value="@Model.ContractDetail.ShirtColor" id="txt_DD_Color" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bo Tay, Bo Cổ -->
+                    <div class="card">
+                        <!--  -->
+                        <div class="card-block">
+                            <h6 class="card-title">Bo Tay, Bo Cổ</h6>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="collararm" value="@Model.ContractDetail.CollarArmAdjustment" id="txt_DD_ArmNeck" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Phối -->
+                    <div class="card">
+                        <div class="card-block">
+                            <h6 class="card-title">Phối</h6>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="productdesign" value="@Model.ContractDetail.ProductDesign" id="txt_DD_Fabricate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Loại Vải -->
+                    <div class="card">
+                        <div class="card-block">
+                            <h6 class="card-title">Loại Vải</h6>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="fabric" value="@Model.ContractDetail.FabricateStyle" id="txt_DD_fabric" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-12 col-xs-12">
+                            <div class="card-block">
+                                <h6 class="card-title">Quy Cách May</h6>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="sidecut" type="checkbox" value="@Model.ContractDetail.SideCut." @(Model.ContractDetail.SideCut.Value ? "checked=\"checked\"" : "")>
+                                        Xẻ Tà
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="armpitborder" type="checkbox" value="@Model.ContractDetail.ArmpitBorder" @(Model.ContractDetail.ArmpitBorder.Value ? "checked=\"checked\"" : "")>
+                                        Viền Nách
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" name="armborder" type="checkbox" value="@Model.ContractDetail.ArmBorder" @(Model.ContractDetail.ArmBorder.Value ? "checked=\"checked\"" : "")>
+                                        Viền Tay
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-10 col-lg-10 col-md-9 col-sm-12 col-xs-12">
+                            <div class="card-block">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="exampleTextarea" rows="5" placeholder="Ghi Chú" name="note" value="@Model.ContractDetail.Note">@Model.ContractDetail.Note</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Size Áo -->
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>S</th>
+                                            <th>M</th>
+                                            <th>L</th>
+                                            <th>XL</th>
+                                            <th>XXL</th>
+                                            <th>XXXL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Nam</th>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="mens" value="@Model.Mensize.S" id="txtMSmall" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menm" value="@Model.Mensize.M" id="txtMMedium" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menl" value="@Model.Mensize.L" id="txtMLarge" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxl" value="@Model.Mensize.XL" id="txtMXLarge" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxxl" value="@Model.Mensize.XXL" id="txtMXXLarge" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="menxxxl" value="@Model.Mensize.XXXL" id="txtMXXXLarge" required>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Nữ</th>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womens" value="@Model.Womensize.S" id="txtFSmall" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenm" value="@Model.Womensize.M" id="txtFMedium" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenl" value="@Model.Womensize.L" id="txtFLarge" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxl" value="@Model.Womensize.XL" id="txtFXLarge" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxxl" value="@Model.Womensize.XXL" id="txtFXXLarge" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="" aria-describedby="basic-addon1" name="womenxxxl" value="@Model.Womensize.XXXL" id="txtFXXXLarge" required>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                                <textarea class="form-control" id="exampleTextarea" rows="8" placeholder="Ghi Chú size áo" name="notesize" value="@Model.ContractDetail.NoteSize">@Model.ContractDetail.NoteSize</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- In & Thêu -->
+        <div class="row">
+            <!-- In -->
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="card">
+                    <div class="card-block">
+                        <h3 class="card-title">In</h3>
+                        <!-- thời gian -->
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div id="sandbox-container">
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Thực Hiện" name="printstart" value="@Model.ContractDetail.PrintStartDate.Value.ToString("dd/MM/yyyy")" />
+                                        <span class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></span>
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Hoàn Thành" name="printend" value="@Model.ContractDetail.PrintEndDate.Value.ToString("dd/MM/yyyy")" />
+                                    </div>
+                                    @{if (TempData["message1"] != null)
+                                        {
+                                    <p style="color: red">@TempData["message1"]</p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <!-- Cột Trái -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <!-- Đơn Vị Thực Hiện -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Đơn vị thực hiện" name="printunit" value="@Model.ContractDetail.PrintMakingUnit">
+                                </div>
+                                <br>
+                                <!-- Vị Trí -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Vị Trí" name="printspot" value="@Model.ContractDetail.PrintSpot">
+                                </div>
+                                <br>
+                                <!-- Kích Thức Chi Tiết -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thức chi tiết" name="printsize" value="@Model.ContractDetail.PrintSpot">
+                                </div>
+                                <br>
+                            </div>
+                            <!-- Cột Phải -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <!-- Datetime -->
+                                <div class="form-group">
+                                    <textarea class="form-control" id="exampleTextarea" rows="7" placeholder="Ghi Chú" name="printnote" value="@Model.ContractDetail.PrintNote">@Model.ContractDetail.PrintNote</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Theu -->
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="card">
+                    <div class="card-block">
+                        <h3 class="card-title">Thêu</h3>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div id="sandbox-container">
+                                    <div class="input-daterange input-group" id="datepicker">
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Thực Hiện" name="embroiderstart" value="@Model.ContractDetail.EmbroiderStartDate.Value.ToString("dd/MM/yyyy")" />
+                                        <span class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></span>
+                                        <input type="text" class="input-sm form-control" placeholder="Ngày Hoàn Thành" name="embroiderend" value="@Model.ContractDetail.EmbroiderEndDate.Value.ToString("dd/MM/yyyy")" />
+                                    </div>
+                                    @{if (TempData["message"] != null)
+                                        {
+                                    <p style="color: red">@TempData["message"]</p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <!-- cot trái -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <!-- datetime -->
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Đơn vị thực hiện" name="embroiderunit" value="@Model.ContractDetail.EmbroiderMakingUnit">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Vị Trí" name="embroiderspot" value="@Model.ContractDetail.EmbroiderSpot">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="inputExample" aria-describedby="basic-addon3" placeholder="Kích thức chi tiết" name="embroidersize" value="@Model.ContractDetail.EmbroiderSize">
+                                </div>
+                                <br>
+                            </div>
+                            <!-- cot phải -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <!-- datetime -->
+                                <div class="form-group">
+                                    <textarea class="form-control" id="exampleTextarea" rows="7" placeholder="Ghi Chú" name="embroidernote" value="@Model.ContractDetail.EmbroiderNote">@Model.ContractDetail.EmbroiderNote</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- Production Line -->
+        <div class="row">
+            <div class="col-xl-12 col-lg12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card card-warning text-center">
+                    <div class="card-block">
+                        <div class="row">
+                            <!-- Quy Trình Cắt Vải -->
+                            <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="progress hnf-progress-bg">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @cut%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <br>
+                                <h5>Quy Trình Cắt Vải</h5>
+                            </div>
+                            <!-- Quy Trình In/Thêu -->
+                            <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="progress hnf-progress-bg">
+
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @embroider%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <br>
+                                <h5>Quy Trình In/Thêu</h5>
+
+                            </div>
+                            <!-- Quy Trình May -->
+                            <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="progress hnf-progress-bg">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @sew%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <br>
+                                <h5>Quy Trình May</h5>
+                            </div>
+                            <!-- Quy Trình Ủi -->
+                            <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="progress hnf-progress-bg">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @iron%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <br>
+                                <h5>Quy Trình Ủi</h5>
+
+                            </div>
+                            <!-- Quy Trình Đóng Gói -->
+                            <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="progress hnf-progress-bg">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @packaging%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <br>
+                                <h5>Quy Trình Đóng Gói</h5>
+
+                            </div>
+                            <!-- Quy Trình Giao Hàng -->
+                            <div class="col-xl-2 col-lg2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="progress hnf-progress-bg">
+                                    <div class="progress-bar progress-bar-striped hnf-bg-production-bar" role="progressbar" style="width: @delivery%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                                <br>
+                                <h5>Quy Trình Giao Hàng</h5>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!-- functionButtons -->
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
+                        <button type="submit" class="btn btn-success btn-block" id="DetailDesign-Add-Button" role="button" href="@Url.Action("ContractDetail","Contract")">Lưu Thông Tin</button>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
+                        <button class="btn btn-danger btn-block" id="Cancle-Button" role="button" onclick="history.go(-1); return false">Huỷ Thông Tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
+</div>
+
+

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
+using PagedList;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -15,7 +16,7 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult Index()
         {
             //Pagination
-            
+           
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
