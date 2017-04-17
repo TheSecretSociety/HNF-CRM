@@ -16,7 +16,7 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult Index(int? page)
         {
             //Pagination
-            int pageSize = 3;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
@@ -62,7 +62,7 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult FilterSuccess(int? page)
         {
             //Pagination
-            int pageSize = 3;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
 
             //Redirect to login if User has not login yet
@@ -108,7 +108,7 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult FilterFailed(int? page)
         {
             //Pagination
-            int pageSize = 3;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
 
             //Redirect to login if User has not login yet
@@ -154,7 +154,7 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult FilterOnProgress(int? page)
         {
             //Pagination
-            int pageSize = 3;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
 
             //Redirect to login if User has not login yet
@@ -213,5 +213,126 @@ namespace HNFCRM_Chat.Controllers
             return View();
         }
 
+        public ActionResult Filter(int? page, string type)
+        {
+            //Pagination
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+
+            //Redirect to login if User has not login yet
+            if (Session["author"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            if (type == "OnProgress")
+            {
+                List<CUSTOMER> customer = new List<CUSTOMER>();
+                List<STAFF> staff = new List<STAFF>();
+                List<CONTRACT> contract = new List<CONTRACT>();
+
+                //Information of Top Board
+                var success = entities.CONTRACTs.Count(x => x.StatusContract == "0");
+                var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2");
+                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1");
+                int monthnow = DateTime.Now.Month;
+                int yearnow = DateTime.Now.Year;
+                var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Month == monthnow && x.CreatedDate.Value.Year == yearnow);
+                ViewBag.InMonth = inmonth;
+                ViewBag.Failed = failed;
+                ViewBag.Success = success;
+                ViewBag.Waiting = waiting;
+
+                //Information of List of Customer
+                HomeModel model = new HomeModel();
+                var productline = entities.PRODUCTLINEs.Where(x => x.Delivery == false).ToList();
+                foreach (var item in productline)
+                {
+                    var findcontract = entities.CONTRACTs.Where(x => x.ID == item.ID_Contract).SingleOrDefault();
+                    contract.Add(findcontract);
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).SingleOrDefault();
+                    customer.Add(findcustomer);
+                    var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
+                    staff.Add(findstaff);
+                }
+
+                model.customer = customer.ToPagedList(pageNumber, pageSize);
+                model.Contract = contract;
+                model.Staff = staff;
+                ViewBag.OnProgressStatus = "active";
+                return View(model);
+            }
+            else if (type=="Failed")
+            {
+                List<STAFF> staff = new List<STAFF>();
+                List<CUSTOMER> customer = new List<CUSTOMER>();
+
+                //Information of Top Board
+                var success = entities.CONTRACTs.Count(x => x.StatusContract == "0");
+                var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2");
+                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1");
+                int monthnow = DateTime.Now.Month;
+                int yearnow = DateTime.Now.Year;
+                var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Month == monthnow && x.CreatedDate.Value.Year == yearnow);
+                ViewBag.InMonth = inmonth;
+                ViewBag.Failed = failed;
+                ViewBag.Success = success;
+                ViewBag.Waiting = waiting;
+
+                //Information of List of Customer
+                HomeModel model = new HomeModel();
+                var contract = entities.CONTRACTs.Where(x => x.StatusContract == "2").ToList();
+                foreach (var item in contract)
+                {
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).Single();
+                    customer.Add(findcustomer);
+                    var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).Single();
+                    staff.Add(findstaff);
+                }
+
+                model.customer = customer.ToPagedList(pageNumber, pageSize);
+                model.Staff = staff;
+                model.Contract = contract;
+                ViewBag.FailedStatus = "active";
+
+                return View(model);
+            }
+            else if (type == "Success")
+            {
+                List<STAFF> staff = new List<STAFF>();
+                List<CUSTOMER> customer = new List<CUSTOMER>();
+
+                //Information of Top Board
+                var success = entities.CONTRACTs.Count(x => x.StatusContract == "0");
+                var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2");
+                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1");
+                int monthnow = DateTime.Now.Month;
+                int yearnow = DateTime.Now.Year;
+                var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Month == monthnow && x.CreatedDate.Value.Year == yearnow);
+                ViewBag.InMonth = inmonth;
+                ViewBag.Failed = failed;
+                ViewBag.Success = success;
+                ViewBag.Waiting = waiting;
+
+                //Information of List of Customer
+                HomeModel model = new HomeModel();
+                var contract = entities.CONTRACTs.Where(x => x.StatusContract == "0").ToList();
+                foreach (var item in contract)
+                {
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).Single();
+                    customer.Add(findcustomer);
+                    var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).Single();
+                    staff.Add(findstaff);
+                }
+
+                model.customer = customer.ToPagedList(pageNumber, pageSize);
+                model.Staff = staff;
+                model.Contract = contract;
+                ViewBag.SuccessStatus = "active";
+
+                return View(model);
+            }
+            return View();
+        }
     }
 }

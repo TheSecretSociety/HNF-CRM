@@ -1,4 +1,6 @@
-﻿@model IEnumerable<HNFCRM_Chat.Models.PRODUCTLINE>
+﻿@model PagedList<HNFCRM_Chat.Models.PRODUCTLINE>
+@using PagedList;
+@using PagedList.Mvc;
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
 <head>
@@ -42,6 +44,7 @@
                                                 Tình Trạng
                                             </button>
                                             <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type="notyet" })">Chưa Tiến Hành</a>
                                                 <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type="cut" })">Cắt Vải</a>
                                                 <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "embroider" })">In Thêu</a>
                                                 <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "sew" })">May</a>
@@ -153,22 +156,9 @@
                     </table>
                 </div>
             </div>
-            <br>
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1"><</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">></a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div style="margin:0 auto; color: black">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                 </div>
             </div>
         </div>

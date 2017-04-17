@@ -1,6 +1,8 @@
 ﻿<link rel="stylesheet" href="~/Content/HNFStyle.css">
-
-@model HNFCRM_Chat.Models.CustomerModel
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model HNFCRM_Chat.Models.HomeModel
+@using PagedList;
+@using PagedList.Mvc;
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -80,13 +82,13 @@
                             <a class="nav-link hnf-navtab-font " data-toggle="tab" onclick="location.href='@Url.Action("Index", "Home")'" role="tab">KHÁCH HÀNG MỚI</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterOnProgress", "Home")'" role="tab">ĐƠN HÀNG ĐANG SẢN XUẤT</a>
+                            <a class="nav-link hnf-navtab-font @ViewBag.OnProgressStatus" data-toggle="tab" onclick="location.href='@Url.Action("Filter", "Home", new { type="OnProgress" })'" role="tab">ĐƠN HÀNG ĐANG SẢN XUẤT</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font " data-toggle="tab" onclick="location.href='@Url.Action("FilterSuccess", "Home")'" role="tab">ĐƠN HÀNG ĐÃ THỰC HIỆN</a>
+                            <a class="nav-link hnf-navtab-font @ViewBag.SuccessStatus" data-toggle="tab" onclick="location.href='@Url.Action("Filter", "Home", new { type="Success" })'" role="tab">ĐƠN HÀNG ĐÃ THỰC HIỆN</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font active" data-toggle="tab" onclick="location.href='@Url.Action("FilterFailed", "Home")'" role="tab">ĐƠN HÀNG THẤT BẠI</a>
+                            <a class="nav-link hnf-navtab-font @ViewBag.FailedStatus" data-toggle="tab" onclick="location.href='@Url.Action("Filter", "Home", new { type="Failed" })'" role="tab">ĐƠN HÀNG THẤT BẠI</a>
                         </li>
                     </ul>
 
@@ -107,92 +109,82 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   @{if (Model != null)
-                                       {
-                                           foreach (var item in Model.customer)
-                                           {
+                                    @{if (Model != null)
+                                        {
+                                            foreach (var item in Model.customer)
+                                            {
 
-                                            <tr>
-                                                <th scope="row">@item.ID</th>
-                                                <td>@item.Name</td>
-                                                <td>@item.Company</td>
-                                                <td>@item.Email</td>
-                                                <td>@item.Phone</td>
-                                                @{ if (item.ID_Consult.Value == 1)
-                                                    {
-                                                        <td>Gọi Điện Thoại</td>
-                                                    }
-                                                    else if (item.ID_Consult.Value == 2)
-                                                    {
-                                                        <td>Gửi Email</td>
-                                                    }
-                                                    else if (item.ID_Consult.Value == 3)
-                                                    {
-                                                        <td>Gặp Mặt</td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>Gửi Mẫu</td>
-                                                    }
-                                                }
-                                                @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
-                                                @{if (int.Parse(contract.Remind) == 0)
-                                                    {
-                                                        <td>Lần 1</td>
-                                                    }
-                                                    else if (int.Parse(contract.Remind) == 1)
-                                                    {
-                                                        <td>Lần 2</td>
-                                                    }
-                                                    else if (int.Parse(contract.Remind) == 2)
-                                                    {
-                                                        <td>Lần 3</td>
-                                                    }
-                                                    else
-                                                    {
-                                                        <td>Chưa Gọi</td>
-                                                    }
-                                                }
-                                                @{var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}
-                                                <td>@staff.Name</td>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="row">@item.ID</th>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Company</td>
+                                                    <td>@item.Email</td>
+                                                    <td>@item.Phone</td>
+                                                    @{ if (item.ID_Consult.Value == 1)
+                                                        {
+                                                            <td>Gọi Điện Thoại</td>
+                                                        }
+                                                        else if (item.ID_Consult.Value == 2)
+                                                        {
+                                                            <td>Gửi Email</td>
+                                                        }
+                                                        else if (item.ID_Consult.Value == 3)
+                                                        {
+                                                            <td>Gặp Mặt</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>Gửi Mẫu</td>
                                                         }
                                                     }
-                                }
+                                                    @{var contract = Model.Contract.Where(x => x.ID_Customer == item.ID).Single();}
+                                                    @{if (int.Parse(contract.Remind) == 0)
+                                                        {
+                                                            <td>Lần 1</td>
+                                                        }
+                                                        else if (int.Parse(contract.Remind) == 1)
+                                                        {
+                                                            <td>Lần 2</td>
+                                                        }
+                                                        else if (int.Parse(contract.Remind) == 2)
+                                                        {
+                                                            <td>Lần 3</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>Chưa Gọi</td>
+                                                        }
+                                                    }
+                                                    @{var staff = Model.Staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}
+                                                    <td>@staff.Name</td>
+                                                </tr>
+                                                            }
+                                                        }
+                                    }
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <div class="row">
+                        <div style="margin:0 auto; color: black">
+                            @Html.PagedListPager(Model.customer, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script type="text/javascript">
-    $(document).ready(function ($) {
-        var url = window.location.href;
-        var activePage = url;
-        $('.sidebar-nav a').each(function () {
-            var linkPage = this.href;
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            var url = window.location.href;
+            var activePage = url;
+            $('.sidebar-nav a').each(function () {
+                var linkPage = this.href;
 
-            if (activePage == linkPage) {
-                $(this).closest("li").addClass("sidebar-active");
-            }
+                if (activePage == linkPage) {
+                    $(this).closest("li").addClass("sidebar-active");
+                }
+            });
         });
-    });
-</script>
-
+    </script>
