@@ -82,13 +82,13 @@
                             <a class="nav-link hnf-navtab-font active" data-toggle="tab" onclick="location.href='@Url.Action("Index", "Home")'" role="tab">KHÁCH HÀNG MỚI</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterOnProgress", "Home")'" role="tab">ĐƠN HÀNG ĐANG SẢN XUẤT</a>
+                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("Filter", "Home", new { type="OnProgress" })'" role="tab">ĐƠN HÀNG ĐANG SẢN XUẤT</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterSuccess", "Home")'" role="tab">ĐƠN HÀNG ĐÃ THỰC HIỆN</a>
+                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("Filter", "Home", new { type="Success" })'" role="tab">ĐƠN HÀNG ĐÃ THỰC HIỆN</a>
                         </li>
                         <li class="nav-item w-100">
-                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("FilterFailed", "Home")'" role="tab">ĐƠN HÀNG THẤT BẠI</a>
+                            <a class="nav-link hnf-navtab-font" data-toggle="tab" onclick="location.href='@Url.Action("Filter", "Home", new { type="Failed" })'" role="tab">ĐƠN HÀNG THẤT BẠI</a>
                         </li>
                     </ul>
 

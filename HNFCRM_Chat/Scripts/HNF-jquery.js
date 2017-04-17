@@ -978,18 +978,21 @@ function DemoChart() {
     });
     // pie chart
     var piechart = document.getElementById('PieChart');
+    var success = $("#contractsuccess").val();
+    var failed = $("#contractfailed").val();
+    var waiting = $("#contractwaiting").val();
     var PieChartData = new Chart(piechart, {
         type: 'pie',
         data: {
             labels: [
-              "Red",
-              "Blue",
-              "Yellow"
+              "Thành Công",
+              "Đang Chờ",
+              "Thất Bại"
             ],
             datasets:
               [
                 {
-                    data: [Math.round(Math.random() * 100), Math.round(Math.random() * 100), Math.round(Math.random() * 100)],
+                    data: [success, waiting, failed],
                     backgroundColor: [
                         "#FF6384",
                         "#36A2EB",

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
 using System.IO;
+using PagedList;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -19,7 +20,7 @@ namespace HNFCRM_Chat.Controllers
             return File(contract.Contract1, "application/msword", Path.GetFileName(contract.Contract1));
         }
         //Get All Production Line
-        public ActionResult ProductionLine()
+        public ActionResult ProductionLine(int? page)
         {
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
@@ -27,8 +28,12 @@ namespace HNFCRM_Chat.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
+            //Pagination
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+
             var productionline = entities.PRODUCTLINEs.ToList();
-            return View(productionline);
+            return View(productionline.ToPagedList(pageNumber, pageSize));
         }
 
         //Get Production Line Detail By ID
@@ -140,7 +145,7 @@ namespace HNFCRM_Chat.Controllers
 
         [HttpPost]
         //Search Production Line
-        public ActionResult Search(string search)
+        public ActionResult Search(string search, int? page)
         {
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
@@ -148,17 +153,25 @@ namespace HNFCRM_Chat.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
+            //Pagination
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+
             var result = entities.PRODUCTLINEs.Where(x => x.CUSTOMER.Name.Contains(search) || x.CUSTOMER.Phone.Contains(search) || x.CUSTOMER.Company.Contains(search)).ToList();
-            return View(result);
+            return View(result.ToPagedList(pageNumber, pageSize));
         }
 
         //Filter 
-        public ActionResult Filter(string type)
+        public ActionResult Filter(string type, int? page)
         {
             if (Session["author"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+
+            //Pagination
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
 
             if (type == "0")
             {
@@ -169,7 +182,7 @@ namespace HNFCRM_Chat.Controllers
                     var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
                     productline.Add(findproductline);
                 }
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "30")
             {
@@ -180,7 +193,7 @@ namespace HNFCRM_Chat.Controllers
                     var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
                     productline.Add(findproductline);
                 }
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber,pageSize));
             }
             else if (type == "50")
             {
@@ -191,7 +204,7 @@ namespace HNFCRM_Chat.Controllers
                     var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
                     productline.Add(findproductline);
                 }
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "100")
             {
@@ -202,37 +215,42 @@ namespace HNFCRM_Chat.Controllers
                     var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
                     productline.Add(findproductline);
                 }
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
+            }
+            else if (type == "notyet")
+            {
+                var productline = entities.PRODUCTLINEs.Where(x => x.Cut == false).ToList();
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "cut")
             {
                 var productline = entities.PRODUCTLINEs.Where(x => x.Cut == true && x.Embroider == false).ToList();
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "embroider")
             {
                 var productline = entities.PRODUCTLINEs.Where(x => x.Embroider == true && x.Sew == false).ToList();
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "sew")
             {
                 var productline = entities.PRODUCTLINEs.Where(x => x.Sew == true && x.Iron == false).ToList();
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "iron")
             {
                 var productline = entities.PRODUCTLINEs.Where(x => x.Iron == true && x.Packaging == false).ToList();
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "packaging")
             {
                 var productline = entities.PRODUCTLINEs.Where(x => x.Packaging == true && x.Delivery == false).ToList();
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "delivery")
             {
                 var productline = entities.PRODUCTLINEs.Where(x => x.Delivery == true).ToList();
-                return View(productline);
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else return View();
         }

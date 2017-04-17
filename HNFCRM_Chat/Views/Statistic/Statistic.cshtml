@@ -102,11 +102,14 @@
             <div class="row">
                 <div class="col-xl-6">
                     <div class="card form-input-margin">
-                        <canvas id="BarChart" width="15" height="10"></canvas>
+                        <canvas id="BarChart" width="15" height="10" onload=""></canvas>
                     </div>
                 </div>
                 <div class="col-xl-6">
                     <div class="card form-input-margin">
+                        <input id="contractsuccess" value="@ViewBag.Success" hidden></input>
+                        <input id="contractfailed" value="@ViewBag.Failed" hidden></input>
+                        <input id="contractwaiting" value="@ViewBag.Waiting" hidden></input>
                         <canvas id="PieChart" width="15" height="10"></canvas>
                     </div>
                 </div>
