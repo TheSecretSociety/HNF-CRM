@@ -382,7 +382,6 @@ namespace HNFCRM_Chat.Controllers
                 contractdetail.PrintStartDate = validate.ConvertDate(frm["printstart"]);
                 contractdetail.PrintEndDate = validate.ConvertDate(frm["printend"]);
             }
-
             contractdetail.PrintMakingUnit = frm["printunit"];
             contractdetail.PrintSpot = frm["printspot"];
             contractdetail.PrintSize = frm["printsize"];
