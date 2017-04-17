@@ -1,0 +1,179 @@
+﻿@model IEnumerable<HNFCRM_Chat.Models.PRODUCTLINE>
+<link rel="stylesheet" href="~/Content/HNFStyle.css">
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Productline</title>
+</head>
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <div class="container-fluid">
+            <br>
+            <!-- Function Bar -->
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12col-xs-12">
+                    <div class="card form-input-margin">
+                        <div class="row">
+                            <!-- Search Bar & Search Button -->
+                            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                <form method="post" action="@Url.Action("Search","ProductionLine")">
+                                    <div class="row">
+                                        <!-- Search Bar -->
+                                        <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="search" placeholder="Tìm Kiếm...">
+                                            </div>
+                                        </div>
+                                        <!-- Search Button -->
+                                        <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <button type="submit" class="btn btn-block btn-warning search-button">Tìm Kiếm<i class="material-icons md-18">search</i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Filters -->
+                            <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+
+                                    <!-- Filter Tình Trạng -->
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-12 mb-2 mb-xl-0">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Tình Trạng
+                                            </button>
+                                            <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type = "cut" })">Cắt Vải</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type = "embroider" })">In Thêu</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type = "sew" })">May</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type = "iron" })">Ủi</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type = "packaging" })">Đóng Gói</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type = "delivery" })">Giao Hàng</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Filter Chuyển Tiền -->
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-12 mb-2 mb-xl-0">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Chuyển Tiền
+                                            </button>
+                                            <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="@Url.Action("Filter", "ProductionLine", new { type = "0" })">Chưa Chuyển</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine", new {type="30" })">30% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine", new {type="50" })">50% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type="100" })">100% Số Tiền</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-hover">
+                        <thead class>
+                            <tr>
+                                <th>Họ Và Tên</th>
+                                <th>Công Ty</th>
+                                <th>Điện Thoại</th>
+                                <th>Ngày Kí</th>
+                                <th>Ngày Giao Hàng</th>
+                                <th>Chuyển Tiền</th>
+                                <th>Tình Trạng</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    if (item != null)
+                                    {
+                                        <tr>
+                                            <td>@item.CUSTOMER.Name</td>
+                                            <td>@item.CUSTOMER.Company</td>
+                                            <td>@item.CUSTOMER.Phone</td>
+                                            <td>@item.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.CONTRACT.EndDate.Value.ToString("dd/MM/yyyy")</td>
+                                            @{if (int.Parse(item.CONTRACT.MoneyTransfer) == 1)
+                                                {
+                                                    <td>30%</td>
+                                                }
+                                                else if (int.Parse(item.CONTRACT.MoneyTransfer) == 2)
+                                                {
+                                                    <td>50%</td>
+                                                }
+                                                else if (int.Parse(item.CONTRACT.MoneyTransfer) == 3)
+                                                {
+                                                    <td>100%</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa Chuyển</td>}
+                                            }
+                                            @{if (item.Delivery == true)
+                                                {
+                                                    <td class="bg-warning">Đang Giao Hàng</td>
+                                                }
+                                                else if (item.Packaging == true && item.Delivery == false)
+                                                {
+                                                    <td class="bg-warning">Đang Đóng Gói</td>
+                                                }
+                                                else if (item.Iron == true && item.Packaging == false && item.Delivery == false)
+                                                {
+                                                    <td class="bg-warning">Đang Ủi</td>
+                                                }
+                                                else if (item.Sew == true && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                                {
+                                                    <td class="bg-warning">Đang May</td>
+                                                }
+                                                else if (item.Embroider == true && item.Sew == false && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                                {
+                                                    <td class="bg-warning">Đang In/Thêu</td>
+                                                }
+                                                else if (item.Cut == true && item.Embroider == false && item.Sew == false && item.Iron == false && item.Packaging == false && item.Delivery == false)
+                                                {
+                                                    <td class="bg-warning">Đang Cắt</td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="bg-warning">Chưa tiến hành</td>
+                                                }
+                                            }
+                                            <td><a href="@Url.Action("ProductionLineDetail", "ProductionLine", new { id = item.ID })" role="button" class="btn btn-sm btn-info">i</a></td>
+                                        </tr>
+                                                        }
+                                                    }
+                                                }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sx-12">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1"><</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--===== end of [DIVIDER] =====-->

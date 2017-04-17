@@ -46,9 +46,10 @@ namespace HNFCRM_Chat.Validate
             }
         }
 
+        //Check all date is always be in right format
         public int Check(string startdate, string enddate)
         {
-            if(CheckDate(startdate)!= 1)
+            if (CheckDate(startdate) != 1)
             {
                 return 0;
             }
@@ -66,6 +67,7 @@ namespace HNFCRM_Chat.Validate
             }
         }
 
+        //Convert date following date culture 
         public DateTime ConvertDate(string date)
         {
             if (date == "" || date == null)
@@ -74,6 +76,53 @@ namespace HNFCRM_Chat.Validate
             }
             DateTime checkdate = DateTime.Parse(date, culture, System.Globalization.DateTimeStyles.AssumeLocal);
             return checkdate;
+        }
+    }
+
+    public class TypeButton
+    {
+        //Check value of radio button
+        //Use for Money Transfer and Customer Reminder Call
+        //Use for ArmBorder, ArmpitBorder, Sidecut
+        public string CheckRadioButton(string i)
+        {
+            if (i == "0")
+            {
+                return "0";
+            }
+            else if (i == "1")
+            {
+                return "1";
+            }
+            else if (i == "2")
+            {
+                return "2";
+            }
+            else if (i == "3")
+            {
+                return "3";
+            }
+            else if (i == "4")
+            {
+                return "4";
+            }
+            else
+            {
+                return "0";
+            }
+        }
+
+        //Check value of checkbox button
+        public bool CheckboxButton(string i)
+        {
+            if (i == "1")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

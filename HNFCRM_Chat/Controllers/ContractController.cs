@@ -39,6 +39,12 @@ namespace HNFCRM_Chat.Controllers
         [HttpPost]
         public ActionResult Contract(int id, FormCollection frm, HttpPostedFileBase uploadcontract, HttpPostedFileBase uploadimages, HttpPostedFileBase uploadprice, HttpPostedFileBase uploadmarket)
         {
+            //Processing Value for each button
+            TypeButton button = new TypeButton();
+
+            //Validate Datetime format
+            Validation validate = new Validation();
+
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
@@ -84,9 +90,7 @@ namespace HNFCRM_Chat.Controllers
             }
 
             //Appointment and Consult Date
-            Validation validate = new Validation();
             int check = validate.Check(frm["consultdate"], frm["appointment"]);
-
             if (check == 0)
             {
                 contract.Appointment = DateTime.Now;
@@ -117,15 +121,8 @@ namespace HNFCRM_Chat.Controllers
             }
 
             //Confirm Market
-            if (frm["confirm"] == "" || frm["confirm"] == null)
-            {
-                contract.CheckConfirm = false;
-            }
-            else
-            {
-                contract.CheckConfirm = true;
-            }
-
+            contract.CheckConfirm = button.CheckboxButton(frm["confirm"]);
+            //Note
             contract.Note = frm["note"];
 
             //Production Line Date
@@ -149,43 +146,15 @@ namespace HNFCRM_Chat.Controllers
             }
 
             //Transfer Money
-            string status = frm["tranfer-money-radio"];
-            if (frm["tranfer-money-radio"] == "0")
-            {
-                contract.MoneyTransfer = "0";
-            }
-            else if (frm["tranfer-money-radio"] == "1")
-            {
-                contract.MoneyTransfer = "1";
-            }
-            else
-            {
-                contract.MoneyTransfer = "2";
-            }
+            contract.MoneyTransfer = button.CheckRadioButton(frm["tranfer-money-radio"]);
 
             //Customer Call Remind
-            //value = 3 has not call yet
-            if (frm["customer-call-radio"] == "0")
-            {
-                contract.Remind = "0";
-            }
-            else if (frm["customer-call-radio"] == "1")
-            {
-                contract.Remind = "1";
-            }
-            else if (frm["customer-call-radio"] == "2")
-            {
-                contract.Remind = "2";
-            }
-            else
-            {
-                contract.Remind = "3";
-            }
+            contract.Remind = button.CheckRadioButton(frm["customer-call-radio"]);
 
             //Contract Status
+            contract.StatusContract = button.CheckRadioButton(frm["options"]);
             if (frm["options"] == "0")
             {
-                contract.StatusContract = "0";
                 //Add new productionline if this contract has not existed
                 PRODUCTLINE productline = entities.PRODUCTLINEs.Where(x => x.ID_Customer == id).SingleOrDefault();
                 if (productline == null)
@@ -202,14 +171,6 @@ namespace HNFCRM_Chat.Controllers
                     newproductline.ID_Contract = contract.ID;
                     entities.PRODUCTLINEs.Add(newproductline);
                 }
-            }
-            else if (frm["options"] == "1")
-            {
-                contract.StatusContract = "1";
-            }
-            else
-            {
-                contract.StatusContract = "2";
             }
 
             contract.UpdatedDate = DateTime.Now;
@@ -264,34 +225,13 @@ namespace HNFCRM_Chat.Controllers
             contractdetail.CollarArmAdjustment = frm["collararm"];
             contractdetail.ProductDesign = frm["productdesign"];
             contractdetail.FabricateStyle = frm["fabric"];
-            string note = frm["note"];
-            contractdetail.Note = note;
+            contractdetail.Note = frm["note"];
 
             //Checkbox
-            if (frm["sidecut"] != null)
-            {
-                contractdetail.SideCut = true;
-            }
-            else
-            {
-                contractdetail.SideCut = false;
-            }
-            if (frm["armborder"] != null)
-            {
-                contractdetail.ArmBorder = true;
-            }
-            else
-            {
-                contractdetail.ArmBorder = false;
-            }
-            if (frm["armpitborder"] != null)
-            {
-                contractdetail.ArmpitBorder = true;
-            }
-            else
-            {
-                contractdetail.ArmpitBorder = false;
-            }
+            TypeButton button = new TypeButton();
+            contractdetail.SideCut = button.CheckboxButton(frm["sidecut"]);
+            contractdetail.ArmBorder = button.CheckboxButton(frm["armborder"]);
+            contractdetail.ArmpitBorder = button.CheckboxButton(frm["armpitborder"]);
             contractdetail.Note = frm["note"];
 
             //Update Size Men

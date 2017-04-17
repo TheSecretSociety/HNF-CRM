@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -22,6 +23,8 @@
     <!-- custom CSS & Jquery modify URL -->
     <link rel="stylesheet" href="~/Content/HNFStyle.css">
     <script src="~/Scripts/HNF-jquery.js"></script>
+
+
 </head>
 
 <body>
@@ -139,11 +142,10 @@
             </ul>
         </div>
         <!--===== end of [SIDERBAR] =====-->
-
         @RenderBody()
-        @Scripts.Render("~/bundles/jquery")
+        @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/Scripts")
+        @Styles.Render("~/Content/css")*@
         @RenderSection("scripts", required: false)
     </div>
 </body>
