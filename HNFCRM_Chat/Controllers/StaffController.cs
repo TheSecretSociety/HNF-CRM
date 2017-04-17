@@ -91,37 +91,39 @@ namespace HNFCRM_Chat.Controllers
             string email = frm["email"];
             string op = frm["oldpassword"];
             var check = entities.STAFFs.Where(x => x.Email == email).ToList();
-            var checkpw = check.Where(x => x.Password == op).ToList();
-            if (check.Count == 1)
+            if (op==null)
             {
-                if (email != data.Email)
+                if (check.Count == 1)
                 {
-                    TempData["EditStaff"] = "Email đã tồn tại!";
-                    return RedirectToAction("EditStaff", "Staff");
+                    if (email != data.Email)
+                    {
+                        TempData["EditStaff"] = "Email đã tồn tại!";
+                        return RedirectToAction("EditStaff", "Staff");
+                    }
                 }
-            }
-            data.Name = frm["name"];
-            data.Phone = frm["phone"];
-            data.Email = frm["email"];
-            data.Password = frm["password"];
-            if (frm["role"] == "Quản Trị Viên")
-            {
-                data.ID_Role = 1;
-            }
-            else if (frm["role"] == "Nhân Viên Bán Hàng")
-            {
-                data.ID_Role = 2;
-            }
-            else if (frm["role"] == "Nhân Viên Chăm Sóc Khách Hàng")
-            {
-                data.ID_Role = 3;
-            }
-            else if (frm["role"] == "Nhân Viên Quản Lí Sản Xuất")
-            {
-                data.ID_Role = 4;
-            }
+                data.Name = frm["name"];
+                data.Phone = frm["phone"];
+                data.Email = frm["email"];
+                if (frm["role"] == "Quản Trị Viên")
+                {
+                    data.ID_Role = 1;
+                }
+                else if (frm["role"] == "Nhân Viên Bán Hàng")
+                {
+                    data.ID_Role = 2;
+                }
+                else if (frm["role"] == "Nhân Viên Chăm Sóc Khách Hàng")
+                {
+                    data.ID_Role = 3;
+                }
+                else if (frm["role"] == "Nhân Viên Quản Lí Sản Xuất")
+                {
+                    data.ID_Role = 4;
+                }
+            } else
             if (op != "")
             {
+                var checkpw = check.Where(x => x.Password == op).ToList();
                 if (checkpw.Count == 1)
                 {
                     data.Password = frm["password"];
