@@ -1,5 +1,8 @@
 ﻿<link rel="stylesheet" href="~/Content/HNFStyle.css">
-@model HNFCRM_Chat.Models.CustomerModel
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@model HNFCRM_Chat.Models.HomeModel
+@using PagedList;
+@using PagedList.Mvc;
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -134,7 +137,7 @@
                                                             <td>Gửi Mẫu</td>
                                                         }
                                                     }
-                                                    @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
+                                                    @{var contract = Model.Contract.Where(x => x.ID_Customer == item.ID).Single();}
                                                     @{if (int.Parse(contract.Remind) == 0)
                                                         {
                                                             <td>Lần 1</td>
@@ -152,7 +155,7 @@
                                                             <td>Chưa Gọi</td>
                                                         }
                                                     }
-                                                    @{var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}
+                                                    @{var staff = Model.Staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}
                                                     <td>@staff.Name</td>
                                                 </tr>
                                                             }
@@ -162,35 +165,26 @@
                             </table>
                         </div>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <div class="row" >
+                        <div style ="margin:0 auto; color: black">
+                            @Html.PagedListPager(Model.customer, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script type="text/javascript">
-    $(document).ready(function ($) {
-        var url = window.location.href;
-        var activePage = url;
-        $('.sidebar-nav a').each(function () {
-            var linkPage = this.href;
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            var url = window.location.href;
+            var activePage = url;
+            $('.sidebar-nav a').each(function () {
+                var linkPage = this.href;
 
-            if (activePage == linkPage) {
-                $(this).closest("li").addClass("sidebar-active");
-            }
+                if (activePage == linkPage) {
+                    $(this).closest("li").addClass("sidebar-active");
+                }
+            });
         });
-    });
-</script>
+    </script>

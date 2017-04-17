@@ -393,3 +393,16 @@ a:link {
 .bar-100{
     width: 100%;
 }
+
+.pagination > li > a,
+        .pagination > li > span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.428571429;
+            text-decoration: inherit;
+            border: 1px solid #dddddd;
+            color: black !important;
+            background-color: #ffffff;
+        }

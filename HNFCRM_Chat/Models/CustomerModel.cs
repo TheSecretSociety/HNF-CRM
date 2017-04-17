@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
 
 namespace HNFCRM_Chat.Models
 {
@@ -12,6 +13,6 @@ namespace HNFCRM_Chat.Models
         public List<STAFF> staff;
         public List<STAFF> liststaff;
         public List<CONTRACT> contract;
-        public List<CUSTOMER> customer;
+        public IPagedList<CUSTOMER> customer;
     }
 }

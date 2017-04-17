@@ -20,23 +20,21 @@ namespace HNFCRM_Chat
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                 "~/Scripts/moment-with-locales.js",
+                "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/HNF-jquery.js",
-                      "~/Scripts/bootstrap-datetimepicker.js"
+                      "~/Scripts/bootstrap-datetimepicker.js",
+                    "~/Scripts/HNF-jquery.js"
                      ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/").Include(
-                "~/Scripts/HNF-jquery.js"
-                              ));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/Site.css",
-                      "~/Content/Home.css",
-                      "~/Content/AboutPage.css",
-                      "~/Content/HNFStyle.css"
-                      ));
+           "~/Content/bootstrap.css",
+           "~/Content/Site.css",
+           "~/Content/Home.css",
+           "~/Content/AboutPage.css",
+           "~/Content/HNFStyle.css",
+           "~/Content/bootstrap-datetimepicker.css"
+           ));
 
             //Create bundel for jQueryUI  
             //js  

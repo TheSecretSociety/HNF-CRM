@@ -13,10 +13,11 @@ namespace HNFCRM_Chat.Controllers
         CP_CRMEntities entities = new CP_CRMEntities();
 
         //Display Dashboard and Get New customer List
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             //Pagination
-           
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
@@ -39,7 +40,7 @@ namespace HNFCRM_Chat.Controllers
             ViewBag.Waiting = waiting;
 
             //Information of List of Customer
-            CustomerModel model = new CustomerModel();
+            HomeModel model = new HomeModel();
             var customer = entities.CUSTOMERs.OrderByDescending(x => x.ID).ToList();
             foreach (var item in customer)
             {
@@ -49,16 +50,21 @@ namespace HNFCRM_Chat.Controllers
                 staff.Add(tempstaff);
             }
 
-            model.staff = staff;
-            model.contract = contract;
-            model.customer = customer;
+            model.Staff = staff;
+            model.Contract = contract;
+            model.Customer = customer;
+            model.customer = customer.ToPagedList(pageNumber, pageSize);
 
             return View(model);
         }
 
         //Display Dashboard and Get Success Contract List
-        public ActionResult FilterSuccess()
+        public ActionResult FilterSuccess(int? page)
         {
+            //Pagination
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
@@ -91,7 +97,7 @@ namespace HNFCRM_Chat.Controllers
                 staff.Add(findstaff);
             }
 
-            model.customer = customer;
+            model.customer = customer.ToPagedList(pageNumber, pageSize);
             model.staff = staff;
             model.contract = contract;
 
@@ -99,8 +105,12 @@ namespace HNFCRM_Chat.Controllers
         }
 
         //Display Dashboard and get Fail Contract List
-        public ActionResult FilterFailed()
+        public ActionResult FilterFailed(int? page)
         {
+            //Pagination
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
@@ -133,7 +143,7 @@ namespace HNFCRM_Chat.Controllers
                 staff.Add(findstaff);
             }
 
-            model.customer = customer;
+            model.customer = customer.ToPagedList(pageNumber, pageSize);
             model.staff = staff;
             model.contract = contract;
 
@@ -141,8 +151,12 @@ namespace HNFCRM_Chat.Controllers
         }
 
         //Display Dashboard and Get Waiting Contract
-        public ActionResult FilterOnProgress()
+        public ActionResult FilterOnProgress(int? page)
         {
+            //Pagination
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
@@ -178,7 +192,7 @@ namespace HNFCRM_Chat.Controllers
                 staff.Add(findstaff);
             }
 
-            model.customer = customer;
+            model.customer = customer.ToPagedList(pageNumber, pageSize);
             model.contract = contract;
             model.staff = staff;
 

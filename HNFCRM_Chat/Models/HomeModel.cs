@@ -8,7 +8,11 @@ namespace HNFCRM_Chat.Models
 {
     public class HomeModel
     {
-        List<CUSTOMER> Customer;
-        List<CONTRACT> Contract;
+        public List<CUSTOMER> Customer;
+        public List<CONTRACT> Contract;
+        public List<STAFF> Staff;
+        public IPagedList<CUSTOMER> customer;
     }
+
+
 }

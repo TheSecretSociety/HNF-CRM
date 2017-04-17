@@ -1,4 +1,7 @@
-﻿@model HNFCRM_Chat.Models.CustomerModels
+﻿@model HNFCRM_Chat.Models.CustomerModel
+@using PagedList;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <head>
     <title>HNF-Customer</title>
@@ -194,7 +197,11 @@
                             }
                         </tbody>
                     </table>
-
+                </div>
+            </div>
+            <div class="row">
+                <div style="margin:0 auto; color: black">
+                    @Html.PagedListPager(Model.customer, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                 </div>
             </div>
         </div>

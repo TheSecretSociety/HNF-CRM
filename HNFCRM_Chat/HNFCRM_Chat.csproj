@@ -290,7 +290,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Validate\Validation.cs" />
+    <Compile Include="Processing\Processing.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AboutPage.css" />
@@ -521,12 +521,6 @@
     <Content Include="Views\ProductionLine\ProductionLine.cshtml" />
     <Content Include="Views\ProductionLine\ProductionLineDetail.cshtml" />
     <Content Include="Views\ProductionLine\Search.cshtml" />
-    <Content Include="Views\ProductionLine\FilterCut.cshtml" />
-    <Content Include="Views\ProductionLine\FilterSew.cshtml" />
-    <Content Include="Views\ProductionLine\FilterIron.cshtml" />
-    <Content Include="Views\ProductionLine\FilterDelivery.cshtml" />
-    <Content Include="Views\ProductionLine\FilterPackaging.cshtml" />
-    <Content Include="Views\ProductionLine\FilterEmbroider.cshtml" />
     <Content Include="Views\Staff\EditStaff.cshtml" />
     <Content Include="Views\Staff\FilterAdmin.cshtml" />
     <Content Include="Views\Staff\FilterCustomerCare.cshtml" />
@@ -541,14 +535,13 @@
     <Content Include="Views\Home\FilterOnProgress.cshtml" />
     <Content Include="Views\Contract\Contract.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\ProductionLine\Filter50.cshtml" />
-    <Content Include="Views\ProductionLine\Filter100.cshtml" />
     <Content Include="Views\Statistic\Statistic.cshtml" />
     <Content Include="Views\Customer\SearchCustomerByStaff.cshtml" />
     <Content Include="Views\CustomerCare\CustomerCare.cshtml" />
     <Content Include="Views\CustomerCare\CustomerCareDetail.cshtml" />
     <Content Include="Views\CustomerCare\Search.cshtml" />
     <Content Include="Views\Notification\Notification.cshtml" />
+    <Content Include="Views\ProductionLine\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

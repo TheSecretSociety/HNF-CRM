@@ -152,121 +152,89 @@ namespace HNFCRM_Chat.Controllers
             return View(result);
         }
 
-        //Filter Cut Status
-        public ActionResult FilterCut()
+        //Filter 
+        public ActionResult Filter(string type)
         {
-            //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
 
-            var productline = entities.PRODUCTLINEs.Where(x => x.Cut == true && x.Embroider == false).ToList();
-            return View(productline);
-        }
-
-        //Filter Delivery Status
-        public ActionResult FilterDelivery()
-        {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
+            if (type == "0")
             {
-                return RedirectToAction("Login", "Login");
+                List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
+                var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "0").ToList();
+                foreach (var item in contract)
+                {
+                    var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
+                    productline.Add(findproductline);
+                }
+                return View(productline);
             }
-
-            var productline = entities.PRODUCTLINEs.Where(x => x.Delivery == true).ToList();
-            return View(productline);
-        }
-
-        //Filter Embroider Status
-        public ActionResult FilterEmbroider()
-        {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
+            else if (type == "30")
             {
-                return RedirectToAction("Login", "Login");
+                List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
+                var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "1").ToList();
+                foreach (var item in contract)
+                {
+                    var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
+                    productline.Add(findproductline);
+                }
+                return View(productline);
             }
-
-            var productline = entities.PRODUCTLINEs.Where(x => x.Embroider == true && x.Sew == false).ToList();
-            return View(productline);
-        }
-
-        //Filter Iron Status
-        public ActionResult FilterIron()
-        {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
+            else if (type == "50")
             {
-                return RedirectToAction("Login", "Login");
+                List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
+                var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "2").ToList();
+                foreach (var item in contract)
+                {
+                    var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
+                    productline.Add(findproductline);
+                }
+                return View(productline);
             }
-
-            var productline = entities.PRODUCTLINEs.Where(x => x.Iron == true && x.Packaging == false).ToList();
-            return View(productline);
-        }
-
-        //Filter Sew Status
-        public ActionResult FilterSew()
-        {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
+            else if (type == "100")
             {
-                return RedirectToAction("Login", "Login");
+                List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
+                var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "3").ToList();
+                foreach (var item in contract)
+                {
+                    var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
+                    productline.Add(findproductline);
+                }
+                return View(productline);
             }
-
-            var productline = entities.PRODUCTLINEs.Where(x => x.Sew == true && x.Iron == false).ToList();
-            return View(productline);
-        }
-
-        //Filter Packaging Status
-        public ActionResult FilterPackaging()
-        {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
+            else if (type == "cut")
             {
-                return RedirectToAction("Login", "Login");
+                var productline = entities.PRODUCTLINEs.Where(x => x.Cut == true && x.Embroider == false).ToList();
+                return View(productline);
             }
-
-            var productline = entities.PRODUCTLINEs.Where(x => x.Packaging == true && x.Delivery == false).ToList();
-            return View(productline);
-        }
-
-        //Filter Transfer Money
-        //50% Total
-        public ActionResult Filter50()
-        {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
+            else if (type == "embroider")
             {
-                return RedirectToAction("Login", "Login");
+                var productline = entities.PRODUCTLINEs.Where(x => x.Embroider == true && x.Sew == false).ToList();
+                return View(productline);
             }
-
-            List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
-            var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "1").ToList();
-            foreach (var item in contract)
+            else if (type == "sew")
             {
-                var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
-                productline.Add(findproductline);
+                var productline = entities.PRODUCTLINEs.Where(x => x.Sew == true && x.Iron == false).ToList();
+                return View(productline);
             }
-            return View(productline);
-        }
-
-        //100% Total
-        public ActionResult Filter100()
-        {
-            //Redirect to login if User has not login yet
-            if (Session["author"] == null)
+            else if (type == "iron")
             {
-                return RedirectToAction("Login", "Login");
+                var productline = entities.PRODUCTLINEs.Where(x => x.Iron == true && x.Packaging == false).ToList();
+                return View(productline);
             }
-
-            List<PRODUCTLINE> productline = new List<PRODUCTLINE>();
-            var contract = entities.CONTRACTs.Where(x => x.MoneyTransfer == "0").ToList();
-            foreach (var item in contract)
+            else if (type == "packaging")
             {
-                var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
-                productline.Add(findproductline);
+                var productline = entities.PRODUCTLINEs.Where(x => x.Packaging == true && x.Delivery == false).ToList();
+                return View(productline);
             }
-            return View(productline);
+            else if (type == "delivery")
+            {
+                var productline = entities.PRODUCTLINEs.Where(x => x.Delivery == true).ToList();
+                return View(productline);
+            }
+            else return View();
         }
     }
 }

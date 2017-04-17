@@ -1,4 +1,7 @@
 ﻿@model HNFCRM_Chat.Models.CustomerModel
+@using PagedList;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <head>
     <title>HNF-Customer</title>
@@ -83,13 +86,6 @@
 
                                 }
                             }
-                            @*<li class="page-item "><a class="page-link" href="#">Tấn Lộc</a></li>
-                                <li class="page-item "><a class="page-link" href="#">Tấn Hưng</a></li>
-                                <li class="page-item "><a class="page-link" href="#">Anh Minh</a></li>
-                                <li class="page-item "><a class="page-link" href="#">Đức Thuận</a></li>
-                                <li class="page-item "><a class="page-link" href="#">Hoàng Nguyễn</a></li>
-                                <li class="page-item "><a class="page-link" href="#">Bảo Huy</a></li>
-                                <li class="page-item "><a class="page-link" href="#">Phú Thạnh</a></li>*@
                             <li class="page-item ">
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
@@ -127,7 +123,7 @@
                                     {
                                         <tr class="">
                                             <th scope="row">
-                                                <a type="button" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
+                                                <a type="button" style="color:black" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
                                                                                                                                                             {
                                                                                                                                                                 id = item
 .ID
@@ -205,6 +201,11 @@
                         </tbody>
                     </table>
 
+                </div>
+            </div>
+            <div class="row">
+                <div style="margin:0 auto; color: black">
+                    @Html.PagedListPager(Model.customer, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                 </div>
             </div>
         </div>

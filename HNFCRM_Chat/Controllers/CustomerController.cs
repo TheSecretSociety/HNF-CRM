@@ -15,7 +15,7 @@ namespace HNFCRM_Chat.Controllers
         CP_CRMEntities entities = new CP_CRMEntities();
 
         //Get All Customer
-        public ActionResult Customer()
+        public ActionResult Customer(int? page)
         {
             try
             {
@@ -24,6 +24,11 @@ namespace HNFCRM_Chat.Controllers
                 {
                     return RedirectToAction("Login", "Login");
                 }
+
+                //Pagination
+                int pageSize = 9;
+                int pageNumber = (page ?? 1);
+
                 var role = Session["Role"] as STAFF;
                 if (role.ID_Role == 1 || role.ID_Role == 3)
                 {
@@ -39,7 +44,7 @@ namespace HNFCRM_Chat.Controllers
                         staff.Add(findstaff);
                     }
                     CustomerModel model = new CustomerModel();
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.contract = contract;
                     model.staff = staff;
                     model.liststaff = stafflist;
@@ -59,7 +64,7 @@ namespace HNFCRM_Chat.Controllers
                         staff.Add(findstaff);
                     }
                     CustomerModel model = new CustomerModel();
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.contract = contract;
                     model.staff = staff;
                     model.liststaff = stafflist;
@@ -362,7 +367,7 @@ namespace HNFCRM_Chat.Controllers
 
         [HttpPost]
         //Search Customer 
-        public ActionResult SearchCustomer(string SearchName, string SearchPhone, string SearchCompany)
+        public ActionResult SearchCustomer(string SearchName, string SearchPhone, string SearchCompany, int? page)
         {
             try
             {
@@ -371,6 +376,10 @@ namespace HNFCRM_Chat.Controllers
                 {
                     return RedirectToAction("Login", "Login");
                 }
+
+                //Pagination
+                int pageSize = 9;
+                int pageNumber = (page ?? 1);
 
                 if (SearchName != "" && SearchPhone == "" && SearchCompany == "")
                 {
@@ -389,7 +398,7 @@ namespace HNFCRM_Chat.Controllers
                     }
                     CustomerModel model = new CustomerModel();
                     model.contract = contract;
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
                     return View(model);
@@ -411,7 +420,7 @@ namespace HNFCRM_Chat.Controllers
                     }
                     CustomerModel model = new CustomerModel();
                     model.contract = contract;
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
                     return View(model);
@@ -433,7 +442,7 @@ namespace HNFCRM_Chat.Controllers
                     }
                     CustomerModel model = new CustomerModel();
                     model.contract = contract;
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
                     return View(model);
@@ -455,7 +464,7 @@ namespace HNFCRM_Chat.Controllers
                     }
                     CustomerModel model = new CustomerModel();
                     model.contract = contract;
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
                     return View(model);
@@ -477,7 +486,7 @@ namespace HNFCRM_Chat.Controllers
                     }
                     CustomerModel model = new CustomerModel();
                     model.contract = contract;
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
                     return View(model);
@@ -499,7 +508,7 @@ namespace HNFCRM_Chat.Controllers
                     }
                     CustomerModel model = new CustomerModel();
                     model.contract = contract;
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
                     return View(model);
@@ -521,7 +530,7 @@ namespace HNFCRM_Chat.Controllers
                     }
                     CustomerModel model = new CustomerModel();
                     model.contract = contract;
-                    model.customer = customer;
+                    model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
                     return View(model);
@@ -534,8 +543,12 @@ namespace HNFCRM_Chat.Controllers
         }
 
         //Search Customer By Staff
-        public ActionResult SearchCustomerByStaff(int id)
+        public ActionResult SearchCustomerByStaff(int id, int? page)
         {
+            //Pagination
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+
             List<CUSTOMER> customer = new List<CUSTOMER>();
             List<CONTRACT> contract = new List<CONTRACT>();
             List<STAFF> staff = new List<STAFF>();
@@ -551,7 +564,7 @@ namespace HNFCRM_Chat.Controllers
             }
             CustomerModel model = new CustomerModel();
             model.contract = contract;
-            model.customer = customer;
+            model.customer = customer.ToPagedList(pageNumber, pageSize);
             model.staff = staff;
             model.liststaff = liststaff;
             return View(model);
