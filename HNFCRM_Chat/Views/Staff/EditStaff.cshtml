@@ -2,6 +2,15 @@
 @using HNFCRM_Chat.Models
 @model STAFF
 
+@{
+    string att = "";
+    var a = Session["Role"] as STAFF;
+    if (a.ID_Role != 1)
+    {
+        att = "hidden";
+    }
+}
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Staff</title>
@@ -39,9 +48,9 @@
 
                                     </div>
                                     <!-- Phân Quyền -->
-                                    <div class="form-group">
-                                        <label for="InputAuthorize">Phân Quyền</label>
-                                        <select class="form-control" id="InputAuthorize" name="role" @Html.DropDownList("JobTitle", @Model.ROLE.Role1)></select>
+                                    <div @att class="form-group">
+                                        <label @att for="InputAuthorize">Phân Quyền</label>                  
+                                        <select class="form-control" id="InputAuthorize" @att name="role" @Html.DropDownList("JobTitle", @Model.ROLE.Role1)></select>
                                     </div>
                                     <!-- Nút Sửa Thông Tin (dưới dạng thẻ <input>) -->
                                     <div class="form-group">

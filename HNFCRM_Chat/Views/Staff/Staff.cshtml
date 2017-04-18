@@ -41,10 +41,10 @@
                                                 </button>
                                                 <!-- các nội dung trong dropdown -->
                                                 <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" name="filter">
-                                                    <a class="dropdown-item" href="@Url.Action("FilterAdmin", "Staff")">Quản Trị Viên</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterSale", "Staff")">Nhân Viên Bán Hàng</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterCustomerCare", "Staff")">Chăm Sóc Khách Hàng</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterProductline", "Staff")">Quản Lí Sản Xuất</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "admin" })">Quản Trị Viên</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "sale" })">Nhân Viên Bán Hàng</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "customercare" })">Chăm Sóc Khách Hàng</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "productline" })">Quản Lí Sản Xuất</a>
                                                 </div>
                                             </div>
                                         </div>

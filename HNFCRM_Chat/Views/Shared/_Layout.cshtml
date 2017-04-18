@@ -43,8 +43,9 @@
                     <li class="nav-item">
                         @{
                             var author = Session["author"] as STAFF;
+                            var id = Session["ID"] as STAFF;
                         }
-                        <a class="nav-link hnf-nav-link" href="@Url.Action("Information", "Staff")">
+                        <a class="nav-link hnf-nav-link" href="@Url.Action("EditStaff", "Staff",new {id=id.ID })">
                             <i class="material-icons">account_circle</i>@author.Name
                         </a>
                     </li>

@@ -521,14 +521,10 @@
     <Content Include="Views\ProductionLine\ProductionLine.cshtml" />
     <Content Include="Views\ProductionLine\ProductionLineDetail.cshtml" />
     <Content Include="Views\ProductionLine\Search.cshtml" />
-    <Content Include="Views\Staff\FilterAdmin.cshtml" />
-    <Content Include="Views\Staff\FilterCustomerCare.cshtml" />
-    <Content Include="Views\Staff\FilterProductline.cshtml" />
-    <Content Include="Views\Staff\FilterSale.cshtml" />
+    <Content Include="Views\Staff\Filter.cshtml" />
     <Content Include="Views\Staff\SearchStaff.cshtml" />
     <Content Include="Views\Staff\AddStaff.cshtml" />
     <Content Include="Views\Staff\Staff.cshtml" />
-    <Content Include="Views\Staff\Information.cshtml" />
     <Content Include="Views\Contract\Contract.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Statistic\Statistic.cshtml" />
