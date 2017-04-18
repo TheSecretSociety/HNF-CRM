@@ -481,68 +481,68 @@ function EmployeeAddValidation() {
     function Validate() {
         $("#InputName").change(function () {
             var ANameValue = $("#InputName").val();
-            $("#InputName").removeClass("bg-warning");
+            $("#InputName").removeClass('input-validate-wrong');
             if (ANameValidate(ANameValue)) {
                 ValidationPass = true;
                 CheckValidation(ValidationPass);
             } else {
                 ValidationPass = false;
                 CheckValidation(ValidationPass);
-                $("#InputName").addClass("bg-warning");
+                $("#InputName").addClass('input-validate-wrong');
                 $("#InputName").val('');
             }
         });
         $("#InputPhone").change(function () {
             var APhoneValue = $("#InputPhone").val();
-            $("#InputPhone").removeClass("bg-warning");
+            $("#InputPhone").removeClass('input-validate-wrong');
             if (APhoneValidate(APhoneValue)) {
                 ValidationPass = true;
                 CheckValidation(ValidationPass);
             } else {
                 ValidationPass = false;
                 CheckValidation(ValidationPass);
-                $("#InputPhone").addClass("bg-warning");
+                $("#InputPhone").addClass('input-validate-wrong');
                 $("#InputPhone").val('');
 
             }
         });
         $("#InputEmail").change(function () {
             var AEmailValue = $("#InputEmail").val();
-            $("#InputEmail").removeClass("bg-warning");
+            $("#InputEmail").removeClass('input-validate-wrong');
             if (AEmailValidate(AEmailValue)) {
                 ValidationPass = true;
                 CheckValidation(ValidationPass);
             } else {
                 ValidationPass = false;
                 CheckValidation(ValidationPass);
-                $("#InputEmail").addClass("bg-warning");
+                $("#InputEmail").addClass('input-validate-wrong');
                 $("#InputEmail").val('');
 
             }
         });
         $('#txt-input-password').change(function () {
             var APasswordValue = $('#txt-input-password').val();
-            $('#txt-input-password').removeClass("bg-warning");
+            $('#txt-input-password').removeClass('input-validate-wrong');
             if (APasswordValidate(APasswordValue)) {
                 ValidationPass = true;
                 CheckValidation(ValidationPass);
             } else {
                 ValidationPass = false;
                 CheckValidation(ValidationPass);
-                $('#txt-input-password').addClass("bg-warning");
+                $('#txt-input-password').addClass('input-validate-wrong');
                 $('#txt-input-password').val('');
             }
         });
         $('#txt-input-password-confirm').change(function () {
             var APasswordValue = $('#txt-input-password-confirm').val();
-            $('#txt-input-password-confirm').removeClass("bg-warning");
+            $('#txt-input-password-confirm').removeClass('input-validate-wrong');
             if (APasswordValidate(APasswordValue)) {
                 ValidationPass = true;
                 CheckValidation(ValidationPass);
             } else {
                 ValidationPass = false;
                 CheckValidation(ValidationPass);
-                $('#txt-input-password-confirm').addClass("bg-warning");
+                $('#txt-input-password-confirm').addClass('input-validate-wrong');
                 $('#txt-input-password-confirm').val('');
             }
 
@@ -552,8 +552,8 @@ function EmployeeAddValidation() {
             console.log(Password);
             var ConfirmPassword = $('#txt-input-password-confirm').val();
             console.log(ConfirmPassword);
-            $('#txt-input-password').removeClass('bg-warning');
-            $('#txt-input-password-confirm').removeClass('bg-warning');
+            $('#txt-input-password').removeClass('input-validate-wrong');
+            $('#txt-input-password-confirm').removeClass('input-validate-wrong');
             if (Password == ConfirmPassword) {
                 ValidationPass = true;
                 CheckValidation(ValidationPass);
@@ -562,8 +562,8 @@ function EmployeeAddValidation() {
             } else {
                 ValidationPass = false;
                 CheckValidation(ValidationPass);
-                $('#txt-input-password').addClass('bg-warning');
-                $('#txt-input-password-confirm').addClass('bg-warning');
+                $('#txt-input-password').addClass('input-validate-wrong');
+                $('#txt-input-password-confirm').addClass('input-validate-wrong');
                 return false;
             }
         })
@@ -608,7 +608,7 @@ function CustomerDetailValidation() {
         var ValidationPass = true;
         $('#txt-CName').focusout(function () {
             var CustomerName = $('#txt-CName').val();
-            $('#txt-CName').removeClass('bg-warning');
+            $('#txt-CName').removeClass('input-validate-wrong');
             if (CName_Format_Validate(CustomerName)) {
                 // $('#CustomerInfoSaveBtn').prop('disabled',false).removeClass('btn-secondary').addClass('btn-primary');
                 ValidationPass = true;
@@ -617,13 +617,13 @@ function CustomerDetailValidation() {
                 ValidationPass = false;
                 CheckValidation(ValidationPass)
                 // $('#CustomerInfoSaveBtn').prop('disabled',true).removeClass('btn-primary').addClass('btn-secondary');
-                $('#txt-CName').val('').addClass('bg-warning');
+                $('#txt-CName').val('').addClass('input-validate-wrong');
 
             }
         });
         $('#txt-CPhone').focusout(function () {
             var CustomerPhone = $('#txt-CPhone').val();
-            $('#txt-CPhone').removeClass('bg-warning');
+            $('#txt-CPhone').removeClass('input-validate-wrong');
             if (CPhone_Format_Validate(CustomerPhone)) {
                 ValidationPass = true;
                 CheckValidation(ValidationPass);
@@ -632,18 +632,18 @@ function CustomerDetailValidation() {
                 CheckValidation(ValidationPass)
                 // $('#CustomerInfoSaveBtn').prop('disabled',true).removeClass('btn-primary').addClass('btn-secondary');
                 $('#txt-CPhone').val('');
-                $('#txt-CPhone').addClass('bg-warning');
+                $('#txt-CPhone').addClass('input-validate-wrong');
             }
         })
         $('#txt-CEmail').focusout(function () {
             var CustomerEmail = $('#txt-CEmail').val();
-            $('#txt-CEmail').removeClass('bg-warning');
+            $('#txt-CEmail').removeClass('input-validate-wrong');
             if (CEmail_Format_Validate(CustomerEmail)) {
                 $('#CustomerInfoSaveBtn').prop('disabled', false).removeClass('btn-secondary').addClass('btn-primary');
             } else {
                 $('#CustomerInfoSaveBtn').prop('disabled', true).removeClass('btn-primary').addClass('btn-secondary');
                 $('#txt-CEmail').val('');
-                $('#txt-CEmail').addClass('bg-warning');
+                $('#txt-CEmail').addClass('input-validate-wrong');
             }
         })
         $('#txt-CPrice').focusout(function () {
@@ -770,7 +770,12 @@ function CustomerDetailValidation() {
 function ContractDetailDesignValidation() {
     Validate();
     function Validate() { // this function will auto validate the input value everytime input has change
+
+        var ValidationPass = true;
         // Quantity Validate
+
+
+
         $("#txt_DD_Quantity").change(function TotalQuantityCheck() {
             var QuantityValue = Number($("#txt_DD_Quantity").val());
             $("#txt_DD_Quantity").val(AntiNegativeValue(QuantityValue)); // check negative value and return the value back to the input
@@ -841,6 +846,30 @@ function ContractDetailDesignValidation() {
             var TotalShirt = Number($('#txt_DD_Quantity').val());
             DDesign_Total_Quantity_Validate(MSmall, MMedium, MLarge, MXLarge, MXXLarge, MXXXLarge, FSmall, FMedium, FLarge, FXLarge, FXXLarge, FXXXLarge, TotalShirt);
         })
+        $('#txt_DD_Color').focusout(function () {
+            var txtValue = $('#txt_DD_Color').val();
+            if (COtherCL_Format_Validate(txtValue) != true) {
+                $('#txt_DD_Color').val('');
+            }
+        });
+        $('#txt_DD_ArmNeck').focusout(function () {
+            var txtValue = $('#txt_DD_ArmNeck').val();
+            if (COtherCD_Format_Validate(txtValue) != true) {
+                $('#txt_DD_ArmNeck').val('');
+            }
+        });
+        $('#txt_DD_Fabricate').focusout(function () {
+            var txtValue = $('#txt_DD_Fabricate').val();
+            if (COtherCD_Format_Validate(txtValue) != true) {
+                $('#txt_DD_Fabricate').val('');
+            }
+        });
+        $('#txt_DD_fabric').focusout(function () {
+            var txtValue = $('#txt_DD_fabric').val();
+            if (COtherCD_Format_Validate(txtValue) != true) {
+                $('#txt_DD_fabric').val('');
+            }
+        });
     }
     // make negative number into positive
     function AntiNegativeValue(num) {
@@ -849,6 +878,17 @@ function ContractDetailDesignValidation() {
             return num;
         }
         return num;
+    }
+    //validate Color and Length
+    function COtherCD_Format_Validate(txtField) {
+        var CustomerOther = /^[^-\s]([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,30}$/;
+        console.log(CustomerOther.test(txtField));
+        return CustomerOther.test(txtField);
+    }
+    function COtherCL_Format_Validate(txtField) {
+        var CustomerOther = /^[^-\s]([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,15}$/;
+        console.log(CustomerOther.test(txtField));
+        return CustomerOther.test(txtField);
     }
     // check the number type of Quantity Input
     function DDesign_Quantity_Validate(QuantityValue) {
@@ -889,110 +929,21 @@ function ContractDetailDesignValidation() {
 // ============= Statictis ============= //
 // Test Chart
 function DemoChart() {
-    // bar chart
-    var barchart = document.getElementById("BarChart");
-    var myChart = new Chart(barchart, {
-        type: 'bar',
-        data:
-        {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets:
-            [
-              {
-                  label: '1',
-                  data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()],
-                  backgroundColor:
-                  [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor:
-                  [
-                      'rgba(255,99,132,1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-              },
 
-            ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    // line chart
-    var linechart = document.getElementById('LineChart');
-    var LineChartData = new Chart(linechart, {
-        type: 'line',
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets:
-              [
-                {
-                    label: "Doanh Số Bán Hàng",
-                    fill: true,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(75,192,192,0.4)",
-                    borderColor: "rgba(75,192,192,1)",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "rgba(75,192,192,1)",
-                    pointBackgroundColor: "#fff",
-                    pointBorderWidth: 2,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                    pointHoverBorderColor: "rgba(220,220,220,1)",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 5,
-                    pointHitRadius: 10,
-                    data: [Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random()],
-                    spanGaps: false,
-                }
-              ]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
     // pie chart
     var piechart = document.getElementById('PieChart');
-    var success = $("#contractsuccess").val();
-    var failed = $("#contractfailed").val();
-    var waiting = $("#contractwaiting").val();
     var PieChartData = new Chart(piechart, {
         type: 'pie',
         data: {
             labels: [
+              "Thất Bại",
               "Thành Công",
-              "Đang Chờ",
-              "Thất Bại"
+              "Đang chờ phản hồi"
             ],
             datasets:
               [
                 {
-                    data: [success, waiting, failed],
+                    data: [Math.round(Math.random() * 100), Math.round(Math.random() * 100), Math.round(Math.random() * 100)],
                     backgroundColor: [
                         "#FF6384",
                         "#36A2EB",
@@ -1008,3 +959,56 @@ function DemoChart() {
         },
     });
 }
+$(document).ready(function () {
+    var success = Number($('#contractsuccess').val());
+    var failed = Number($('#contractfailed').val());
+    var waiting = Number($('#contractwaiting').val());
+    var year = $('#contractyear').val();
+    var month = $('#contractmonth').val();
+    Highcharts.setOptions({
+        colors: ['#5cb85c', ' #d9534f', '#f0ad4e']
+    });
+    // Build the chart
+    Highcharts.chart('container', {
+
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Tỷ lệ hợp đồng trong tháng ' + month + ' ' + year
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+
+        series: [{
+            name: 'Tỷ lệ',
+            colorByPoint: true,
+            data: [{
+                name: 'Thành công',
+                y: success
+            }, {
+                name: 'Thất bại',
+                y: failed,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Đang chờ phản hồi',
+                y: waiting
+            }]
+        }]
+    });
+});

@@ -6,7 +6,6 @@ body {
     background-color: rgb(215, 215, 215);
     padding: 0;
     margin: 0;
-
 }
 input:focus {
     outline: 0;
@@ -74,6 +73,12 @@ a:link {
 /*==================*/
 /* các Alert*/
 /*==================*/
+.input-validate-wrong{
+  border: 1.5px solid red;
+}
+.input-validate-right{
+  border: 1.5px solid green;
+}
 
 
 
@@ -393,16 +398,6 @@ a:link {
 .bar-100{
     width: 100%;
 }
-
-.pagination > li > a,
-        .pagination > li > span {
-            position: relative;
-            float: left;
-            padding: 6px 12px;
-            margin-left: -1px;
-            line-height: 1.428571429;
-            text-decoration: inherit;
-            border: 1px solid #dddddd;
-            color: black !important;
-            background-color: #ffffff;
-        }
+.highcharts-credits{
+  display: none !important;
+}
