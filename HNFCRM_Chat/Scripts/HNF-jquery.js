@@ -978,7 +978,7 @@ $(document).ready(function () {
             type: 'pie'
         },
         title: {
-            text: 'Tỷ lệ hợp đồng trong tháng ' + month +' '+ year
+            text: 'Tỷ lệ hợp đồng trong tháng ' + month + ' ' + year
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

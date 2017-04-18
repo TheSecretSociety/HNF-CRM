@@ -64,7 +64,7 @@ namespace HNFCRM_Chat.Controllers
                 int year = int.Parse(frm["year"]);
                 int month = int.Parse(frm["month"]);
 
-                if (year < 0 && month > 0 && month < 13)
+                if (year > 0 && month > 0 && month < 13)
                 {
                     var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
                     && x.UpdatedDate.Value.Month == month
