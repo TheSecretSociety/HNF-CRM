@@ -16,8 +16,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
     <!-- Google Icon CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Datetime Picker (SandBox) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <!-- custom CSS & Jquery modify URL -->
     <link rel="stylesheet" href="~/Content/HNFStyle.css">
     <script src="~/Scripts/HNF-jquery.js"></script>
@@ -26,6 +30,38 @@
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
+            <br>
+            <form action="@Url.Action("Statistic", "Statistic")" method="post">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Thời Gian" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs4">
+                                <input type="text" class="input-sm form-control" placeholder="Tháng thống kê (mm)" name="month" />
+
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs4">
+                                <input type="text" class="input-sm form-control" placeholder="Năm thống kê (yyyy)" name="year" />
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
+                                <button type="submit" class="btn btn-success btn-block" role="button" href="@Url.Action("Statistic", "Statistic")">Thống kê</button>
+
+                            </div>
+                            @{if (TempData["notice"] != null)
+                                {
+                                    <p style="margin:0 auto ; color: red">@TempData["notice"]</p>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             <br>
             <div class="row">
                 <div class="col-xl-12">
@@ -93,31 +129,15 @@
             </div>
             <br>
             <!-- dataset test on demo -->
+
             <div class="row">
-                <!-- bar chart data -->
-                <input type="number" name="bardataset" value="1">
-                <input type="number" name="bardataset" value="2">
-                <input type="number" name="bardataset" value="3">
-            </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="card form-input-margin">
-                        <canvas id="BarChart" width="15" height="10" onload=""></canvas>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card form-input-margin">
-                        <input id="contractsuccess" value="@ViewBag.Success" hidden></input>
-                        <input id="contractfailed" value="@ViewBag.Failed" hidden></input>
-                        <input id="contractwaiting" value="@ViewBag.Waiting" hidden></input>
-                        <canvas id="PieChart" width="15" height="10"></canvas>
-                    </div>
-                </div>
-                <div class="col-xl-12">
-                    <br>
-                    <div class="card form-input-margin">
-                        <canvas id="LineChart" width="15" height="5"></canvas>
-                    </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 offset-xl-3 offset-lg-3 offset-md-0 offset-sm-0 offset-xs-0 ">
+                    <div class="card form-input-margin" id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                    <input id="contractsuccess" value="@ViewBag.Success" hidden disabled></input>
+                    <input id="contractfailed" value="@ViewBag.Failed" hidden disabled></input>
+                    <input id="contractwaiting" value="@ViewBag.Waiting" hidden disabled></input>
+                    <input id="contractyear" value="@ViewBag.Year" hidden disabled></input>
+                    <input id="contractmonth" value="@ViewBag.Month" hidden disabled></input>
                 </div>
             </div>
         </div>
