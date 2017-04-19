@@ -14,14 +14,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="COLORs">
-      <EntityTypeMapping TypeName="CP_CRMModel.COLOR">
-        <MappingFragment StoreEntitySet="COLOR">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Color1" ColumnName="Color" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CONTRACTs">
       <EntityTypeMapping TypeName="CP_CRMModel.CONTRACT">
         <MappingFragment StoreEntitySet="CONTRACT">
@@ -81,6 +73,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CRITERIA">
+      <EntityTypeMapping TypeName="CP_CRMModel.Criterion">
+        <MappingFragment StoreEntitySet="CRITERIA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Fabric" ColumnName="Fabric" />
+          <ScalarProperty Name="ShirtStyle" ColumnName="ShirtStyle" />
+          <ScalarProperty Name="RequireProduct" ColumnName="RequireProduct" />
+          <ScalarProperty Name="PrintAndEmbroider" ColumnName="PrintAndEmbroider" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Support" ColumnName="Support" />
+          <ScalarProperty Name="Maintenance" ColumnName="Maintenance" />
+          <ScalarProperty Name="Attitude" ColumnName="Attitude" />
+          <ScalarProperty Name="Durability" ColumnName="Durability" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CUSTOMERs">
       <EntityTypeMapping TypeName="CP_CRMModel.CUSTOMER">
         <MappingFragment StoreEntitySet="CUSTOMER">
@@ -100,6 +108,25 @@
           <ScalarProperty Name="ID_Consult" ColumnName="ID_Consult" />
           <ScalarProperty Name="CareAboutProduct" ColumnName="CareAboutProduct" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERCAREs">
+      <EntityTypeMapping TypeName="CP_CRMModel.CUSTOMERCARE">
+        <MappingFragment StoreEntitySet="CUSTOMERCARE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+          <ScalarProperty Name="ConsultDate" ColumnName="ConsultDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERCAREDETAILs">
+      <EntityTypeMapping TypeName="CP_CRMModel.CUSTOMERCAREDETAIL">
+        <MappingFragment StoreEntitySet="CUSTOMERCAREDETAIL">
+          <ScalarProperty Name="ID_CustomerCare" ColumnName="ID_CustomerCare" />
+          <ScalarProperty Name="ID_Criteria" ColumnName="ID_Criteria" />
+          <ScalarProperty Name="Point" ColumnName="Point" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -155,9 +182,9 @@
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
-          <ScalarProperty Name="ID_Color" ColumnName="ID_Color" />
           <ScalarProperty Name="AnyDesignYet" ColumnName="AnyDesignYet" />
           <ScalarProperty Name="ShirtType" ColumnName="ShirtType" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

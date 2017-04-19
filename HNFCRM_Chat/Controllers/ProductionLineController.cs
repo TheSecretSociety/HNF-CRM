@@ -132,6 +132,36 @@ namespace HNFCRM_Chat.Controllers
                 product.Sew = true;
                 product.Iron = true;
                 product.Packaging = true;
+                product.Delivery = true;
+
+                //When a customew has transfered 100% money and company has deliveried
+                //This customer will be in the list of customer care
+                //This function will check this customer has existed before or not
+                int count = 0;
+                if (int.Parse(product.CONTRACT.MoneyTransfer) == 3)
+                {
+                    var customercare = entities.CUSTOMERCAREs.ToList();
+                    foreach (var item in customercare)
+                    {
+                        if (item.ID_Customer == product.ID_Customer)
+                        {
+                            count++;
+                        }
+                    }
+                    if (count == 0)
+                    {
+                        CUSTOMERCARE newcustomer = new CUSTOMERCARE();
+                        newcustomer.ID_Customer = product.CUSTOMER.ID;
+                        newcustomer.ID_Staff = product.CONTRACT.ID_Staff;
+                        Criterion criteria = new Criterion();
+                        CUSTOMERCAREDETAIL newcustomerdetail = new CUSTOMERCAREDETAIL();
+                        newcustomerdetail.ID_CustomerCare = newcustomer.ID;
+                        newcustomerdetail.ID_Criteria = criteria.ID;
+                        entities.CRITERIA.Add(criteria);
+                        entities.CUSTOMERCAREDETAILs.Add(newcustomerdetail);
+                        entities.CUSTOMERCAREs.Add(newcustomer);
+                    }
+                }
             }
             else
             {
@@ -193,7 +223,7 @@ namespace HNFCRM_Chat.Controllers
                     var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
                     productline.Add(findproductline);
                 }
-                return View(productline.ToPagedList(pageNumber,pageSize));
+                return View(productline.ToPagedList(pageNumber, pageSize));
             }
             else if (type == "50")
             {

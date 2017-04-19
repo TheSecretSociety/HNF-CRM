@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
+using HNFCRM_Chat.Validate;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -20,13 +21,18 @@ namespace HNFCRM_Chat.Controllers
 
             List<STAFF> staff = new List<STAFF>();
             List<CUSTOMER> customer = new List<CUSTOMER>();
-            var contract = entities.CONTRACTs.Where(x => x.EndDate >= DateTime.Now).ToList();
-            foreach (var item in contract)
+            List<CONTRACT> contract = new List<CONTRACT>();
+
+            //To List Customer Care
+            var list = entities.CUSTOMERCAREs.ToList();
+            foreach (var item in list)
             {
-                var findcusstomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).SingleOrDefault();
+                var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).SingleOrDefault();
+                var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID_Customer).SingleOrDefault();
                 var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).SingleOrDefault();
                 staff.Add(findstaff);
-                customer.Add(findcusstomer);
+                customer.Add(findcustomer);
+                contract.Add(findcontract);
             }
             CustomerCareModel model = new CustomerCareModel();
             model.customer = customer;
@@ -45,18 +51,21 @@ namespace HNFCRM_Chat.Controllers
 
             List<CUSTOMER> customer = new List<CUSTOMER>();
             List<STAFF> staff = new List<STAFF>();
+            List<CONTRACT> contract = new List<CONTRACT>();
 
-            var contract = entities.CONTRACTs.Where(x => x.EndDate >= DateTime.Now).ToList();
+            var list = entities.CUSTOMERCAREs.ToList();
 
-            foreach (var item in contract)
+            foreach (var item in list)
             {
                 customer = entities.CUSTOMERs.Where(x => x.Name.Contains(search) ||
                 x.Phone.Contains(search) ||
                 x.Email.Contains(search) ||
                 x.Company.Contains(search) &&
                 x.ID == item.ID_Customer).ToList();
+                var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID_Customer).SingleOrDefault();
                 var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).SingleOrDefault();
                 staff.Add(findstaff);
+                contract.Add(findcontract);
             }
             CustomerCareModel model = new CustomerCareModel();
             model.customer = customer;
@@ -65,5 +74,39 @@ namespace HNFCRM_Chat.Controllers
             return View(model);
         }
 
+        //Customer Care Detail
+        public ActionResult CustomerCareDetail(int id)
+        {
+            var findcustomer = entities.CUSTOMERCAREs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            var findcustomercare = entities.CUSTOMERCAREDETAILs.Where(x => x.ID_CustomerCare == findcustomer.ID).SingleOrDefault();
+            var criteria = entities.CRITERIA.Where(x => x.ID == findcustomercare.ID_Criteria).SingleOrDefault();
+
+            return View(criteria);
+        }
+
+        //Customer Care Detail
+        [HttpPost]
+        public ActionResult CustomerCareDetail(int id, FormCollection frm)
+        {
+            var findcustomer = entities.CUSTOMERCAREs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            var findcustomercare = entities.CUSTOMERCAREDETAILs.Where(x => x.ID_CustomerCare == findcustomer.ID).SingleOrDefault();
+            var criteria = entities.CRITERIA.Where(x => x.ID == findcustomercare.ID_Criteria).SingleOrDefault();
+
+            Number number = new Number();
+            string a = frm["fabric"];
+            criteria.Fabric = number.CheckSurvey(frm["fabric"]);
+            criteria.ShirtStyle = number.CheckSurvey(frm["shirtstyle"]);
+            criteria.RequireProduct = number.CheckSurvey(frm["requireproduct"]);
+            criteria.PrintAndEmbroider = number.CheckSurvey(frm["printembroider"]);
+            criteria.Durability = number.CheckSurvey(frm["durability"]);
+            criteria.Price = number.CheckSurvey(frm["durability"]);
+            criteria.Support = number.CheckSurvey(frm["support"]);
+            criteria.Maintenance = number.CheckSurvey(frm["maintanace"]);
+            criteria.Attitude = number.CheckSurvey(frm["attitude"]);
+            findcustomer.ConsultDate = DateTime.Now;
+
+            entities.SaveChanges();
+            return RedirectToAction("CustomerCareDetail", "CustomerCare");
+        }
     }
 }

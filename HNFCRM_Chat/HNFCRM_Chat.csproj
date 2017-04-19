@@ -223,9 +223,6 @@
     <Compile Include="Models\CHATINFO.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\COLOR.cs">
-      <DependentUpon>HNF_CRM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\CONTRACT.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
@@ -234,7 +231,16 @@
     </Compile>
     <Compile Include="Models\ContractDetailModel.cs" />
     <Compile Include="Models\ContractModel.cs" />
+    <Compile Include="Models\Criterion.cs">
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CUSTOMER.cs">
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CUSTOMERCARE.cs">
+      <DependentUpon>HNF_CRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CUSTOMERCAREDETAIL.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerCareModel.cs" />

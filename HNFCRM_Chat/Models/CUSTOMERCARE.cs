@@ -12,28 +12,22 @@ namespace HNFCRM_Chat.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class REQUIREPRODUCT
+    public partial class CUSTOMERCARE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public REQUIREPRODUCT()
+        public CUSTOMERCARE()
         {
-            this.CONTRACTs = new HashSet<CONTRACT>();
+            this.CUSTOMERCAREDETAILs = new HashSet<CUSTOMERCAREDETAIL>();
         }
     
         public int ID { get; set; }
-        public string RequireFabric { get; set; }
-        public string Purpose { get; set; }
-        public string PrintAndEmbroider { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<double> Price { get; set; }
-        public string Note { get; set; }
+        public Nullable<int> ID_Staff { get; set; }
         public Nullable<int> ID_Customer { get; set; }
-        public Nullable<bool> AnyDesignYet { get; set; }
-        public string ShirtType { get; set; }
-        public string Color { get; set; }
+        public Nullable<System.DateTime> ConsultDate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CONTRACT> CONTRACTs { get; set; }
         public virtual CUSTOMER CUSTOMER { get; set; }
+        public virtual STAFF STAFF { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CUSTOMERCAREDETAIL> CUSTOMERCAREDETAILs { get; set; }
     }
 }

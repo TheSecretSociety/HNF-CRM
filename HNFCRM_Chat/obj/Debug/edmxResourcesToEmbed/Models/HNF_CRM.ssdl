@@ -12,13 +12,6 @@
     <Property Name="IP" Type="varchar" MaxLength="50" />
     <Property Name="ID_Staff" Type="int" />
   </EntityType>
-  <EntityType Name="COLOR">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Color" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="CONTRACT">
     <Key>
       <PropertyRef Name="ID" />
@@ -73,8 +66,23 @@
     <Property Name="ID_Contract" Type="int" />
     <Property Name="NotePrint" Type="nvarchar(max)" />
     <Property Name="NoteSize" Type="nvarchar(max)" />
-    <Property Name="ShirtColor" Type="nvarchar" MaxLength="15" />
+    <Property Name="ShirtColor" Type="nvarchar" MaxLength="50" />
     <Property Name="ArmpitBorder" Type="bit" />
+  </EntityType>
+  <EntityType Name="CRITERIA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Fabric" Type="int" />
+    <Property Name="ShirtStyle" Type="int" />
+    <Property Name="RequireProduct" Type="int" />
+    <Property Name="PrintAndEmbroider" Type="int" />
+    <Property Name="Price" Type="int" />
+    <Property Name="Support" Type="int" />
+    <Property Name="Maintenance" Type="int" />
+    <Property Name="Attitude" Type="int" />
+    <Property Name="Durability" Type="int" />
   </EntityType>
   <EntityType Name="CUSTOMER">
     <Key>
@@ -96,6 +104,24 @@
     <Property Name="ID_Consult" Type="int" />
     <Property Name="CareAboutProduct" Type="nvarchar(max)" />
     <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CUSTOMERCARE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Staff" Type="int" />
+    <Property Name="ID_Customer" Type="int" />
+    <Property Name="ConsultDate" Type="date" />
+  </EntityType>
+  <EntityType Name="CUSTOMERCAREDETAIL">
+    <Key>
+      <PropertyRef Name="ID_CustomerCare" />
+      <PropertyRef Name="ID_Criteria" />
+    </Key>
+    <Property Name="ID_CustomerCare" Type="int" Nullable="false" />
+    <Property Name="ID_Criteria" Type="int" Nullable="false" />
+    <Property Name="Point" Type="int" />
   </EntityType>
   <EntityType Name="CUSTOMERCONSULTING">
     <Key>
@@ -147,9 +173,9 @@
     <Property Name="Price" Type="float" />
     <Property Name="Note" Type="nvarchar(max)" />
     <Property Name="ID_Customer" Type="int" />
-    <Property Name="ID_Color" Type="int" />
     <Property Name="AnyDesignYet" Type="bit" />
     <Property Name="ShirtType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Color" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ROLE">
     <Key>
@@ -265,6 +291,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_CUSTOMERCARE_CUSTOMER">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="0..1" />
+    <End Role="CUSTOMERCARE" Type="Self.CUSTOMERCARE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMERCARE">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUSTOMERCARE_STAFF">
+    <End Role="STAFF" Type="Self.STAFF" Multiplicity="0..1" />
+    <End Role="CUSTOMERCARE" Type="Self.CUSTOMERCARE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STAFF">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMERCARE">
+        <PropertyRef Name="ID_Staff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUSTOMERCAREDETAIL_CRITERIA">
+    <End Role="CRITERIA" Type="Self.CRITERIA" Multiplicity="1" />
+    <End Role="CUSTOMERCAREDETAIL" Type="Self.CUSTOMERCAREDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CRITERIA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMERCAREDETAIL">
+        <PropertyRef Name="ID_Criteria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUSTOMERCAREDETAIL_CUSTOMERCARE">
+    <End Role="CUSTOMERCARE" Type="Self.CUSTOMERCARE" Multiplicity="1" />
+    <End Role="CUSTOMERCAREDETAIL" Type="Self.CUSTOMERCAREDETAIL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMERCARE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMERCAREDETAIL">
+        <PropertyRef Name="ID_CustomerCare" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MENSIZE_CONTRACTDETAIL">
     <End Role="CONTRACTDETAIL" Type="Self.CONTRACTDETAIL" Multiplicity="0..1" />
     <End Role="MENSIZE" Type="Self.MENSIZE" Multiplicity="*" />
@@ -298,18 +372,6 @@
       </Principal>
       <Dependent Role="PRODUCTLINE">
         <PropertyRef Name="ID_Customer" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_REQUIREPRODUCT_COLOR">
-    <End Role="COLOR" Type="Self.COLOR" Multiplicity="0..1" />
-    <End Role="REQUIREPRODUCT" Type="Self.REQUIREPRODUCT" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="COLOR">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="REQUIREPRODUCT">
-        <PropertyRef Name="ID_Color" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -382,10 +444,12 @@
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="CP_CRMModelStoreContainer">
     <EntitySet Name="CHATINFO" EntityType="Self.CHATINFO" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="COLOR" EntityType="Self.COLOR" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CONTRACT" EntityType="Self.CONTRACT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CONTRACTDETAIL" EntityType="Self.CONTRACTDETAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CRITERIA" EntityType="Self.CRITERIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMERCARE" EntityType="Self.CUSTOMERCARE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMERCAREDETAIL" EntityType="Self.CUSTOMERCAREDETAIL" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CUSTOMERCONSULTING" EntityType="Self.CUSTOMERCONSULTING" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MENSIZE" EntityType="Self.MENSIZE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCTLINE" EntityType="Self.PRODUCTLINE" Schema="dbo" store:Type="Tables" />
@@ -418,6 +482,22 @@
       <End Role="CUSTOMERCONSULTING" EntitySet="CUSTOMERCONSULTING" />
       <End Role="CUSTOMER" EntitySet="CUSTOMER" />
     </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMERCARE_CUSTOMER" Association="Self.FK_CUSTOMERCARE_CUSTOMER">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="CUSTOMERCARE" EntitySet="CUSTOMERCARE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMERCARE_STAFF" Association="Self.FK_CUSTOMERCARE_STAFF">
+      <End Role="STAFF" EntitySet="STAFF" />
+      <End Role="CUSTOMERCARE" EntitySet="CUSTOMERCARE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMERCAREDETAIL_CRITERIA" Association="Self.FK_CUSTOMERCAREDETAIL_CRITERIA">
+      <End Role="CRITERIA" EntitySet="CRITERIA" />
+      <End Role="CUSTOMERCAREDETAIL" EntitySet="CUSTOMERCAREDETAIL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUSTOMERCAREDETAIL_CUSTOMERCARE" Association="Self.FK_CUSTOMERCAREDETAIL_CUSTOMERCARE">
+      <End Role="CUSTOMERCARE" EntitySet="CUSTOMERCARE" />
+      <End Role="CUSTOMERCAREDETAIL" EntitySet="CUSTOMERCAREDETAIL" />
+    </AssociationSet>
     <AssociationSet Name="FK_MENSIZE_CONTRACTDETAIL" Association="Self.FK_MENSIZE_CONTRACTDETAIL">
       <End Role="CONTRACTDETAIL" EntitySet="CONTRACTDETAIL" />
       <End Role="MENSIZE" EntitySet="MENSIZE" />
@@ -429,10 +509,6 @@
     <AssociationSet Name="FK_PRODUCTLINE_CUSTOMER" Association="Self.FK_PRODUCTLINE_CUSTOMER">
       <End Role="CUSTOMER" EntitySet="CUSTOMER" />
       <End Role="PRODUCTLINE" EntitySet="PRODUCTLINE" />
-    </AssociationSet>
-    <AssociationSet Name="FK_REQUIREPRODUCT_COLOR" Association="Self.FK_REQUIREPRODUCT_COLOR">
-      <End Role="COLOR" EntitySet="COLOR" />
-      <End Role="REQUIREPRODUCT" EntitySet="REQUIREPRODUCT" />
     </AssociationSet>
     <AssociationSet Name="FK_REQUIREPRODUCT_CUSTOMER1" Association="Self.FK_REQUIREPRODUCT_CUSTOMER1">
       <End Role="CUSTOMER" EntitySet="CUSTOMER" />
