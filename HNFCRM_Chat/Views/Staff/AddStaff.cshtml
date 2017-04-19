@@ -36,7 +36,13 @@
                                             <!-- Phân Quyền -->
                                             <div class="form-group">
                                                 <label for="InputAuthorize">Phân Quyền <span class="Notice">*</span></label>
-                                                <select class="form-control" id="InputAuthorize" name="role" @Html.DropDownList("AddStaff")></select>
+                                                @*<select class="form-control" id="InputAuthorize" name="role" @Html.DropDownList("AddStaff")></select>*@
+                                                <select class="form-control" id="InputAuthorize" name="role">
+                                                    <option>Quản Trị Viên</option>
+                                                    <option>Nhân Viên Bán Hàng</option>
+                                                    <option>Nhân Viên Chăm Sóc Khách Hàng</option>
+                                                    <option>Nhân Viên Quản Lí Sản Xuất</option>
+                                                </select>
                                                 <small class="form-text text-muted">Vui lòng nhập chọn phân quyền</small>
                                             </div>
                                             <br>

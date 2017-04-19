@@ -18,13 +18,6 @@ namespace HNFCRM_Chat.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            //Get the value from database and then set it to ViewBag to pass it View
-            IEnumerable<SelectListItem> items = entities.ROLEs.Select(c => new SelectListItem
-            {
-                Value = c.Role1,
-                Text = c.Role1
-            });
-            ViewBag.AddStaff = items;
             return View();
         }
 
@@ -71,15 +64,6 @@ namespace HNFCRM_Chat.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-
-
-            //Get the value from database and then set it to ViewBag to pass it View
-            IEnumerable<SelectListItem> items = entities.ROLEs.Select(c => new SelectListItem
-            {
-                Value = c.Role1,
-                Text = c.Role1
-            });
-            ViewBag.JobTitle = items;
             //Get staff in database
             STAFF staff = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
             return View(staff);
@@ -122,6 +106,7 @@ namespace HNFCRM_Chat.Controllers
                 {
                     data.ID_Role = 4;
                 }
+                TempData["AlertMessage"] = "Update Successfully";
             }
             else
             if (op != "")
@@ -133,9 +118,10 @@ namespace HNFCRM_Chat.Controllers
                 }
                 else
                 {
-                    TempData["CheckPass"] = "Mật khẩu cũ không đúng!";
+                    TempData["CheckPass"] = "Update Password Successfully";
                     return RedirectToAction("EditStaff", "Staff");
                 }
+                TempData["AlertMessagepass"] = "Sửa mật khẩu thành công";
             }
             entities.SaveChanges();
             return RedirectToAction("EditStaff", "Staff");

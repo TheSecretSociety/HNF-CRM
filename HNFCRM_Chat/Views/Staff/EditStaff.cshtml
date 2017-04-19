@@ -20,13 +20,13 @@
         <div class="container-fluid">
             <br>
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-xl-6">
                     <div class="card form-input-margin">
-                        <h4>Thông Tin Cá Nhân</h4>
+                        <h4 style="display:flex; justify-content:center;">Thông Tin Cá Nhân</h4>
                         <!-- các trường thông tin -->
                         <div class="row">
                             <!-- Cột Trái -->
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <form class="" action="@Url.Action("EditStaff", "Staff")" method="post" id="formEPInfoEdit">
                                     <!-- Họ Tên -->
                                     <div class="form-group">
@@ -49,27 +49,45 @@
                                     </div>
                                     <!-- Phân Quyền -->
                                     <div @att class="form-group">
-                                        <label @att for="InputAuthorize">Phân Quyền</label>                  
-                                        <select class="form-control" id="InputAuthorize" @att name="role" @Html.DropDownList("JobTitle", @Model.ROLE.Role1)></select>
+                                        <label @att for="InputAuthorize">Phân Quyền</label>
+                                        @*<select class="form-control" id="InputAuthorize" @att name="role" @Html.DropDownList("JobTitle", @Model.ROLE.Role1)></select>*@
+                                        <select class="form-control" id="InputAuthorize" name="role">
+                                            <option>@Model.ROLE.Role1</option>
+                                            <option>Quản Trị Viên</option>
+                                            <option>Nhân Viên Bán Hàng</option>
+                                            <option>Nhân Viên Chăm Sóc Khách Hàng</option>
+                                            <option>Nhân Viên Quản Lí Sản Xuất</option>
+                                        </select>
                                     </div>
                                     <!-- Nút Sửa Thông Tin (dưới dạng thẻ <input>) -->
                                     <div class="form-group">
                                         <br>
                                         <input type="submit" id="btnEPEditInfo" name="" value="Sửa Thông Tin" href='@Url.Action("EditStaff", "Staff")' class="btn btn-primary btn-block">
+                                        @{
+                                            var message = TempData["AlertMessage"] ?? string.Empty;
+                                        }
                                     </div>
                                 </form>
                             </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card form-input-margin">
+                        <h4 style="display:flex; justify-content:center;">Thay Đổi Mật Khẩu</h4>
+                        <div class="row">
                             <!-- Cột Phải -->
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <form class="" action="@Url.Action("EditStaff", "Staff")" id="formEPPasswordEdit" method="post">
-                                    <!-- Nút Kích Thay Đỏi Mật Khẩu -->                           
+                                    <!-- Nút Kích Thay Đỏi Mật Khẩu -->
                                     <input type="email" name="email" class="form-control" value="@Model.Email" id="txt-EPMail" aria-describedby="emailHelp" hidden>
                                     <!-- Mật Khẩu Cũ -->
                                     @if (TempData["CheckPass"] != null)
                                     { <p style="color:red">@TempData["CheckPass"]</p>}
                                     <div class="form-group">
                                         <label id="InputOldPassword">Mật Khẩu Cũ</label>
-                                        <input type="password"  name="oldpassword" class="form-control" id="txt-EPOldPassword" aria-describedby="emailHelp" placeholder="" required>
+                                        <input type="password" name="oldpassword" class="form-control" id="txt-EPOldPassword" aria-describedby="emailHelp" placeholder="" required>
                                         <small id="txt-EPOldPassword-error"></small>
                                     </div>
                                     <!-- Mật Khẩu Mới-->
@@ -86,14 +104,29 @@
                                     </div>
                                     <div class="form-group">
                                         <br>
-                                        <input type="submit" id="btnEPEditPassword"  href='@Url.Action("EditStaff", "Staff")' onsubmit="return EmployeePersonalValidation(this)" name="" value="Sửa Mật Khẩu" class="btn btn-primary btn-block">
+                                        <input type="submit" id="btnEPEditPassword" href='@Url.Action("EditStaff", "Staff")' onsubmit="return EmployeePersonalValidation(this)" name="" value="Sửa Mật Khẩu" class="btn btn-primary btn-block">
+                                        @{
+                                            var message1 = TempData["AlertMessagepass"] ?? string.Empty;
+                                        }
                                     </div>
                                 </form>
                             </div>
                         </div>
+                       
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    var message = '@message';
+    if (message)
+        alert(message);
+</script>
+<script type="text/javascript">
+    var message = '@message1';
+    if (message)
+        alert(message);
+</script>
