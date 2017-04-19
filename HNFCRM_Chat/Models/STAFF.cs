@@ -19,6 +19,7 @@ namespace HNFCRM_Chat.Models
         {
             this.CHATINFOes = new HashSet<CHATINFO>();
             this.CONTRACTs = new HashSet<CONTRACT>();
+            this.CUSTOMERCAREs = new HashSet<CUSTOMERCARE>();
         }
     
         public int ID { get; set; }
@@ -33,6 +34,8 @@ namespace HNFCRM_Chat.Models
         public virtual ICollection<CHATINFO> CHATINFOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTRACT> CONTRACTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CUSTOMERCARE> CUSTOMERCAREs { get; set; }
         public virtual ROLE ROLE { get; set; }
     }
 }

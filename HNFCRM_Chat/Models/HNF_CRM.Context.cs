@@ -28,10 +28,12 @@ namespace HNFCRM_Chat.Models
         }
     
         public virtual DbSet<CHATINFO> CHATINFOes { get; set; }
-        public virtual DbSet<COLOR> COLORs { get; set; }
         public virtual DbSet<CONTRACT> CONTRACTs { get; set; }
         public virtual DbSet<CONTRACTDETAIL> CONTRACTDETAILs { get; set; }
+        public virtual DbSet<Criterion> CRITERIA { get; set; }
         public virtual DbSet<CUSTOMER> CUSTOMERs { get; set; }
+        public virtual DbSet<CUSTOMERCARE> CUSTOMERCAREs { get; set; }
+        public virtual DbSet<CUSTOMERCAREDETAIL> CUSTOMERCAREDETAILs { get; set; }
         public virtual DbSet<CUSTOMERCONSULTING> CUSTOMERCONSULTINGs { get; set; }
         public virtual DbSet<MENSIZE> MENSIZEs { get; set; }
         public virtual DbSet<PRODUCTLINE> PRODUCTLINEs { get; set; }

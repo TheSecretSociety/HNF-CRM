@@ -51,8 +51,9 @@
                                 </th>
                                 <th>HỌ VÀ TÊN</th>
                                 <th>CÔNG TY</th>
-                                <th>EMAIL</th>
                                 <th>ĐIỆN THOẠI</th>
+                                <th>TỔNG ĐIỂM</th>
+                                <th>XẾP LOẠI</th>
                                 <th>MÃ HỢP ĐỒNG</th>
                                 <th>TÊN SALE</th>
                                 <th></th>
@@ -75,7 +76,7 @@
                                             <td>@contract.ID</td>
                                             @{ var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}
                                             <td>@staff.Name</td>
-                                            <td><a href="./HNF-CustomerCare-Detail.html"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
+                                            <td><a href="@Url.Action("CustomerCareDetail", "CustomerCare", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
                                         </tr>
                                                     }
                                                 }

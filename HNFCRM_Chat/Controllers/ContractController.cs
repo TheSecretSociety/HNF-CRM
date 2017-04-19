@@ -147,6 +147,43 @@ namespace HNFCRM_Chat.Controllers
 
             //Transfer Money
             contract.MoneyTransfer = button.CheckRadioButton(frm["tranfer-money-radio"]);
+            int _checkmoney = int.Parse(button.CheckRadioButton(frm["tranfer-money-radio"]));
+            var _checkproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == contract.ID).SingleOrDefault();
+            int count = 0;
+            if (_checkmoney == 3 && _checkproductline.Cut == true)
+            {
+                var customercare = entities.CUSTOMERCAREs.ToList();
+                foreach (var item in customercare)
+                {
+                    if (contract.ID_Customer == item.ID_Customer)
+                    {
+                        count++;
+                    }
+                }
+                if (count == 0)
+                {
+                    CUSTOMERCARE newcustomer = new CUSTOMERCARE();
+                    newcustomer.ID_Customer = contract.ID_Customer;
+                    newcustomer.ID_Staff = contract.ID_Staff;
+                    Criterion criteria = new Criterion();
+                    criteria.Attitude = 0;
+                    criteria.Fabric = 0;
+                    criteria.Maintenance = 0;
+                    criteria.Price = 0;
+                    criteria.PrintAndEmbroider = 0;
+                    criteria.RequireProduct = 0;
+                    criteria.ShirtStyle = 0;
+                    criteria.Support = 0;
+                    criteria.Durability = 0;
+
+                    CUSTOMERCAREDETAIL newcustomerdetail = new CUSTOMERCAREDETAIL();
+                    newcustomerdetail.ID_CustomerCare = newcustomer.ID;
+                    newcustomerdetail.ID_Criteria = criteria.ID;
+                    entities.CRITERIA.Add(criteria);
+                    entities.CUSTOMERCAREDETAILs.Add(newcustomerdetail);
+                    entities.CUSTOMERCAREs.Add(newcustomer);
+                }
+            }
 
             //Customer Call Remind
             contract.Remind = button.CheckRadioButton(frm["customer-call-radio"]);

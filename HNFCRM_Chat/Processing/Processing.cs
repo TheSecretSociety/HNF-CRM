@@ -125,4 +125,19 @@ namespace HNFCRM_Chat.Validate
             }
         }
     }
+
+    public class Number
+    {
+        public int CheckSurvey(string i)
+        {
+            if (i != "Điểm Đánh Giá")
+            {
+                return int.Parse(i);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
 }
