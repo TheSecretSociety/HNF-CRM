@@ -177,6 +177,7 @@ namespace HNFCRM_Chat.Controllers
                 require.Quantity = int.Parse(frm["quantity"]);
             }
             require.Note = frm["requirenote"];
+            require.Color = frm["color"];
             entities.SaveChanges();
             return RedirectToAction("CustomerDetail");
         }
@@ -274,6 +275,7 @@ namespace HNFCRM_Chat.Controllers
             {
                 require.Quantity = int.Parse(frm["quantity"]);
             }
+            require.Color = frm["color"];
             require.Note = frm["requirenote"];
 
             //Insert New Contract of New Customer
