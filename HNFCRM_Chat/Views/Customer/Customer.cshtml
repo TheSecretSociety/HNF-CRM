@@ -3,6 +3,13 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
+@{
+    string att = "";
+    if (ViewBag.Role == 3)
+    {
+        att = "disabled";
+    }
+}
 <head>
     <title>HNF-Customer</title>
     <meta charset="utf-8">
@@ -37,7 +44,7 @@
                 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card form-input-margin">
                         <div class="btn-group" role="group" aria-label="Function Button">
-                            <button type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer","Customer")'">Thêm Khách Hàng</button>
+                            <button @att type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer","Customer")'">Thêm Khách Hàng</button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +76,7 @@
                 </div>
             </div>
             <br>
-            @{if (ViewBag.Role != 2)
+            @{if (ViewBag.Role == 1)
                 {
                     <!-- Thanh Nhân Viên -->
                     <div class="row">
@@ -107,7 +114,7 @@
                     <table class="table table-sm table-hover">
                         <thead class="thead">
                             <tr>
-                                <th>
+                                <th @att>
                                     Xóa
                                 </th>
                                 <th>HỌ VÀ TÊN</th>
@@ -127,11 +134,11 @@
                                     {
                                         <tr class="">
                                             <th scope="row">
-                                                <a type="button" style="color:black" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
+                                                <button @att class="btn btn-sm btn-danger" style="color:black" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
                                                                                                                                                             {
                                                                                                                                                                 id = item
 .ID
-                                                                                                                                                            })'>x</a>
+                                                                                                                                                            })'>x</button>
                                             </th>
                                             <td>@item.Name</td>
                                             <td>@item.Company</td>
@@ -201,7 +208,7 @@
             </div>
             <div class="row">
                 <div style="margin:0 auto; color: black">
-                    @Html.PagedListPager(Model.customer, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    @Html.PagedListPager(Model.customer, page => Url.Action("Customer", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                 </div>
             </div>
         </div>

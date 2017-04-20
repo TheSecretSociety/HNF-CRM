@@ -27,6 +27,7 @@
     <script src="~/Scripts/HNF-jquery.js"></script>
 </head>
 
+
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -40,7 +41,6 @@
                                     <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Thời Gian" readonly>
                                 </div>
                             </div>
-
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs4">
                                 <input type="text" class="input-sm form-control" placeholder="Tháng thống kê (mm)" name="month" />
 
@@ -50,18 +50,11 @@
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
                                 <button type="submit" class="btn btn-success btn-block" role="button" href="@Url.Action("Statistic", "Statistic")">Thống kê</button>
-
                             </div>
-                            @{if (TempData["notice"] != null)
-                                {
-                                    <p style="margin:0 auto ; color: red">@TempData["notice"]</p>
-                                }
-                            }
                         </div>
                     </div>
                 </div>
             </form>
-
             <br>
             <div class="row">
                 <div class="col-xl-12">
@@ -131,15 +124,32 @@
             <!-- dataset test on demo -->
 
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 offset-xl-3 offset-lg-3 offset-md-0 offset-sm-0 offset-xs-0 ">
-                    <div class="card form-input-margin" id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                <div class="col-xl-6">
+                    <div class="card form-input-margin" id="container-1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
                     <input id="contractsuccess" value="@ViewBag.Success" hidden disabled></input>
                     <input id="contractfailed" value="@ViewBag.Failed" hidden disabled></input>
                     <input id="contractwaiting" value="@ViewBag.Waiting" hidden disabled></input>
                     <input id="contractyear" value="@ViewBag.Year" hidden disabled></input>
                     <input id="contractmonth" value="@ViewBag.Month" hidden disabled></input>
                 </div>
+                <div class="col-xl-6">
+                    <div class="card form-input-margin" id="container-2" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                    <input id="january" value="@ViewBag.january" hidden disabled></input>
+                    <input id="february" value="@ViewBag.february" hidden disabled></input>
+                    <input id="march" value="@ViewBag.march" hidden disabled></input>
+                    <input id="april" value="@ViewBag.april" hidden disabled></input>
+                    <input id="may" value="@ViewBag.may" hidden disabled></input>
+                    <input id="june" value="@ViewBag.june" hidden disabled></input>
+                    <input id="july" value="@ViewBag.july" hidden disabled></input>
+                    <input id="august" value="@ViewBag.august" hidden disabled></input>
+                    <input id="september" value="@ViewBag.september" hidden disabled></input>
+                    <input id="october" value="@ViewBag.october" hidden disabled></input>
+                    <input id="november" value="@ViewBag.november" hidden disabled></input>
+                    <input id="december" value="@ViewBag.december" hidden disabled></input>
+                </div>
             </div>
         </div>
     </div>
 </div>
+        
+        

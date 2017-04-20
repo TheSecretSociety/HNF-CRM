@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HNFCRM_Chat.Models;
 using HNFCRM_Chat.Validate;
+using PagedList;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -12,12 +13,16 @@ namespace HNFCRM_Chat.Controllers
     {
         CP_CRMEntities entities = new CP_CRMEntities();
         // GET: CustomeCare
-        public ActionResult CustomerCare()
+        public ActionResult CustomerCare(int? page)
         {
             if (Session["author"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+
+            //Pagination
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
 
             List<STAFF> staff = new List<STAFF>();
             List<CUSTOMER> customer = new List<CUSTOMER>();
@@ -35,19 +40,23 @@ namespace HNFCRM_Chat.Controllers
                 contract.Add(findcontract);
             }
             CustomerCareModel model = new CustomerCareModel();
-            model.customer = customer;
+            model.customer = customer.ToPagedList(pageNumber, pageSize);
             model.contract = contract;
             model.staff = staff;
             return View(model);
         }
 
         //Search Customer Care
-        public ActionResult Search(string search)
+        public ActionResult Search(string search, int? page)
         {
             if (Session["author"] == null)
             {
                 return RedirectToAction("Login", "Login");
             }
+
+            //Pagination
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
 
             List<CUSTOMER> customer = new List<CUSTOMER>();
             List<STAFF> staff = new List<STAFF>();
@@ -68,7 +77,7 @@ namespace HNFCRM_Chat.Controllers
                 contract.Add(findcontract);
             }
             CustomerCareModel model = new CustomerCareModel();
-            model.customer = customer;
+            model.customer = customer.ToPagedList(pageNumber, pageSize);
             model.contract = contract;
             model.staff = staff;
             return View(model);

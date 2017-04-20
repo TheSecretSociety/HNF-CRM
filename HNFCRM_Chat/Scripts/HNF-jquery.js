@@ -451,7 +451,7 @@ function EmployeePersonalValidation(form) {
     }
     // validate name format //
     function EmployeeNameValidate(InputName) {
-        var NameRegEx = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+$/;
+        var NameRegEx = /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,35}$/;
         console.log(NameRegEx.test(InputName));
         return NameRegEx.test(InputName);
     }
@@ -578,7 +578,7 @@ function EmployeeAddValidation() {
     }
     // validate name format //
     function ANameValidate(NameValue) {
-        var ANameRegEx = /^[^!@#.$%^&*()_+-=].{1,35}$/;
+        var ANameRegEx = /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,35}$/;
         console.log('Aname = ' + ANameRegEx.test(NameValue));
         return ANameRegEx.test(NameValue);
     }
@@ -606,7 +606,7 @@ function CustomerDetailValidation() {
     Validate();
     function Validate() {
         var ValidationPass = true;
-        $('#txt-CName').focusout(function () {
+        $('#txt-CName').click(function () {
             var CustomerName = $('#txt-CName').val();
             $('#txt-CName').removeClass('input-validate-wrong');
             if (CName_Format_Validate(CustomerName)) {
@@ -621,7 +621,7 @@ function CustomerDetailValidation() {
 
             }
         });
-        $('#txt-CPhone').focusout(function () {
+        $('#txt-CPhone').click(function () {
             var CustomerPhone = $('#txt-CPhone').val();
             $('#txt-CPhone').removeClass('input-validate-wrong');
             if (CPhone_Format_Validate(CustomerPhone)) {
@@ -635,7 +635,7 @@ function CustomerDetailValidation() {
                 $('#txt-CPhone').addClass('input-validate-wrong');
             }
         })
-        $('#txt-CEmail').focusout(function () {
+        $('#txt-CEmail').click(function () {
             var CustomerEmail = $('#txt-CEmail').val();
             $('#txt-CEmail').removeClass('input-validate-wrong');
             if (CEmail_Format_Validate(CustomerEmail)) {
@@ -646,80 +646,80 @@ function CustomerDetailValidation() {
                 $('#txt-CEmail').addClass('input-validate-wrong');
             }
         })
-        $('#txt-CPrice').focusout(function () {
+        $('#txt-CPrice').click(function () {
             var numcheck = $('#txt-CPrice').val();
             console.log("Price : " + numcheck);
             $('#txt-CPrice').val(AntiNegativeValue(numcheck));
         });
-        $('#txt-CQuantity').focusout(function () {
+        $('#txt-CQuantity').click(function () {
             var numcheck = $('#txt-CQuantity').val();
             $('#txt-CQuantity').val(AntiNegativeValue(numcheck));
         });
-        $('#txt-CPriceRange').focusout(function () {
+        $('#txt-CPriceRange').click(function () {
             var numcheck = $('#txt-CPriceRange').val();
             $('#txt-CPriceRange').val(AntiNegativeValue(numcheck));
         })
-        $('#txt-CCompany').focusout(function () {
+        $('#txt-CCompany').click(function () {
             var txtValue = $('#txt-CCompany').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CCompany').val('');
             }
         })
-        $('#txt-CJob').focusout(function () {
+        $('#txt-CJob').click(function () {
             var txtValue = $('#txt-CJob').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CJob').val('');
             }
         })
-        $('#txt-CShirtBefore').focusout(function () {
+        $('#txt-CShirtBefore').click(function () {
             var txtValue = $('#txt-CShirtBefore').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CShirtBefore').val('');
             }
         })
-        $('#txt-CFabricBefore').focusout(function () {
+        $('#txt-CFabricBefore').click(function () {
             var txtValue = $('#txt-CFabricBefore').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CFabricBefore').val('');
             }
         })
-        $('#txt-CReview').focusout(function () {
+        $('#txt-CReview').click(function () {
             var txtValue = $('#txt-CReview').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CReview').val('');
             }
         })
-        $('#txt-CCompanyBefore').focusout(function () {
+        $('#txt-CCompanyBefore').click(function () {
             var txtValue = $('#txt-CCompanyBefore').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CCompanyBefore').val('');
             }
         })
-        $('#txt-CShirtType').focusout(function () {
+        $('#txt-CShirtType').click(function () {
             var txtValue = $('#txt-CShirtType').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CShirtType').val('');
             }
         })
-        $('#txt-CFabricType').focusout(function () {
+        $('#txt-CFabricType').click(function () {
             var txtValue = $('#txt-CFabricType').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CFabricType').val('');
             }
         })
-        $('#txt-CGoal').focusout(function () {
+        $('#txt-CGoal').click(function () {
             var txtValue = $('#txt-CGoal').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CGoal').val('');
             }
         })
-        $('#txt-CPrint').focusout(function () {
+        $('#txt-CPrint').click(function () {
             var txtValue = $('#txt-CPrint').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CPrint').val('');
             }
         })
-        $('#txt-CGoal').focusout(function () {
+        $('#txt-CGoal').click(function () {
             var txtValue = $('#txt-CGoal').val();
             if (COther_Format_Validate(txtValue) != true) {
                 $('#txt-CGoal').val('');
@@ -735,7 +735,7 @@ function CustomerDetailValidation() {
     }
     // check name format
     function CName_Format_Validate(txtCustomerName) {
-        var CustomerNameRegex = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+$/;
+        var CustomerNameRegex = /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,35}$/;
         console.log('Customer Name : ' + CustomerNameRegex.test(txtCustomerName));
         return CustomerNameRegex.test(txtCustomerName);
     }
@@ -753,7 +753,7 @@ function CustomerDetailValidation() {
     }
     // check other field (without *)
     function COther_Format_Validate(txtField) {
-        var CustomerOther = /^[^-\s]([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,35}$/;
+        var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,35}$/;
         console.log(CustomerOther.test(txtField));
         return CustomerOther.test(txtField);
     }
@@ -929,48 +929,40 @@ function ContractDetailDesignValidation() {
 // ============= Statictis ============= //
 // Test Chart
 function DemoChart() {
-
     // pie chart
     var piechart = document.getElementById('PieChart');
-    var PieChartData = new Chart(piechart, {
-        type: 'pie',
-        data: {
-            labels: [
-              "Thất Bại",
-              "Thành Công",
-              "Đang chờ phản hồi"
-            ],
-            datasets:
-              [
-                {
-                    data: [Math.round(Math.random() * 100), Math.round(Math.random() * 100), Math.round(Math.random() * 100)],
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
-                        "#FFCE56"
-                    ]
-                }
-              ]
-        },
-    });
+   
+
+   
 }
 $(document).ready(function () {
-    var success = Number($('#contractsuccess').val());
-    var failed = Number($('#contractfailed').val());
-    var waiting = Number($('#contractwaiting').val());
-    var year = $('#contractyear').val();
-    var month = $('#contractmonth').val();
     Highcharts.setOptions({
         colors: ['#5cb85c', ' #d9534f', '#f0ad4e']
     });
-    // Build the chart
-    Highcharts.chart('container', {
 
+    //value from database for piechart
+    var success = parseFloat($('#contractsuccess').val());
+    var failed = parseFloat($('#contractfailed').val());
+    var waiting = parseFloat($('#contractwaiting').val());
+    var month = parseFloat($('#contractmonth').val());
+    var year = parseFloat($('#contractyear').val());
+    
+    //value from database for linechart
+    var january = parseFloat($('#january').val());
+    var february = parseFloat($('#february').val());
+    var march = parseFloat($('#march').val());
+    var april = parseFloat($('#april').val());
+    var may = parseFloat($('#may').val());
+    var june = parseFloat($('#june').val());
+    var july = parseFloat($('#july').val());
+    var august = parseFloat($('#august').val());
+    var september = parseFloat($('#september').val());
+    var october = parseFloat($('#october').val());
+    var november = parseFloat($('#november').val());
+    var december = parseFloat($('#december').val());
+
+    // Build the chart
+    Highcharts.chart('container-1', {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -988,7 +980,9 @@ $(document).ready(function () {
                 allowPointSelect: true,
                 cursor: 'pointer',
                 dataLabels: {
-                    enabled: false
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+
                 },
                 showInLegend: true
             }
@@ -999,16 +993,51 @@ $(document).ready(function () {
             colorByPoint: true,
             data: [{
                 name: 'Thành công',
-                y: success
-            }, {
-                name: 'Thất bại',
-                y: failed,
+                y: success,
                 sliced: true,
                 selected: true
+            }, {
+                name: 'Thất bại',
+                y: failed
+
             }, {
                 name: 'Đang chờ phản hồi',
                 y: waiting
             }]
+        }]
+    });
+    Highcharts.setOptions({
+        colors: ['#5bc0de']
+    });
+    Highcharts.chart('container-2', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Tổng số hợp đồng trong năm '+year
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            categories: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12']
+        },
+        yAxis: {
+            title: {
+                text: 'Số lượng hợp đồng'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: true
+            }
+        },
+        series: [{
+            name: 'Số hợp đồng',
+            data: [january, february, march, april, may, june, july, august, september, october, november, december]
         }]
     });
 });
