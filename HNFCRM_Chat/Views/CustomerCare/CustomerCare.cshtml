@@ -73,8 +73,40 @@
                                             </th>
                                             <td>@item.Name</td>
                                             <td>@item.Company</td>
-                                            <td>@item.Email</td>
                                             <td>@item.Phone</td>
+                                            @{ var customercare = Model.customercare.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                                                var customercaredetail = Model.customercaredetail.Where(x => x.ID_CustomerCare == customercare.ID).SingleOrDefault();
+                                            }
+                                            @{ if (customercaredetail.Point != 0)
+                                                {
+                                                    <td>@customercaredetail.Point</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa đánh giá</td>
+                                                }
+                                            }
+                                            @{if (customercaredetail.Point < 30)
+                                                {
+                                                    <td>Kém</td>
+                                                }
+                                                else if (customercaredetail.Point < 60 && customercaredetail.Point > 30)
+                                                {
+                                                    <td>Trung Bình</td>
+                                                }
+                                                else if (customercaredetail.Point > 60 && customercaredetail.Point < 90)
+                                                {
+                                                    <td>Khá</td>
+                                                }
+                                                else if (customercaredetail.Point > 90)
+                                                {
+                                                    <td>Rất Tốt</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Chưa đánh giá</td>
+                                                }
+                                            }
                                             @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).SingleOrDefault(); }
                                             <td>@contract.ID</td>
                                             @{ var staff = Model.staff.Where(x => x.ID == contract.ID_Staff).FirstOrDefault();}

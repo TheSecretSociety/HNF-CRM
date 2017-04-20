@@ -11,5 +11,7 @@ namespace HNFCRM_Chat.Models
         public List<STAFF> staff;
         public IPagedList<CUSTOMER> customer;
         public List<CONTRACT> contract;
+        public List<CUSTOMERCAREDETAIL> customercaredetail;
+        public List<CUSTOMERCARE> customercare;
     }
 }

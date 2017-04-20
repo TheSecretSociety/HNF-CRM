@@ -29,7 +29,7 @@ namespace HNFCRM_Chat.Controllers
             }
 
             //Pagination
-            int pageSize = 2;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
 
             var productionline = entities.PRODUCTLINEs.ToList();
