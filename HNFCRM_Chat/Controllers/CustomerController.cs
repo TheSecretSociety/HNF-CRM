@@ -26,7 +26,7 @@ namespace HNFCRM_Chat.Controllers
                 }
 
                 //Pagination
-                int pageSize = 9;
+                int pageSize = 5;
                 int pageNumber = (page ?? 1);
 
                 var role = Session["Role"] as STAFF;
@@ -48,6 +48,7 @@ namespace HNFCRM_Chat.Controllers
                     model.contract = contract;
                     model.staff = staff;
                     model.liststaff = stafflist;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
                 else
@@ -68,7 +69,7 @@ namespace HNFCRM_Chat.Controllers
                     model.contract = contract;
                     model.staff = staff;
                     model.liststaff = stafflist;
-                    ViewBag.Role = 2;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
             }

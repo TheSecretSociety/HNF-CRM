@@ -44,12 +44,13 @@
                                                 Tình Trạng
                                             </button>
                                             <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="@Url.Action("FilterCut","ProductionLine")">Cắt Vải</a>
-                                                <a class="dropdown-item" href="@Url.Action("FilterEmbroider","ProductionLine")">In Thêu</a>
-                                                <a class="dropdown-item" href="@Url.Action("FilterSew","ProductionLine")">May</a>
-                                                <a class="dropdown-item" href="@Url.Action("FilterIron","ProductionLine")">Ủi</a>
-                                                <a class="dropdown-item" href="@Url.Action("FilterPackaging","ProductionLine")">Đóng Gói</a>
-                                                <a class="dropdown-item" href="@Url.Action("FilterDelivery","ProductionLine")">Giao Hàng</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type="notyet" })">Chưa Tiến Hành</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new {type="cut" })">Cắt Vải</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "embroider" })">In Thêu</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "sew" })">May</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "iron" })">Ủi</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "packaging" })">Đóng Gói</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "delivery" })">Giao Hàng</a>
                                             </div>
                                         </div>
                                     </div>
@@ -60,8 +61,10 @@
                                                 Chuyển Tiền
                                             </button>
                                             <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="@Url.Action("Filter50","ProductionLine")">50% Số Tiền</a>
-                                                <a class="dropdown-item" href="@Url.Action("Filter100","ProductionLine")">100% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "0" })">Chưa Chuyển</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "30" })">30% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "50" })">50% Số Tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("Filter","ProductionLine",new { type = "100" })">100% Số Tiền</a>
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +148,7 @@
             </div>
             <div class="row">
                 <div style="margin:0 auto; color: black">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    @Html.PagedListPager(Model, page => Url.Action("Search", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                 </div>
             </div>
         </div>

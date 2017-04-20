@@ -161,7 +161,7 @@
             </div>
             <div class="row">
                 <div style="margin:0 auto; color: black">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                    @Html.PagedListPager(Model, page => Url.Action("Filter", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                 </div>
             </div>
         </div>

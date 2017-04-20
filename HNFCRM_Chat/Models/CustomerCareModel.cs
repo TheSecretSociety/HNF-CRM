@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PagedList;
 
 namespace HNFCRM_Chat.Models
 {
     public class CustomerCareModel
     {
         public List<STAFF> staff;
-        public List<CUSTOMER> customer;
+        public IPagedList<CUSTOMER> customer;
         public List<CONTRACT> contract;
     }
 }

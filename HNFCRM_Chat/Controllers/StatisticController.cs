@@ -22,6 +22,7 @@ namespace HNFCRM_Chat.Controllers
             int monthnow = DateTime.Now.Month;
             int yearnow = DateTime.Now.Year;
 
+            //Get information for pie chart
             var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
             && x.UpdatedDate.Value.Month == monthnow
             && x.UpdatedDate.Value.Year == yearnow
@@ -47,6 +48,20 @@ namespace HNFCRM_Chat.Controllers
             ViewBag.Waiting = waiting;
             ViewBag.Year = yearnow;
             ViewBag.Month = monthnow;
+
+            //Get information for line chart
+            ViewBag.january = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 1);
+            ViewBag.february = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 2);
+            ViewBag.march = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 3);
+            ViewBag.april = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 4);
+            ViewBag.may = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 5);
+            ViewBag.june = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 6);
+            ViewBag.july = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 7);
+            ViewBag.august = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 8);
+            ViewBag.september = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 9);
+            ViewBag.october = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 10);
+            ViewBag.november = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 11);
+            ViewBag.december = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow && x.CreatedDate.Value.Month == 12);
 
             return View();
         }
@@ -92,6 +107,20 @@ namespace HNFCRM_Chat.Controllers
                     ViewBag.Waiting = waiting;
                     ViewBag.Year = year;
                     ViewBag.Month = month;
+
+                    //Get information for line chart
+                    ViewBag.january = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 1);
+                    ViewBag.february = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 2);
+                    ViewBag.march = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 3);
+                    ViewBag.april = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 4);
+                    ViewBag.may = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 5);
+                    ViewBag.june = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 6);
+                    ViewBag.july = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 7);
+                    ViewBag.august = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 8);
+                    ViewBag.september = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 9);
+                    ViewBag.october = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 10);
+                    ViewBag.november = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 11);
+                    ViewBag.december = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == year && x.CreatedDate.Value.Month == 12);
 
                     return View();
                 }

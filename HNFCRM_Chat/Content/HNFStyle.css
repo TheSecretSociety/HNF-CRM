@@ -126,7 +126,7 @@ a:link {
 
 }
 .navbar-nav li a i{
-  padding-left: 5px;
+  
 }
 /*================*/
 /* Background style for element*/
@@ -353,7 +353,6 @@ a:link {
        padding: 0.5em 1em;
        text-decoration: none;
        color: black;
-       border-left: 1px solid #DDDDDD;
    }
 
 }
@@ -400,4 +399,12 @@ a:link {
 }
 .highcharts-credits{
   display: none !important;
+}
+.nav-item:hover{
+  background-color: orange !important;
+  color: white!important;
+  border-radius: 5px;
+}
+.nav-item > .nav-link:hover {
+  color:white !important;
 }
