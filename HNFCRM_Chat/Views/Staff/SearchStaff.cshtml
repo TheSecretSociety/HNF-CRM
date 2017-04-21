@@ -22,7 +22,7 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <!-- Nút Chức Năng -->
-                                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Nhóm nút chức năng -->
                                     <div class="btn-group w-100" role="group" aria-label="Function Button">
                                         <!-- Nút Thêm (dùng dưới lệnh <a> để bấm liên kết hoặc có thể đổi sang <button>) -->
@@ -30,10 +30,10 @@
                                     </div>
                                 </div>
                                 <!-- Thanh Lọc -->
-                                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <!-- Phân Quyền (Dropdown) -->
-                                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                             <div class="dropdown">
                                                 <!-- Nút dropdown -->
                                                 <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,15 +41,15 @@
                                                 </button>
                                                 <!-- các nội dung trong dropdown -->
                                                 <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton" name="filter">
-                                                    <a class="dropdown-item" href="@Url.Action("FilterAdmin", "Staff")">Quản Trị Viên</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterSale", "Staff")">Nhân Viên Bán Hàng</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterCustomerCare", "Staff")">Chăm Sóc Khách Hàng</a>
-                                                    <a class="dropdown-item" href="@Url.Action("FilterProductline", "Staff")">Quản Lí Sản Xuất</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "admin" })">Quản Trị Viên</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "sale" })">Nhân Viên Bán Hàng</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "customercare" })">Chăm Sóc Khách Hàng</a>
+                                                    <a class="dropdown-item" href="@Url.Action("Filter", "Staff", new {type = "productline" })">Quản Lí Sản Xuất</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- trường tìm Kiếm và nút tìm kiếm -->
-                                        <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                        <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
                                             <div class="row">
                                                 <!-- Search Bar -->
                                                 <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
@@ -78,7 +78,7 @@
                             <thead class="thead">
                                 <tr id="employee-table-row">
                                     <th>
-                                        <input type="checkbox" aria-label="Checkbox for following text input">
+                                        XÓA
                                     </th>
                                     <th>HỌ VÀ TÊN</th>
                                     <th>ĐIỆN THOẠI</th>
@@ -92,7 +92,7 @@
                                     {
                                         <tr class="table">
                                             <th scope="row">
-                                                <a type="button" aria-label="Checkbox for following text input" value="x" onclick="return confirm('Chắc chắn xóa?')" href="@Url.Action("DeleteStaff", "Staff", new
+                                                <a role="button" class="btn btn-sm btn-danger" style="color:#ffffff" aria-label="Checkbox for following text input" value="x" onclick="return confirm('Chắc chắn xóa?')" href="@Url.Action("DeleteStaff", "Staff", new
                                                                                                                                              {
                                                                                                                                                  id = item
 .ID

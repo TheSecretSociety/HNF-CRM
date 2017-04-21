@@ -26,7 +26,7 @@ namespace HNFCRM_Chat.Controllers
                 }
 
                 //Pagination
-                int pageSize = 5;
+                int pageSize = 9;
                 int pageNumber = (page ?? 1);
 
                 var role = Session["Role"] as STAFF;
@@ -179,6 +179,8 @@ namespace HNFCRM_Chat.Controllers
             require.Note = frm["requirenote"];
             require.Color = frm["color"];
             entities.SaveChanges();
+            TempData["AlertMessage"] = "Thêm Thành Công !!";
+
             return RedirectToAction("CustomerDetail");
         }
 
@@ -333,6 +335,8 @@ namespace HNFCRM_Chat.Controllers
             entities.CUSTOMERs.Add(data);
             entities.REQUIREPRODUCTs.Add(require);
             entities.SaveChanges();
+
+            TempData["AlertMessage"] = "Thêm Thành Công !!";
             return RedirectToAction("Customer");
         }
 

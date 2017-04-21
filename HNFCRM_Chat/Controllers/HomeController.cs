@@ -32,24 +32,15 @@ namespace HNFCRM_Chat.Controllers
             int yearnow = DateTime.Now.Year;
 
             var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
-             && x.UpdatedDate.Value.Month == monthnow
-             && x.UpdatedDate.Value.Year == yearnow
-             && x.CreatedDate.Value.Month == monthnow
-             && x.CreatedDate.Value.Year == yearnow);
+              && x.UpdatedDate.Value.Year == yearnow);
 
             var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2"
-            && x.UpdatedDate.Value.Month == monthnow
-            && x.UpdatedDate.Value.Year == yearnow
-            && x.CreatedDate.Value.Month == monthnow
-            && x.CreatedDate.Value.Year == yearnow);
+              && x.UpdatedDate.Value.Year == yearnow);
 
             var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
-            && x.UpdatedDate.Value.Month == monthnow
-            && x.UpdatedDate.Value.Year == yearnow
-            && x.CreatedDate.Value.Month == monthnow
-            && x.CreatedDate.Value.Year == yearnow);
+              && x.UpdatedDate.Value.Year == yearnow);
 
-            var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Month == monthnow && x.CreatedDate.Value.Year == yearnow);
+            var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow);
             ViewBag.InMonth = inmonth;
             ViewBag.Failed = failed;
             ViewBag.Success = success;
