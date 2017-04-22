@@ -13,6 +13,7 @@ namespace HNFCRM_Chat.Controllers
         // GET: Notification
         public ActionResult Notification()
         {
+            var role = Session["Role"] as STAFF;
             int daynow = DateTime.Now.Day;
             int monthnow = DateTime.Now.Month;
             int yearnow = DateTime.Now.Year;
@@ -20,11 +21,7 @@ namespace HNFCRM_Chat.Controllers
             && x.Appointment.Value.Year == yearnow
             && x.Appointment.Value.Day == daynow
             || x.Appointment.Value.Day == daynow+1).ToList();
-            var count = entities.CONTRACTs.Count(x => x.Appointment.Value.Month == monthnow
-            && x.Appointment.Value.Year == yearnow
-            && x.Appointment.Value.Day == daynow
-            || x.Appointment.Value.Day == daynow + 1);
-            ViewBag.Notification = count;
+            ViewBag.Role = role.ID_Role;
             return View(contract);
         }
     }

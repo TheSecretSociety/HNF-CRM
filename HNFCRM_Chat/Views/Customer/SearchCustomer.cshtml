@@ -27,6 +27,15 @@
     <script src="~/Scripts/HNF-jquery.js"></script>
 </head>
 
+@{
+    string att = "", attt = "";
+    if (ViewBag.Role == 3)
+    {
+        att = "disabled";
+        attt = "hidden";
+    }
+}
+
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -37,7 +46,7 @@
                 <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card form-input-margin">
                         <div class="btn-group" role="group" aria-label="Function Button">
-                            <button type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Thêm</button>
+                            <button @att type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer", "Customer")'">Thêm</button>
                         </div>
                     </div>
 
@@ -63,7 +72,7 @@
                                 </div>
                                 <!-- Nút Tìm Kiếm -->
                                 <div class="col-xl-3 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
-                                    <button type="submit" class="btn btn-block btn-info" onclick="location.href='@Url.Action("SearchCustomer", "Customer")'">Tìm Kiếm</button>
+                                    <button type="submit" class="btn btn-block btn-warning" onclick="location.href='@Url.Action("SearchCustomer", "Customer")'">Tìm Kiếm</button>
                                 </div>
                             </div>
                         }
@@ -71,33 +80,37 @@
                 </div>
             </div>
             <br>
+            @{if (ViewBag.Role == 1)
+                {
             <!-- Thanh Nhân Viên -->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center w-100">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            @{foreach (var item in Model.liststaff)
-                                {
-                                    <li class="page-item "><a class="page-link" href="@Url.Action("SearchCustomerByStaff","Customer", new { id=item.ID})">@item.Name</a></li>
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center w-100">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    @{foreach (var item in Model.liststaff)
+                                        {
+                                            <li class="page-item "><a class="page-link" href="@Url.Action("SearchCustomerByStaff", "Customer", new { id = item.ID })">@item.Name</a></li>
 
-                                }
-                            }
-                            <li class="page-item ">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+                                        }
+                                    }
+                                    <li class="page-item ">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                                        }
+            }
             <br>
             <!-- Bản Khách Hàng -->
             <div class="row">
@@ -125,7 +138,7 @@
                                     {
                                         <tr class="">
                                             <th scope="row">
-                                                <a type="button" class="btn btn-sm btn-danger" style="color: white" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
+                                                <a @attt type="button" class="btn btn-sm btn-danger" style="color: white" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
                                                                                                                                                             {
                                                                                                                                                                 id = item
 .ID

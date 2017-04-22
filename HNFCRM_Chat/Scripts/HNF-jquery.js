@@ -946,6 +946,7 @@ $(document).ready(function () {
     var waiting = parseFloat($('#contractwaiting').val());
     var month = parseFloat($('#contractmonth').val());
     var year = parseFloat($('#contractyear').val());
+    var yearline = parseFloat($('#contractyearline').val());
     
     //value from database for linechart
     var january = parseFloat($('#january').val());
@@ -1014,7 +1015,7 @@ $(document).ready(function () {
             type: 'line'
         },
         title: {
-            text: 'Tổng số hợp đồng trong năm '+year
+            text: 'Tổng số hợp đồng trong năm '+ yearline
         },
         subtitle: {
             text: ''

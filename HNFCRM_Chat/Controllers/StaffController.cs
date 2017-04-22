@@ -135,7 +135,7 @@ namespace HNFCRM_Chat.Controllers
             }
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            var staff = entities.STAFFs.ToList();
+            var staff = entities.STAFFs.Where(x=>x.ID_Role!=5).ToList();
             return View(staff.ToPagedList(pageNumber, pageSize));
         }
 
@@ -143,7 +143,8 @@ namespace HNFCRM_Chat.Controllers
         public ActionResult DeleteStaff(int id)
         {
             STAFF s = entities.STAFFs.Where(x => x.ID == id).SingleOrDefault();
-            entities.STAFFs.Remove(s);
+            s.ID_Role = 5;
+            s.Password = null;
             entities.SaveChanges();
             return RedirectToAction("Staff", "Staff");
         }

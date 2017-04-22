@@ -1,48 +1,59 @@
 ﻿@model IEnumerable<HNFCRM_Chat.Models.CONTRACT>
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 
+@{
+    string att = "";
+    if (ViewBag.Role != 1 || ViewBag.Role != 2)
+    {
+        att = "disable";
+    }
+}
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-8 col-md-12 col-sm-12 col-sx-12 offset-xl-3">
                     <br>
-                    <div class="list-group">
+                    <div class="list-group @att">
                         @{ foreach (var item in Model)
                             {
-                                <a href="@Url.Action("Contract", "Contract", new { id = item.ID_Customer })" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <!-- Tiêu Đề -->
-                                        <h5 class="mb-1">Hẹn Gặp Khách Hàng</h5>
-                                        <!-- Thời Gian -->
-                                        @*<small>@item.Note</small>*@
-                                    </div>
-                                    <!-- Nôi Dung thông báo -->
-                                    <p class="mb-1">Bạn có lịch Hẹn gặp với khách hàng <strong>@item.CUSTOMER.Name</strong> vào ngày <strong>@item.Appointment.Value.ToString("dd/MM/yyyy,")</strong></p>
-                                    <!-- Ghi Chú Khác -->
-                                    <small><strong>@item.Note</strong></small>
-                                </a>
+                                if (ViewBag.Role == 3 || ViewBag.Role == 4)
+                                {
+                                    <a class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <!-- Tiêu Đề -->
+                                            <h5 class="mb-1">Hẹn Gặp Khách Hàng</h5>
+                                            <!-- Thời Gian -->
+                                            @*<small>@item.Note</small>*@
+                                        </div>
+                                        <!-- Nôi Dung thông báo -->
+                                        <p class="mb-1">Bạn có lịch Hẹn gặp với khách hàng <strong>@item.CUSTOMER.Name</strong> vào ngày <strong>@item.Appointment.Value.ToString("dd/MM/yyyy,")</strong></p>
+                                        <!-- Ghi Chú Khác -->
+                                        <small><strong>@item.Note</strong></small>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Contract", "Contract", new { id = item.ID_Customer })" class="list-group-item list-group-item-action flex-column align-items-start">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <!-- Tiêu Đề -->
+                                            <h5 class="mb-1">Hẹn Gặp Khách Hàng</h5>
+                                            <!-- Thời Gian -->
+                                            @*<small>@item.Note</small>*@
+                                        </div>
+                                        <!-- Nôi Dung thông báo -->
+                                        <p class="mb-1">Bạn có lịch Hẹn gặp với khách hàng <strong>@item.CUSTOMER.Name</strong> vào ngày <strong>@item.Appointment.Value.ToString("dd/MM/yyyy,")</strong></p>
+                                        <!-- Ghi Chú Khác -->
+                                        <small><strong>@item.Note</strong></small>
+                                    </a>
+                                }
+
                             }
                         }
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- CHAT WIDGET -->
-<!-- ====================== -->
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/58d4922ef97dd14875f59d93/default';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-</script>
-<!--End of Tawk.to Script-->
+

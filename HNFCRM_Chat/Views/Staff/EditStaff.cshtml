@@ -51,7 +51,7 @@
                                     <div @att class="form-group">
                                         <label @att for="InputAuthorize">Phân Quyền</label>
                                         @*<select class="form-control" id="InputAuthorize" @att name="role" @Html.DropDownList("JobTitle", @Model.ROLE.Role1)></select>*@
-                                        <select class="form-control" id="InputAuthorize" name="role">
+                                        <select class="form-control" id="InputAuthorize" name="role" @att>
                                             <option>@Model.ROLE.Role1</option>
                                             <option>Quản Trị Viên</option>
                                             <option>Nhân Viên Bán Hàng</option>
@@ -125,6 +125,7 @@
     if (message)
         alert(message);
 </script>
+
 <script type="text/javascript">
     var message = '@message1';
     if (message)
