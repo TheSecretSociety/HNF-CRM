@@ -4,10 +4,11 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    string att = "";
+    string att = "", attt="";
     if (ViewBag.Role == 3)
     {
         att = "disabled";
+        attt = "hidden";
     }
 }
 <head>
@@ -114,7 +115,7 @@
                     <table class="table table-sm table-hover">
                         <thead class="thead">
                             <tr>
-                                <th @att>
+                                <th >
                                     XÓA
                                 </th>
                                 <th>HỌ VÀ TÊN</th>
@@ -124,7 +125,7 @@
                                 <th>TƯ VẤN</th>
                                 <th>GỌI NHẮC</th>
                                 <th>TÊN SALE</th>
-                                <th></th>
+                                <th @attt></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,7 +135,7 @@
                                     {
                                         <tr class="">
                                             <th scope="row">
-                                                <a role="button" @att class="btn btn-sm btn-danger" style="color:white" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
+                                                <a role="button" @attt class="btn btn-sm btn-danger" style="color:white" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
                                                                                                                                                             {
                                                                                                                                                                 id = item
 .ID

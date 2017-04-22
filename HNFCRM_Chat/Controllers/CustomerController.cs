@@ -87,7 +87,7 @@ namespace HNFCRM_Chat.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-
+            var role = Session["Role"] as STAFF;
             CUSTOMER customer = new CUSTOMER();
             customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             REQUIREPRODUCT require = new REQUIREPRODUCT();
@@ -95,6 +95,7 @@ namespace HNFCRM_Chat.Controllers
             CustomerModel model = new CustomerModel();
             model.Customer = customer;
             model.RequireProduct = require;
+            ViewBag.Role = role.ID_Role;
             return View(model);
         }
 
@@ -384,6 +385,8 @@ namespace HNFCRM_Chat.Controllers
                     return RedirectToAction("Login", "Login");
                 }
 
+                var role = Session["Role"] as STAFF;
+
                 //Pagination
                 int pageSize = 9;
                 int pageNumber = (page ?? 1);
@@ -408,6 +411,7 @@ namespace HNFCRM_Chat.Controllers
                     model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
                 else if (SearchName == "" && SearchPhone != "" && SearchCompany == "")
@@ -430,6 +434,7 @@ namespace HNFCRM_Chat.Controllers
                     model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
                 else if (SearchName == "" && SearchPhone == "" && SearchCompany != "")
@@ -452,6 +457,7 @@ namespace HNFCRM_Chat.Controllers
                     model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
                 else if (SearchName != "" && SearchPhone != "" && SearchCompany == "")
@@ -474,6 +480,7 @@ namespace HNFCRM_Chat.Controllers
                     model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
                 else if (SearchName != "" && SearchPhone == "" && SearchCompany != "")
@@ -496,6 +503,7 @@ namespace HNFCRM_Chat.Controllers
                     model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
                 else if (SearchName == "" && SearchPhone != "" && SearchCompany != "")
@@ -518,6 +526,7 @@ namespace HNFCRM_Chat.Controllers
                     model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
                 else
@@ -540,6 +549,7 @@ namespace HNFCRM_Chat.Controllers
                     model.customer = customer.ToPagedList(pageNumber, pageSize);
                     model.staff = staff;
                     model.liststaff = liststaff;
+                    ViewBag.Role = role.ID_Role;
                     return View(model);
                 }
             }

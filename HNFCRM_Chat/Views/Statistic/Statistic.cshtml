@@ -50,6 +50,12 @@
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-2">
                                 <button type="submit" class="btn btn-success btn-block" role="button" href="@Url.Action("Statistic", "Statistic")">Thống kê</button>
+                                @{
+                                    if (TempData["notice"] != null)
+                                    {
+                                        <p style="color: red">@TempData["notice"]</p>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>
@@ -146,10 +152,10 @@
                     <input id="october" value="@ViewBag.october" hidden disabled></input>
                     <input id="november" value="@ViewBag.november" hidden disabled></input>
                     <input id="december" value="@ViewBag.december" hidden disabled></input>
+                    <input id="contractyearline" value="@ViewBag.YearLine" hidden disabled></input>
                 </div>
             </div>
         </div>
     </div>
 </div>
-        
-        
+

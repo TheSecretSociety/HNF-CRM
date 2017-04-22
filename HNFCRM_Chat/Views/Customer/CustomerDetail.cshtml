@@ -26,6 +26,13 @@
     <script src="~/Scripts/HNF-jquery.js" charset="utf-8"></script>
 </head>
 
+@{ 
+    string att = "";
+    if (ViewBag.Role == 3)
+    {
+        att = "hidden";
+    }
+}
 <div id="page-content-wrapper">
     <div class="page-content">
         <div class="container-fluid">
@@ -244,7 +251,7 @@
             </form>
             <br />
             <!-- Nút chức năng -->
-            <div class="row">
+            <div class="row" @att>
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-input-background">
                         <div class="row">

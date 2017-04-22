@@ -176,7 +176,7 @@ a:link {
     color: black;
 }
 .hnf-button-control {
-    margin: 30px auto;
+    margin: 15px auto;
     width: 50%;
     height: 40px;
     background-color: white;
@@ -193,7 +193,7 @@ a:link {
     transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 .hnf-button-control:hover {
-    margin: 30px auto;
+    margin: 15px auto;
     width: 50%;
     height: 40px;
     color: white;
