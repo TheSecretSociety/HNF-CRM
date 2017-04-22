@@ -58,17 +58,16 @@
             packaging = 100;
             delivery = 100;
         }
-        else
-        {
-            cut = 0;
-            embroider = 0;
-            sew = 0;
-            iron = 0;
-            packaging = 0;
-            delivery = 0;
-        }
     }
-
+    else
+    {
+        cut = 0;
+        embroider = 0;
+        sew = 0;
+        iron = 0;
+        packaging = 0;
+        delivery = 0;
+    }
 }
 
 <head>
@@ -468,6 +467,9 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6">
                         <button type="submit" class="btn btn-success btn-block" id="DetailDesign-Add-Button" role="button" href="@Url.Action("ContractDetail","Contract")">Lưu Thông Tin</button>
+                        @{
+                            var message1 = TempData["AlertMessage"] ?? string.Empty;
+                        }
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
                         <button class="btn btn-danger btn-block" id="Cancle-Button" role="button" onclick="history.go(-1); return false">Huỷ Thông Tin</button>
@@ -479,4 +481,9 @@
     <br>
 </div>
 
+<script type="text/javascript">
+    var message = '@message1';
+    if (message)
+        alert("Cập Nhật Thành Công !!");
+</script>
 

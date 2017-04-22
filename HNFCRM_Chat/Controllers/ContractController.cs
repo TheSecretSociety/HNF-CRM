@@ -212,6 +212,8 @@ namespace HNFCRM_Chat.Controllers
 
             contract.UpdatedDate = DateTime.Now;
             entities.SaveChanges();
+
+            TempData["AlertMessage"] = "Thêm Thành Công !!";
             return RedirectToAction("Contract");
         }
 
@@ -425,6 +427,8 @@ namespace HNFCRM_Chat.Controllers
             contractdetail.PrintNote = frm["printnote"];
 
             entities.SaveChanges();
+
+            TempData["AlertMessage"] = "Thêm Thành Công !!";
             return RedirectToAction("ContractDetail");
         }
 

@@ -193,6 +193,9 @@
 
                                 <!-- Nút lưu thông tin -->
                                 <button type="submit" id="CustomerInfoSaveBtn" class="btn btn-primary btn-lg btn-block mt-4" href='@Url.Action("AddCustomer", "Customer")'>Lưu Thông Tin</button>
+                                @{
+                                    var message1 = TempData["AlertMessage"] ?? string.Empty;
+                                }
                             </form>
                         </div>
                     </div>
@@ -215,5 +218,11 @@
             }
         });
     });
+</script>
+
+<script type="text/javascript">
+    var message = '@message1';
+    if (message)
+        alert("Thêm Thành Công !!");
 </script>
 

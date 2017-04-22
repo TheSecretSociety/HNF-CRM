@@ -23,7 +23,7 @@
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <!-- custom CSS & Jquery modify URL -->
     <link rel="stylesheet" href="~/Content/HNFStyle.css">
-    <script src="~/Scripts/HNF-jquery.js"></script>
+    <script src="~/Scripts/HNF-jquery.js" charset="utf-8"></script>
 </head>
 
 <div id="page-content-wrapper">
@@ -235,6 +235,9 @@
 
                             <!-- Nút lưu thông tin -->
                             <button type="submit" id="CustomerInfoSaveBtn" class="btn btn-primary btn-lg btn-block mt-4" href="@Url.Action("CustomerDetail","Customer")">Lưu Thông Tin</button>
+                            @{
+                                var message1 = TempData["AlertMessage"] ?? string.Empty;
+                            }
                         </div>
                     </div>
                 </div>
@@ -247,6 +250,7 @@
                         <div class="row">
                             <div class="offset-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0 mb-lg-0">
                                 <a class="btn btn-success w-100" href="@Url.Action("Contract", "Contract", new { id =Model.Customer.ID })" role="button">Hợp Đồng</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -255,3 +259,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var message = '@message1';
+    if (message)
+        alert("Cập Nhật Thành Công !!");
+</script>
