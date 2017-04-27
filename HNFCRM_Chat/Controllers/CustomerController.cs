@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HNFCRM_Chat.Models;
 using PagedList;
 using PagedList.Mvc;
+using HNFCRM_Chat.Validate;
 
 namespace HNFCRM_Chat.Controllers
 {
@@ -35,7 +36,7 @@ namespace HNFCRM_Chat.Controllers
                     List<CONTRACT> contract = new List<CONTRACT>();
                     List<STAFF> staff = new List<STAFF>();
                     var stafflist = entities.STAFFs.ToList();
-                    var customer = entities.CUSTOMERs.Where(x => x.IsAvailable == true).ToList();
+                    var customer = entities.CUSTOMERs.ToList();
                     foreach (var item in customer)
                     {
                         var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
@@ -119,6 +120,8 @@ namespace HNFCRM_Chat.Controllers
             data.PreviousCompanyDesign = frm["previouscompany"];
             data.PreviousDesign = frm["previousdesign"];
             data.PreviousFabric = frm["previousfabric"];
+            TypeButton button = new TypeButton();
+            data.PotentailCustomer = button.CheckboxButton(frm["potential"]);
             if (frm["previousprice"] == "" || frm["previousprice"] == null)
             {
                 data.PreviousPrice = 0;
@@ -130,26 +133,11 @@ namespace HNFCRM_Chat.Controllers
             data.Note = frm["customernote"];
             data.CareAboutProduct = frm["InterestedIn"];
             data.Comment = frm["previouscomment"];
-            if (int.Parse(frm["consult"]) == 1)
-            {
-                data.ID_Consult = 1;
-            }
-            else if (int.Parse(frm["consult"]) == 2)
-            {
-                data.ID_Consult = 2;
-            }
-            else if (int.Parse(frm["consult"]) == 3)
-            {
-                data.ID_Consult = 3;
-            }
-            else
-            {
-                data.ID_Consult = 4;
-            }
+            data.ID_Consult = int.Parse(button.CheckRadioButton(frm["consult"]));
 
             //Update require of new customer
             REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
-            if (frm["isanydesign"] == "Rồi")
+            if (frm["isanydesign"] == "Ròi")
             {
                 require.AnyDesignYet = true;
             }
@@ -201,6 +189,8 @@ namespace HNFCRM_Chat.Controllers
         //Insert new customer and require product to database
         public ActionResult AddCustomer(FormCollection frm)
         {
+            TypeButton button = new TypeButton();
+
             //Redirect to login if User has not login yet
             if (Session["author"] == null)
             {
@@ -229,23 +219,8 @@ namespace HNFCRM_Chat.Controllers
             data.Note = frm["customernote"];
             data.CareAboutProduct = frm["InterestedIn"];
             data.Comment = frm["previouscomment"];
-            if (int.Parse(frm["consult"]) == 4)
-            {
-                data.ID_Consult = 4;
-            }
-            else if (int.Parse(frm["consult"]) == 2)
-            {
-                data.ID_Consult = 2;
-            }
-            else if (int.Parse(frm["consult"]) == 3)
-            {
-                data.ID_Consult = 3;
-            }
-            else
-            {
-                data.ID_Consult = 1;
-            }
-            data.IsAvailable = true;
+            data.ID_Consult = int.Parse(button.CheckRadioButton(frm["consult"]));
+            data.PotentailCustomer = button.CheckboxButton(frm["potentail"]);
 
             //Insert require of new customer
             REQUIREPRODUCT require = new REQUIREPRODUCT();
@@ -294,10 +269,10 @@ namespace HNFCRM_Chat.Controllers
             newcontract.AppointmentMarket = DateTime.Now;
             newcontract.EndDate = DateTime.Now;
             newcontract.StartDate = DateTime.Now;
-            newcontract.MoneyTransfer = "2";
+            newcontract.MoneyTransfer = "0";
             newcontract.ID_RequireProduct = require.ID;
             //Remind set "Chưa gọi" is default value
-            newcontract.Remind = "3";
+            newcontract.Remind = "0";
             newcontract.CheckConfirm = false;
             newcontract.SendMarket = "123456";
             newcontract.MarketPicture = "123456";

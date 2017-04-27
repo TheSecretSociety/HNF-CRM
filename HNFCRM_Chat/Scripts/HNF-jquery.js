@@ -1,19 +1,16 @@
 // ***************************************************** //
 // *                ACTIVE ALL FUNCTION                * //
 // ***************************************************** //
-// $(document).ready() type one only, so all functions will be calling here
+// $(document).ready() type one only, so all functions will be when the page is loaded
 $(document).ready(function () {
     LoginValidation();
     EmployeePersonalValidation();
     CustomerDetailValidation();
     ContractDetailDesignValidation();
     EmployeeAddValidation();
-
     ClearButton();
     DeleteButtonWarning();
     ProductionProgressBar();
-    DatetimePicker();
-
     DemoChart();
 
 });
@@ -29,7 +26,6 @@ function ClearButton() {
         $("option").prop("selected", function () { return this.defaultSelected; });
     });
 }
-
 // Delete Button Warning //
 function DeleteButtonWarning() {
     $('#EmployeeDeleteBtn').click(function () {
@@ -52,7 +48,6 @@ function DeleteButtonWarning() {
         }
     }
 }
-
 // Production line Bar animation //
 function ProductionProgressBar() {
     if ($("#check1:checked").length > 0) {
@@ -183,27 +178,6 @@ function ProductionProgressBar() {
         }
     });
 }
-
-// Datetimepicker //
-function DatetimePicker() {
-    $('#sandbox-container .input-group .date').datepicker({
-        weekStart: 1,
-        orientation: "bottom auto",
-        autoclose: true,
-        todayHighlight: true,
-        format: "dd/mm/yyyy",
-        language: "vi"
-    });
-    $('#sandbox-container .input-daterange').datepicker({
-        format: "dd/mm/yyyy",
-        weekStart: 1,
-        language: "vi",
-        orientation: "bottom auto",
-        keyboardNavigation: false,
-        autoclose: true,
-        todayHighlight: true
-    });
-}
 // ----------------------------------------------------- //
 // --------------------- VALIDATION -------------------- //
 // ----------------------------------------------------- //
@@ -318,7 +292,6 @@ function EmployeePersonalValidation(form) {
                 } else {
                     $(this).addClass('input-validate-wrong').val('');
                     NamePass = 0;
-
                     console.log(NamePass);
                 }
             }
@@ -356,7 +329,6 @@ function EmployeePersonalValidation(form) {
                 return true;
             } else {
                 alert('Personal Fail');
-                //  $('#btnEPSubmit').prop('disabled',true);
                 event.preventDefault();
                 return false;
             }
@@ -604,44 +576,46 @@ function EmployeeAddValidation() {
 // HNF-Customer-Detail Validation //
 function CustomerDetailValidation() {
     Validate();
+
     function Validate() {
-        var ValidationPass = true;
-        $('#txt-CName').click(function () {
+        PreloadValidation();
+        var NamePass = false;
+        var PhonePass = false;
+        var EmailPass = false;
+        $('#txt-CName').focusout(function () {
             var CustomerName = $('#txt-CName').val();
             $('#txt-CName').removeClass('input-validate-wrong');
             if (CName_Format_Validate(CustomerName)) {
-                // $('#CustomerInfoSaveBtn').prop('disabled',false).removeClass('btn-secondary').addClass('btn-primary');
-                ValidationPass = true;
-                CheckValidation(ValidationPass);
+                NamePass = true;
+                CheckValidation();
             } else {
-                ValidationPass = false;
-                CheckValidation(ValidationPass)
-                // $('#CustomerInfoSaveBtn').prop('disabled',true).removeClass('btn-primary').addClass('btn-secondary');
+                NamePass = false;
+                CheckValidation();
                 $('#txt-CName').val('').addClass('input-validate-wrong');
 
             }
         });
-        $('#txt-CPhone').click(function () {
+        $('#txt-CPhone').focusout(function () {
             var CustomerPhone = $('#txt-CPhone').val();
             $('#txt-CPhone').removeClass('input-validate-wrong');
             if (CPhone_Format_Validate(CustomerPhone)) {
-                ValidationPass = true;
-                CheckValidation(ValidationPass);
+                PhonePass = true;
+                CheckValidation();
             } else {
-                ValidationPass = false;
-                CheckValidation(ValidationPass)
-                // $('#CustomerInfoSaveBtn').prop('disabled',true).removeClass('btn-primary').addClass('btn-secondary');
-                $('#txt-CPhone').val('');
-                $('#txt-CPhone').addClass('input-validate-wrong');
+                PhonePass = false;
+                CheckValidation();
+                $('#txt-CPhone').val('').addClass('input-validate-wrong');
             }
         })
-        $('#txt-CEmail').click(function () {
+        $('#txt-CEmail').focusout(function () {
             var CustomerEmail = $('#txt-CEmail').val();
             $('#txt-CEmail').removeClass('input-validate-wrong');
             if (CEmail_Format_Validate(CustomerEmail)) {
-                $('#CustomerInfoSaveBtn').prop('disabled', false).removeClass('btn-secondary').addClass('btn-primary');
+                EmailPass = true;
+                CheckValidation();
             } else {
-                $('#CustomerInfoSaveBtn').prop('disabled', true).removeClass('btn-primary').addClass('btn-secondary');
+                CheckValidation();
+                EmailPass = false;
                 $('#txt-CEmail').val('');
                 $('#txt-CEmail').addClass('input-validate-wrong');
             }
@@ -725,12 +699,54 @@ function CustomerDetailValidation() {
                 $('#txt-CGoal').val('');
             }
         })
-    }
-    function CheckValidation(ValidationPass) {
-        if (ValidationPass == true) {
-            $('#CustomerInfoSaveBtn').prop('disabled', false).removeClass('btn-secondary').addClass('btn-primary');
-        } else {
-            $('#CustomerInfoSaveBtn').prop('disabled', true).removeClass('btn-primary').addClass('btn-secondary');
+        // pre-load validation
+        function PreloadValidation() {
+            if ($('#txt-CName').length > 0) {
+                var CustomerName = $('#txt-CName').val();
+                $('#txt-CName').removeClass('input-validate-wrong');
+                if (CName_Format_Validate(CustomerName)) {
+                    NamePass = true;
+                    CheckValidation();
+                } else {
+                    NamePass = false;
+                    CheckValidation();
+                    $('#txt-CName').val('').addClass('input-validate-wrong');
+                }
+            }
+            if ($('#txt-CPhone').length > 0) {
+                var CustomerPhone = $('#txt-CPhone').val();
+                $('#txt-CPhone').removeClass('input-validate-wrong');
+                if (CPhone_Format_Validate(CustomerPhone)) {
+                    PhonePass = true;
+                    CheckValidation();
+                } else {
+                    PhonePass = false;
+                    CheckValidation();
+                    $('#txt-CPhone').val('').addClass('input-validate-wrong');
+                }
+            }
+            if ($('#txt-CEmail').length > 0) {
+                var CustomerEmail = $('#txt-CEmail').val();
+                $('#txt-CEmail').removeClass('input-validate-wrong');
+                if (CEmail_Format_Validate(CustomerEmail)) {
+                    EmailPass = true;
+                    CheckValidation();
+                } else {
+                    CheckValidation();
+                    EmailPass = false;
+                    $('#txt-CEmail').val('');
+                    $('#txt-CEmail').addClass('input-validate-wrong');
+                }
+            }
+            CheckValidation();
+        }
+
+        function CheckValidation() {
+            if ((NamePass == true) && (PhonePass == true) && (EmailPass == true)) {
+                $('#CustomerInfoSaveBtn').prop('disabled', false);
+            } else {
+                $('#CustomerInfoSaveBtn').prop('disabled', true);
+            }
         }
     }
     // check name format
@@ -757,137 +773,151 @@ function CustomerDetailValidation() {
         console.log(CustomerOther.test(txtField));
         return CustomerOther.test(txtField);
     }
-    // make negative number into positive
-    function AntiNegativeValue(num) {
-        if (num < 0) {
-            num = -num;
-            return num;
-        }
-        return num;
-    }
 }
 // HNF-Customer-ContractDetail-DetailDesign //
-function ContractDetailDesignValidation() {
+function ContractDetailDesignValidation(form) {
+
     Validate();
+    $('#formDetailDesign').submit(function (event) {
+        Validate();
+    });
     function Validate() { // this function will auto validate the input value everytime input has change
-
-        var ValidationPass = true;
-        // Quantity Validate
-
-
-
-        $("#txt_DD_Quantity").change(function TotalQuantityCheck() {
-            var QuantityValue = Number($("#txt_DD_Quantity").val());
-            $("#txt_DD_Quantity").val(AntiNegativeValue(QuantityValue)); // check negative value and return the value back to the input
-            var Result = DDesign_Quantity_Validate(QuantityValue);
-            if (Result != true) {
-                $("#txt_DD_Quantity").addClass("bg-danger");
-                $("#txt_DD_Quantity").val('');
-                // warning timeout
-                window.setTimeout(function () {
-                    $("#txt_DD_Quantity").removeClass("bg-danger");
-                }, 1000);
-            }
-        });
-        // Negative size converter
-        $('input').change(function MakePositive() {
-            // Male S
-            var MSmall = $('#txtMSmall').val();
-            $('#txtMSmall').val(AntiNegativeValue(MSmall));
-            // Male M
-            var MMedium = $('#txtMMedium').val();
-            $('#txtMMedium').val(AntiNegativeValue(MMedium));
-            // Male L
-            var MLarge = $('#txtMLarge').val();
-            $('#txtMLarge').val(AntiNegativeValue(MLarge));
-            // Male XL
-            var MXLarge = $('#txtMXLarge').val();
-            $('#txtMXLarge').val(AntiNegativeValue(MXLarge));
-            // Male XXL
-            var MXXLarge = $('#txtMXXLarge').val();
-            $('#txtMXXLarge').val(AntiNegativeValue(MXXLarge));
-            // Male XXXL
-            var MXXXLarge = $('#txtMXXXLarge').val();
-            $('#txtMXXXLarge').val(AntiNegativeValue(MXXXLarge));
-
-            // FeMale S
-            var FSmall = $('#txtFSmall').val();
-            $('#txtFSmall').val(AntiNegativeValue(FSmall));
-            // FeMale M
-            var FMedium = $('#txtFMedium').val();
-            $('#txtFMedium').val(AntiNegativeValue(FMedium));
-            // FeMale L
-            var FLarge = $('#txtFLarge').val();
-            $('#txtFLarge').val(AntiNegativeValue(FLarge));
-            // FeMale XL
-            var FXLarge = $('#txtFXLarge').val();
-            $('#txtFXLarge').val(AntiNegativeValue(FXLarge));
-            // FeMale XXL
-            var FXXLarge = $('#txtFXXLarge').val();
-            $('#txtFXXLarge').val(AntiNegativeValue(FXXLarge));
-            // FeMale XXXL
-            var FXXXLarge = $('#txtFXXXLarge').val();
-            $('#txtFXXXLarge').val(AntiNegativeValue(FXXXLarge));
-        });
-        // Compare total shirt with total shirt size
-        $('#DDSubmitBtn').click(function CompareQuantity() { //only validation when "Submit Button" is click
-            var MSmall = Number($('#txtMSmall').val());
-            var MMedium = Number($('#txtMMedium').val());
-            var MLarge = Number($('#txtMLarge').val());
-            var MXLarge = Number($('#txtMXLarge').val());
-            var MXXLarge = Number($('#txtMXXLarge').val());
-            var MXXXLarge = Number($('#txtMXXXLarge').val());
-            var FSmall = Number($('#txtFSmall').val());
-            var FMedium = Number($('#txtFMedium').val());
-            var FLarge = Number($('#txtFLarge').val());
-            var FXLarge = Number($('#txtFXLarge').val());
-            var FXXLarge = Number($('#txtFXXLarge').val());
-            var FXXXLarge = Number($('#txtFXXXLarge').val());
-            var TotalShirt = Number($('#txt_DD_Quantity').val());
-            DDesign_Total_Quantity_Validate(MSmall, MMedium, MLarge, MXLarge, MXXLarge, MXXXLarge, FSmall, FMedium, FLarge, FXLarge, FXXLarge, FXXXLarge, TotalShirt);
-        })
+        var ColorPass = false;
+        var ArmNeckPass = false;
+        var FabricatePass = false;
+        var FabricPass = false;
+        PreloadValidation(); // check data that already available
         $('#txt_DD_Color').focusout(function () {
             var txtValue = $('#txt_DD_Color').val();
-            if (COtherCL_Format_Validate(txtValue) != true) {
-                $('#txt_DD_Color').val('');
+            if (COtherCL_Format_Validate(txtValue) == true) {
+                $('#txt_DD_Color').toggleClass('input-validate-wrong', false);
+                ColorPass = true;
+            } else {
+                $('#txt_DD_Color').val('').toggleClass('input-validate-wrong', true);
+                ColorPass = false;
             }
         });
         $('#txt_DD_ArmNeck').focusout(function () {
             var txtValue = $('#txt_DD_ArmNeck').val();
-            if (COtherCD_Format_Validate(txtValue) != true) {
-                $('#txt_DD_ArmNeck').val('');
+            if (COtherCD_Format_Validate(txtValue) == true) {
+                $('#txt_DD_ArmNeck').toggleClass('input-validate-wrong', false);
+                ArmNeckPass = true;
+            } else {
+                $('#txt_DD_ArmNeck').val('').toggleClass('input-validate-wrong', true);
+                ArmNeckPass = false;
             }
         });
         $('#txt_DD_Fabricate').focusout(function () {
             var txtValue = $('#txt_DD_Fabricate').val();
-            if (COtherCD_Format_Validate(txtValue) != true) {
-                $('#txt_DD_Fabricate').val('');
+            if (COtherCD_Format_Validate(txtValue) == true) {
+                $('#txt_DD_Fabricate').toggleClass('input-validate-wrong', false);
+                FabricatePass = true;
+            } else {
+                $('#txt_DD_Fabricate').val('').toggleClass('input-validate-wrong', true);
+                FabricatePass = false;
             }
         });
         $('#txt_DD_fabric').focusout(function () {
             var txtValue = $('#txt_DD_fabric').val();
-            if (COtherCD_Format_Validate(txtValue) != true) {
-                $('#txt_DD_fabric').val('');
+            if (COtherCD_Format_Validate(txtValue) == true) {
+                $('#txt_DD_fabric').toggleClass('input-validate-wrong', false);
+                FabricPass = true;
+            } else {
+                $('#txt_DD_fabric').val('').toggleClass('input-validate-wrong', true);
+                FabricPass = false;
             }
         });
-    }
-    // make negative number into positive
-    function AntiNegativeValue(num) {
-        if (num < 0) {
-            num = -num;
-            return num;
+        $('#txtMSmall,#txtMMedium,#txtMLarge,#txtMXLarge,#txtMXXLarge,#txtMXXXLarge,#txtFSmall,#txtFMedium,#txtFLarge,#txtFXLarge,#txtFXXLarge,#txtFXXXLarge').focusout(function () {
+            // Male S
+            var MSmall = Number($('#txtMSmall').val());
+            // Male M
+            var MMedium = Number($('#txtMMedium').val());
+            // Male L
+            var MLarge = Number($('#txtMLarge').val());
+            // Male XL
+            var MXLarge = Number($('#txtMXLarge').val());
+            // Male XXL
+            var MXXLarge = Number($('#txtMXXLarge').val());
+            // Male XXXL
+            var MXXXLarge = Number($('#txtMXXXLarge').val());
+            // FeMale S
+            var FSmall = Number($('#txtFSmall').val());
+            // FeMale M
+            var FMedium = Number($('#txtFMedium').val());
+            // FeMale L
+            var FLarge = Number($('#txtFLarge').val());
+            // FeMale XL
+            var FXLarge = Number($('#txtFXLarge').val());
+            // FeMale XXL
+            var FXXLarge = Number($('#txtFXXLarge').val());
+            // FeMale XXXL
+            var FXXXLarge = Number($('#txtFXXXLarge').val());
+            DDesign_Total_Quantity_Validate(MSmall, MMedium, MLarge, MXLarge, MXXLarge, MXXXLarge, FSmall, FMedium, FLarge, FXLarge, FXXLarge, FXXXLarge);
+        });
+        function PreloadValidation() {
+            if ($('#txt_DD_Color').length >= 0) {
+                var txtValue = $('#txt_DD_Color').val();
+                if (COtherCL_Format_Validate(txtValue) == true) {
+                    $('#txt_DD_Color').toggleClass('input-validate-wrong', false);
+                    ColorPass = true;
+                } else {
+                    $('#txt_DD_Color').val('').toggleClass('input-validate-wrong', true);
+                    ColorPass = false;
+                }
+            }
+            if ($('#txt_DD_ArmNeck').length >= 0) {
+                var txtValue = $('#txt_DD_ArmNeck').val();
+                if (COtherCD_Format_Validate(txtValue) == true) {
+                    $('#txt_DD_ArmNeck').toggleClass('input-validate-wrong', false);
+                    ArmNeckPass = true;
+                } else {
+                    $('#txt_DD_ArmNeck').val('').toggleClass('input-validate-wrong', true);
+                    ArmNeckPass = false;
+                }
+            }
+            if ($('#txt_DD_Fabricate').length >= 0) {
+                var txtValue = $('#txt_DD_Fabricate').val();
+                if (COtherCD_Format_Validate(txtValue) == true) {
+                    $('#txt_DD_Fabricate').toggleClass('input-validate-wrong', false);
+                    FabricatePass = true;
+                } else {
+                    $('#txt_DD_Fabricate').val('').toggleClass('input-validate-wrong', true);
+                    FabricatePass = false;
+                }
+            }
+            if ($('#txt_DD_fabric').length >= 0) {
+                var txtValue = $('#txt_DD_fabric').val();
+                if (COtherCD_Format_Validate(txtValue) == true) {
+                    $('#txt_DD_fabric').toggleClass('input-validate-wrong', false);
+                    FabricPass = true;
+                } else {
+                    $('#txt_DD_fabric').val('').toggleClass('input-validate-wrong', true);
+                    FabricPass = false;
+                }
+            }
         }
-        return num;
+        $('#DDSubmitBtn').click(function () {
+            if ((ColorPass == true) && (FabricatePass == true) && (ArmNeckPass == true) && (FabricPass == true)) {
+                alert('Pass!');
+                return true;
+            } else {
+                alert('Fail');
+                console.log("ColorPass = " + ColorPass + " | ArmNeckPass = " + ArmNeckPass + "  | FabricatePass = " + FabricatePass + "  | FabricPass = " + FabricPass);
+                event.preventDefault();
+                return false;
+            }
+        })
     }
-    //validate Color and Length
+    // validate Color and Length
     function COtherCD_Format_Validate(txtField) {
-        var CustomerOther = /^[^-\s]([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,30}$/;
-        console.log(CustomerOther.test(txtField));
+        var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,30}$/;
+        console.log("Other Field: " + CustomerOther.test(txtField));
         return CustomerOther.test(txtField);
     }
+    // validate Color and Length
     function COtherCL_Format_Validate(txtField) {
-        var CustomerOther = /^[^-\s]([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,15}$/;
-        console.log(CustomerOther.test(txtField));
+        var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,15}$/;
+        console.log("Color : " + CustomerOther.test(txtField));
         return CustomerOther.test(txtField);
     }
     // check the number type of Quantity Input
@@ -903,27 +933,12 @@ function ContractDetailDesignValidation() {
         return SizeQuantityRegex.test(SizeQuantityValue);
     }
     // Check the number base on the Total quantity of the shirt and size input
-    function DDesign_Total_Quantity_Validate(MSmall, MMedium, MLarge, MXLarge, MXXLarge, MXXXLarge, FSmall, FMedium, FLarge, FXLarge, FXXLarge, FXXXLarge, TotalShirt) {
-
+    function DDesign_Total_Quantity_Validate(MSmall, MMedium, MLarge, MXLarge, MXXLarge, MXXXLarge, FSmall, FMedium, FLarge, FXLarge, FXXLarge, FXXXLarge) {
         var TotalMaleSize = MSmall + MMedium + MLarge + MXLarge + MXXLarge + MXXXLarge;
-        console.log('Total Male Size = ' + TotalMaleSize);
-
         var TotalFemaleSize = FSmall + FMedium + FLarge + FXLarge + FXXLarge + FXXXLarge;
-        console.log('Total Female Size = ' + TotalFemaleSize);
-
         var TotalSize = TotalMaleSize + TotalFemaleSize;
         console.log('Total Size = ' + TotalSize);
-        if (TotalSize == TotalShirt) {
-            console.log('equal = ' + true);
-            return true;
-        } else {
-            console.log('equal = ' + false);
-            $(".table-input").addClass('bg-danger');
-            window.setTimeout(function () {
-                $(".table-input").removeClass('bg-danger');
-            }, 1000);
-            return false;
-        }
+        $('#txt_DD_Quantity').val(TotalSize);
     }
 }
 // ============= Statictis ============= //
@@ -931,24 +946,19 @@ function ContractDetailDesignValidation() {
 function DemoChart() {
     // pie chart
     var piechart = document.getElementById('PieChart');
-   
-
-   
 }
 $(document).ready(function () {
     Highcharts.setOptions({
         colors: ['#5cb85c', ' #d9534f', '#f0ad4e']
     });
 
-    //value from database for piechart
     var success = parseFloat($('#contractsuccess').val());
     var failed = parseFloat($('#contractfailed').val());
     var waiting = parseFloat($('#contractwaiting').val());
-    var month = parseFloat($('#contractmonth').val());
     var year = parseFloat($('#contractyear').val());
-    var yearline = parseFloat($('#contractyearline').val());
-    
-    //value from database for linechart
+    var month = parseFloat($('#contractmonth').val());
+
+    //line chart
     var january = parseFloat($('#january').val());
     var february = parseFloat($('#february').val());
     var march = parseFloat($('#march').val());
@@ -961,6 +971,7 @@ $(document).ready(function () {
     var october = parseFloat($('#october').val());
     var november = parseFloat($('#november').val());
     var december = parseFloat($('#december').val());
+    var yearline = parseFloat($('#contractyearline').val());
 
     // Build the chart
     Highcharts.chart('container-1', {
@@ -971,7 +982,7 @@ $(document).ready(function () {
             type: 'pie'
         },
         title: {
-            text: 'Tỷ lệ hợp đồng trong tháng ' + month + ' ' + year
+            text: 'Tỷ lệ hợp đồng trong tháng 4, 2017'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1015,7 +1026,7 @@ $(document).ready(function () {
             type: 'line'
         },
         title: {
-            text: 'Tổng số hợp đồng trong năm '+ yearline
+            text: 'Tổng số hợp đồng trong năm'
         },
         subtitle: {
             text: ''

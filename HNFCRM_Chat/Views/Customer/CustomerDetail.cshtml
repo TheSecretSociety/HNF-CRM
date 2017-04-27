@@ -3,7 +3,7 @@
 
 <!--===== PAGE CONTENT =====-->
 <head>
-    <title>HNF-Customer Detail</title>
+    <title>Quản lý Khách Hàng</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +26,7 @@
     <script src="~/Scripts/HNF-jquery.js" charset="utf-8"></script>
 </head>
 
-@{ 
+@{
     string att = "";
     if (ViewBag.Role == 3)
     {
@@ -37,11 +37,24 @@
     <div class="page-content">
         <div class="container-fluid">
             <br>
-            <form action="@Url.Action("CustomerDetail","Customer")" method="post" id="@Model.Customer.ID">
-
-
-                @*@using (Html.BeginForm("CustomerDetail", "Customer", FormMethod.Post, new { id = Model.Customer.ID }))
-                    {*@
+            <form action="@Url.Action("CustomerDetail", "Customer")" method="post" id="@Model.Customer.ID">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card form-input-margin">
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-outline-success w-100 hnf-search-button @(Model.Customer.PotentailCustomer == true ? "active":"")" style="margin:0;">
+                                    <i class="material-icons md-18" style="margin:0; padding:0; width:18px; margin-right:10px;">star_rate</i>
+                                    <input name="potential" value="1" type="radio" autocomplete="off"><span class="hidden-sm-down">Khách Hàng Tiềm Năng</span>
+                                </label>
+                                <label class="btn btn-outline-secondary w-100 hnf-search-button @(Model.Customer.PotentailCustomer==false? "active":"")" style="margin:0;">
+                                    <i class="material-icons">star_border</i>
+                                    <input name="potential" value="0" type="radio" autocomplete="off"><span class="hidden-sm-down">Khách Hàng Thường</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
                 <!-- Thông Tin Khách Hàng & Thông Tin Sản Phẩm -->
                 <div class="row">
                     <!-- Thông Tin Khách Hàng -->
@@ -215,7 +228,7 @@
                             <!-- In / Thêu ? -->
                             <div class="form-group">
                                 <label>In / Thêu ?</label>
-                                <input type="text" class="form-control" value="@Model.RequireProduct.PrintAndEmbroider" name="printembroider" aria-describedby="emailHelp" placeholder=""  id="txt-CPrint">
+                                <input type="text" class="form-control" value="@Model.RequireProduct.PrintAndEmbroider" name="printembroider" aria-describedby="emailHelp" placeholder="" id="txt-CPrint">
                             </div>
                             <!-- Số Lượng & Tầm Giá-->
                             <div class="row">
@@ -257,7 +270,7 @@
                         <div class="row">
                             <div class="offset-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0 mb-lg-0">
                                 <a class="btn btn-success w-100" href="@Url.Action("Contract", "Contract", new { id =Model.Customer.ID })" role="button">Hợp Đồng</a>
-                                
+
                             </div>
                         </div>
                     </div>

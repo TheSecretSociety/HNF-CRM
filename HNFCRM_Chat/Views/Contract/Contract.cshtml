@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="~/Content/HNFStyle.css">
 <head>
-    <title>HNF-Contract</title>
+    <title>Quản Lý Hợp Đồng</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,11 +89,18 @@
                                 <!-- Ngày Tư Vấn & Ngày Hẹn Gặp 2 cái này daterange mặc định ngày hẹn gặp không thể trước ngày tư vấn, 2 ngày có thể trùng nhau  -->
                                 <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
                                     <!-- datetime picker -->
-                                    <div id="sandbox-container">
-                                        <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" placeholder="Ngày Tư Vấn" name="consultdate" value="@Model.Contract.DateConsult.Value.ToString("dd/MM/yyyy")" />
-                                            <span class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></span>
-                                            <input type="text" class="input-sm form-control" placeholder="Ngày Hẹn Gặp" name="appointment" value="@Model.Contract.Appointment.Value.ToString("dd/MM/yyyy")" />
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1">Ngày Tư Vấn</span>
+                                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="consultdate" value="@Model.Contract.DateConsult.Value.ToString("dd/MM/yyyy")" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1">Ngày Hẹn Gặp</span>
+                                                <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="appointment" value="@Model.Contract.Appointment.Value.ToString("dd/MM/yyyy")" aria-describedby="basic-addon1">
+                                            </div>
                                         </div>
                                         @{if (TempData["message"] != null)
                                             {
@@ -104,13 +111,16 @@
                                 </div>
                                 <!-- Ghi Chú -->
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-lg-0 mb-xl-0">
-                                    <textarea class="form-control" id="exampleTextarea" rows="1" placeholder="Ghi Chú" value="@Model.Contract.Note" name="note">@Model.Contract.Note</textarea>
+
+                                    <textarea class="form-control" id="exampleTextarea" rows="1" placeholder="Ghi Chú" value="@Model.Contract.Note" name="note">@Model.Contract.Note<</textarea>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <br>
+
                 <!-- 3 Thiết kế và gởi Market -->
                 <div class="row">
                     <!-- Cột Trái -->
@@ -247,8 +257,8 @@
                                 <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div id="sandbox-container">
                                         <div class="input-group date">
+                                            <span class="input-group-addon" id="basic-addon1">Ngày Hẹn Gặp</span>
                                             <input type="text" class="form-control" placeholder="Ngày Hẹn Gặp" name="appointment2" value="@Model.Contract.AppointmentMarket.Value.ToString("dd/MM/yyyy")"></span>
-                                            <div class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></div>
                                             @{if (TempData["message2"] != null)
                                                 {
                                                     <p style="color: red">@TempData["message"]</p>
@@ -352,12 +362,12 @@
                 </div>
                 <br>
                 <!-- 8 Sản Xuất -->
+                <!-- 8 Sản Xuất -->
                 <div class="row">
                     <!-- Cột Trái -->
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="input-group">
-
                                 <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Sản Xuất" readonly>
                             </div>
                         </div>
@@ -367,20 +377,23 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <!-- Ngày Bắt Đầu & Ngày kết Thúc 2 cái này daterange mặc định Ngày kết Thúc không thể trước Ngày Bắt Đầu, 2 ngày có trùng nhau-->
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
-                                    <div id="sandbox-container">
-                                        <div class="input-daterange input-group" id="datepicker">
-                                            <input type="text" class="input-sm form-control" placeholder="Ngày Bắt Đầu" name="start" value="@Model.Contract.StartDate.Value.ToString("dd/MM/yyyy")" />
-                                            <span class="input-group-addon"><i class="material-icons" style="margin:0; padding:0;">date_range</i></span>
-                                            <input type="text" class="input-sm form-control" placeholder="Ngày Kết Thúc" name="end" value="@Model.Contract.EndDate.Value.ToString("dd/MM/yyyy")" />
-                                        </div>
-                                        @{if (TempData["message1"] != null)
-                                            {
-                                                <p style="color: red">@TempData["message1"]</p>
-                                            }
-                                        }
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">Ngày Bắt Đầu</span>
+                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="start" value="@Model.Contract.StartDate.Value.ToString("dd/MM/yyyy")" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">Ngày Kết Thúc</span>
+                                        <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="end" value="@Model.Contract.EndDate.Value.ToString("dd/MM/yyyy")" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                @{if (TempData["message1"] != null)
+                                    {
+                                        <p style="color: red">@TempData["message1"]</p>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>
@@ -455,7 +468,7 @@
                                         <!-- Chưa Gọi -->
                                         <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call0-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="0" @(int.Parse(Model.Contract.Remind) == 3 ? "checked" : "")>
+                                                <input id="customer-call0-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="0" @(int.Parse(Model.Contract.Remind) == 0 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Chưa Gọi</span>
                                             </label>
@@ -471,7 +484,7 @@
                                         <!-- Gọi Nhắc lần 2 -->
                                         <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call2-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="2" @(int.Parse(Model.Contract.Remind) == 0 ? "checked" : "")>
+                                                <input id="customer-call2-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="2" @(int.Parse(Model.Contract.Remind) == 2 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Gọi Nhắc lần 2</span>
                                             </label>
@@ -479,7 +492,7 @@
                                         <!-- Gọi Nhắc lần 3 -->
                                         <div class="col-xl-3">
                                             <label class="custom-control custom-radio">
-                                                <input id="customer-call3-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="3" @(int.Parse(Model.Contract.Remind) == 2 ? "checked" : "")>
+                                                <input id="customer-call3-radio" name="customer-call-radio" type="radio" class="custom-control-input" value="3" @(int.Parse(Model.Contract.Remind) == 3 ? "checked" : "")>
                                                 <span class="custom-control-indicator"></span>
                                                 <span class="custom-control-description">Gọi Nhắc lần 3</span>
                                             </label>
@@ -552,4 +565,5 @@
     if (message)
         alert("Cập Nhật Thành Công !!");
 </script>
+
 
