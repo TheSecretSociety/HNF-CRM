@@ -4,7 +4,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    string att = "", attt="";
+    string att = "", attt = "", potential = "";
     if (ViewBag.Role == 3)
     {
         att = "disabled";
@@ -12,7 +12,7 @@
     }
 }
 <head>
-    <title>HNF-Customer</title>
+    <title>Quản Lý Khách Hàng</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -115,7 +115,7 @@
                     <table class="table table-sm table-hover">
                         <thead class="thead">
                             <tr>
-                                <th >
+                                <th>
                                     XÓA
                                 </th>
                                 <th>HỌ VÀ TÊN</th>
@@ -133,7 +133,11 @@
                                 {
                                     foreach (var item in Model.customer)
                                     {
-                                        <tr class="">
+                                        if (item.PotentailCustomer == true)
+                                        {
+                                            potential = "table-success";
+                                        }
+                                        <tr class="@potential">
                                             <th scope="row">
                                                 <a role="button" @attt class="btn btn-sm btn-danger" style="color:white" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
                                                                                                                                                             {

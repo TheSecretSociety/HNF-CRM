@@ -123,13 +123,13 @@ namespace HNFCRM_Chat.Controllers
             criteria.RequireProduct = number.CheckSurvey(frm["requireproduct"]);
             criteria.PrintAndEmbroider = number.CheckSurvey(frm["printembroider"]);
             criteria.Durability = number.CheckSurvey(frm["durability"]);
-            criteria.Price = number.CheckSurvey(frm["durability"]);
+            criteria.Price = number.CheckSurvey(frm["price"]);
             criteria.Support = number.CheckSurvey(frm["support"]);
             criteria.Maintenance = number.CheckSurvey(frm["maintanace"]);
             criteria.Attitude = number.CheckSurvey(frm["attitude"]);
             findcustomercare.Point = number.CheckSurvey(frm["fabric"]) + number.CheckSurvey(frm["shirtstyle"]) + number.CheckSurvey(frm["requireproduct"]) +
                 number.CheckSurvey(frm["printembroider"]) + number.CheckSurvey(frm["durability"]) + number.CheckSurvey(frm["support"]) + number.CheckSurvey(frm["maintanace"]) +
-                number.CheckSurvey(frm["attitude"]) + number.CheckSurvey(frm["attitude"]);
+                number.CheckSurvey(frm["price"]) + number.CheckSurvey(frm["attitude"]);
             findcustomer.ConsultDate = DateTime.Now;
 
             entities.SaveChanges();

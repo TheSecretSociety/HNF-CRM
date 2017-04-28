@@ -35,7 +35,7 @@ namespace HNFCRM_Chat.Models
         public string PreviousCompanyDesign { get; set; }
         public Nullable<double> PreviousPrice { get; set; }
         public string Note { get; set; }
-        public Nullable<bool> IsAvailable { get; set; }
+        public Nullable<bool> PotentailCustomer { get; set; }
         public Nullable<int> ID_Consult { get; set; }
         public string CareAboutProduct { get; set; }
         public string Comment { get; set; }

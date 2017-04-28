@@ -3,7 +3,8 @@
 <html lang="en">
 
 <head>
-    @*<title>HNF-Contract Detail</title>*@
+    @*<title></title>*@
+    <link href="~/Images/logo.png" width="106" height="76" rel="shortcut icon" />
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,8 +24,6 @@
     <!-- custom CSS & Jquery modify URL -->
     <link rel="stylesheet" href="~/Content/HNFStyle.css">
     <script src="~/Scripts/HNF-jquery.js"></script>
-
-
 </head>
 
 <body>
@@ -40,7 +39,7 @@
         </button>
         <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/Images/logo.png" width="auto" height="28px" /></a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline my-2 my-xl-0 ml-auto">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -88,7 +87,7 @@
                             @if (a.ID_Role == 1 || a.ID_Role == 3)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link" target="_blank" href ="https://dashboard.tawk.to/login"><i class="material-icons md-18">chat</i>Chat</a>
+                                    <a class="nav-link" target="_blank" href="https://dashboard.tawk.to/login"><i class="material-icons md-18">chat</i>Chat</a>
                                 </li>
                             }
                             @if (a.ID_Role == 1)
@@ -147,8 +146,8 @@
         <!--===== end of [SIDERBAR] =====-->
         @RenderBody()
         @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Styles.Render("~/Content/css")*@
+            @Scripts.Render("~/bundles/bootstrap")
+            @Styles.Render("~/Content/css")*@
         @RenderSection("scripts", required: false)
     </div>
 </body>
