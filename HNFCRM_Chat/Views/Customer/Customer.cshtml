@@ -4,7 +4,7 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    string att = "", attt = "", potential = "";
+    string att = "", attt = "";
     if (ViewBag.Role == 3)
     {
         att = "disabled";
@@ -133,6 +133,7 @@
                                 {
                                     foreach (var item in Model.customer)
                                     {
+                                        string potential = "";
                                         if (item.PotentailCustomer == true)
                                         {
                                             potential = "table-success";
