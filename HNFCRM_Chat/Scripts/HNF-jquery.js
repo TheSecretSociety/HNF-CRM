@@ -898,10 +898,8 @@ function ContractDetailDesignValidation(form) {
         }
         $('#DDSubmitBtn').click(function () {
             if ((ColorPass == true) && (FabricatePass == true) && (ArmNeckPass == true) && (FabricPass == true)) {
-                alert('Pass!');
                 return true;
             } else {
-                alert('Fail');
                 console.log("ColorPass = " + ColorPass + " | ArmNeckPass = " + ArmNeckPass + "  | FabricatePass = " + FabricatePass + "  | FabricPass = " + FabricPass);
                 event.preventDefault();
                 return false;

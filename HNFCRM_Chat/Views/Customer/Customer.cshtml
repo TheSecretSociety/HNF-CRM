@@ -42,7 +42,7 @@
             <!-- Thanh Chức Năng -->
             <div class="row">
                 <!-- Nút Chức Năng -->
-                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card form-input-margin">
                         <div class="btn-group" role="group" aria-label="Function Button">
                             <button @att type="button" class="btn btn-success w-100" onclick="location.href='@Url.Action("AddCustomer","Customer")'">Thêm Khách Hàng</button>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <!-- Thanh Lọc -->
-                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card form-input-margin">
                         @using (Html.BeginForm("SearchCustomer", "Customer", FormMethod.Post))
                         {
