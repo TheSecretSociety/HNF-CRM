@@ -252,6 +252,7 @@ namespace HNFCRM_Chat.Controllers
             CONTRACTDETAIL contractdetail = entities.CONTRACTDETAILs.Where(x => x.ID_Contract == id).SingleOrDefault();
 
             //Update sew specification
+            string quantity = frm["quantity"];
             if (frm["quantity"] == "" || frm["quantity"] == null)
             {
                 contractdetail.Quantity = 0;

@@ -35,7 +35,7 @@ namespace HNFCRM_Chat.Controllers
                 {
                     List<CONTRACT> contract = new List<CONTRACT>();
                     List<STAFF> staff = new List<STAFF>();
-                    var stafflist = entities.STAFFs.ToList();
+                    var stafflist = entities.STAFFs.Where(x => x.ID_Role != 5).ToList();
                     var customer = entities.CUSTOMERs.ToList();
                     foreach (var item in customer)
                     {
