@@ -205,6 +205,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\ContractController.cs" />
     <Compile Include="Controllers\CustomerCareController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Models\CHATINFO.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChatModel.cs" />
     <Compile Include="Models\CONTRACT.cs">
       <DependentUpon>HNF_CRM.tt</DependentUpon>
     </Compile>
@@ -520,6 +522,10 @@
     <Content Include="Views\Staff\Filter.cshtml" />
     <Content Include="Views\Staff\SearchStaff.cshtml" />
     <Content Include="Views\Staff\Staff.cshtml" />
+    <Content Include="Views\Chat\ChatInfo.cshtml" />
+    <Content Include="Views\Chat\CustomerDetail.cshtml" />
+    <Content Include="Views\Chat\AddCustomer.cshtml" />
+    <Content Include="Views\Chat\SearchCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -980,7 +980,7 @@ $(document).ready(function () {
             type: 'pie'
         },
         title: {
-            text: 'Tỷ lệ hợp đồng trong tháng 4, 2017'
+            text: 'Tỷ lệ hợp đồng trong tháng '+month+' '+year
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1024,7 +1024,7 @@ $(document).ready(function () {
             type: 'line'
         },
         title: {
-            text: 'Tổng số hợp đồng trong năm'
+            text: 'Tổng số hợp đồng trong năm '+year
         },
         subtitle: {
             text: ''

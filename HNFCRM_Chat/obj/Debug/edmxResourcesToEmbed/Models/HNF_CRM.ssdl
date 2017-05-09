@@ -6,11 +6,22 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="35" />
-    <Property Name="Email" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
     <Property Name="Phone" Type="varchar" MaxLength="13" />
     <Property Name="DateTime" Type="date" />
     <Property Name="IP" Type="varchar" MaxLength="50" />
     <Property Name="ID_Staff" Type="int" />
+    <Property Name="Q1" Type="bit" />
+    <Property Name="Q2" Type="bit" />
+    <Property Name="Q3" Type="bit" />
+    <Property Name="Q4" Type="bit" />
+    <Property Name="Q5" Type="bit" />
+    <Property Name="Q6" Type="bit" />
+    <Property Name="Q7" Type="bit" />
+    <Property Name="Q8" Type="bit" />
+    <Property Name="Q9" Type="bit" />
+    <Property Name="Q10" Type="bit" />
+    <Property Name="ConsultingType" Type="char" MaxLength="2" />
   </EntityType>
   <EntityType Name="CONTRACT">
     <Key>

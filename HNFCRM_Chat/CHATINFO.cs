@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HNFCRM_Chat.Models
+namespace HNFCRM_Chat
 {
     using System;
     using System.Collections.Generic;

@@ -137,7 +137,7 @@ namespace HNFCRM_Chat.Controllers
 
             //Update require of new customer
             REQUIREPRODUCT require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
-            if (frm["isanydesign"] == "Ròi")
+            if (frm["isanydesign"] == "Rồi")
             {
                 require.AnyDesignYet = true;
             }
