@@ -11,6 +11,17 @@
           <ScalarProperty Name="DateTime" ColumnName="DateTime" />
           <ScalarProperty Name="IP" ColumnName="IP" />
           <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+          <ScalarProperty Name="Q1" ColumnName="Q1" />
+          <ScalarProperty Name="Q2" ColumnName="Q2" />
+          <ScalarProperty Name="Q3" ColumnName="Q3" />
+          <ScalarProperty Name="Q4" ColumnName="Q4" />
+          <ScalarProperty Name="Q5" ColumnName="Q5" />
+          <ScalarProperty Name="Q6" ColumnName="Q6" />
+          <ScalarProperty Name="Q7" ColumnName="Q7" />
+          <ScalarProperty Name="Q8" ColumnName="Q8" />
+          <ScalarProperty Name="Q9" ColumnName="Q9" />
+          <ScalarProperty Name="Q10" ColumnName="Q10" />
+          <ScalarProperty Name="ConsultingType" ColumnName="ConsultingType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

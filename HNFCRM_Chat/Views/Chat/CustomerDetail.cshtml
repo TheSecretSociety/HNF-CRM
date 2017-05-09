@@ -1,0 +1,218 @@
+﻿@model HNFCRM_Chat.Models.CHATINFO
+
+<form action="@Url.Action("CustomerDetail","Chat")" method="post">
+    <div id="page-content-wrapper">
+        <div class="page-content">
+            <div class="container-fluid">
+                <br>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card form-input-margin">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label>Họ Tên <span class="Notice">*</span></label>
+                                        <input type="text" class="form-control" name="name" aria-describedby="Customer Name" placeholder="" required id="txt-CName" value="@Model.Name">
+                                        <label>Email <span class="Notice">*</span></label>
+                                        <input type="email" class="form-control" name="email" aria-describedby="Email" placeholder="" required
+                                               id="txt-CEmail" value="@Model.Email">
+                                        <label>Số Điện Thoại <span class="Notice">*</span></label>
+                                        <input type="tel" class="form-control " name="phone" aria-describedby="Phone Number" placeholder="" min="0" required id="txt-CPhone" value="@Model.Phone">
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label>IP</label>
+                                        <input type="text" class="form-control" name="IP" aria-describedby="Company" placeholder="" id="txt-CCompany" value="@Model.IP">
+                                        <label>Ngày</label>
+                                        <input type="text" class="form-control" name="datetime" aria-describedby="Company" placeholder="" id="txt-CCompany" value="@Model.DateTime.Value.ToString("dd/MM/yyyy")">
+                                        @{if (TempData["message"] != null)
+                                            {
+                                                <p style="color: red">@TempData["message"]</p>
+                                            }
+                                        }
+                                        <label>Hình thức tư vấn</label>
+                                        <br>
+                                        <select class="custom-select w-100" name="consulttype">
+                                            <option value="1">Chat</option>
+                                            <option value="2">Gọi điện</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <br>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card form-input-margin">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0" style="text-align:center">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2"><h4>ĐÁNH GIÁ VỀ SẢN PHẨM</h4></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Câu hỏi 1</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q1" @(Model.Q1.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 2</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q2" @(Model.Q2.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 3</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q3" @(Model.Q3.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 4</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q4" @(Model.Q4.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 5</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q5" @(Model.Q5.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Câu hỏi 6</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q6" @(Model.Q6.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 7</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q7" @(Model.Q7.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 8</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q8" @(Model.Q8.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 9</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q9" @(Model.Q9.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Câu hỏi 10</td>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label><input type="checkbox" value="1" name="q10" @(Model.Q10.Value ? "checked=\"checked\"" : "")></label>
+                                                            </div>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <div class="container-fluid">
+                    <div class="card form-input-margin">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
+                                <button type="submit" class="btn btn-success btn-block" id="DetailDesign-Add-Button" role="button" href="@Url.Action("CustomerDetail", "Chat", new { id = Model.ID })">Lưu Thông Tin</button>
+                                @{
+                                    var message1 = TempData["AlertMessage"] ?? string.Empty;
+                                }
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-6 ">
+                                <button class="btn btn-danger btn-block" id="Cancle-Button" role="button" onclick="history.go(-1); return false">Huỷ Thông Tin</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        var url = window.location.href;
+        var activePage = url;
+        $('.sidebar-nav a').each(function () {
+            var linkPage = this.href;
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("sidebar-active");
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    var message = '@message1';
+    if (message)
+        alert("Cập Nhật Thành Công !!");
+</script>

@@ -6,11 +6,22 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
     <Property Name="DateTime" Type="DateTime" Precision="0" />
     <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ID_Staff" Type="Int32" />
+    <Property Name="Q1" Type="Boolean" />
+    <Property Name="Q2" Type="Boolean" />
+    <Property Name="Q3" Type="Boolean" />
+    <Property Name="Q4" Type="Boolean" />
+    <Property Name="Q5" Type="Boolean" />
+    <Property Name="Q6" Type="Boolean" />
+    <Property Name="Q7" Type="Boolean" />
+    <Property Name="Q8" Type="Boolean" />
+    <Property Name="Q9" Type="Boolean" />
+    <Property Name="Q10" Type="Boolean" />
+    <Property Name="ConsultingType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="STAFF" Relationship="Self.FK_CHATINFO_STAFF" FromRole="CHATINFO" ToRole="STAFF" />
   </EntityType>
   <EntityType Name="CONTRACT">

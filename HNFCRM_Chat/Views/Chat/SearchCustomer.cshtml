@@ -1,0 +1,191 @@
+﻿@model HNFCRM_Chat.Models.ChatModel
+@using PagedList;
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<head>
+    <title>Quản Lý Khách Hàng</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!-- Datetime Picker CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.vi.min.js" integrity="sha256-TnMvef6AxT9fg6mNrTsZCgPDkU4g5EyB+tu66oLAI4U=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css">
+    <!-- Google Icon CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+    <!-- custom CSS & Jquery modify URL -->
+    <link rel="stylesheet" href="~/Content/HNFStyle.css">
+    <script src="~/Scripts/HNF-jquery.js"></script>
+</head>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Quản Lý Nhân Viên</title>
+</head>
+<div id="page-content-wrapper">
+    <div class="page-content">
+        <div class="container-fluid">
+            <br>
+            @using (Html.BeginForm("SearchCustomer", "Chat", FormMethod.Post))
+            {
+            <!-- Thanh Chức Năng -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sx-12 mb-0">
+                        <div class="card form-input-margin">
+                            <div class="row">
+                                <!-- Nút Chức Năng -->
+                                <div class="col-xl-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <!-- Nhóm nút chức năng -->
+                                    <div class="btn-group w-100" role="group" aria-label="Function Button">
+                                        <!-- Nút Thêm (dùng dưới lệnh <a> để bấm liên kết hoặc có thể đổi sang <button>) -->
+                                        <a href='@Url.Action("AddCustomer", "Chat")' class="btn btn-success w-100" role="button">Thêm</a>
+                                    </div>
+                                </div>
+                                <!-- Thanh Lọc -->
+                                <div class="col-xl-9 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <!-- trường tìm Kiếm và nút tìm kiếm -->
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                            <div class="row">
+                                                <!-- Search Bar -->
+                                                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control w-100" placeholder="Tìm Kiếm..." name="Search">
+                                                    </div>
+                                                </div>
+                                                <!-- Search Button -->
+                                                <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <button type="submit" class="btn btn-block btn-warning search-button" href='@Url.Action("SearchCustomer", "Chat")'>Tìm Kiếm<i class="material-icons md-18">search</i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            <!-- Bản Khách Hàng -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Bản Khách Hàng -->
+                        <table class="table table-sm table-hover">
+                            <thead class="thead">
+                                <tr id="employee-table-row">
+                                    <th>
+                                        XÓA
+                                    </th>
+                                    <th>HỌ VÀ TÊN</th>
+                                    <th>ĐIỆN THOẠI</th>
+                                    <th>EMAIL</th>
+                                    <th>NGÀY THÁNG</th>
+                                    <th>HÌNH THỨC TƯ VẤN</th>
+                                    <th>NHÂN VIÊN TƯ VẤN</th>
+                                    <th>IP</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (Model.Chat != null)
+                                    {
+                                        foreach (var item in Model.Chat)
+                                        {
+                                            string potentail = "";
+                                            int count = 0;
+                                            if (item.Q1 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q2 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q3 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q4 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q5 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q6 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q7 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q8 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q9 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (item.Q10 == true)
+                                            {
+                                                count++;
+                                            }
+                                            if (count >= 5)
+                                            {
+                                                potentail = "table-success";
+                                            }
+                                            <tr class="table @potentail">
+                                                <th scope="row">
+                                                    <a type="button" class="btn btn-sm btn-danger" style="color:white" aria-label="Checkbox for following text input" value="x" onclick="return confirm('Chắc chắn xóa?')" href="@Url.Action("DeleteCustomer", "Chat", new
+                                                                                                                                             {
+                                                                                                                                                 id = item
+.ID
+                                    })">x</a>
+                                                </th>
+                                                <td>@item.Name</td>
+                                                <td>@item.Phone</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.DateTime.Value.ToString("dd/MM/yyyy")</td>
+                                                @{
+                                                    if (item.ConsultingType == "1")
+                                                    {
+                                                        <td>Chat</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td>Gọi Điện</td>
+                                                    }
+                                                }
+                                                @{ var staff = Model.Staff.Where(x => x.ID == item.ID_Staff).FirstOrDefault();}
+                                                <td>@staff.Name</td>
+                                                <td>@item.IP</td>
+                                                <td><a href="@Url.Action("CustomerDetail", "Chat", new { id = item.ID })"><button type="button" class="btn btn-sm btn-info">i</button></a></td>
+                                            </tr>
+                                                        }
+                                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="margin:0 auto; ">
+                        @Html.PagedListPager(Model.Chat, page => Url.Action("Chat", new { page }))
+                    </div>
+                </div>                                    }
+        </div>
+    </div>
+</div>
