@@ -32,7 +32,7 @@ namespace HNFCRM_Chat.Controllers
             int pageSize = 9;
             int pageNumber = (page ?? 1);
 
-            var productionline = entities.PRODUCTLINEs.ToList();
+            var productionline = entities.PRODUCTLINEs.OrderByDescending(x=>x.ID).ToList();
             return View(productionline.ToPagedList(pageNumber, pageSize));
         }
 

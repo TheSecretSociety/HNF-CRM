@@ -42,13 +42,11 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-outline-success w-100 hnf-search-button @(Model.Customer.PotentailCustomer == true ? "active":"")" style="margin:0;">
-                                    <i class="material-icons md-18" style="margin:0; padding:0; width:18px; margin-right:10px;">star_rate</i>
-                                    <input name="potential" value="1" type="radio" autocomplete="off"><span class="hidden-sm-down">Khách Hàng Tiềm Năng</span>
+                                <label class="btn btn-outline-secondary w-100 hnf-search-button @(int.Parse(Model.Customer.TypeCustomer) == 1 ? "active":"")" style="margin:0;">
+                                    <input name="typecustomer" value="1" type="radio" autocomplete="off"><span>Đồng Phục</span>
                                 </label>
-                                <label class="btn btn-outline-secondary w-100 hnf-search-button @(Model.Customer.PotentailCustomer==false? "active":"")" style="margin:0;">
-                                    <i class="material-icons">star_border</i>
-                                    <input name="potential" value="0" type="radio" autocomplete="off"><span class="hidden-sm-down">Khách Hàng Thường</span>
+                                <label class="btn btn-outline-warning w-100 hnf-search-button @(int.Parse(Model.Customer.TypeCustomer) == 2 ? "active":"")" style="margin:0;">
+                                    <input name="typecustomer" value="2" type="radio" autocomplete="off"><span>Thêu</span>
                                 </label>
                             </div>
                         </div>
@@ -268,7 +266,7 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="form-input-background">
                         <div class="row">
-                            <div class="offset-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0 mb-lg-0">
+                            <div class="offset-3 offset-md-0 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-2 mb-xl-0 mb-lg-0">
                                 <a class="btn btn-success w-100" href="@Url.Action("Contract", "Contract", new { id =Model.Customer.ID })" role="button">Hợp Đồng</a>
 
                             </div>

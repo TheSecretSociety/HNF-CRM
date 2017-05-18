@@ -23,7 +23,7 @@ namespace HNFCRM_Chat.Controllers
             int pageSize = 9;
             int pageNumber = (page ?? 1);
 
-            var chatinfo = entities.CHATINFOes.ToList();
+            var chatinfo = entities.CHATINFOes.OrderByDescending(x=>x.ID).ToList();
             var staff = entities.STAFFs.ToList();
             ChatModel model = new ChatModel();
             model.Staff = staff;

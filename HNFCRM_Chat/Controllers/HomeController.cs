@@ -31,13 +31,13 @@ namespace HNFCRM_Chat.Controllers
             int monthnow = DateTime.Now.Month;
             int yearnow = DateTime.Now.Year;
 
-            var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+            var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
               && x.UpdatedDate.Value.Year == yearnow);
 
             var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2"
               && x.UpdatedDate.Value.Year == yearnow);
 
-            var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
+            var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "0"
               && x.UpdatedDate.Value.Year == yearnow);
 
             var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow);
@@ -87,13 +87,13 @@ namespace HNFCRM_Chat.Controllers
                 int monthnow = DateTime.Now.Month;
                 int yearnow = DateTime.Now.Year;
 
-                var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+                var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
                   && x.UpdatedDate.Value.Year == yearnow);
 
-                var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2"
+                var failed = entities.CONTRACTs.Count(x => x.StatusContract == "0"
                   && x.UpdatedDate.Value.Year == yearnow);
 
-                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
+                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "2"
                   && x.UpdatedDate.Value.Year == yearnow);
 
                 var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow);
