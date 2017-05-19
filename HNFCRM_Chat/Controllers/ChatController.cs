@@ -19,16 +19,33 @@ namespace HNFCRM_Chat.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
+
+            var role = Session["Role"] as STAFF;
+            var id = Session["ID"] as STAFF;
+
             //Pagination
             int pageSize = 9;
             int pageNumber = (page ?? 1);
 
-            var chatinfo = entities.CHATINFOes.OrderByDescending(x=>x.ID).ToList();
-            var staff = entities.STAFFs.ToList();
-            ChatModel model = new ChatModel();
-            model.Staff = staff;
-            model.Chat = chatinfo.ToPagedList(pageNumber, pageSize);
-            return View(model);
+            if (role.ID_Role == 1)
+            {
+                var chatinfo = entities.CHATINFOes.OrderByDescending(x => x.ID).ToList();
+                var staff = entities.STAFFs.ToList();
+                ChatModel model = new ChatModel();
+                model.Staff = staff;
+                model.Chat = chatinfo.ToPagedList(pageNumber, pageSize);
+                return View(model);
+            }
+            else
+            {
+                var chatinfo = entities.CHATINFOes.Where(x => x.ID_Staff == id.ID).OrderByDescending(x => x.ID).ToList();
+                var staff = entities.STAFFs.ToList();
+                ChatModel model = new ChatModel();
+                model.Staff = staff;
+                model.Chat = chatinfo.ToPagedList(pageNumber, pageSize);
+                return View(model);
+            }
+
         }
 
         //Direct to add customer
@@ -69,7 +86,7 @@ namespace HNFCRM_Chat.Controllers
             else
             {
                 TempData["message"] = "Sai định dạng ngày !!";
-                data.DateTime = validate.ConvertDate(DateTime.Now.ToString());
+                data.DateTime = DateTime.Now;
             }
 
             data.Q1 = button.CheckboxButton(frm["q1"]);

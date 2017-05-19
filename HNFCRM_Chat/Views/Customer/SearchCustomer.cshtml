@@ -170,15 +170,15 @@
                                             @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
                                             @{if (contract != null)
                                                 {
-                                                    if (int.Parse(contract.Remind) == 0)
+                                                    if (int.Parse(contract.Remind) == 1)
                                                     {
                                                         <td>Lần 1</td>
                                                     }
-                                                    else if (int.Parse(contract.Remind) == 1)
+                                                    else if (int.Parse(contract.Remind) == 2)
                                                     {
                                                         <td>Lần 2</td>
                                                     }
-                                                    else if (int.Parse(contract.Remind) == 2)
+                                                    else if (int.Parse(contract.Remind) == 3)
                                                     {
                                                         <td>Lần 3</td>
                                                     }
