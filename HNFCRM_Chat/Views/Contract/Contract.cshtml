@@ -87,16 +87,16 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <!-- Ngày Tư Vấn & Ngày Hẹn Gặp 2 cái này daterange mặc định ngày hẹn gặp không thể trước ngày tư vấn, 2 ngày có thể trùng nhau  -->
-                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 ">
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2 ">
                                     <!-- datetime picker -->
                                     <div class="row">
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2">
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Ngày Tư Vấn</span>
                                                 <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="consultdate" value="@Model.Contract.DateConsult.Value.ToString("dd/MM/yyyy")" aria-describedby="basic-addon1">
                                             </div>
                                         </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2">
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Ngày Hẹn Gặp</span>
                                                 <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="appointment" value="@Model.Contract.Appointment.Value.ToString("dd/MM/yyyy")" aria-describedby="basic-addon1">
@@ -136,7 +136,7 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <!-- Upload -->
-                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-xl-0 mb-lg-0 mb-2">
                                     <div class="mb-2 mb-sm-0">
                                         <div class="input-group">
                                             <input type="file" id="file1" name="uploadmarket" onchange="$('#txtMarketName').val($(this).val());" hidden>
@@ -147,7 +147,7 @@
                                     </div>
                                 </div>
                                 <!-- Download -->
-                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-xl-0 mb-lg-0 mb-2">
                                     <div class="input-group">
                                         @{if (Model.Contract.SendMarket == "123456")
                                             {
@@ -161,7 +161,7 @@
                                     </div>
                                 </div>
                                 <!-- File Name -->
-                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-xl-0 mb-lg-0 mb-2 ">
                                     <div class="input-group mb-2 mb-sm-0">
                                         @{if (Model.Contract.SendMarket == "123456")
                                             {
@@ -174,7 +174,7 @@
                                         }
                                     </div>
                                 </div>
-                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-xl-0 mb-lg-0 mb-2">
                                     <div class="input-group mb-0 mr-sm-2 mb-sm-0">
                                         <a href="@Url.Action("ContractDetail", "Contract", new { id = Model.Contract.ID })" role="button" class="btn btn-primary btn-block">Chi Tiết Thiết Kế</a>
                                     </div>
@@ -199,7 +199,7 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <!-- Upload -->
-                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0 mb-0 pb-0">
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2">
                                     <div class="input-group">
                                         <input type="file" id="file2" name="uploadprice" onchange="$('#txtQuotation').val($(this).val());" hidden>
                                         <label for="file2" class="btn btn-info btn-block">
@@ -208,7 +208,7 @@
                                     </div>
                                 </div>
                                 <!-- Download -->
-                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0 mb-0">
+                                <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2">
                                     <div class="input-group">
                                         @{if (Model.Contract.Price == "123456")
                                             {
@@ -254,7 +254,7 @@
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2">
                                     <div id="sandbox-container">
                                         <div class="input-group date">
                                             <span class="input-group-addon" id="basic-addon1">Ngày Hẹn Gặp</span>
@@ -267,7 +267,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-20">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <input type="checkbox" aria-label="Checkbox for following text input" name="confirm" value="1" @(Model.Contract.CheckConfirm.Value ? "checked=\"checked\"" : "")>
@@ -335,7 +335,7 @@
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12">
                         <div class="card form-input-margin">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2">
                                     <div class="input-group">
                                         <input type="file" id="file4" name="uploadcontract" onchange="$('#txtContract').val($(this).val());" hidden>
                                         <label for="file4" class="btn btn-info btn-block">
@@ -343,7 +343,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-xl-8 col-lg-8 col-md-4 col-sm-4 col-xs-4 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
+                                <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12 0">
                                     <div class="input-group mb-2 mb-sm-0">
                                         @{if (Model.Contract.Contract1 == "123456")
                                             {
@@ -376,7 +376,7 @@
                         <div class="card form-input-margin">
                             <div class="row">
                                 <!-- Ngày Bắt Đầu & Ngày kết Thúc 2 cái này daterange mặc định Ngày kết Thúc không thể trước Ngày Bắt Đầu, 2 ngày có trùng nhau-->
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-xl-0 mb-lg-0 mb-2">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Ngày Bắt Đầu</span>
                                         <input type="text" class="form-control" placeholder="dd/mm/yyyy" name="start" value="@Model.Contract.StartDate.Value.ToString("dd/MM/yyyy")" aria-describedby="basic-addon1">
@@ -519,11 +519,11 @@
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 mb-xs-2 mb-sm-2 mb-md-0 mb-lg-0 mb-lg-0">
                                     <div class="btn-group w-100" data-toggle="buttons">
-                                        <label class="btn btn-outline-primary w-100 @(int.Parse(Model.Contract.StatusContract) == 0 ? "active" : "")">
-                                            <input type="radio" name="options" id="option1" autocomplete="off" value="0"> Đã Kí
+                                        <label class="btn btn-outline-primary w-100 @(int.Parse(Model.Contract.StatusContract) == 1 ? "active" : "")">
+                                            <input type="radio" name="options" id="option1" autocomplete="off" value="1"> Đã Kí
                                         </label>
-                                        <label class="btn btn-outline-warning w-100 @(int.Parse(Model.Contract.StatusContract) == 1 ? "active" : "")">
-                                            <input type="radio" name="options" id="option2" autocomplete="off" value="1"> Đang Chờ Phản Hồi
+                                        <label class="btn btn-outline-warning w-100 @(int.Parse(Model.Contract.StatusContract) == 0 ? "active" : "")">
+                                            <input type="radio" name="options" id="option2" autocomplete="off" value="0"> Đang Chờ Phản Hồi
                                         </label>
                                         <label class="btn btn-outline-danger w-100 @(int.Parse(Model.Contract.StatusContract) == 2 ? "active" : "")">
                                             <input type="radio" name="options" id="option3" autocomplete="off" value="2"> Thất Bại

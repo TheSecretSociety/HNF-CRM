@@ -121,7 +121,7 @@
     <Property Name="PreviousCompanyDesign" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="PreviousPrice" Type="Double" />
     <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="PotentailCustomer" Type="Boolean" />
+    <Property Name="TypeCustomer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
     <Property Name="ID_Consult" Type="Int32" />
     <Property Name="CareAboutProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />

@@ -74,8 +74,11 @@ namespace HNFCRM_Chat.Validate
             {
                 return DateTime.Now;
             }
-            DateTime checkdate = DateTime.Parse(date, culture, System.Globalization.DateTimeStyles.AssumeLocal);
-            return checkdate;
+            else
+            {
+                DateTime checkdate = DateTime.Parse(date, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+                return checkdate;
+            }
         }
     }
 

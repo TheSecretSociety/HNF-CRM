@@ -116,7 +116,7 @@
           <Property Name="PreviousCompanyDesign" Type="nvarchar" MaxLength="50" />
           <Property Name="PreviousPrice" Type="float" />
           <Property Name="Note" Type="nvarchar(max)" />
-          <Property Name="PotentailCustomer" Type="bit" />
+          <Property Name="TypeCustomer" Type="char" MaxLength="3" />
           <Property Name="ID_Consult" Type="int" />
           <Property Name="CareAboutProduct" Type="nvarchar(max)" />
           <Property Name="Comment" Type="nvarchar(max)" />
@@ -665,7 +665,7 @@
           <Property Name="PreviousCompanyDesign" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PreviousPrice" Type="Double" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PotentailCustomer" Type="Boolean" />
+          <Property Name="TypeCustomer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="ID_Consult" Type="Int32" />
           <Property Name="CareAboutProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1240,7 +1240,7 @@
                 <ScalarProperty Name="PreviousCompanyDesign" ColumnName="PreviousCompanyDesign" />
                 <ScalarProperty Name="PreviousPrice" ColumnName="PreviousPrice" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="PotentailCustomer" ColumnName="PotentailCustomer" />
+                <ScalarProperty Name="TypeCustomer" ColumnName="TypeCustomer" />
                 <ScalarProperty Name="ID_Consult" ColumnName="ID_Consult" />
                 <ScalarProperty Name="CareAboutProduct" ColumnName="CareAboutProduct" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />

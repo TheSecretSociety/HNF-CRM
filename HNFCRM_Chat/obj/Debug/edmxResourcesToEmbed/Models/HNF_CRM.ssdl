@@ -111,7 +111,7 @@
     <Property Name="PreviousCompanyDesign" Type="nvarchar" MaxLength="50" />
     <Property Name="PreviousPrice" Type="float" />
     <Property Name="Note" Type="nvarchar(max)" />
-    <Property Name="PotentailCustomer" Type="bit" />
+    <Property Name="TypeCustomer" Type="char" MaxLength="3" />
     <Property Name="ID_Consult" Type="int" />
     <Property Name="CareAboutProduct" Type="nvarchar(max)" />
     <Property Name="Comment" Type="nvarchar(max)" />

@@ -115,7 +115,7 @@
           <ScalarProperty Name="PreviousCompanyDesign" ColumnName="PreviousCompanyDesign" />
           <ScalarProperty Name="PreviousPrice" ColumnName="PreviousPrice" />
           <ScalarProperty Name="Note" ColumnName="Note" />
-          <ScalarProperty Name="PotentailCustomer" ColumnName="PotentailCustomer" />
+          <ScalarProperty Name="TypeCustomer" ColumnName="TypeCustomer" />
           <ScalarProperty Name="ID_Consult" ColumnName="ID_Consult" />
           <ScalarProperty Name="CareAboutProduct" ColumnName="CareAboutProduct" />
           <ScalarProperty Name="Comment" ColumnName="Comment" />

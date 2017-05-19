@@ -23,7 +23,7 @@ namespace HNFCRM_Chat.Controllers
             int yearnow = DateTime.Now.Year;
 
             //Get information for pie chart
-            var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+            var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
             && x.UpdatedDate.Value.Month == monthnow
             && x.UpdatedDate.Value.Year == yearnow
             && x.CreatedDate.Value.Month == monthnow
@@ -35,7 +35,7 @@ namespace HNFCRM_Chat.Controllers
             && x.CreatedDate.Value.Month == monthnow
             && x.CreatedDate.Value.Year == yearnow);
 
-            var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
+            var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "0"
             && x.UpdatedDate.Value.Month == monthnow
             && x.UpdatedDate.Value.Year == yearnow
             && x.CreatedDate.Value.Month == monthnow
@@ -87,7 +87,7 @@ namespace HNFCRM_Chat.Controllers
                         int yearnow = DateTime.Now.Year;
 
                         //Get information for pie chart
-                        var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+                        var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
                         && x.UpdatedDate.Value.Month == monthnow
                         && x.UpdatedDate.Value.Year == yearnow
                         && x.CreatedDate.Value.Month == monthnow
@@ -99,7 +99,7 @@ namespace HNFCRM_Chat.Controllers
                         && x.CreatedDate.Value.Month == monthnow
                         && x.CreatedDate.Value.Year == yearnow);
 
-                        var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
+                        var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "0"
                         && x.UpdatedDate.Value.Month == monthnow
                         && x.UpdatedDate.Value.Year == yearnow
                         && x.CreatedDate.Value.Month == monthnow
@@ -145,7 +145,7 @@ namespace HNFCRM_Chat.Controllers
                     int month = int.Parse(testmonth);
                     if (year > 0 && month > 0 && month < 13)
                     {
-                        var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+                        var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
                    && x.UpdatedDate.Value.Month == month
                    && x.UpdatedDate.Value.Year == year
                    && x.CreatedDate.Value.Month == month
@@ -157,7 +157,7 @@ namespace HNFCRM_Chat.Controllers
                         && x.CreatedDate.Value.Month == month
                         && x.CreatedDate.Value.Year == year);
 
-                        var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
+                        var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "0"
                         && x.UpdatedDate.Value.Month == month
                         && x.UpdatedDate.Value.Year == year
                         && x.CreatedDate.Value.Month == month

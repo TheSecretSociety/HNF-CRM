@@ -84,13 +84,13 @@
                                     <a class="nav-link" href="@Url.Action("Statistic","Statistic")"><i class="material-icons md-18">pie_chart</i>Thống Kê</a>
                                 </li>
                             }
-                            @if (a.ID_Role == 1 || a.ID_Role == 3)
+                            @if (a.ID_Role == 1 || a.ID_Role == 3 || a.ID_Role == 2)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" target="_blank" href="https://dashboard.tawk.to/login"><i class="material-icons md-18">chat</i>Chat</a>
                                 </li>
                             }
-                            @if (a.ID_Role == 1 || a.ID_Role == 3)
+                            @if (a.ID_Role == 1 || a.ID_Role == 3 || a.ID_Role == 2)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" href="@Url.Action("ChatInfo","Chat")"><i class="material-icons md-18">contacts</i>THÔNG TIN TƯ VẤN</a>
@@ -135,11 +135,11 @@
                 {
                     <li><a href="@Url.Action("Statistic","Statistic")"><i class="material-icons md-18">pie_chart</i>THỐNG KÊ</a></li>
                 }
-                @if (a.ID_Role == 1 || a.ID_Role == 3)
+                @if (a.ID_Role == 1 || a.ID_Role == 3 || a.ID_Role == 2)
                 {
                     <li><a target="_blank" href="https://dashboard.tawk.to/login"><i class="material-icons md-18">chat</i>CHAT</a></li>
                 }
-                @if (a.ID_Role == 1 || a.ID_Role == 3)
+                @if (a.ID_Role == 1 || a.ID_Role == 3 || a.ID_Role == 2)
                 {
                     <li><a class="nav-link" href="@Url.Action("ChatInfo","Chat")"><i class="material-icons md-18">contacts</i>THÔNG TIN TƯ VẤN</a></li>
                 }

@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <br>
+
             @{if (ViewBag.Role == 1)
                 {
             <!-- Thanh Nhân Viên -->
@@ -87,31 +87,23 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-center w-100">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
                                     @{foreach (var item in Model.liststaff)
                                         {
                                             <li class="page-item "><a class="page-link" href="@Url.Action("SearchCustomerByStaff", "Customer", new { id = item.ID })">@item.Name</a></li>
 
                                         }
                                     }
-                                    <li class="page-item ">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
                                 </ul>
                             </nav>
                         </div>
                     </div>
                                         }
+                                        else
+                                        {
+                                            <br />
+                                        }
             }
-            <br>
+
             <!-- Bản Khách Hàng -->
             <div class="row">
                 <div class="col-12">
@@ -136,7 +128,16 @@
                                 {
                                     foreach (var item in Model.customer)
                                     {
-                                        <tr class="">
+                                        string typecustomer = "";
+                                        if (int.Parse(item.TypeCustomer) == 1)
+                                        {
+                                            typecustomer = "";
+                                        }
+                                        else if (int.Parse(item.TypeCustomer) == 2)
+                                        {
+                                            typecustomer = "bg-warning";
+                                        }
+                                        <tr class="@typecustomer">
                                             <th scope="row">
                                                 <a @attt type="button" class="btn btn-sm btn-danger" style="color: white" aria-label="Checkbox for following text input" onclick="return confirm('Chắc chắn xóa?')" href='@Url.Action("DeleteCustomer", "Customer", new
                                                                                                                                                             {
@@ -169,15 +170,15 @@
                                             @{var contract = Model.contract.Where(x => x.ID_Customer == item.ID).Single();}
                                             @{if (contract != null)
                                                 {
-                                                    if (int.Parse(contract.Remind) == 0)
+                                                    if (int.Parse(contract.Remind) == 1)
                                                     {
                                                         <td>Lần 1</td>
                                                     }
-                                                    else if (int.Parse(contract.Remind) == 1)
+                                                    else if (int.Parse(contract.Remind) == 2)
                                                     {
                                                         <td>Lần 2</td>
                                                     }
-                                                    else if (int.Parse(contract.Remind) == 2)
+                                                    else if (int.Parse(contract.Remind) == 3)
                                                     {
                                                         <td>Lần 3</td>
                                                     }

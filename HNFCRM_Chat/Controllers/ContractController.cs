@@ -190,7 +190,7 @@ namespace HNFCRM_Chat.Controllers
 
             //Contract Status
             contract.StatusContract = button.CheckRadioButton(frm["options"]);
-            if (frm["options"] == "0")
+            if (frm["options"] == "1")
             {
                 //Add new productionline if this contract has not existed
                 PRODUCTLINE productline = entities.PRODUCTLINEs.Where(x => x.ID_Customer == id).SingleOrDefault();

@@ -36,19 +36,19 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="row">
-                            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 col-12">
+                            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 col-12 mb-xl-0 mb-lg-0 mb-2">
                                 <div class="input-group">
                                     <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Thời Gian" readonly>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs12">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs12mb-xl-0 mb-lg-0 mb-2">
                                 <input type="text" class="input-sm form-control" placeholder="Tháng thống kê (mm)" name="month" />
 
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs12">
+                            </div> 
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs12 mb-xl-0 mb-lg-0 mb-2">
                                 <input type="text" class="input-sm form-control" placeholder="Năm thống kê (yyyy)" name="year" />
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 col-12">
+                            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 col-12 mb-xl-0 mb-lg-0 mb-2">
                                 <button type="submit" class="btn btn-success btn-block" role="button" href="@Url.Action("Statistic", "Statistic")">Thống kê</button>
                                 @{
                                     if (TempData["notice"] != null)
