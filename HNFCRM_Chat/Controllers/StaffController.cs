@@ -57,6 +57,7 @@ namespace HNFCRM_Chat.Controllers
             entities.SaveChanges();
             return RedirectToAction("Staff", "Staff");
         }
+
         // GET: EditStaff
         public ActionResult EditStaff(int id)
         {
@@ -118,7 +119,7 @@ namespace HNFCRM_Chat.Controllers
                 }
                 else
                 {
-                    TempData["CheckPass"] = "Update Password Successfully";
+                    TempData["CheckPass"] = "Mật Khẩu Cũ Không Đúng";
                     return RedirectToAction("EditStaff", "Staff");
                 }
                 TempData["AlertMessagepass"] = "Sửa mật khẩu thành công";
@@ -126,6 +127,7 @@ namespace HNFCRM_Chat.Controllers
             entities.SaveChanges();
             return RedirectToAction("EditStaff", "Staff");
         }
+
         // GET: Staff
         public ActionResult Staff(int? page)
         {

@@ -154,7 +154,7 @@ namespace HNFCRM_Chat.Controllers
             customer.Q10 = button.CheckboxButton(frm["q10"]);
 
             entities.SaveChanges();
-            TempData["AlertMessage"] = "Thêm Thành Công !!";
+            TempData["AlertMessage"] = "Cập Nhật Thành Công !!";
             return RedirectToAction("CustomerDetail", "Chat");
         }
 
