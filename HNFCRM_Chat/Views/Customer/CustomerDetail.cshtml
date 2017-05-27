@@ -3,8 +3,8 @@
 
 <!--===== PAGE CONTENT =====-->
 <head>
+    <meta charset="utf-8"/>
     <title>Quản lý Khách Hàng</title>
-    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,7 +23,7 @@
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <!-- custom CSS & Jquery modify URL -->
     <link rel="stylesheet" href="~/Content/HNFStyle.css">
-    <script src="~/Scripts/HNF-jquery.js" charset="utf-8"></script>
+    <script src="~/Scripts/HNF-jquery.js"></script>
 </head>
 
 @{
@@ -66,18 +66,17 @@
                                     <!-- Họ Tên -->
                                     <div class="form-group ">
                                         <label>Họ Tên <span class="Notice">*</span></label>
-                                        <input type="text" class="form-control" name="name" value="@Model.Customer.Name" aria-describedby="Customer Name" placeholder="" required id="txt-CName">
+                                        <input type="text" class="form-control" name="name" value="@Model.Customer.Name" aria-describedby="Customer Name" placeholder=""  id="txt-CName" required>
                                     </div>
                                     <!-- Số Điện Thoại -->
                                     <div class="form-group">
                                         <label>Số Điện Thoại <span class="Notice">*</span></label>
-                                        <input type="tel" class="form-control " name="phone" value="@Model.Customer.Phone" aria-describedby="Phone Number" placeholder="" required id="txt-CPhone">
+                                        <input type="tel" class="form-control " name="phone" value="@Model.Customer.Phone" aria-describedby="Phone Number" placeholder="" id="txt-CPhone" required>
                                     </div>
                                     <!-- Email -->
                                     <div class="form-group">
                                         <label>Email <span class="Notice">*</span></label>
-                                        <input type="email" class="form-control" name="email" value="@Model.Customer.Email" aria-describedby="Email" placeholder="" required
-                                               id="txt-CEmail">
+                                        <input type="email" class="form-control" name="email" value="@Model.Customer.Email" aria-describedby="Email" placeholder=""  id="txt-CEmail" required>
                                     </div>
                                     <!-- Thông Tin Công Ty -->
                                     <div class="form-group">
@@ -280,6 +279,6 @@
 
 <script type="text/javascript" charset="utf-8">
     var message = '@message1';
-    if (message)
+    if (message!="")
         alert("Cập Nhật Thành Công !!!");
 </script>

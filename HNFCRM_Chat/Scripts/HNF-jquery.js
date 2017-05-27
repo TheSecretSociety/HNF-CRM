@@ -587,44 +587,26 @@ function CustomerDetailValidation(){
     var NamePass = false;
     var PhonePass = false;
     var EmailPass = false;
-    $('#txt-CName').focusout(function() {
-      var CustomerName = $('#txt-CName').val();
-      $('#txt-CName').removeClass('input-validate-wrong');
-      if (CName_Format_Validate(CustomerName)){
-        NamePass = true;
+    $('#txt-CName, #txt-CPhone, #txt-CEmail').focusout(function () {
+        var CustomerName = $('#txt-CName').val();
+        var CustomerPhone = $('#txt-CPhone').val();
+        var CustomerEmail = $('#txt-CEmail').val();
+        $('#txt-CName, #txt-CPhone, #txt-CEmai').removeClass('input-validate-wrong');
+        if (CName_Format_Validate(CustomerName) && CPhone_Format_Validate(CustomerPhone) && CEmail_Format_Validate(CustomerEmail)) {
+            NamePass = true;
+            PhonePass = true;
+            EmailPass = true;
         CheckValidation();
       }else{
-        NamePass = false;
+            NamePass = false;
+            PhonePass = false;
+            EmailPass = false;
         CheckValidation();
-        $('#txt-CName').val('').addClass('input-validate-wrong');
+        $('#txt-CName').addClass('input-validate-wrong');
 
       }
     });
-    $('#txt-CPhone').focusout(function() {
-      var CustomerPhone = $('#txt-CPhone').val();
-      $('#txt-CPhone').removeClass('input-validate-wrong');
-      if (CPhone_Format_Validate(CustomerPhone)) {
-        PhonePass = true;
-        CheckValidation();
-      }else{
-        PhonePass = false;
-        CheckValidation();
-        $('#txt-CPhone').val('').addClass('input-validate-wrong');
-      }
-    })
-    $('#txt-CEmail').focusout(function () {
-      var CustomerEmail = $('#txt-CEmail').val();
-      $('#txt-CEmail').removeClass('input-validate-wrong');
-      if (CEmail_Format_Validate(CustomerEmail)) {
-        EmailPass = true;
-        CheckValidation();
-      }else {
-        CheckValidation();
-        EmailPass = false;
-        $('#txt-CEmail').val('');
-        $('#txt-CEmail').addClass('input-validate-wrong');
-      }
-    })
+    
     $('#txt-CPrice').focusout(function() {
       var numcheck = $('#txt-CPrice').val();
       console.log("Price : " + numcheck);
@@ -715,7 +697,7 @@ function CustomerDetailValidation(){
         }else{
           NamePass = false;
           CheckValidation();
-          $('#txt-CName').val('').addClass('input-validate-wrong');
+          $('#txt-CName').addClass('input-validate-wrong');
         }
       }
       if ($('#txt-CPhone').length > 0){
@@ -753,7 +735,7 @@ function CustomerDetailValidation(){
         $('#CustomerInfoSaveBtn').prop('disabled',true);
       }
     }
-  }
+  } 
   // check name format
   function CName_Format_Validate(txtCustomerName) {
     var CustomerNameRegex = /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,100}$/;

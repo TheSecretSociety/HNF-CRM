@@ -103,18 +103,28 @@ namespace HNFCRM_Chat.Controllers
             REQUIREPRODUCT require = new REQUIREPRODUCT();
             require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             CustomerModel model = new CustomerModel();
-            if (idstaff.ID == findcontract.ID_Staff)
+            if (role.ID_Role != 1 && role.ID_Role != 4)
             {
-                model.Customer = customer;
-                model.RequireProduct = require;
-                ViewBag.Role = role.ID_Role;
-                return View(model);
+                if (idstaff.ID == findcontract.ID_Staff)
+                {
+                    model.Customer = customer;
+                    model.RequireProduct = require;
+                    ViewBag.Role = role.ID_Role;
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Customer", "Customer");
+                }
             }
-            else
+            if (role.ID_Role == 4)
             {
-                return RedirectToAction("Customer", "Customer");
+                return RedirectToAction("ProductionLine", "ProductionLine");
             }
-            
+            model.Customer = customer;
+            model.RequireProduct = require;
+            ViewBag.Role = role.ID_Role;
+            return View(model);
         }
 
         [HttpPost]

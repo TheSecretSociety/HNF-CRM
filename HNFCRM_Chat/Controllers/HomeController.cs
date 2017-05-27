@@ -60,7 +60,6 @@ namespace HNFCRM_Chat.Controllers
                     staff.Add(tempstaff);
                     customer.Add(item);
                 }
-
             }
 
             model.Staff = staff;

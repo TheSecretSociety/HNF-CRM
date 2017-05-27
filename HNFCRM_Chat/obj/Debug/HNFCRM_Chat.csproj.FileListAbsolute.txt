@@ -337,4 +337,3 @@ C:\Users\ngota\Desktop\HNF-CRM\HNFCRM_Chat\bin\Microsoft.Owin.Security.Microsoft
 C:\Users\ngota\Desktop\HNF-CRM\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.csprojResolveAssemblyReference.cache
 C:\Users\ngota\Desktop\HNF-CRM\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.dll
 C:\Users\ngota\Desktop\HNF-CRM\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.pdb
-C:\Users\Anh Minh\Documents\GitHub\HNF-CRM\HNFCRM_Chat\obj\Debug\HNFCRM_Chat.csprojResolveAssemblyReference.cache
