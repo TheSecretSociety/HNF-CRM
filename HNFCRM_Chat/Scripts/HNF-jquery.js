@@ -423,7 +423,7 @@ $('#btnEPEditPassword').click(function() {
 }
 // validate name format //
 function EmployeeNameValidate(InputName){
-  var NameRegEx= /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,35}$/;
+  var NameRegEx= /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,100}$/;
   console.log(NameRegEx.test(InputName));
   return NameRegEx.test(InputName);
 }
@@ -550,7 +550,7 @@ function EmployeeAddValidation() {
   }
   // validate name format //
   function ANameValidate(NameValue){
-    var ANameRegEx= /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,35}$/;
+    var ANameRegEx= /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,100}$/;
     console.log('Aname = ' + ANameRegEx.test(NameValue));
     return ANameRegEx.test(NameValue);
   }
@@ -576,7 +576,12 @@ function EmployeeAddValidation() {
 // HNF-Customer-Detail Validation //
 function CustomerDetailValidation(){
   Validate();
-
+  function AntiNegativeValue(n) {
+      if (n < 0) {
+          n = -n;
+      }
+      return n;
+  }
   function Validate() {
     PreloadValidation();
     var NamePass = false;
@@ -620,16 +625,16 @@ function CustomerDetailValidation(){
         $('#txt-CEmail').addClass('input-validate-wrong');
       }
     })
-    $('#txt-CPrice').click(function() {
+    $('#txt-CPrice').focusout(function() {
       var numcheck = $('#txt-CPrice').val();
       console.log("Price : " + numcheck);
       $('#txt-CPrice').val(AntiNegativeValue(numcheck));
     });
-    $('#txt-CQuantity').click(function() {
+    $('#txt-CQuantity').focusout(function() {
       var numcheck = $('#txt-CQuantity').val();
       $('#txt-CQuantity').val(AntiNegativeValue(numcheck));
     });
-    $('#txt-CPriceRange').click(function() {
+    $('#txt-CPriceRange').focusout(function() {
       var numcheck = $('#txt-CPriceRange').val();
       $('#txt-CPriceRange').val(AntiNegativeValue(numcheck));
     })
@@ -751,7 +756,7 @@ function CustomerDetailValidation(){
   }
   // check name format
   function CName_Format_Validate(txtCustomerName) {
-    var CustomerNameRegex = /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,35}$/;
+    var CustomerNameRegex = /^([^-\s!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9])+[^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`{}0-9]{1,100}$/;
     console.log('Customer Name : ' + CustomerNameRegex.test(txtCustomerName));
     return CustomerNameRegex.test(txtCustomerName);
   }
@@ -769,7 +774,7 @@ function CustomerDetailValidation(){
   }
   // check other field (without *)
   function COther_Format_Validate(txtField) {
-    var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,35}$/;
+    var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,100}$/;
     console.log(CustomerOther.test(txtField));
     return CustomerOther.test(txtField);
   }
@@ -910,13 +915,13 @@ function ContractDetailDesignValidation(form){
   }
   // validate Color and Length
   function COtherCD_Format_Validate(txtField) {
-    var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,30}$/;
+    var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,100}$/;
     console.log("Other Field: " + CustomerOther.test(txtField));
     return CustomerOther.test(txtField);
   }
   // validate Color and Length
   function COtherCL_Format_Validate(txtField) {
-    var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,15}$/;
+    var CustomerOther = /^([^-!@#$;%ˆ&*'()<>.?[{[}/^,:\\\]\~\`]){0,100}$/;
     console.log("Color : " + CustomerOther.test(txtField));
     return CustomerOther.test(txtField);
   }
@@ -928,7 +933,7 @@ function ContractDetailDesignValidation(form){
   }
   // check the total number type of size Input
   function DDesign_SizeQuantity_Validate(SizeQuantityValue) {
-    var SizeQuantityRegex = /^[\d]{0,10}$/
+    var SizeQuantityRegex = /^[\d]{0,100}$/
     console.log('SizeQuantity = ' + SizeQuantityRegex.test(SizeQuantityValue));
     return SizeQuantityRegex.test(SizeQuantityValue);
   }
@@ -941,6 +946,7 @@ function ContractDetailDesignValidation(form){
     $('#txt_DD_Quantity').val(TotalSize);
   }
 }
+
 // ============= Statictis ============= //
 // Test Chart
 function DemoChart() {
@@ -1048,7 +1054,7 @@ $(document).ready(function () {
             }
         },
         series: [{
-            name: 'S? h?p d?ng',
+            name: 'Số hợp đồng',
             data: [january, february, march, april, may, june, july, august, september, october, november, december]
         }]
     });

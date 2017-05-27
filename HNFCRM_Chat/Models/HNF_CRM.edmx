@@ -10,8 +10,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="35" />
-          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="300" />
           <Property Name="Phone" Type="varchar" MaxLength="13" />
           <Property Name="DateTime" Type="date" />
           <Property Name="IP" Type="varchar" MaxLength="50" />
@@ -36,11 +36,11 @@
           <Property Name="DateConsult" Type="date" />
           <Property Name="Appointment" Type="date" />
           <Property Name="Note" Type="nvarchar(max)" />
-          <Property Name="SendMarket" Type="varchar" MaxLength="300" />
-          <Property Name="Price" Type="varchar" MaxLength="300" />
+          <Property Name="SendMarket" Type="nvarchar(max)" />
+          <Property Name="Price" Type="nvarchar(max)" />
           <Property Name="MarketConfirm" Type="bit" />
-          <Property Name="MarketPicture" Type="varchar" MaxLength="300" />
-          <Property Name="Contract" Type="varchar" MaxLength="300" />
+          <Property Name="MarketPicture" Type="nvarchar(max)" />
+          <Property Name="Contract" Type="nvarchar(max)" />
           <Property Name="StartDate" Type="date" />
           <Property Name="EndDate" Type="date" />
           <Property Name="MoneyTransfer" Type="char" MaxLength="3" />
@@ -61,28 +61,28 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Quantity" Type="int" />
-          <Property Name="ProductDesign" Type="nvarchar" MaxLength="15" />
-          <Property Name="CollarArmAdjustment" Type="nvarchar" MaxLength="30" />
-          <Property Name="FabricateStyle" Type="nvarchar" MaxLength="30" />
+          <Property Name="ProductDesign" Type="nvarchar" MaxLength="100" />
+          <Property Name="CollarArmAdjustment" Type="nvarchar" MaxLength="100" />
+          <Property Name="FabricateStyle" Type="nvarchar" MaxLength="100" />
           <Property Name="SideCut" Type="bit" />
           <Property Name="ArmBorder" Type="bit" />
           <Property Name="Note" Type="nvarchar(max)" />
           <Property Name="PrintStartDate" Type="date" />
           <Property Name="PrintEndDate" Type="date" />
-          <Property Name="PrintSpot" Type="nvarchar" MaxLength="30" />
-          <Property Name="PrintSize" Type="nvarchar" MaxLength="30" />
+          <Property Name="PrintSpot" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrintSize" Type="nvarchar" MaxLength="100" />
           <Property Name="PrintNote" Type="nvarchar(max)" />
           <Property Name="EmbroiderStartDate" Type="date" />
           <Property Name="EmbroiderEndDate" Type="date" />
-          <Property Name="EmbroiderMakingUnit" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmbroiderSpot" Type="nvarchar" MaxLength="30" />
-          <Property Name="EmbroiderSize" Type="nvarchar" MaxLength="30" />
+          <Property Name="EmbroiderMakingUnit" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmbroiderSpot" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmbroiderSize" Type="nvarchar" MaxLength="100" />
           <Property Name="EmbroiderNote" Type="nvarchar(max)" />
-          <Property Name="PrintMakingUnit" Type="nvarchar" MaxLength="30" />
+          <Property Name="PrintMakingUnit" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_Contract" Type="int" />
           <Property Name="NotePrint" Type="nvarchar(max)" />
           <Property Name="NoteSize" Type="nvarchar(max)" />
-          <Property Name="ShirtColor" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShirtColor" Type="nvarchar" MaxLength="100" />
           <Property Name="ArmpitBorder" Type="bit" />
         </EntityType>
         <EntityType Name="CRITERIA">
@@ -105,15 +105,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="35" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Address" Type="nvarchar" MaxLength="100" />
           <Property Name="Phone" Type="varchar" MaxLength="13" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
-          <Property Name="Job" Type="nvarchar" MaxLength="55" />
-          <Property Name="Company" Type="nvarchar" MaxLength="55" />
-          <Property Name="PreviousDesign" Type="nvarchar" MaxLength="30" />
-          <Property Name="PreviousFabric" Type="nvarchar" MaxLength="50" />
-          <Property Name="PreviousCompanyDesign" Type="nvarchar" MaxLength="50" />
+          <Property Name="Job" Type="nvarchar" MaxLength="100" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousDesign" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousFabric" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreviousCompanyDesign" Type="nvarchar" MaxLength="100" />
           <Property Name="PreviousPrice" Type="float" />
           <Property Name="Note" Type="nvarchar(max)" />
           <Property Name="TypeCustomer" Type="char" MaxLength="3" />
@@ -182,9 +182,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RequireFabric" Type="nvarchar" MaxLength="30" />
-          <Property Name="Purpose" Type="nvarchar" MaxLength="55" />
-          <Property Name="PrintAndEmbroider" Type="nvarchar" MaxLength="15" />
+          <Property Name="RequireFabric" Type="nvarchar" MaxLength="100" />
+          <Property Name="Purpose" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrintAndEmbroider" Type="nvarchar" MaxLength="100" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="float" />
           <Property Name="Note" Type="nvarchar(max)" />
@@ -205,12 +205,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="35" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Phone" Type="nvarchar" MaxLength="13" />
-          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="300" />
           <Property Name="ID_Role" Type="int" />
           <Property Name="Avartar" Type="image" />
-          <Property Name="Password" Type="varchar" MaxLength="30" />
+          <Property Name="Password" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -549,8 +549,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="DateTime" Type="DateTime" Precision="0" />
           <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -576,11 +576,11 @@
           <Property Name="DateConsult" Type="DateTime" Precision="0" />
           <Property Name="Appointment" Type="DateTime" Precision="0" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SendMarket" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Price" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="SendMarket" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="MarketConfirm" Type="Boolean" />
-          <Property Name="MarketPicture" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Contract1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="MarketPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contract1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="DateTime" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="MoneyTransfer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
@@ -606,28 +606,28 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Quantity" Type="Int32" />
-          <Property Name="ProductDesign" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="CollarArmAdjustment" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="FabricateStyle" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ProductDesign" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CollarArmAdjustment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FabricateStyle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SideCut" Type="Boolean" />
           <Property Name="ArmBorder" Type="Boolean" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PrintStartDate" Type="DateTime" Precision="0" />
           <Property Name="PrintEndDate" Type="DateTime" Precision="0" />
-          <Property Name="PrintSpot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="PrintSize" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PrintSpot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrintSize" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PrintNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EmbroiderStartDate" Type="DateTime" Precision="0" />
           <Property Name="EmbroiderEndDate" Type="DateTime" Precision="0" />
-          <Property Name="EmbroiderMakingUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmbroiderSpot" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="EmbroiderSize" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EmbroiderMakingUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmbroiderSpot" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmbroiderSize" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="EmbroiderNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PrintMakingUnit" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PrintMakingUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ID_Contract" Type="Int32" />
           <Property Name="NotePrint" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="NoteSize" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ShirtColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShirtColor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ArmpitBorder" Type="Boolean" />
           <NavigationProperty Name="CONTRACT" Relationship="Self.FK_CONTRACTDETAIL_CONTRACT1" FromRole="CONTRACTDETAIL" ToRole="CONTRACT" />
           <NavigationProperty Name="MENSIZEs" Relationship="Self.FK_MENSIZE_CONTRACTDETAIL" FromRole="CONTRACTDETAIL" ToRole="MENSIZE" />
@@ -654,15 +654,15 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Job" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="Company" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="PreviousDesign" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="PreviousFabric" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PreviousCompanyDesign" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Job" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousDesign" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousFabric" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousCompanyDesign" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PreviousPrice" Type="Double" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TypeCustomer" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
@@ -745,9 +745,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RequireFabric" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Purpose" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="PrintAndEmbroider" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="RequireFabric" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Purpose" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrintAndEmbroider" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Price" Type="Double" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -771,12 +771,12 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="ID_Role" Type="Int32" />
           <Property Name="Avartar" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CHATINFOes" Relationship="Self.FK_CHATINFO_STAFF" FromRole="STAFF" ToRole="CHATINFO" />
           <NavigationProperty Name="CONTRACTs" Relationship="Self.FK_CONTRACT_STAFF" FromRole="STAFF" ToRole="CONTRACT" />
           <NavigationProperty Name="CUSTOMERCAREs" Relationship="Self.FK_CUSTOMERCARE_STAFF" FromRole="STAFF" ToRole="CUSTOMERCARE" />

@@ -277,7 +277,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <label class="sr-only" for="inlineFormInputGroup">date</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Thực Hiện (dd/mm/yyyy)" value="20/01/2016" disabled>
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Thực Hiện (dd/mm/yyyy)" value="@Model.Contractdetail.PrintStartDate.Value.ToString("dd/MM/yyyy")" disabled>
                                     </div>
                                     <br>
                                     <div class="input-group">
@@ -297,7 +297,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <label class="sr-only" for="inlineFormInputGroup">date</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Hoàn Thành (dd/mm/yyyy)" value="20/01/2016" disabled>
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Hoàn Thành (dd/mm/yyyy)" value="@Model.Contractdetail.PrintEndDate.Value.ToString("dd/MM/yyyy")" disabled>
                                     </div>
                                     <br>
                                     <div class="form-group">
@@ -318,7 +318,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <label class="sr-only" for="inlineFormInputGroup">date</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Thực Hiện (dd/mm/yyyy)" value="31/01/2017" disabled>
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Thực Hiện (dd/mm/yyyy)" value="@Model.Contractdetail.EmbroiderStartDate.Value.ToString("dd/MM/yyyy")" disabled>
                                     </div>
                                     <br>
                                     <div class="input-group">
@@ -338,7 +338,7 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <label class="sr-only" for="inlineFormInputGroup">date</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Hoàn Thành (dd/mm/yyyy)" value="31/01/2017" disabled>
+                                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Ngày Hoàn Thành (dd/mm/yyyy)" value="@Model.Contractdetail.EmbroiderEndDate.Value.ToString("dd/MM/yyyy")" disabled>
                                     </div>
                                     <br>
                                     <div class="form-group">
