@@ -194,14 +194,38 @@ namespace HNFCRM_Chat.Controllers
             int pageSize = 9;
             int pageNumber = (page ?? 1);
 
-            var findcustomer = entities.CHATINFOes.Where(x => x.Name.Contains(Search) || x.Phone.Contains(Search) || x.Email.Contains(Search)).ToList();
-            var staff = entities.STAFFs.ToList();
+            List<CHATINFO> customer = new List<CHATINFO>();
 
-            ChatModel model = new ChatModel();
-            model.Chat = findcustomer.ToPagedList(pageNumber, pageSize);
-            model.Staff = staff;
+            var role = Session["Role"] as STAFF;
+            var idstaff = Session["ID"] as STAFF;
 
-            return View(model);
+            if (role.ID_Role != 1)
+            {
+                var findcustomer = entities.CHATINFOes.Where(x => x.Name.Contains(Search) || x.Phone.Contains(Search) || x.Email.Contains(Search)).ToList();
+                var staff = entities.STAFFs.ToList();
+                foreach(var item in findcustomer)
+                {
+                    if (item.ID_Staff == idstaff.ID)
+                    {
+                        customer.Add(item);
+                    }
+                }
+                ChatModel model = new ChatModel();
+                model.Chat = customer.ToPagedList(pageNumber, pageSize);
+                model.Staff = staff;
+
+                return View(model);
+            }
+            else
+            {
+                var findcustomer = entities.CHATINFOes.Where(x => x.Name.Contains(Search) || x.Phone.Contains(Search) || x.Email.Contains(Search)).ToList();
+                var staff = entities.STAFFs.ToList();
+                ChatModel model = new ChatModel();
+                model.Chat = findcustomer.ToPagedList(pageNumber, pageSize);
+                model.Staff = staff;
+
+                return View(model);
+            }          
         }
     }
 }
