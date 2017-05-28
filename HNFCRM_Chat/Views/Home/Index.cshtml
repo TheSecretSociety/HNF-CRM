@@ -98,7 +98,7 @@
                             <table class="table table-sm table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>#</th>
+                                        @*<th>#</th>*@
                                         <th>HỌ VÀ TÊN</th>
                                         <th>CÔNG TY</th>
                                         <th>EMAIL</th>
@@ -113,9 +113,8 @@
                                         {
                                             foreach (var item in Model.customer)
                                             {
-
                                                 <tr>
-                                                    <th scope="row">@item.ID</th>
+                                                    @*<th scope="row">@item.ID</th>*@
                                                     <td>@item.Name</td>
                                                     <td>@item.Company</td>
                                                     <td>@item.Email</td>
@@ -165,8 +164,8 @@
                             </table>
                         </div>
                     </div>
-                    <div class="row" >
-                        <div style ="margin:0 auto; color: black">
+                    <div class="row">
+                        <div style="margin:0 auto; color: black">
                             @Html.PagedListPager(Model.customer, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
                         </div>
                     </div>

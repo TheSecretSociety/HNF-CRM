@@ -95,11 +95,32 @@ namespace HNFCRM_Chat.Controllers
                 return RedirectToAction("Login", "Login");
             }
             var role = Session["Role"] as STAFF;
+            var idstaff = Session["ID"] as STAFF;
+
             CUSTOMER customer = new CUSTOMER();
             customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
+            var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             REQUIREPRODUCT require = new REQUIREPRODUCT();
             require = entities.REQUIREPRODUCTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             CustomerModel model = new CustomerModel();
+            if (role.ID_Role != 1 && role.ID_Role != 4)
+            {
+                if (idstaff.ID == findcontract.ID_Staff)
+                {
+                    model.Customer = customer;
+                    model.RequireProduct = require;
+                    ViewBag.Role = role.ID_Role;
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Customer", "Customer");
+                }
+            }
+            if (role.ID_Role == 4)
+            {
+                return RedirectToAction("ProductionLine", "ProductionLine");
+            }
             model.Customer = customer;
             model.RequireProduct = require;
             ViewBag.Role = role.ID_Role;
@@ -134,7 +155,7 @@ namespace HNFCRM_Chat.Controllers
             }
             else
             {
-                data.PreviousPrice = int.Parse(frm["previousprice"]);
+                data.PreviousPrice = float.Parse(frm["previousprice"]);
             }
             data.Note = frm["customernote"];
             data.CareAboutProduct = frm["InterestedIn"];
@@ -160,7 +181,7 @@ namespace HNFCRM_Chat.Controllers
             }
             else
             {
-                require.Price = int.Parse(frm["price"]);
+                require.Price = float.Parse(frm["price"]);
             }
             require.PrintAndEmbroider = frm["printembroider"];
             if (frm["quantity"] == "" || frm["quantity"] == null)
@@ -174,7 +195,7 @@ namespace HNFCRM_Chat.Controllers
             require.Note = frm["requirenote"];
             require.Color = frm["color"];
             entities.SaveChanges();
-            TempData["AlertMessage"] = "Thêm Thành Công !!";
+            TempData["AlertMessage"] = "Cập Nhật Thành Công !!";
 
             return RedirectToAction("CustomerDetail");
         }
@@ -306,9 +327,21 @@ namespace HNFCRM_Chat.Controllers
             //Because of foreign key constraint, all relative table will be automatically created 
             MENSIZE mensize = new MENSIZE();
             mensize.ID_CONTRACTDETAIL = newcontract.ID;
+            mensize.S = 0;
+            mensize.M = 0;
+            mensize.L = 0;
+            mensize.XL = 0;
+            mensize.XXL = 0;
+            mensize.XXXL = 0;
             entities.MENSIZEs.Add(mensize);
             WOMENSIZE womensize = new WOMENSIZE();
             womensize.ID_CONTRACTDETAIL = newcontract.ID;
+            womensize.S = 0;
+            womensize.M = 0;
+            womensize.L = 0;
+            womensize.XL = 0;
+            womensize.XXL = 0;
+            womensize.XXXL = 0;
             entities.WOMENSIZEs.Add(womensize);
 
             //Data savechanges
@@ -318,7 +351,6 @@ namespace HNFCRM_Chat.Controllers
             entities.REQUIREPRODUCTs.Add(require);
             entities.SaveChanges();
 
-            TempData["AlertMessage"] = "Thêm Thành Công !!";
             return RedirectToAction("Customer");
         }
 
@@ -391,12 +423,9 @@ namespace HNFCRM_Chat.Controllers
                         {
                             var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
                             var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                            if (id.ID == findcontract.ID_Staff)
-                            {
-                                customer.Add(item);
-                                staff.Add(findstaff);
-                                contract.Add(findcontract);
-                            }
+                            customer.Add(item);
+                            staff.Add(findstaff);
+                            contract.Add(findcontract);
                         }
                         CustomerModel model = new CustomerModel();
                         model.contract = contract;
@@ -417,12 +446,9 @@ namespace HNFCRM_Chat.Controllers
                         {
                             var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
                             var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                            if (id.ID == findcontract.ID_Staff)
-                            {
-                                customer.Add(item);
-                                staff.Add(findstaff);
-                                contract.Add(findcontract);
-                            }
+                            customer.Add(item);
+                            staff.Add(findstaff);
+                            contract.Add(findcontract);
                         }
                         CustomerModel model = new CustomerModel();
                         model.contract = contract;
@@ -443,12 +469,9 @@ namespace HNFCRM_Chat.Controllers
                         {
                             var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
                             var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                            if (id.ID == findcontract.ID_Staff)
-                            {
-                                customer.Add(item);
-                                staff.Add(findstaff);
-                                contract.Add(findcontract);
-                            }
+                            customer.Add(item);
+                            staff.Add(findstaff);
+                            contract.Add(findcontract);
                         }
                         CustomerModel model = new CustomerModel();
                         model.contract = contract;
@@ -469,12 +492,9 @@ namespace HNFCRM_Chat.Controllers
                         {
                             var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
                             var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                            if (id.ID == findcontract.ID_Staff)
-                            {
-                                customer.Add(item);
-                                staff.Add(findstaff);
-                                contract.Add(findcontract);
-                            }
+                            customer.Add(item);
+                            staff.Add(findstaff);
+                            contract.Add(findcontract);
                         }
                         CustomerModel model = new CustomerModel();
                         model.contract = contract;
@@ -495,12 +515,9 @@ namespace HNFCRM_Chat.Controllers
                         {
                             var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
                             var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                            if (id.ID == findcontract.ID_Staff)
-                            {
-                                customer.Add(item);
-                                staff.Add(findstaff);
-                                contract.Add(findcontract);
-                            }
+                            customer.Add(item);
+                            staff.Add(findstaff);
+                            contract.Add(findcontract);
                         }
                         CustomerModel model = new CustomerModel();
                         model.contract = contract;
@@ -521,12 +538,9 @@ namespace HNFCRM_Chat.Controllers
                         {
                             var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
                             var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                            if (id.ID == findcontract.ID_Staff)
-                            {
-                                customer.Add(item);
-                                staff.Add(findstaff);
-                                contract.Add(findcontract);
-                            }
+                            customer.Add(item);
+                            staff.Add(findstaff);
+                            contract.Add(findcontract);
                         }
                         CustomerModel model = new CustomerModel();
                         model.contract = contract;
@@ -547,12 +561,9 @@ namespace HNFCRM_Chat.Controllers
                         {
                             var findcontract = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
                             var findstaff = entities.STAFFs.Where(x => x.ID == findcontract.ID_Staff).SingleOrDefault();
-                            if (id.ID == findcontract.ID_Staff)
-                            {
-                                customer.Add(item);
-                                staff.Add(findstaff);
-                                contract.Add(findcontract);
-                            }
+                            customer.Add(item);
+                            staff.Add(findstaff);
+                            contract.Add(findcontract);
                         }
                         CustomerModel model = new CustomerModel();
                         model.contract = contract;

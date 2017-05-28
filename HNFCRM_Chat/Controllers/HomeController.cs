@@ -26,6 +26,7 @@ namespace HNFCRM_Chat.Controllers
 
             List<CONTRACT> contract = new List<CONTRACT>();
             List<STAFF> staff = new List<STAFF>();
+            List<CUSTOMER> customer = new List<CUSTOMER>();
 
             //Information of Top Board
             int monthnow = DateTime.Now.Month;
@@ -48,13 +49,17 @@ namespace HNFCRM_Chat.Controllers
 
             //Information of List of Customer
             HomeModel model = new HomeModel();
-            var customer = entities.CUSTOMERs.OrderByDescending(x => x.ID).ToList();
-            foreach (var item in customer)
+            var findcustomer = entities.CUSTOMERs.OrderByDescending(x => x.ID).ToList();
+            foreach (var item in findcustomer)
             {
-                var temp = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).Single();
-                contract.Add(temp);
-                var tempstaff = entities.STAFFs.Where(x => x.ID == temp.ID_Staff).Single();
-                staff.Add(tempstaff);
+                var temp = entities.CONTRACTs.Where(x => x.ID_Customer == item.ID).SingleOrDefault();
+                var tempstaff = entities.STAFFs.Where(x => x.ID == temp.ID_Staff).SingleOrDefault();
+                if (int.Parse(temp.StatusContract) == 0)
+                {
+                    contract.Add(temp);
+                    staff.Add(tempstaff);
+                    customer.Add(item);
+                }
             }
 
             model.Staff = staff;
@@ -90,10 +95,10 @@ namespace HNFCRM_Chat.Controllers
                 var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
                   && x.UpdatedDate.Value.Year == yearnow);
 
-                var failed = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+                var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2"
                   && x.UpdatedDate.Value.Year == yearnow);
 
-                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "2"
+                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "0"
                   && x.UpdatedDate.Value.Year == yearnow);
 
                 var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow);
@@ -130,13 +135,13 @@ namespace HNFCRM_Chat.Controllers
                 int monthnow = DateTime.Now.Month;
                 int yearnow = DateTime.Now.Year;
 
-                var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+                var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
               && x.UpdatedDate.Value.Year == yearnow);
 
                 var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2"
                   && x.UpdatedDate.Value.Year == yearnow);
 
-                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
+                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "0"
                   && x.UpdatedDate.Value.Year == yearnow);
 
                 var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow);
@@ -150,9 +155,9 @@ namespace HNFCRM_Chat.Controllers
                 var contract = entities.CONTRACTs.Where(x => x.StatusContract == "2").ToList();
                 foreach (var item in contract)
                 {
-                    var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).Single();
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).SingleOrDefault();
                     customer.Add(findcustomer);
-                    var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).Single();
+                    var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).SingleOrDefault();
                     staff.Add(findstaff);
                 }
 
@@ -172,13 +177,13 @@ namespace HNFCRM_Chat.Controllers
                 int monthnow = DateTime.Now.Month;
                 int yearnow = DateTime.Now.Year;
 
-                var success = entities.CONTRACTs.Count(x => x.StatusContract == "0"
+                var success = entities.CONTRACTs.Count(x => x.StatusContract == "1"
               && x.UpdatedDate.Value.Year == yearnow);
 
                 var failed = entities.CONTRACTs.Count(x => x.StatusContract == "2"
                   && x.UpdatedDate.Value.Year == yearnow);
 
-                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "1"
+                var waiting = entities.CONTRACTs.Count(x => x.StatusContract == "0"
                   && x.UpdatedDate.Value.Year == yearnow);
 
                 var inmonth = entities.CONTRACTs.Count(x => x.CreatedDate.Value.Year == yearnow);
@@ -189,13 +194,17 @@ namespace HNFCRM_Chat.Controllers
 
                 //Information of List of Customer
                 HomeModel model = new HomeModel();
-                var contract = entities.CONTRACTs.Where(x => x.StatusContract == "0").ToList();
+                var contract = entities.CONTRACTs.Where(x => x.StatusContract == "1").ToList();
                 foreach (var item in contract)
                 {
-                    var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).Single();
-                    customer.Add(findcustomer);
-                    var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).Single();
-                    staff.Add(findstaff);
+                    var findcustomer = entities.CUSTOMERs.Where(x => x.ID == item.ID_Customer).SingleOrDefault();
+                    var findproductline = entities.PRODUCTLINEs.Where(x => x.ID_Contract == item.ID).SingleOrDefault();
+                    var findstaff = entities.STAFFs.Where(x => x.ID == item.ID_Staff).SingleOrDefault();
+                    if (int.Parse(item.StatusContract) == 1 && int.Parse(item.MoneyTransfer) == 3 && findproductline.Delivery == true)
+                    {
+                        customer.Add(findcustomer);
+                        staff.Add(findstaff);
+                    }
                 }
 
                 model.customer = customer.ToPagedList(pageNumber, pageSize);

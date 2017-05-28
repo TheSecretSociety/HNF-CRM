@@ -112,8 +112,26 @@ namespace HNFCRM_Chat.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            var customer = entities.CHATINFOes.Where(x => x.ID == id).SingleOrDefault();
-            return View(customer);
+
+            var role = Session["Role"] as STAFF;
+            var idstaff = Session["ID"] as STAFF;
+            if (role.ID_Role != 1)
+            {
+                var customer = entities.CHATINFOes.Where(x => x.ID == id).SingleOrDefault();
+                if (idstaff.ID == customer.ID_Staff)
+                {
+                    return View(customer);
+                }
+                else
+                {
+                    return RedirectToAction("ChatInfo", "Chat");
+                }
+            }
+            else
+            {
+                var customer = entities.CHATINFOes.Where(x => x.ID == id).SingleOrDefault();
+                return View(customer);
+            }            
         }
 
         //Edit Customer's Information
@@ -154,7 +172,7 @@ namespace HNFCRM_Chat.Controllers
             customer.Q10 = button.CheckboxButton(frm["q10"]);
 
             entities.SaveChanges();
-            TempData["AlertMessage"] = "Thêm Thành Công !!";
+            TempData["AlertMessage"] = "Cập Nhật Thành Công !!";
             return RedirectToAction("CustomerDetail", "Chat");
         }
 

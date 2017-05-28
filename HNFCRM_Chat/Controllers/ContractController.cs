@@ -24,11 +24,32 @@ namespace HNFCRM_Chat.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
+            var role = Session["Role"] as STAFF;
+            var idstaff = Session["ID"] as STAFF;
+
             CONTRACT contract = entities.CONTRACTs.Where(x => x.ID_Customer == id).SingleOrDefault();
             CUSTOMER customer = entities.CUSTOMERs.Where(x => x.ID == id).SingleOrDefault();
             int? staffid = contract.ID_Staff;
             STAFF staff = entities.STAFFs.Where(x => x.ID == staffid).SingleOrDefault();
             ContractModel model = new ContractModel();
+            if (role.ID_Role != 1 && role.ID_Role!=4)
+            {
+                if (idstaff.ID == contract.ID_Staff)
+                {
+                    model.Contract = contract;
+                    model.Customer = customer;
+                    model.Staff = staff;
+                    return View(model);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            if(role.ID_Role== 4)
+            {
+                return RedirectToAction("ProductionLine", "ProductionLine");
+            }
             model.Contract = contract;
             model.Customer = customer;
             model.Staff = staff;
@@ -213,7 +234,7 @@ namespace HNFCRM_Chat.Controllers
             contract.UpdatedDate = DateTime.Now;
             entities.SaveChanges();
 
-            TempData["AlertMessage"] = "Thêm Thành Công !!";
+            TempData["AlertMessage"] = "Cập Nhật Thành Công !!";
             return RedirectToAction("Contract");
         }
 
@@ -429,7 +450,7 @@ namespace HNFCRM_Chat.Controllers
 
             entities.SaveChanges();
 
-            TempData["AlertMessage"] = "Thêm Thành Công !!";
+            TempData["AlertMessage"] = "Cập Nhật Thành Công !!";
             return RedirectToAction("ContractDetail");
         }
 
