@@ -74,7 +74,7 @@ namespace HNFCRM_Chat.Controllers
             }
 
             PRODUCTLINE product = entities.PRODUCTLINEs.Where(x => x.ID == id).SingleOrDefault();
-
+            
             if (frm["cut"] != null)
             {
                 product.Cut = true;

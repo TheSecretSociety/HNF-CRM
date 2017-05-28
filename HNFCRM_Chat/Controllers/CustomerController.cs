@@ -363,6 +363,7 @@ namespace HNFCRM_Chat.Controllers
             CONTRACTDETAIL contractdetail = entities.CONTRACTDETAILs.Where(x => x.ID_Contract == contract.ID).SingleOrDefault();
             PRODUCTLINE productline = entities.PRODUCTLINEs.Where(x => x.ID_Customer == id).SingleOrDefault();
             CUSTOMERCARE customercare = entities.CUSTOMERCAREs.Where(x => x.ID_Customer == id).SingleOrDefault();
+            
             //Check the relative table has exist or not
             entities.CUSTOMERs.Remove(customer);
             entities.REQUIREPRODUCTs.Remove(require);
@@ -386,6 +387,10 @@ namespace HNFCRM_Chat.Controllers
             if (customercare != null)
             {
                 entities.CUSTOMERCAREs.Remove(customercare);
+                CUSTOMERCAREDETAIL customercaredetail = entities.CUSTOMERCAREDETAILs.Where(x => x.ID_CustomerCare == customercare.ID).SingleOrDefault();
+                Criterion criteria = entities.CRITERIA.Where(x => x.ID == customercaredetail.ID_Criteria).SingleOrDefault();
+                entities.CUSTOMERCAREDETAILs.Remove(customercaredetail);
+                entities.CRITERIA.Remove(criteria);
             }
             entities.SaveChanges();
             return RedirectToAction("Customer");
